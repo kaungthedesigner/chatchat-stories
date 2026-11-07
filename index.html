@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Before the Rain Ends — Prologue, Chapters 1–2</title>
+<title>Before the Rain Ends — Prologue, Chapters 1–3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
@@ -49,6 +49,7 @@ button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ic.i-speaker-high:before{content:"\e44a"}
 .ic.i-speaker-x:before{content:"\e45c"}
 .ic.i-note:before{content:"\e348"}
+.ic.i-drop:before{content:"\e210"}.ic.i-person:before{content:"\e3a8"}.ic.i-smiley:before{content:"\e436"}.ic.i-music-notes:before{content:"\e340"}
 .ic.s{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20}
 #bgRain{position:fixed;inset:0;width:100%;height:100%;z-index:0}
 .page{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;align-items:center}
@@ -370,6 +371,39 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 .mcard .walk3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;aspect-ratio:4/3;background:#000}
 .mcard .walk3 i{background-size:cover}
 #end .mh{font:600 15px/20px var(--sans);margin:22px 0 10px;display:flex;gap:8px;align-items:baseline}#end .mh span{font-weight:400;color:var(--ink-muted,#7b858c);font-size:13px}#end .mhs{font:400 13px/18px var(--sans);color:var(--ink-muted,#7b858c);margin:-4px 0 10px}#end .mh+ .mgrid{margin-top:0}
+
+/* water street side quest */
+#wstreet{background:#cfe6ea;display:flex;flex-direction:column;overflow:hidden}
+#wstreet .wh{padding:56px 20px 10px;background:linear-gradient(#cfe6ea,rgba(207,230,234,0));position:relative;z-index:3}
+#wstreet .eb{font:600 12px/16px var(--sans);color:var(--n-clay,#b5562f)}
+#wstreet h2{font:600 22px/28px var(--serif);color:#1d2a2c;margin-top:2px}
+#wstreet .sub{font:400 13px/18px var(--sans);color:#4c5b5e;margin-top:4px}
+#wstreet .bars{display:flex;gap:14px;margin-top:10px;font:500 12px/16px var(--sans);color:#33474a;align-items:center}
+#wstreet .bar{flex:1;height:6px;border-radius:999px;background:rgba(29,42,44,.12);overflow:hidden}
+#wstreet .bar i{display:block;height:100%;width:0;background:#2f6f7a;border-radius:999px}
+#wstreet .bar.w i{background:#3e8fd0}
+#wsField{position:relative;flex:1;overflow:hidden;touch-action:none;background:repeating-linear-gradient(180deg,#b9d6db 0 40px,#c4dde1 40px 80px)}
+#wsField:before,#wsField:after{content:'';position:absolute;top:0;bottom:0;width:22px;background:#d9c9a8;z-index:1}
+#wsField:before{left:0}#wsField:after{right:0}
+#wsField .ln{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.55)}
+#wsField .ent{position:absolute;width:56px;height:56px;margin-left:-28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;z-index:2}
+#wsField .ent .ic{font-size:30px;width:30px;height:30px}
+#wsField .hose{background:rgba(62,143,208,.25);color:#1f6aa8}
+#wsField .hose:after{content:'';position:absolute;left:50%;top:-60px;width:10px;margin-left:-5px;height:60px;background:linear-gradient(rgba(62,143,208,0),rgba(62,143,208,.6));border-radius:6px}
+#wsField .pal{background:#f3e3c4;color:#9a5b2a;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+#wsField .pal.hit{background:#bfe3f0;color:#1f6aa8;transition:background .2s}
+#wsField .may{background:#f7d9de;color:#b0485f;width:72px;height:72px;margin-left:-36px}
+#wsMin{position:absolute;bottom:26px;width:64px;height:64px;margin-left:-32px;border-radius:50%;background:#fff;color:#2f6f7a;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:left .16s ease}
+#wsMin .ic{font-size:34px;width:34px;height:34px}
+#wsMin.wet{animation:wsWet .35s}
+@keyframes wsWet{0%,100%{transform:none}30%{transform:translateX(-5px)}60%{transform:translateX(5px)}}
+#wsField .spl{position:absolute;pointer-events:none;color:#3e8fd0;font:600 13px/16px var(--sans);z-index:4;animation:wsUp .7s forwards}
+@keyframes wsUp{to{transform:translateY(-34px);opacity:0}}
+#wstreet .wtip{position:absolute;left:0;right:0;bottom:104px;text-align:center;font:500 13px/18px var(--sans);color:#1d2a2c;z-index:3;pointer-events:none}
+#wsStart,#wsDone{position:absolute;left:20px;right:20px;bottom:30px;padding:14px;border-radius:999px;background:#1d2a2c;color:#fff;font:600 15px/20px var(--sans);z-index:5}
+#wsDone{display:none}
+#wsRes{position:absolute;left:20px;right:20px;top:42%;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.94);font:400 15px/21px var(--sans);color:#1d2a2c;z-index:5;display:none;text-align:center}
+#wsRes b{display:block;font:600 17px/22px var(--serif);margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -416,6 +450,9 @@ img{display:block;user-select:none;-webkit-user-drag:none}
       <div id="vf"><div class="bar"><span id="vfBack" role="button">Back</span><b id="vfName"></b><span id="vfCount"></span></div><div class="win" id="vfWin"><div class="pan" id="vfPan"></div><div class="fr" id="vfFr"><div class="mask"></div><i></i><i></i><i></i><i></i></div><div class="hint" id="vfHint">Drag to frame</div><div class="flashw" id="vfFlash"></div><div class="res" id="vfRes"></div></div><div class="ctl"><button class="shut" id="vfShut" aria-label="Take photo"></button></div></div>
     </div>
 
+    <div class="view" id="wstreet"><div class="wh"><div class="eb">Side quest · Water street</div><h2>Reach May before the song ends</h2><p class="sub">Tap left or right to change lanes. Tap a friend to splash them. Dodge Thura's hose, or don't.</p><div class="bars"><span>Song</span><div class="bar" id="wsSong"><i></i></div><span>Wet</span><div class="bar w" id="wsWetB"><i></i></div></div></div>
+      <div id="wsField"></div><div class="wtip" id="wsTip"></div><button id="wsStart">Start</button><div id="wsRes"></div><button id="wsDone">Find May</button></div>
+
     <div id="banner"></div>
     <div id="toast"></div>
 
@@ -426,7 +463,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
       <span class="ic um">umbrella</span><div class="eb">A story told in messages</div>
       <h1>Before the<br>Rain Ends</h1>
       <div class="sub">For the days when you miss someone.</div>
-      <div class="meta">Prologue &amp; Chapters 1–2 · about 40 minutes<br>Tap a reply to send it. Some things you can choose not to send.<br>Best with sound on.</div>
+      <div class="meta">Prologue &amp; Chapters 1–3 · about 55 minutes<br>Tap a reply to send it. Some things you can choose not to send.<br>Best with sound on.</div>
       <button class="go" id="go">Begin</button>
     </div>
   </div>
@@ -479,6 +516,7 @@ ART.yellowUmbrella=`<svg viewBox="0 0 300 225"><rect width="300" height="225" fi
 ART.thingyan=`<svg viewBox="0 0 300 225"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd2e3"/><stop offset="1" stop-color="#e8f1e4"/></linearGradient></defs><rect width="300" height="225" fill="url(#sk)"/><rect y="170" width="300" height="55" fill="#c9b27f"/><path d="M0 170q150-12 300 0" fill="#b8a06c"/><rect x="196" y="70" width="14" height="110" fill="#5c4330"/><g fill="#3f6b3a"><circle cx="203" cy="60" r="52"/><circle cx="160" cy="70" r="36"/><circle cx="248" cy="74" r="36"/><circle cx="200" cy="22" r="30"/></g><g fill="#4f7d45" opacity=".8"><circle cx="180" cy="44" r="18"/><circle cx="230" cy="50" r="20"/></g><g fill="#2b2f33"><circle cx="118" cy="104" r="15"/><path d="M98 180 q-2 -54 20 -60 q22 6 20 60z"/><circle cx="160" cy="110" r="14"/><path d="M142 182 q-2 -50 18 -56 q20 6 18 56z"/><path d="M175 132 q14 -14 22 -32" stroke="#2b2f33" stroke-width="7" stroke-linecap="round" fill="none" opacity=".6"/></g><g fill="#ffffff" opacity=".85">${Array.from({length:40},(_,i)=>`<circle cx="${120+((i*47)%140)}" cy="${40+((i*31)%120)}" r="${1+(i%3)}"/>`).join('')}</g><path d="M196 96 q30 -40 60 -10" stroke="#ffffff" stroke-width="3" fill="none" opacity=".6" stroke-dasharray="2 6" stroke-linecap="round"/></svg>`;
 ART.thumb=()=>`<svg viewBox="0 0 204 204" preserveAspectRatio="xMidYMid slice" fill="none"><rect width="204" height="204" fill="#D9D9D9"/><path d="M66.6553 62.2798H62.2803V141.03H141.03V62.2798H66.6553ZM71.0303 114.78V71.0298H132.28V100.78L115.655 84.1548L85.0303 114.78H71.0303ZM71.0303 123.53V132.28H132.28V123.53H71.0303ZM94.6553 85.9048C94.6553 83.5841 93.7334 81.3585 92.0925 79.7176C90.4515 78.0767 88.2259 77.1548 85.9053 77.1548C83.5846 77.1548 81.359 78.0767 79.7181 79.7176C78.0771 81.3585 77.1553 83.5841 77.1553 85.9048C77.1553 88.2254 78.0771 90.451 79.7181 92.092C81.359 93.7329 83.5846 94.6548 85.9053 94.6548C88.2259 94.6548 90.4515 93.7329 92.0925 92.092C93.7334 90.451 94.6553 88.2254 94.6553 85.9048Z" fill-rule="evenodd" clip-rule="evenodd" fill="#C4C4C4"/></svg>`;
 ART.STK={
+ teaCup:`<svg class="stk" viewBox="0 0 120 120"><path d="M46 24q-6 8 0 16t0 16M60 20q-6 8 0 16t0 16M74 24q-6 8 0 16t0 16" stroke="#c9b8a6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M28 58h64l-6 36q-2 10-12 10H46q-10 0-12-10z" fill="#f3e6d3" stroke="#8a6b4a" stroke-width="3"/><path d="M31 66h58l-2 10H33z" fill="#d9a066"/><path d="M92 66q16 0 14 14t-20 12" stroke="#8a6b4a" stroke-width="3" fill="none"/><circle cx="50" cy="84" r="2.6" fill="#3a2b20"/><circle cx="70" cy="84" r="2.6" fill="#3a2b20"/><path d="M55 91q5 5 10 0" stroke="#3a2b20" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="44" cy="90" r="3.4" fill="#f39a9a" opacity=".6"/><circle cx="76" cy="90" r="3.4" fill="#f39a9a" opacity=".6"/></svg>`,
  catUmb:`<svg class="stk" viewBox="0 0 120 120"><path d="M14 56a46 40 0 0 1 92 0q-11-8-23 0q-11-8-23 0q-12-8-23 0q-12-8-23 0z" fill="#e58aa0"/><path d="M60 16v40" stroke="#8a6b74" stroke-width="3"/><g transform="translate(60 84)"><ellipse cx="0" cy="10" rx="26" ry="18" fill="#f1c27d"/><circle cx="0" cy="-8" r="20" fill="#f1c27d"/><path d="M-18 -18 l-4 -16 l14 8z M18 -18 l4 -16 l-14 8z" fill="#f1c27d"/><circle cx="-7" cy="-9" r="2.6" fill="#2b2b2b"/><circle cx="7" cy="-9" r="2.6" fill="#2b2b2b"/><path d="M-4 -2 q4 4 8 0" stroke="#2b2b2b" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="-13" cy="-2" r="3" fill="#f39a9a" opacity=".6"/><circle cx="13" cy="-2" r="3" fill="#f39a9a" opacity=".6"/></g><g stroke="#7fb4c9" stroke-width="2.5" stroke-linecap="round"><path d="M10 74l-3 8M22 90l-3 8M100 74l3 8M110 92l3 8"/></g></svg>`,
  sleepy:`<svg class="stk" viewBox="0 0 120 120"><ellipse cx="60" cy="86" rx="40" ry="20" fill="#cfd6db"/><circle cx="46" cy="70" r="22" fill="#cfd6db"/><path d="M28 56 l-4 -16 l14 8z M58 52 l6 -15 l4 15z" fill="#cfd6db"/><path d="M36 70 q5 4 10 0 M52 68 q5 4 10 0" stroke="#3b4247" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M96 86 q16 0 8 -18" stroke="#cfd6db" stroke-width="9" fill="none" stroke-linecap="round"/><text x="78" y="44" font-family="Fraunces,serif" font-style="italic" font-size="16" fill="#6c7a84">z</text><text x="90" y="30" font-family="Fraunces,serif" font-style="italic" font-size="22" fill="#6c7a84">z</text></svg>`,
  laugh:`<svg class="stk" viewBox="0 0 120 120"><circle cx="60" cy="62" r="40" fill="#f6c453"/><path d="M38 52 q7 -8 14 0 M68 52 q7 -8 14 0" stroke="#4a3a12" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M38 70 q22 28 44 0z" fill="#4a3a12"/><path d="M48 82 q12 8 24 0" fill="#e86b6b"/><path d="M24 58 q-6 10 2 16 M96 58 q6 10 -2 16" stroke="#7fc4e0" stroke-width="5" fill="none" stroke-linecap="round"/></svg>`
@@ -598,7 +636,7 @@ function el(m,prev){
   if(m.k==='text'){d.innerHTML=`<div class="b">${esc(m.text)}</div>`}
   if(m.k==='photo'){d.innerHTML=`<div class="b photo">${ART[m.art]&&typeof ART[m.art]==='function'?ART[m.art]():ART[m.art]}</div>`}
   if(m.k==='sticker'){d.innerHTML=ART.STK[m.art]}
-  if(m.k==='voice'){d.innerHTML=`<div class="b"><div class="voice"><div class="pl">${IC.play}</div><div class="wv">${Array.from({length:26},(_,i)=>`<i style="height:${20+Math.abs(Math.sin(i*1.7))*70}%"></i>`).join('')}</div><small>${m.text}</small></div>${m.tr?`<div class="vtr">“${esc(m.tr)}”</div>`:''}</div>`}
+  if(m.k==='voice'){d.innerHTML=`<div class="b"><div class="voice"><div class="pl">${IC.play}</div><div class="wv">${Array.from({length:26},(_,i)=>`<i style="height:${20+Math.abs(Math.sin(i*1.7))*70}%"></i>`).join('')}</div><small>${m.text}</small></div>${m.tr?`<div class="vtr">${m.tr[0]==='('?esc(m.tr):'“'+esc(m.tr)+'”'}</div>`:''}</div>`}
   return d;
 }
 function renderThread(){msgs.innerHTML='';const th=S.threads[S.contact]||[];let prev=null;
@@ -656,7 +694,9 @@ const MEM_INFO={
  yellow:{t:'The Yellow Umbrella',ty:'Photo',art:'yellowUmbrella'},
  shoulder:{t:'The Wet Shoulder',ty:'Moment',art:'wetShoulder'},
  walk:{t:'The Photo Walk',ty:'Your three shots',art:'walk3'},
- lamp:{t:'The Lamp',ty:'Promise',art:'lamp'}
+ lamp:{t:'The Lamp',ty:'Promise',art:'lamp'},
+ mango:{t:'The Mango Tree',ty:'Photo',art:'thingyan'},
+ lamp2:{t:'The Second Lamp',ty:'A promise kept',art:'lamp2'}
 };
 function addMem(id){if(S.memories.includes(id))return;S.memories.push(id);toast(`Memory kept · <b>${MEM_INFO[id].t}</b>`)}
 function addUnsent(text,when){S.unsent.push({text,when});toast(`Not sent · kept in <b>Memories</b>`)}
@@ -704,6 +744,8 @@ async function exec(s){
   case 'inVoice': await incoming({k:'voice',text:v[0],tr:v[1]});break;
   case 'outPhoto': await outgoing({k:'photo',art:v});break;
   case 'photowalk': await photoWalk();break;
+  case 'waterstreet': await waterStreet();break;
+  case 'inCall': await incoming({k:'call',text:v});break;
   case 'inSticker': await incoming({k:'sticker',art:v});break;
   case 'out': await outgoing({k:'text',text:v});break;
   case 'typing': await typingFor(v);break;
@@ -804,7 +846,41 @@ async function photoWalk(){
   });
   S.flags.c2_walk_framed=S.walk.filter(w=>w.ok).length;
 }
-function endCard(n){const e=$('#end');const D=n===2?{k:'Chapter 2 complete',h:'Monsoon Season',l:'One umbrella, two people, and a promise made over a lamp.',nx:'Chapter 3 · Thingyan',nd:'November 2018 to December 2019.'}:{k:'Chapter 1 complete',h:'The First Rain',l:'Two strangers, one wrong umbrella, and a joke that was only the beginning.',nx:'Chapter 2 · Monsoon Season',nd:'July to October 2018.'};
+async function waterStreet(){
+  const f=$('#wsField'),tip=$('#wsTip');f.innerHTML='';$('#wsRes').style.display='none';$('#wsDone').style.display='none';$('#wsStart').style.display='block';
+  $('#wsSong i').style.width='0';$('#wsWetB i').style.width='0';tip.textContent='';
+  show('wstreet');
+  await new Promise(r=>{$('#wsStart').onclick=e=>{e.stopPropagation();$('#wsStart').style.display='none';r()}});
+  const W=f.clientWidth,H=f.clientHeight,LX=[W*.24,W*.5,W*.76];let lane=1,wet=0,spl=0,ents=[],t0=performance.now(),last=t0,next=0;const DUR=24000/(S.speed>1?1.4:1);
+  [W*.37,W*.63].forEach(x=>{const l=document.createElement('div');l.className='ln';l.style.left=x+'px';f.appendChild(l)});
+  const me=document.createElement('div');me.id='wsMin';me.innerHTML=icon('person');f.appendChild(me);
+  const put=()=>{me.style.left=LX[lane]+'px'};put();
+  tip.textContent='Tap left or right';
+  f.onpointerdown=e=>{e.stopPropagation();const r=f.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    const pal=ents.find(o=>o.k==='pal'&&!o.hit&&Math.abs(LX[o.l]-x)<40&&Math.abs(o.y-y)<44);
+    if(pal){pal.hit=1;spl++;pal.el.classList.add('hit');pop(LX[pal.l],pal.y,'Splash!');Audio_.blip&&Audio_.blip(true);return}
+    lane=Math.max(0,Math.min(2,lane+(x<W/2?-1:1)));put();tip.textContent=''};
+  function pop(x,y,t){const p=document.createElement('div');p.className='spl';p.textContent=t;p.style.left=(x-20)+'px';p.style.top=(y-30)+'px';f.appendChild(p);setTimeout(()=>p.remove(),700)}
+  function spawn(k){const el=document.createElement('div');el.className='ent '+k;el.innerHTML=icon(k==='hose'?'drop':'smiley');const l=Math.floor(Math.random()*3);el.style.left=LX[l]+'px';f.appendChild(el);ents.push({k,l,y:-40,el})}
+  await new Promise(done=>{
+    function frame(now){const dt=Math.min(50,now-last);last=now;const el=now-t0,p=Math.min(1,el/DUR);
+      $('#wsSong i').style.width=(p*100)+'%';
+      if(p<.92&&now>next){spawn(Math.random()<.55?'hose':'pal');next=now+520+Math.random()*420}
+      const sp=(.22+p*.12)*dt;
+      ents.forEach(o=>{o.y+=sp;o.el.style.top=(o.y-28)+'px';
+        if(!o.done&&o.y>H-90&&o.y<H-20&&o.l===lane){o.done=1;if(o.k==='hose'){wet++;me.classList.remove('wet');void me.offsetWidth;me.classList.add('wet');pop(LX[lane],H-80,'Soaked');$('#wsWetB i').style.width=Math.min(100,wet*12)+'%'}}});
+      ents=ents.filter(o=>{if(o.y>H+40){o.el.remove();return false}return true});
+      if(p<1)requestAnimationFrame(frame);else done()}
+    requestAnimationFrame(frame)});
+  ents.forEach(o=>o.el.remove());f.onpointerdown=null;
+  const may=document.createElement('div');may.className='ent may';may.innerHTML=icon('smiley');may.style.left=LX[lane]+'px';may.style.top='30%';f.appendChild(may);
+  S.flags.c3_wet=wet<=2?'dry':wet<=5?'wet':'soaked';S.flags.c3_splashes=spl;
+  const L={dry:['Mostly dry','Min arrives at the end of the street almost dry. On Thingyan, that is a crime.'],wet:['Wet','Min arrives at the end of the street wet through, just in time.'],soaked:['Soaked','Min arrives at the end of the street dripping from his hair to his flip-flops.']}[S.flags.c3_wet];
+  const r=$('#wsRes');r.innerHTML=`<b>${L[0]} · ${spl} splash${spl===1?'':'es'}</b>${L[1]}`;r.style.display='block';$('#wsDone').style.display='block';
+  await new Promise(res=>{$('#wsDone').onclick=e=>{e.stopPropagation();res()}});
+}
+function icon(n){return `<i class="ic i-${n}"></i>`}
+function endCard(n){const e=$('#end');const D=n===3?{k:'Chapter 3 complete',h:'Thingyan',l:'Their best year: exams, a water festival, a second lamp, and a phone call in the next room.',nx:'Chapter 4 · The Station',nd:'2020.'}:n===2?{k:'Chapter 2 complete',h:'Monsoon Season',l:'One umbrella, two people, and a promise made over a lamp.',nx:'Chapter 3 · Thingyan',nd:'November 2018 to December 2019.'}:{k:'Chapter 1 complete',h:'The First Rain',l:'Two strangers, one wrong umbrella, and a joke that was only the beginning.',nx:'Chapter 2 · Monsoon Season',nd:'July to October 2018.'};
   e.innerHTML=`<div class="k">${D.k}</div><h2>${D.h}</h2><p class="lead">${D.l}</p>
   <h3 class="mh">Kept <span>${S.memories.length}</span></h3><div class="mgrid">${memCards(true,'kept')||'<p class="e">None this time.</p>'}</div>
   ${memCards(true,'other')?`<h3 class="mh">Other paths <span>${Object.keys(MEM_INFO).length-S.memories.length}</span></h3><p class="mhs">Moments you didn't find this time. Play again to choose differently.</p><div class="mgrid">${memCards(true,'other')}</div>`:''}${unsentHTML()}
@@ -1162,14 +1238,115 @@ const CH2=[
  {pause:1500},
  {scene:{art:'lampWall',cap:'',rain:0}},
  {narr:'On the pagoda wall, long after everyone has gone home, one small lamp is still burning.'},
- {title:{big:'<em>End of Chapter 2</em>Monsoon Season',small:''}},
- {end:2}
+ {title:{big:'<em>End of Chapter 2</em>Monsoon Season',small:''}}
+];
+
+/* ============ CHAPTER 3 · THINGYAN ============ */
+SCENE.wstreet=PHI('Thingyan: the street is a river','#7fb3c2','#2f5560');
+SCENE.mayEnd=PHI('May at the end of the street, soaked and laughing','#86b8c4','#365f68');
+SCENE.crowd=PHI('The crowd by the pandal: May grabs his hand','#7aa9b3','#2d4e56');
+SCENE.mango=PHI('Under the mango tree: the camera on the wall','#8fbf8a','#3b5a36');
+SCENE.mangoPhoto='<div style="position:absolute;inset:0;background:#1a1f1e;display:flex;align-items:flex-start;justify-content:center;padding-top:22%"><div style="width:84%;background:#f6f1e7;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:rotate(-2deg)"><img src="img/thingyan.webp" alt="" draggable="false" style="position:static;width:100%;height:auto;display:block"></div></div>';
+SCENE.towel=PHI('Hnin hands Min a towel','#c9a36a','#5a3f22');
+SCENE.pagoda19=PHI('Thadingyut 2019: May brings the matches','#3b2a1a','#0f0a06');
+SCENE.lamp2=PHI('Two lamps side by side','#3a2a1c','#100b07');
+ART.teaGate=`<img src="${phSVG('Tea in a plastic bag on her gate','#7b8f7d','#2f3b31',900,675)}" alt="" draggable="false">`;
+ART.lamp2=`<img src="${phSVG('The second lamp','#3a2a1c','#120c08',900,675)}" alt="" draggable="false">`;
+const CH3=[
+ {title:{big:'<em>Chapter 3</em>Thingyan',small:'March to December 2019',rain:0,time:'11:20 PM'}},
+ // C3.1 Exam nights
+ {notify:{c:'may',text:"I can't do this",div:'Mar 2019',rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Oct'},{c:'thura',text:"just don't forget us when you're famous",time:'Aug'},{c:'mom',text:'Daw Aye Aye talks.',time:'Jul'}]}},
+ {in:'my dad keeps saying "for the family" like I\'m a business plan'},
+ {choice:{flag:'c3_exam',opts:[
+   {label:"You'll pass.",send:"You'll pass.",then:[{in:"you don't know that"},{out:'I know you.'},{in:"…that's so annoying. ok"},{in:'call me if you can\'t sleep'},{pause:900},{inCall:'Voice call · 2:14:07'}]},
+   {label:"I'll bring tea to your gate.",send:"I'll bring tea to your gate.",then:[{typing:1400},{pause:1600},{inPhoto:'teaGate'},{in:"I'm going to cry and it's your fault"},{in:'call me. just stay on the line'},{pause:900},{inCall:'Voice call · 2:14:07'}]},
+   {label:'Call me. Read me the questions.',send:'Call me. Read me the questions.',then:[{inCall:'Voice call · 2:14:07'},{in:'you fell asleep on question 40'},{in:'I could hear you breathing. you sound like a fan'}]}]}},
+ {in:"if I pass I'm buying you a new umbrella"},
+ {pause:900},
+ // C3.2 Thingyan
+ {rain:0},{time:'2:40 PM'},
+ {scene:{art:'wstreet',cap:'Thingyan · 13 April 2019',rain:0}},
+ {narr:'The street is a river. Music from the pandal, hoses, buckets, everyone soaked. Thura is on a pick-up truck with a hose. Hnin is under the tea shop awning with a stack of dry towels.'},
+ {narr:'May is waiting at the far end of the street.'},
+ {waterstreet:true},
+ {scene:{art:'mayEnd',cap:'',rain:0}},
+ {if:{test:f=>f.c3_wet==='dry',then:[{say:['May',"How are you dry? That's illegal on Thingyan."]},{narr:'She fixes that with one bowl of water.'}],else:[{say:['May',"You're supposed to splash me, not get splashed!"]}]}},
+ {shot:'crowd'},
+ {narr:'A crowd pushes past the pandal. May grabs Min\'s hand so she doesn\'t lose him.'},
+ {if:{test:f=>f.c2_friends===true,then:[{narr:"She doesn't let go. Under the tea shop awning, Hnin sees, and goes back to folding towels."}],else:[{narr:'Someone from her street calls her name. She lets go, quick, like it never happened.'}]}},
+ {shot:'mango'},
+ {narr:'Under the mango tree, Min sets his camera on the wall and starts the self-timer.'},
+ {choice:{flag:'c3_photo',opts:[
+   {label:'Count to three.',say:'Count to three.',then:[{narr:'She counts to two and throws a bowl of water in his face. The shutter clicks.'}]},
+   {label:"Don't look at the camera.",say:"Don't look at the camera.",then:[{narr:'She looks at him instead, and then the silver bowl comes up. The shutter clicks mid-splash.'}]},
+   {label:'Say "umbrella thief".',say:'Say "umbrella thief".',then:[{narr:'She laughs too hard to say it, so she splashes him instead. The shutter clicks.'}]}]}},
+ {shot:'mangoPhoto'},
+ {narr:'13 April 2019 · 3:26 PM. The photo that will still be on his phone two years later.'},
+ {mem:'mango'},
+ {shot:'towel'},
+ {narr:'Hnin hands Min a towel, not May.'},
+ {say:['Hnin',"You'll get sick."]},
+ {narr:'Then, a beat later, she hands May one too.'},
+ // C3.3 Results
+ {rain:0},{time:'9:05 AM'},
+ {notify:{c:'may',text:'I PASSED',div:'Jun 2019',rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Apr'},{c:'thura',text:'sent a photo',time:'Apr'},{c:'mom',text:'Daw Aye Aye talks.',time:'Mar'}]}},
+ {in:'I passed I passed I passed'},
+ {in:'my parents are already talking about a college in the city'},
+ {in:'a good one. far'},
+ {choice:{flag:'c3_leave',opts:[
+   {label:'You should go. One day.',send:'You should go. One day.',then:[{in:'one day'},{in:"you say it like it's a long time"}]},
+   {label:'Stay.',send:'Stay.',then:[{in:'ha'},{typing:1500},{pause:1200},{in:'they said maybe next year anyway. the business needs me here first'}]},
+   {label:'What do you want?',send:'What do you want?',then:[{in:'I always wanted to leave this town'},{in:'but I wanted to CHOOSE to. not be sent'},{in:'does that make sense'},{out:'It does.'}]}]}},
+ {in:'local college this year. the city is "maybe next year"'},
+ {pause:900},
+ // C3.4 Thura
+ {time:'10:12 PM'},
+ {notify:{c:'thura',text:'she talks about the city a lot huh',rows:[{c:'may',text:'local college this year. the city is "maybe next year"',time:'9:20 AM'},{c:'hnin',text:"I don't. I watch the tray",time:'Apr'},{c:'mom',text:'Daw Aye Aye talks.',time:'Mar'}]}},
+ {choice:{flag:'c3_thura',opts:[
+   {label:'She talks about everything a lot.',send:'She talks about everything a lot.',then:[{in:'ha. true'}]},
+   {label:"It's just college.",send:"It's just college.",then:[{in:'sure'},{in:'just saying, people go to the city and the city keeps them'}]},
+   {label:'Mind your own business.',send:'Mind your own business.',then:[{in:'ok ok'},{in:"sorry bro. I'm happy for you. really"}]}]}},
+ {pause:900},
+ // C3.5 Thadingyut, one year on
+ {time:'7:40 PM'},
+ {scene:{art:'pagoda19',cap:'Thadingyut · October 2019',rain:0}},
+ {narr:'The same pagoda wall. This time May brings the matches, and holds out the lamp before she lights it.'},
+ {say:['May','From the start. You promised.']},
+ {choice:{flag:'c3_lamp',opts:[
+   {label:'(Light it together.)',act:1,then:[{narr:'It lights first try. Neither of them says anything about it.'}]},
+   {label:'(Let her light it and shield the flame.)',act:1,then:[{narr:'It lights first try. Neither of them says anything about it.'}]},
+   {label:'(Take a photo of her lighting it.)',act:1,then:[{say:['May',"You're supposed to be in the memory, not taking it."]},{narr:'She pulls him into the frame.'}]}]}},
+ {shot:'lamp2'},
+ {mem:'lamp2'},
+ // C3.6 The phone call
+ {time:'10:03 PM'},
+ {notify:{c:'may',text:'Voice message',div:'Dec 2019',m:{k:'voice',text:'0:09',tr:"(Her voice, low. A man's voice through a wall, then a door.)"},rows:[{c:'thura',text:"sorry bro. I'm happy for you. really",time:'Jul'},{c:'hnin',text:"I don't. I watch the tray",time:'Apr'},{c:'mom',text:'Daw Aye Aye talks.',time:'Mar'}]}},
+ {in:"sorry. my dad's on the phone with my uncle in the city. two hours now"},
+ {in:"orders are slow. he says it's nothing"},
+ {choice:{flag:'c3_signs',opts:[
+   {label:'Are you okay?',send:'Are you okay?',then:[{in:'yeah'},{pause:1400},{in:'I think so'}]},
+   {label:'Do you want to walk?',send:'Do you want to walk?',then:[{in:"it's 10pm"},{typing:1200},{in:"…meet me at the corner. bring the umbrella, it's not even raining"}]},
+   {label:"It's probably nothing.",send:"It's probably nothing.",then:[{in:'yeah'},{in:'he said that too'}]}]}},
+ {pause:1200},
+ // C3.7 Hnin, New Year's Eve
+ {time:'11:58 PM'},
+ {notify:{c:'hnin',text:'happy new year, neighbour',div:'31 Dec 2019',rows:[{c:'may',text:'…',time:'Dec'},{c:'thura',text:"sorry bro. I'm happy for you. really",time:'Jul'},{c:'mom',text:'Daw Aye Aye talks.',time:'Mar'}]}},
+ {in:'tell May happy new year too'},
+ {choice:{flag:'c3_hnin',opts:[
+   {label:'Happy new year, Hnin.',send:'Happy new year, Hnin.',then:[{inSticker:'teaCup'}]},
+   {label:'You can tell her yourself.',send:'You can tell her yourself.',then:[{in:"I'd rather you did"}]},
+   {label:'Are you working tonight?',send:'Are you working tonight?',then:[{in:"someone has to. the shop doesn't close for fireworks"},{in:"come by tomorrow. I'll save you the first tea of the year"}]}]}},
+ {pause:1400},
+ {scene:{art:'lamp2',cap:'',rain:0}},
+ {narr:"The camera's last photo of 2019: the two lamps, side by side."},
+ {title:{big:'<em>End of Chapter 3</em>Thingyan',small:''}},
+ {end:3}
 ];
 /* ============ START ============ */
 $('#go').onclick=async e=>{e.stopPropagation();Audio_.init();if(Audio_.ctx){S.sound=true;$('#bSound span:last-child').textContent='On';$('#bSound .ic').className='ic i-'+SPK_ON;if(Audio_.ctx.state==='suspended')Audio_.ctx.resume()}
   $('#start').classList.remove('on');await rawSleep(600);
   await runFlow(0);};
-const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2];
+const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2,...CH3];
 const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
   if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}
   return cur})})();

@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before the Rain Ends — Prologue, Chapters 1–2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Monsoon · Paper theme */
+  --paper-50:#FBF7EF; --paper-100:#F3ECDF; --paper-200:#EAE0CF; --paper-300:#DFD3BE;
+  --ink:#211C17; --ink-body:#3A322A; --ink-muted:#665C51; --ink-faint:#8F8476;
+  --m200:#CCDAD5; --m500:#4C7C77; --m700:#2D5A56; --m800:#1F4643; --m900:#15302E;
+  --on-deep:#FBF7EF; --on-primary:#FBF7EF;
+  --clay-200:#F0DACB; --clay-500:#8F4630; --rust-500:#A3392B;
+  --line:#DCD0BC; --line-strong:#8A7F71; --inverse:#2A2420; --inverse-ink:#F3ECDF;
+  --shadow-paper:0 1px 0 rgba(33,28,23,.05),0 10px 24px -14px rgba(33,28,23,.28);
+  --shadow-float:0 18px 40px -16px rgba(21,48,46,.40);
+  --focus-ring:0 0 0 2px #F3ECDF,0 0 0 4px #2D5A56;
+  /* Monsoon · Night theme, for the dark scenes and the page around the phone */
+  --n-ground:#161A19; --n-50:#202524; --n-line:#323836; --n-line-strong:#747B77; --n-ink:#F1E9DC; --n-body:#D9CFC1; --n-muted:#A69C8F; --n-m700:#8DB7B0; --n-clay:#D9927A;
+  --serif:"Fraunces","Noto Serif Myanmar",Georgia,serif; --sans:"DM Sans","Noto Sans Myanmar",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--n-ground);color:var(--n-ink);font-family:var(--sans);overflow:hidden;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+@font-face{font-family:'Phosphor-Light';src:url(fonts/Phosphor-Light.woff2) format('woff2');font-weight:normal;font-style:normal;font-display:block}
+.ic{display:inline-flex;align-items:center;justify-content:center;flex:none;font-family:'Phosphor-Light'!important;font-weight:normal;font-style:normal;line-height:1;letter-spacing:0;text-transform:none;-webkit-font-smoothing:antialiased;overflow:hidden;font-size:24px;width:24px;height:24px}
+.ic.i-plus-circle:before{content:"\e3d6"}
+.ic.i-arrow-left:before{content:"\e058"}
+.ic.i-arrow-up:before{content:"\e08e"}
+.ic.i-bookmark-simple:before{content:"\e0ea"}
+.ic.i-phone:before{content:"\e3b8"}
+.ic.i-x:before{content:"\e4f6"}
+.ic.i-trash:before{content:"\e4a6"}
+.ic.i-note-pencil:before{content:"\e34c"}
+.ic.i-fast-forward:before{content:"\e6a6"}
+.ic.i-phone-x:before{content:"\e3c4"}
+.ic.i-camera:before{content:"\e10e"}
+.ic.i-images:before{content:"\e836"}
+.ic.i-play:before{content:"\e3d0"}
+.ic.i-magnifying-glass:before{content:"\e30c"}
+.ic.i-paper-plane-right:before{content:"\e396"}
+.ic.i-umbrella:before{content:"\e684"}
+.ic.i-video-camera:before{content:"\e4da"}
+.ic.i-speaker-high:before{content:"\e44a"}
+.ic.i-speaker-x:before{content:"\e45c"}
+.ic.i-note:before{content:"\e348"}
+.ic.s{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20}
+#bgRain{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.page{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;align-items:center}
+.bar{height:48px;flex:none;display:flex;align-items:center;gap:8px;width:393px;max-width:100vw;padding:0 12px;justify-content:space-between}
+.bar .ttl{font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px;color:var(--n-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .ctl{display:flex;gap:6px;flex:none}
+.devbar{flex:none;display:flex;align-items:center;gap:8px;width:393px;max-width:100vw;padding:0 12px 6px;font:500 12px/16px var(--sans);color:var(--n-muted)}
+.devbar .dv{padding:2px 6px;border-radius:2px;background:var(--n-clay);color:#161A19;font-weight:600}
+.devbar input{flex:1;accent-color:var(--n-m700)}
+.devbar #devL{width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{height:32px;padding:0 12px;border-radius:6px;background:var(--n-50);border:1px solid var(--n-line);font:500 13px/1 var(--sans);color:var(--n-body);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.pill:hover{border-color:var(--n-line-strong)}
+.pill .ic{width:18px;height:18px;font-size:18px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
+.wrap{flex:1;width:100%;display:flex;align-items:flex-start;justify-content:center;min-height:0}
+.scaler{transform-origin:top center}
+.stage{position:relative;width:393px;height:852px;border-radius:46px;overflow:hidden;background:var(--paper-100);color:var(--ink-body);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px #0b0e0d,0 0 0 11px var(--n-line);user-select:none}
+.stage.full{border-radius:18px;box-shadow:none}
+.view{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s ease}
+.view.on{opacity:1;pointer-events:auto}
+
+/* status bar (iOS chrome, kept out of product type) */
+.status{position:absolute;top:0;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:space-between;padding:6px 30px 0 34px;font:600 15px/1 -apple-system,'SF Pro Text',system-ui,sans-serif;z-index:30;pointer-events:none;color:var(--ink);transition:color .4s,opacity .4s}
+.status.light{color:#fff}
+.status .sic{display:flex;gap:6px;align-items:center}
+.status svg{height:12px}
+
+/* lock */
+#lock{background:#101413;color:#fff;text-align:center}
+#lock .wall{position:absolute;inset:0;filter:blur(2px) brightness(.68) saturate(.9);transform:scale(1.03)}
+#lock .wall svg{width:100%;height:100%}
+#lock .clock{position:absolute;top:118px;left:0;right:0}
+#lock .date{font:600 17px/1.3 var(--sans);opacity:.85}
+#lock .time{font:600 88px/1 -apple-system,system-ui,sans-serif;letter-spacing:-2px;margin-top:6px}
+#lock .hint{position:absolute;bottom:70px;left:0;right:0;font:400 14px var(--sans);opacity:.8;animation:pulse 2.2s infinite}
+#lock .lk{position:absolute;inset:0;touch-action:none;will-change:transform}
+#lock .lk.snap{transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .35s}
+#lock .hint{transition:opacity .2s}
+#lock .home{position:absolute;bottom:10px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#fff;opacity:.8}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.95}}
+
+/* chat list */
+#list{background:var(--paper-100);padding-top:50px}
+.lh{display:flex;align-items:flex-end;justify-content:space-between;padding:32px 16px 12px;border-bottom:1px solid var(--line)}
+.lh h1{font:400 28px/34px var(--serif);letter-spacing:-.01em;color:var(--ink);font-variation-settings:'opsz' 48}
+.lh .brand{font:600 12px/16px var(--sans);color:var(--clay-500);margin-bottom:4px}
+.lh .acts{display:flex;gap:4px}
+.icbtn{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;color:var(--ink-body)}
+.icbtn:hover{background:var(--paper-300)}
+.icbtn .ic{width:22px;height:22px;font-size:22px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 22}
+.search{margin:12px 16px 4px;height:40px;border-radius:999px;background:var(--paper-50);border:1.5px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 14px;color:var(--ink-faint);font:400 15px/22px var(--sans)}
+.search .ic{width:20px;height:20px;font-size:20px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
+.rows{padding-top:4px}
+.crow{display:flex;align-items:center;gap:12px;padding:10px 16px;width:100%;text-align:left;border-bottom:1px solid var(--line)}
+.crow:last-child{border-bottom:0}
+.crow:active{background:var(--paper-300)}
+.crow .meta{flex:1;min-width:0}
+.crow .nm{font:500 18px/24px var(--serif);color:var(--ink);display:flex;justify-content:space-between;align-items:baseline;font-variation-settings:'opsz' 24}
+.crow .nm span{font:400 12px/16px var(--sans);color:var(--ink-muted)}
+.crow .pv{font:400 14px/20px var(--sans);color:var(--ink-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;display:flex;justify-content:space-between;gap:8px}
+.crow .pv b{font-weight:500;color:var(--ink-body)}
+.crow .pv i{font-style:normal;flex:none}
+.crow .badge{min-width:20px;height:20px;border-radius:999px;background:var(--m700);color:var(--on-primary);font:600 11px/20px var(--sans);text-align:center;padding:0 6px}
+.crow.dim{opacity:.5}
+.crow.pulse{animation:rowpulse 1.8s infinite}
+@keyframes rowpulse{0%,100%{background:transparent}50%{background:var(--paper-300)}}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.av{width:52px;height:52px;border-radius:999px;flex:none;display:grid;place-items:center;font:500 18px/1 var(--serif);position:relative}
+.av img{width:100%;height:100%;border-radius:999px;object-fit:cover;display:block}
+.av.sm{width:36px;height:36px;font-size:14px}
+.av .on{position:absolute;right:1px;bottom:1px;width:12px;height:12px;border-radius:50%;background:#4A6638;border:2px solid var(--paper-100)}
+
+/* chat */
+#chat{background:var(--paper-100);display:flex;flex-direction:column}
+.ch{flex:none;padding:52px 8px 10px;display:flex;align-items:center;gap:10px;background:var(--paper-100);border-bottom:1px solid var(--line);z-index:5}
+.ch .back{width:32px;height:40px;display:grid;place-items:center;color:var(--m700)}
+.ch .back .ic{width:24px;height:24px;font-size:24px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24}
+.ch .who{flex:1;min-width:0}
+.ch .who b{display:block;font:500 18px/24px var(--serif);color:var(--ink);font-variation-settings:'opsz' 24}
+.ch .who span{font:400 12px/16px var(--sans);color:var(--ink-muted)}
+.ch .tools{display:flex;gap:16px;color:var(--m700);padding-right:8px}
+.ch .tools .ic{width:24px;height:24px;font-size:24px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24}
+.msgs{flex:1;overflow-y:auto;padding:16px 16px 12px;display:flex;flex-direction:column;gap:4px;scroll-behavior:smooth}
+.msgs::-webkit-scrollbar{display:none}
+.row{display:flex;max-width:100%}
+.row.in{justify-content:flex-start}
+.row.out{justify-content:flex-end}
+.b{max-width:78%;padding:10px 14px;border-radius:18px;font:400 15px/22px var(--sans);word-wrap:break-word;animation:pop .22s ease-out}
+.row.in .b{background:var(--paper-200);color:var(--ink-body);border-bottom-left-radius:2px}
+.row.out .b{background:var(--m700);color:var(--on-primary);border-bottom-right-radius:2px}
+.row.gap{margin-top:10px}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+.b.photo{padding:4px;background:var(--paper-50)!important;border:1px solid var(--line);box-shadow:var(--shadow-paper)}
+.b.photo svg{display:block;width:220px;height:165px;border-radius:14px}
+.stk{width:118px;height:118px;animation:pop .25s}
+.voice{display:flex;align-items:center;gap:10px;min-width:190px}
+.voice .pl{width:32px;height:32px;border-radius:999px;background:var(--paper-50);display:grid;place-items:center;color:var(--m700)}
+.voice .pl .ic{width:18px;height:18px;font-size:18px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
+.voice .wv{flex:1;display:flex;gap:2px;align-items:center;height:24px}
+.voice .wv i{flex:1;background:var(--ink-faint);border-radius:2px;opacity:.7}
+.voice small{font:400 12px/16px var(--sans);color:var(--ink-muted)}
+.div{align-self:center;font:600 12px/16px var(--sans);color:var(--ink-muted);margin:16px 0 8px}
+.sys{align-self:center;font:400 12px/16px var(--sans);color:var(--ink-muted);margin:6px 0}
+.call{align-self:center;display:flex;gap:8px;align-items:center;background:var(--paper-200);border-radius:6px;padding:8px 12px;font:400 13px/18px var(--sans);color:var(--ink-body);margin:6px 0}
+.call .ic{width:18px;height:18px;font-size:18px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;color:var(--m500)}
+.rcpt{align-self:flex-end;font:400 12px/16px var(--sans);color:var(--ink-muted);margin:2px 4px 0}
+.typing{display:flex;gap:4px;padding:14px 16px!important}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);animation:dot 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.foot{flex:none;background:var(--paper-100);border-top:1px solid var(--line);padding:8px 12px 26px;position:relative}
+.tray{display:flex;flex-direction:column;gap:8px;padding:4px 0 10px}
+.tray .hint{font:600 12px/16px var(--sans);color:var(--clay-500);text-align:center;margin-bottom:2px}
+.opt{text-align:left;background:var(--paper-50);border:1.5px solid var(--line-strong);border-radius:6px;padding:11px 14px;font:400 15px/22px var(--sans);color:var(--ink-body);animation:rise .3s ease-out both;transition:background .15s,border-color .15s}
+.opt:hover{background:var(--paper-300)}
+.opt:nth-child(3){animation-delay:.05s}.opt:nth-child(4){animation-delay:.1s}
+.opt.act{font-style:italic;color:var(--ink-muted)}
+.opt.ph{display:flex;align-items:center;gap:12px;padding:8px 12px 8px 8px}
+.opt.ph svg{width:64px;height:48px;border-radius:2px;flex:none}
+.opt.cont{text-align:center;background:var(--m700);border-color:var(--m700);color:var(--on-primary);font:500 14px/20px var(--sans);height:44px}
+.opt.cont:hover{background:var(--m800);border-color:var(--m800)}
+@keyframes rise{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+.dbtns{display:flex;gap:8px;padding:2px 0 10px}
+.dbtns button{flex:1;height:44px;border-radius:6px;font:500 14px/20px var(--sans);display:flex;align-items:center;justify-content:center;gap:8px;animation:rise .3s both}
+.dbtns .del{background:transparent;border:1.5px solid var(--line-strong);color:var(--ink)}
+.dbtns .del:hover{background:var(--paper-300)}
+.dbtns .snd{background:var(--m700);color:var(--on-primary)}
+.dbtns .snd:hover{background:var(--m800)}
+.dbtns .ic{width:18px;height:18px;font-size:18px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
+.comp{display:flex;align-items:center;gap:8px}
+.comp .plus{color:var(--m700);width:32px;display:grid;place-items:center}
+.comp .plus .ic{width:26px;height:26px;font-size:26px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 26}
+.field{flex:1;min-height:40px;border-radius:999px;background:var(--paper-50);border:1.5px solid var(--line-strong);padding:8px 16px;font:400 15px/22px var(--sans);color:var(--ink-body)}
+.field .ph{color:var(--ink-faint)}
+.field .cur{display:inline-block;width:1.5px;height:17px;background:var(--m700);vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.sendic{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;background:var(--paper-300);color:var(--paper-50);transition:background .2s}
+.sendic.on{background:var(--m700);color:var(--on-primary)}
+.sendic .ic{width:20px;height:20px;font-size:20px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
+.homebar{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:var(--ink);opacity:.85}
+
+/* banner (a raised card, no blur) */
+#banner{position:absolute;top:10px;left:8px;right:8px;z-index:40;background:var(--paper-50);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow-float);transform:translateY(calc(-100% - 24px));transition:transform .45s cubic-bezier(.2,.9,.3,1.1);cursor:pointer;color:var(--ink-body)}
+#banner.on{transform:none}
+#banner .t{flex:1;min-width:0}
+#banner .t small{font:600 12px/16px var(--sans);color:var(--clay-500)}
+#banner .t b{display:block;font:500 16px/22px var(--serif);color:var(--ink);margin-top:1px}
+#banner .t span{display:block;font:400 14px/20px var(--sans);color:var(--ink-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#banner .acc{background:var(--m700);color:var(--on-primary);font:500 14px/20px var(--sans);padding:6px 14px;border-radius:6px}
+
+/* toast */
+#toast{position:absolute;top:110px;left:50%;transform:translate(-50%,-20px);opacity:0;z-index:45;background:var(--inverse);color:var(--inverse-ink);font:400 14px/20px var(--sans);padding:10px 16px 10px 12px;border-radius:6px;box-shadow:var(--shadow-float);display:flex;align-items:center;gap:8px;white-space:nowrap;transition:all .4s;pointer-events:none}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast .ic{width:20px;height:20px;font-size:20px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;color:var(--n-clay)}
+#toast b{font-weight:600}
+
+/* scene (Monsoon night) */
+#scene{background:#000;color:var(--n-ink)}
+#scene .art{position:absolute;inset:0}
+#scene .art svg{width:100%;height:100%}
+#scene .shade{position:absolute;left:0;right:0;bottom:0;height:55%;background:linear-gradient(to bottom,rgba(22,26,25,0),rgba(22,26,25,.88) 45%,rgba(22,26,25,.96));pointer-events:none}
+#scene .cap{position:absolute;top:58px;left:20px;font:600 12px/16px var(--sans);color:rgba(241,233,220,.75)}
+.dlg{position:absolute;left:16px;right:16px;bottom:40px;min-height:150px}
+.dlg .nm{display:block;font:600 12px/16px var(--sans);color:var(--n-clay);margin-bottom:8px}
+.dlg .tx{font:400 17px/27px var(--sans);color:var(--n-ink);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.dlg .tx.narr{font:300 italic 19px/29px var(--serif);color:var(--n-body);font-variation-settings:'opsz' 32}
+.dlg .tx.min{color:var(--n-m700)}
+.dlg .more{position:absolute;right:2px;bottom:-22px;font:400 12px/16px var(--sans);color:var(--n-muted);animation:pulse 2s infinite}
+.dlg .opts{display:flex;flex-direction:column;gap:8px}
+.dlg .opt{background:var(--n-50);border-color:var(--n-line-strong);color:var(--n-ink)}
+.dlg .opt:hover{background:#2D3432}
+.dlg .opt.act{color:var(--n-body)}
+.dlg .lbl{font:600 12px/16px var(--sans);color:var(--n-muted);margin-bottom:6px}
+
+/* gallery */
+#gallery{background:var(--paper-100);padding-top:50px}
+#gallery .gh{padding:32px 16px 12px;display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);margin-bottom:2px}
+#gallery .gh h2{font:400 28px/34px var(--serif);color:var(--ink)}
+#gallery .gh span{font:400 12px/16px var(--sans);color:var(--ink-muted);margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.grid div{aspect-ratio:1;overflow:hidden;background:var(--paper-200)}
+.grid svg{width:100%;height:100%;display:block}
+.grid .hot{outline:3px solid var(--m700);outline-offset:-3px;animation:pulse 1.6s infinite;cursor:pointer}
+#viewer{position:absolute;inset:0;background:#000;display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none;transition:opacity .5s;z-index:20}
+#viewer.on{opacity:1;pointer-events:auto}
+#viewer svg{width:100%;height:auto;display:block;transition:transform 2.6s ease-in,opacity 2.6s}
+#viewer .det{color:var(--n-muted);font:400 13px/18px var(--sans);text-align:center;margin-top:16px;transition:opacity .6s}
+#viewer.zoom svg{transform:scale(1.5);opacity:.85}
+#viewer.zoom .det{opacity:0}
+#viewer .vtap{position:absolute;left:0;right:0;bottom:60px;text-align:center;font:400 12px/16px var(--sans);color:var(--n-muted);opacity:0;transition:opacity .8s}
+#viewer .vtap.on{opacity:1;animation:pulse 2.2s infinite}
+
+/* scrollback */
+#scroll{position:absolute;left:0;right:0;top:103px;bottom:75px;overflow:hidden;background:var(--paper-100);opacity:0;pointer-events:none;transition:opacity .4s;z-index:4}
+#scroll.on{opacity:1}
+#scroll .col{position:absolute;left:16px;right:16px;bottom:0;display:flex;flex-direction:column;gap:6px;filter:blur(2.5px);opacity:.55}
+#scroll .col i{display:block;height:36px;border-radius:18px;background:var(--paper-200)}
+#scroll .col i.o{align-self:flex-end;background:var(--m500)}
+#scroll .flash{position:absolute;left:0;right:0;top:42%;display:flex;justify-content:center;opacity:0;transition:opacity .35s}
+#scroll .flash.on{opacity:1}
+#scroll .fwrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px}
+#scroll .fdate{font:500 12px/16px var(--sans);color:var(--ink-faint)}
+#scroll .older{position:absolute;top:12px;left:0;right:0;text-align:center;font:400 12px/16px var(--sans);color:var(--ink-faint);opacity:0;transition:opacity .5s}
+#scroll .older.on{opacity:1}
+.uphint{position:absolute;left:50%;bottom:120px;transform:translateX(-50%);background:var(--inverse);color:var(--inverse-ink);font:500 14px/20px var(--sans);padding:10px 16px;border-radius:6px;box-shadow:var(--shadow-float);display:flex;gap:8px;align-items:center;z-index:12;animation:bob 1.6s infinite;cursor:pointer}
+.uphint{animation:fadeup .6s ease-out,bob 1.6s 0.6s infinite}
+@keyframes fadeup{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+.uphint{white-space:nowrap}
+.uphint .ic{width:18px;height:18px;font-size:18px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
+@keyframes bob{50%{transform:translate(-50%,-6px)}}
+
+/* overlays */
+.ov{position:absolute;inset:0;z-index:60;opacity:0;pointer-events:none;transition:opacity .9s}
+.ov.on{opacity:1;pointer-events:auto}
+#title{background:var(--m900);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--on-deep)}
+#title h1{font:350 40px/46px var(--serif);letter-spacing:-.015em;padding:0 32px;font-variation-settings:'opsz' 96}
+#title h1 em{display:block;font:600 12px/16px var(--sans);font-style:normal;color:var(--n-clay);margin-bottom:16px}
+#title p{font:300 italic 20px/30px var(--serif);padding:0 40px;color:var(--n-body);margin-top:16px;opacity:0;transition:opacity 1.2s .8s}
+#title.on p{opacity:1}
+#title h1{transition:opacity .6s}
+#title.swap h1,#title.swap p{opacity:0;transition:opacity .6s}
+#title .tap{position:absolute;bottom:60px;font:400 12px/16px var(--sans);color:var(--n-muted);opacity:0;transition:opacity .8s}
+#title .tap.on{opacity:1;animation:pulse 2.2s infinite}
+
+#start{background:var(--m900);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--on-deep);padding:48px 32px}
+#start .eb{font:600 12px/16px var(--sans);color:var(--n-clay);margin-bottom:16px}
+#start h1{font:300 56px/60px var(--serif);letter-spacing:-.02em;font-variation-settings:'opsz' 144}
+#start .sub{font:300 italic 20px/30px var(--serif);color:var(--n-body);margin-top:16px}
+#start .meta{font:400 14px/22px var(--sans);color:rgba(251,247,239,.72);margin-top:32px}
+#start button.go{margin-top:32px;background:var(--paper-50);color:var(--ink);font:500 14px/20px var(--sans);height:44px;padding:0 40px;border-radius:6px}
+#start button.go:hover{background:var(--paper-200)}
+#start .um{width:48px;height:48px;font-size:48px;margin-bottom:24px;color:var(--n-m700);font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 48}
+
+#album{background:var(--paper-100);color:var(--ink-body);overflow-y:auto;padding:58px 16px 40px}
+#album h2,#end h2{font:400 28px/34px var(--serif);color:var(--ink);letter-spacing:-.01em}
+#album .x{position:absolute;top:54px;right:12px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.mcard{background:var(--paper-50);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-paper)}
+.mcard > svg{display:block;width:100%;height:auto;aspect-ratio:4/3}
+.mcard .ph{aspect-ratio:4/3;display:grid;place-items:center;background:var(--paper-200)}
+.mcard .ph .ic{width:44px;height:44px;font-size:44px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 44;color:var(--m500)}
+.mcard div.c{padding:10px 12px 12px;font:500 15px/20px var(--serif);color:var(--ink)}
+.mcard div.c span{display:block;font:600 12px/16px var(--sans);color:var(--clay-500);margin-top:4px}
+.mcard.lock{opacity:.45;box-shadow:none}
+.mcard.lock div.c span{color:var(--ink-muted)}
+.unsent{margin-top:32px}
+.unsent h3{font:600 12px/16px var(--sans);color:var(--clay-500)}
+.unsent p.e{font:400 14px/20px var(--sans);color:var(--ink-muted);margin-top:8px}
+.unsent .u{margin-top:10px;padding:12px 14px;border-radius:10px;border:1.5px dashed var(--line-strong);font:300 italic 17px/25px var(--serif);color:var(--ink-body);display:flex;justify-content:space-between;gap:10px}
+.unsent .u small{font:400 12px/16px var(--sans);font-style:normal;color:var(--ink-muted);flex:none}
+
+#end{background:var(--paper-100);color:var(--ink-body);overflow-y:auto;padding:64px 16px 40px}
+#end .k{font:600 12px/16px var(--sans);color:var(--clay-500);margin-bottom:8px}
+#end .lead{font:300 italic 20px/30px var(--serif);color:var(--ink-muted);margin-top:12px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+#end .btns{display:flex;flex-direction:column;gap:8px;margin-top:24px}
+#end .btns button{height:44px;border-radius:6px;font:500 14px/20px var(--sans)}
+#end .b1{background:var(--m700);color:var(--on-primary)}
+#end .b1:hover{background:var(--m800)}
+#end .next{margin-top:32px;padding:24px;border-radius:10px;background:var(--m900);color:var(--on-deep);font:400 15px/22px var(--sans)}
+#end .next small{display:block;font:600 12px/16px var(--sans);color:var(--n-clay);margin-bottom:8px}
+#end .next b{display:block;font:450 22px/28px var(--serif);margin-bottom:4px}
+
+
+img{display:block;user-select:none;-webkit-user-drag:none}
+.b.photo img{width:220px;height:165px;object-fit:cover;border-radius:14px}
+#lock .wall img{width:100%;height:100%;object-fit:cover}
+#scene .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s ease;animation:kb1 16s ease-in-out infinite alternate}
+#scene .art img.k2{animation-name:kb2}
+#scene .art img.in{opacity:0}
+@keyframes kb1{from{transform:scale(1.03) translate(0,0)}to{transform:scale(1.12) translate(-2%,-1.5%)}}
+@keyframes kb2{from{transform:scale(1.12) translate(2%,-1%)}to{transform:scale(1.03) translate(0,0)}}
+.grid img{width:100%;height:100%;object-fit:cover}
+#viewer img{width:100%;height:auto;transition:transform 2.6s ease-in,opacity 2.6s}
+#viewer.zoom img{transform:scale(1.5);opacity:.85}
+.opt.ph img{width:64px;height:48px;object-fit:cover;border-radius:2px;flex:none}
+.mcard > img{width:100%;aspect-ratio:4/3;object-fit:cover}
+
+/* voice transcript */
+.b .vtr{margin-top:6px;font-size:13px;line-height:18px;font-style:italic;opacity:.8}
+/* photo walk side quest */
+#pwalk{background:#0f1312;color:var(--n-ink);display:flex;flex-direction:column}
+#pwalk .ph1{padding:58px 20px 10px}
+#pwalk .eb{font:600 12px/16px var(--sans);color:var(--n-clay);letter-spacing:.02em}
+#pwalk h2{font:600 24px/30px var(--serif);margin-top:4px}
+#pwalk .sub{font:400 14px/20px var(--sans);color:var(--n-muted);margin-top:6px}
+#pwalk .rolls{display:flex;gap:8px;padding:6px 20px 12px}
+#pwalk .rolls i{flex:1;height:54px;border-radius:6px;border:1px dashed var(--n-line-strong);background-size:cover;background-position:center}
+#pwalk .rolls i.f{border:1px solid var(--n-ink)}
+#pwalk .spots{flex:1;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 20px 24px;align-content:start}
+#pwalk .spot{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;text-align:left}
+#pwalk .spot img{width:100%;height:100%;object-fit:cover;display:block}
+#pwalk .spot span{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 8px;font:600 13px/16px var(--sans);background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff}
+#pwalk .spot.done{opacity:.35;pointer-events:none}
+#pwalk .spot.done span:after{content:' · taken';font-weight:400}
+#vf{position:absolute;inset:0;background:#000;display:none;flex-direction:column;z-index:5}
+#vf.on{display:flex}
+#vf .bar{display:flex;align-items:center;justify-content:space-between;padding:56px 18px 10px;font:500 14px/20px var(--sans)}
+#vf .bar b{font-weight:600}
+#vf .win{position:relative;flex:1;overflow:hidden;touch-action:none;cursor:grab}
+#vf .pan{position:absolute;top:0;bottom:0;height:100%;will-change:transform}
+#vf .pan{left:0;top:0;bottom:auto}
+#vf .pan img{width:100%;height:100%;display:block;pointer-events:none;user-select:none}
+#vf .mask{position:absolute;inset:0;pointer-events:none;box-shadow:0 0 0 999px rgba(0,0,0,.55);border-radius:2px}
+#vf .fr{position:absolute;left:50%;top:50%;width:78%;height:62%;transform:translate(-50%,-50%);pointer-events:none}
+#vf .fr i{position:absolute;width:22px;height:22px;border-color:#fff;border-style:solid}
+#vf .fr i:nth-of-type(1){left:0;top:0;border-width:2px 0 0 2px}#vf .fr i:nth-of-type(2){right:0;top:0;border-width:2px 2px 0 0}
+#vf .fr i:nth-of-type(3){left:0;bottom:0;border-width:0 0 2px 2px}#vf .fr i:nth-of-type(4){right:0;bottom:0;border-width:0 2px 2px 0}
+#vf .hint{position:absolute;left:0;right:0;bottom:14px;text-align:center;font:500 13px/18px var(--sans);color:#fff;opacity:.85;pointer-events:none}
+#vf .ctl{display:flex;align-items:center;justify-content:center;padding:18px 0 34px}
+#vf .shut{width:70px;height:70px;border-radius:50%;border:4px solid #fff;display:flex;align-items:center;justify-content:center}
+#vf .shut:after{content:'';width:54px;height:54px;border-radius:50%;background:#fff}
+#vf .flashw{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .35s}
+#vf .flashw.on{opacity:.9;transition:none}
+#vf .res{position:absolute;left:16px;right:16px;bottom:120px;padding:12px 14px;border-radius:10px;background:rgba(22,26,25,.92);font:400 15px/21px var(--sans);display:none}
+#vf .res.on{display:block}
+#vf .res small{display:block;color:var(--n-muted);font-size:12px;margin-bottom:2px}
+#pwalk .done2{margin:0 20px 34px;padding:14px;border-radius:999px;background:var(--n-ink);color:#161A19;font:600 15px/20px var(--sans);display:none}
+#pwalk .done2.on{display:block}
+.mcard .walk3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;aspect-ratio:4/3;background:#000}
+.mcard .walk3 i{background-size:cover}
+#end .mh{font:600 15px/20px var(--sans);margin:22px 0 10px;display:flex;gap:8px;align-items:baseline}#end .mh span{font-weight:400;color:var(--ink-muted,#7b858c);font-size:13px}#end .mhs{font:400 13px/18px var(--sans);color:var(--ink-muted,#7b858c);margin:-4px 0 10px}#end .mh+ .mgrid{margin-top:0}
+</style>
+</head>
+<body>
+<canvas id="bgRain"></canvas>
+<div class="page">
+  <div class="bar">
+    <div class="ttl">Before the Rain Ends</div>
+    <div class="ctl">
+      <button class="pill" id="bSound" title="Rain sound"><span class="ic i-speaker-high"></span><span>Sound</span></button>
+      <button class="pill" id="bSpeed" title="Message speed"><span class="ic i-fast-forward"></span><span>1×</span></button>
+      <button class="pill" id="bAlbum" title="Memories"><span class="ic i-images"></span><span>Memories</span></button>
+    </div>
+  </div>
+  <div class="devbar" title="Temporary: drag to jump through the story"><span class="dv">Dev</span><input type="range" id="devT" min="0" max="1" value="0"><span id="devL">Start</span></div>
+  <div class="wrap"><div class="scaler" id="scaler">
+  <div class="stage" id="stage">
+    <div class="status" id="status"><span id="clock">11:47</span><span class="sic">
+      <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity=".35"/></svg>
+      <svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.3c2.3 0 4.4.9 6 2.4l1.2-1.3A10.4 10.4 0 0 0 8 .5C5.2.5 2.6 1.6.8 3.4L2 4.7a8.6 8.6 0 0 1 6-2.4Zm0 3.6c1.3 0 2.5.5 3.4 1.3l1.2-1.3A6.7 6.7 0 0 0 8 4.1c-1.8 0-3.4.7-4.6 1.8l1.2 1.3c.9-.8 2.1-1.3 3.4-1.3Zm0 3.5a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2Z"/></svg>
+      <svg viewBox="0 0 27 12" fill="none"><rect x=".5" y=".5" width="22" height="11" rx="3" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="12" height="8" rx="1.6" fill="currentColor"/><rect x="24" y="4" width="2" height="4" rx="1" fill="currentColor" opacity=".4"/></svg>
+    </span></div>
+
+    <div class="view" id="lock"><div class="lk" id="lk"><div class="wall" id="wall"></div><div class="clock"><div class="date" id="lockDate"></div><div class="time" id="lockTime"></div></div><div class="hint">Swipe up to open</div><div class="home"></div></div></div>
+
+    <div class="view" id="list">
+      <div class="lh"><div><div class="brand">ChatChat</div><h1>Chats</h1></div><div class="acts"><div class="icbtn" aria-label="Camera"><span class="ic i-camera"></span></div><div class="icbtn" aria-label="New chat"><span class="ic i-note-pencil"></span></div></div></div>
+      <div class="search"><span class="ic i-magnifying-glass"></span>Search</div>
+      <div class="rows" id="rows"></div>
+      <div class="homebar"></div>
+    </div>
+
+    <div class="view" id="chat">
+      <div class="ch"><div class="back"><span class="ic i-arrow-left"></span></div><div id="chAv"></div><div class="who"><b id="chName"></b><span id="chStat"></span></div><div class="tools"><span class="ic i-phone"></span><span class="ic i-video-camera"></span></div></div>
+      <div class="msgs" id="msgs"></div>
+      <div id="scroll"><div class="older" id="older">Tap to load older messages</div><div class="col" id="scol"></div><div class="flash" id="flash"></div></div>
+      <div class="foot"><div id="tray"></div><div class="comp"><div class="plus"><span class="ic i-plus-circle"></span></div><div class="field" id="field"><span class="ph">Message</span></div><div class="sendic" id="sendic"><span class="ic i-paper-plane-right"></span></div></div><div class="homebar"></div></div>
+    </div>
+
+    <div class="view" id="gallery"><div class="gh"><h2>Photos</h2><span>23 photos</span></div><div class="grid" id="ggrid"></div><div id="viewer"><div id="vimg"></div><div class="det" id="vdet"></div><div class="vtap" id="vtap">Tap to continue</div></div><div class="homebar"></div></div>
+
+    <div class="view" id="scene"><div class="art" id="sart"></div><div class="shade"></div><div class="cap" id="scap"></div><div class="dlg" id="dlg"></div></div>
+
+    <div class="view" id="pwalk"><div class="ph1"><div class="eb">Side quest · Photo walk</div><h2>Sunday, after the rain</h2><p class="sub">Pick three places. Drag in any direction to frame the shot, then press the shutter.</p></div><div class="rolls" id="pwRolls"><i></i><i></i><i></i></div><div class="spots" id="pwSpots"></div><button class="done2" id="pwDone">Show May</button>
+      <div id="vf"><div class="bar"><span id="vfBack" role="button">Back</span><b id="vfName"></b><span id="vfCount"></span></div><div class="win" id="vfWin"><div class="pan" id="vfPan"></div><div class="fr" id="vfFr"><div class="mask"></div><i></i><i></i><i></i><i></i></div><div class="hint" id="vfHint">Drag to frame</div><div class="flashw" id="vfFlash"></div><div class="res" id="vfRes"></div></div><div class="ctl"><button class="shut" id="vfShut" aria-label="Take photo"></button></div></div>
+    </div>
+
+    <div id="banner"></div>
+    <div id="toast"></div>
+
+    <div class="ov" id="title"><h1 id="tBig"></h1><p id="tSmall"></p><div class="tap" id="tTap">Tap to continue</div></div>
+    <div class="ov" id="album"></div>
+    <div class="ov" id="end"></div>
+    <div class="ov on" id="start">
+      <span class="ic um">umbrella</span><div class="eb">A story told in messages</div>
+      <h1>Before the<br>Rain Ends</h1>
+      <div class="sub">For the days when you miss someone.</div>
+      <div class="meta">Prologue &amp; Chapters 1–2 · about 40 minutes<br>Tap a reply to send it. Some things you can choose not to send.<br>Best with sound on.</div>
+      <button class="go" id="go">Begin</button>
+    </div>
+  </div>
+  </div></div>
+</div>
+
+<script>
+/* ============ ICONS ============ */
+const IC={
+ star:'<span class="ic i-bookmark-simple"></span>',
+ trash:'<span class="ic i-trash"></span>',
+ send:'<span class="ic i-paper-plane-right"></span>',
+ play:'<span class="ic i-play"></span>',
+ phone:'<span class="ic i-phone"></span>',
+ phoneX:'<span class="ic i-phone-x"></span>',
+ up:'<span class="ic i-arrow-up"></span>',
+ x:'<span class="ic i-x"></span>',
+ note:'<span class="ic i-note"></span>',
+ umb:'<span class="ic i-umbrella"></span>'
+};
+
+const SPK_ON='speaker-high',SPK_OFF='speaker-x';
+/* ============ ART ============ */
+const ART={};
+/* placeholder art until the approved images arrive: a soft gradient with the shot name */
+function wrap(t,n){const o=[];let l='';t.split(' ').forEach(x=>{if((l+' '+x).trim().length>n){o.push(l);l=x}else l=(l+' '+x).trim()});if(l)o.push(l);return o}
+function phSVG(label,c1,c2,w,h,subj){const t=label.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const sb=subj?`<circle cx="${subj[0]*w}" cy="${subj[1]*h}" r="${h*.11}" fill="#fff" opacity=".22"/><text x="${subj[0]*w}" y="${subj[1]*h+h*.02}" font-family="DM Sans,sans-serif" font-size="${h*.045}" fill="#fff" text-anchor="middle" opacity=".8">${subj[2]}</text>`:'';
+  return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#g)"/>${sb}<text x="${w/2}" y="${h*.12}" font-family="DM Sans,sans-serif" font-size="${Math.round(w*.034)}" fill="#fff" text-anchor="middle" opacity=".75"><tspan x="${w/2}">Image to come</tspan>${wrap(t,30).map((l,i)=>`<tspan x="${w/2}" dy="${Math.round(w*.05)}">${l}</tspan>`).join('')}</text></svg>`)}
+const PHI=(label,c1,c2)=>`<img src="${phSVG(label,c1,c2,768,1344)}" alt="" draggable="false">`;
+const SPOTS=[
+ {id:'tea',name:'The tea shop in the rain',src:'img/c2-spot-tea.webp',sx:.64,sy:.5,line:'Daw Aye Aye waves at the camera. It is not the photo he meant, and it is better.'},
+ {id:'monastery',name:'The monastery steps',src:'img/c2-spot-monastery.webp',sx:.35,sy:.58,line:'Two novice monks on the steps, sharing one umbrella.'},
+ {id:'river',name:'The river after the storm',src:'img/c2-spot-river.webp',sx:.74,sy:.51,line:'A boat on brown water and a sky the colour of milk tea.'},
+ {id:'market',name:'Market umbrellas',src:'img/c2-spot-market.webp',sx:.38,sy:.45,line:'A sea of faded umbrellas over the vegetable stalls.'},
+ {id:'shop',name:"Mom's shop sign",src:'img/c2-spot-shop.webp',sx:.31,sy:.33,line:'The painted sign over Mom\'s shop, one letter peeling.'},
+ {id:'dog',name:'Saya, who stays dry',src:'img/c2-spot-dog.webp',sx:.73,sy:.69,line:'Saya, asleep under the same awning as always.'}];
+ART.candles='<img src="img/c2-candles.webp" alt="" draggable="false">';
+ART.mayCandid='<img src="img/c2-may-candid.webp" alt="" draggable="false">';
+ART.spotRiver=()=>`<img src="${SPOTS[2].src}" alt="" draggable="false" style="object-fit:cover">`;
+ART.spotTea=()=>`<img src="${SPOTS[0].src}" alt="" draggable="false" style="object-fit:cover">`;
+ART.walk3=()=>`<div class="walk3">${(S.walk||[]).map(w=>`<i style="background-image:url('${SPOTS.find(x=>x.id===w.id).src}');background-size:240%;background-position:${w.px}% ${w.py}%"></i>`).join('')}</div>`;
+ART.wetShoulder='<img src="img/c2-walk-gate.webp" alt="" draggable="false" style="object-fit:cover;object-position:50% 45%">';
+ART.lamp='<img src="img/c2-lamp-wall.webp" alt="" draggable="false" style="object-fit:cover;object-position:50% 50%">';
+ART.umbrellaBed=`<svg viewBox="0 0 300 225"><defs><pattern id="pb" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(20)"><rect width="24" height="24" fill="#dccdb8"/><rect width="12" height="24" fill="#d3c2aa"/><circle cx="18" cy="6" r="2" fill="#c5ae90"/></pattern><radialGradient id="lb" cx=".3" cy=".2" r=".9"><stop offset="0" stop-color="#fff6e0" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></radialGradient></defs><rect width="300" height="225" fill="url(#pb)"/><path d="M0 180q80-20 150 6t150-4v43H0z" fill="#cbb79c" opacity=".6"/><g transform="rotate(-28 150 112)"><path d="M58 112 L205 94 Q222 112 205 130 Z" fill="#1d2328"/><path d="M80 104 L205 94 M84 120 L205 130 M120 112 L210 112" stroke="#30383e" stroke-width="2"/><rect x="205" y="109" width="40" height="5" rx="2" fill="#9aa1a5"/><path d="M58 112h-6" stroke="#9aa1a5" stroke-width="4"/><rect x="18" y="104" width="36" height="16" rx="4" fill="#3a2a22"/><rect x="26" y="103" width="20" height="18" fill="#f6f3ec"/><text x="36" y="116" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#222" text-anchor="middle">MH</text><path d="M18 112q-14 0-14 14t14 12" stroke="#3a2a22" stroke-width="7" fill="none" stroke-linecap="round"/></g><rect width="300" height="225" fill="url(#lb)"/></svg>`;
+ART.teaTable=(blur)=>`<svg viewBox="0 0 300 225" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="tw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f6672"/><stop offset="1" stop-color="#2c3d47"/></linearGradient><linearGradient id="tt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a37"/><stop offset="1" stop-color="#5a3922"/></linearGradient></defs><rect width="300" height="225" fill="url(#tw)"/><g stroke="#9fb3bd" stroke-width="1.2" opacity=".55">${Array.from({length:26},(_,i)=>`<line x1="${(i*37)%300}" y1="${(i*53)%120}" x2="${(i*37)%300-4}" y2="${(i*53)%120+22}"/>`).join('')}</g><rect x="0" y="0" width="300" height="140" fill="none" stroke="#2a1d14" stroke-width="10"/><line x1="150" y1="0" x2="150" y2="140" stroke="#2a1d14" stroke-width="6"/><circle cx="235" cy="40" r="40" fill="#f3c27a" opacity=".18"/><rect y="138" width="300" height="87" fill="url(#tt)"/><path d="M0 138h300" stroke="#a6714a" stroke-width="3"/><g><ellipse cx="110" cy="182" rx="34" ry="8" fill="#e9e2d6"/><path d="M92 136h36l-5 46h-26z" fill="#f4ede0" opacity=".55"/><path d="M93.5 150h33l-3.6 32h-25.8z" fill="#c48a55"/><ellipse cx="110" cy="150" rx="16.5" ry="3" fill="#d9a675"/></g><g><ellipse cx="190" cy="186" rx="34" ry="8" fill="#e9e2d6"/><path d="M172 140h36l-5 46h-26z" fill="#f4ede0" opacity=".55"/><path d="M173.5 160h33l-3 26h-27z" fill="#c48a55"/><ellipse cx="190" cy="160" rx="16.5" ry="3" fill="#d9a675"/></g><rect width="300" height="225" fill="#f7d39a" opacity=".08"/></svg>`;
+ART.pinkUmbrella=`<svg viewBox="0 0 300 225"><rect width="300" height="225" fill="#e9e1d4"/><rect y="170" width="300" height="55" fill="#b89b7c"/><path d="M0 170h300" stroke="#9b7f62" stroke-width="3"/><rect x="230" y="20" width="44" height="64" fill="#c9d3cf" stroke="#a89c8a" stroke-width="4"/><g transform="rotate(14 150 120)"><path d="M150 168 V60" stroke="#6f6a66" stroke-width="4"/><path d="M150 186 q0 14 -12 14" stroke="#6f6a66" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M78 92 Q110 40 150 38 Q192 40 220 86 Q200 78 186 92 Q168 70 150 92 Q130 66 116 96 Q96 78 78 92Z" fill="#e58aa0"/><path d="M150 38 L116 96 M150 38 L186 92 M150 38 L84 120 M150 38 L216 116" stroke="#8a6b74" stroke-width="2" fill="none"/><path d="M84 120 L70 140 M216 116 L232 130" stroke="#8a6b74" stroke-width="2"/><path d="M78 92 Q74 108 84 120 L116 96" fill="#d77790" opacity=".85"/></g><ellipse cx="160" cy="200" rx="60" ry="5" fill="#8c735b" opacity=".35"/></svg>`;
+ART.dog=`<svg viewBox="0 0 300 225"><rect width="300" height="225" fill="#33424b"/><g stroke="#90a6b1" stroke-width="1.2" opacity=".6">${Array.from({length:30},(_,i)=>`<line x1="${(i*41)%300}" y1="${60+(i*29)%160}" x2="${(i*41)%300-4}" y2="${60+(i*29)%160+16}"/>`).join('')}</g><path d="M10 40 L290 40 L270 80 L30 80Z" fill="#c4473c"/><path d="M30 80 L270 80" stroke="#8f3029" stroke-width="3"/><path d="M60 40l-8 40M120 40l-4 40M180 40l4 40M240 40l8 40" stroke="#e7d9c7" stroke-width="10" opacity=".55"/><rect x="40" y="80" width="6" height="110" fill="#5b4a3c"/><rect x="254" y="80" width="6" height="110" fill="#5b4a3c"/><rect x="60" y="120" width="180" height="16" fill="#6a5644"/><rect y="185" width="300" height="40" fill="#273239"/><ellipse cx="150" cy="200" rx="110" ry="6" fill="#d9a46a" opacity=".12"/><g transform="translate(150 178)"><ellipse cx="0" cy="0" rx="40" ry="16" fill="#b98a55"/><circle cx="-34" cy="-6" r="14" fill="#c49764"/><path d="M-44 -16 l-6 -10 l10 4z M-30 -18 l2 -11 l6 8z" fill="#9c7243"/><path d="M-40 -6 q4 2 7 0" stroke="#3a2b1d" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="-46" cy="-1" r="2" fill="#3a2b1d"/><path d="M36 4 q16 0 10 -14" stroke="#b98a55" stroke-width="7" fill="none" stroke-linecap="round"/></g></svg>`;
+ART.yellowUmbrella=`<svg viewBox="0 0 300 225"><rect width="300" height="225" fill="#efe6d8"/><rect y="150" width="300" height="75" fill="#d8c5a8"/><g transform="rotate(-12 150 112)"><path d="M60 112 L215 96 Q232 112 215 128 Z" fill="#f1c232"/><path d="M84 104 L215 96 M88 120 L215 128" stroke="#d9a51a" stroke-width="2"/><rect x="215" y="109" width="36" height="5" rx="2" fill="#9aa1a5"/><rect x="24" y="104" width="36" height="16" rx="5" fill="#f1c232"/><path d="M24 112q-14 0-14 14t14 12" stroke="#d9a51a" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="14" y="88" width="246" height="48" rx="12" fill="#ffffff" opacity=".28" stroke="#ffffff" stroke-opacity=".8"/><path d="M30 94 L240 92" stroke="#fff" stroke-width="3" opacity=".8" stroke-linecap="round"/><rect x="200" y="94" width="34" height="14" rx="2" fill="#fff" opacity=".9"/><text x="217" y="104" font-size="7" font-family="DM Sans,sans-serif" text-anchor="middle" fill="#666">NEW</text></g></svg>`;
+ART.thingyan=`<svg viewBox="0 0 300 225"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd2e3"/><stop offset="1" stop-color="#e8f1e4"/></linearGradient></defs><rect width="300" height="225" fill="url(#sk)"/><rect y="170" width="300" height="55" fill="#c9b27f"/><path d="M0 170q150-12 300 0" fill="#b8a06c"/><rect x="196" y="70" width="14" height="110" fill="#5c4330"/><g fill="#3f6b3a"><circle cx="203" cy="60" r="52"/><circle cx="160" cy="70" r="36"/><circle cx="248" cy="74" r="36"/><circle cx="200" cy="22" r="30"/></g><g fill="#4f7d45" opacity=".8"><circle cx="180" cy="44" r="18"/><circle cx="230" cy="50" r="20"/></g><g fill="#2b2f33"><circle cx="118" cy="104" r="15"/><path d="M98 180 q-2 -54 20 -60 q22 6 20 60z"/><circle cx="160" cy="110" r="14"/><path d="M142 182 q-2 -50 18 -56 q20 6 18 56z"/><path d="M175 132 q14 -14 22 -32" stroke="#2b2f33" stroke-width="7" stroke-linecap="round" fill="none" opacity=".6"/></g><g fill="#ffffff" opacity=".85">${Array.from({length:40},(_,i)=>`<circle cx="${120+((i*47)%140)}" cy="${40+((i*31)%120)}" r="${1+(i%3)}"/>`).join('')}</g><path d="M196 96 q30 -40 60 -10" stroke="#ffffff" stroke-width="3" fill="none" opacity=".6" stroke-dasharray="2 6" stroke-linecap="round"/></svg>`;
+ART.thumb=()=>`<svg viewBox="0 0 204 204" preserveAspectRatio="xMidYMid slice" fill="none"><rect width="204" height="204" fill="#D9D9D9"/><path d="M66.6553 62.2798H62.2803V141.03H141.03V62.2798H66.6553ZM71.0303 114.78V71.0298H132.28V100.78L115.655 84.1548L85.0303 114.78H71.0303ZM71.0303 123.53V132.28H132.28V123.53H71.0303ZM94.6553 85.9048C94.6553 83.5841 93.7334 81.3585 92.0925 79.7176C90.4515 78.0767 88.2259 77.1548 85.9053 77.1548C83.5846 77.1548 81.359 78.0767 79.7181 79.7176C78.0771 81.3585 77.1553 83.5841 77.1553 85.9048C77.1553 88.2254 78.0771 90.451 79.7181 92.092C81.359 93.7329 83.5846 94.6548 85.9053 94.6548C88.2259 94.6548 90.4515 93.7329 92.0925 92.092C93.7334 90.451 94.6553 88.2254 94.6553 85.9048Z" fill-rule="evenodd" clip-rule="evenodd" fill="#C4C4C4"/></svg>`;
+ART.STK={
+ catUmb:`<svg class="stk" viewBox="0 0 120 120"><path d="M14 56a46 40 0 0 1 92 0q-11-8-23 0q-11-8-23 0q-12-8-23 0q-12-8-23 0z" fill="#e58aa0"/><path d="M60 16v40" stroke="#8a6b74" stroke-width="3"/><g transform="translate(60 84)"><ellipse cx="0" cy="10" rx="26" ry="18" fill="#f1c27d"/><circle cx="0" cy="-8" r="20" fill="#f1c27d"/><path d="M-18 -18 l-4 -16 l14 8z M18 -18 l4 -16 l-14 8z" fill="#f1c27d"/><circle cx="-7" cy="-9" r="2.6" fill="#2b2b2b"/><circle cx="7" cy="-9" r="2.6" fill="#2b2b2b"/><path d="M-4 -2 q4 4 8 0" stroke="#2b2b2b" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="-13" cy="-2" r="3" fill="#f39a9a" opacity=".6"/><circle cx="13" cy="-2" r="3" fill="#f39a9a" opacity=".6"/></g><g stroke="#7fb4c9" stroke-width="2.5" stroke-linecap="round"><path d="M10 74l-3 8M22 90l-3 8M100 74l3 8M110 92l3 8"/></g></svg>`,
+ sleepy:`<svg class="stk" viewBox="0 0 120 120"><ellipse cx="60" cy="86" rx="40" ry="20" fill="#cfd6db"/><circle cx="46" cy="70" r="22" fill="#cfd6db"/><path d="M28 56 l-4 -16 l14 8z M58 52 l6 -15 l4 15z" fill="#cfd6db"/><path d="M36 70 q5 4 10 0 M52 68 q5 4 10 0" stroke="#3b4247" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M96 86 q16 0 8 -18" stroke="#cfd6db" stroke-width="9" fill="none" stroke-linecap="round"/><text x="78" y="44" font-family="Fraunces,serif" font-style="italic" font-size="16" fill="#6c7a84">z</text><text x="90" y="30" font-family="Fraunces,serif" font-style="italic" font-size="22" fill="#6c7a84">z</text></svg>`,
+ laugh:`<svg class="stk" viewBox="0 0 120 120"><circle cx="60" cy="62" r="40" fill="#f6c453"/><path d="M38 52 q7 -8 14 0 M68 52 q7 -8 14 0" stroke="#4a3a12" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M38 70 q22 28 44 0z" fill="#4a3a12"/><path d="M48 82 q12 8 24 0" fill="#e86b6b"/><path d="M24 58 q-6 10 2 16 M96 58 q6 10 -2 16" stroke="#7fc4e0" stroke-width="5" fill="none" stroke-linecap="round"/></svg>`
+};
+
+/* scene art (393x852) */
+const SCENE={};
+SCENE.teashop=`<svg viewBox="0 0 393 852" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="wl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a3326"/><stop offset="1" stop-color="#2a1c14"/></linearGradient><linearGradient id="wn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b5260"/><stop offset="1" stop-color="#1f2e37"/></linearGradient><radialGradient id="gl" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd38a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd38a" stop-opacity="0"/></radialGradient><linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2a20"/><stop offset="1" stop-color="#16100c"/></linearGradient></defs><rect width="393" height="852" fill="url(#wl)"/><rect x="24" y="110" width="250" height="300" fill="url(#wn)"/><clipPath id="cwin"><rect x="24" y="110" width="250" height="300"/></clipPath><g clip-path="url(#cwin)"><g stroke="#a9c0cc" stroke-width="1.3" opacity=".55">${Array.from({length:60},(_,i)=>`<line x1="${30+(i*61)%250}" y1="${(i*37)%420}" x2="${26+(i*61)%250}" y2="${(i*37)%420+20}"/>`).join('')}<animateTransform attributeName="transform" type="translate" from="6 0" to="-6 420" dur="1.1s" repeatCount="indefinite"/></g><g stroke="#a9c0cc" stroke-width="1.3" opacity=".55">${Array.from({length:60},(_,i)=>`<line x1="${30+(i*61)%250}" y1="${(i*37)%420-420}" x2="${26+(i*61)%250}" y2="${(i*37)%420-400}"/>`).join('')}<animateTransform attributeName="transform" type="translate" from="6 0" to="-6 420" dur="1.1s" repeatCount="indefinite"/></g></g><rect x="24" y="110" width="250" height="300" fill="none" stroke="#1b120c" stroke-width="12"/><line x1="149" y1="110" x2="149" y2="410" stroke="#1b120c" stroke-width="8"/><line x1="24" y1="260" x2="274" y2="260" stroke="#1b120c" stroke-width="6"/><path d="M190 0v130" stroke="#111" stroke-width="2"/><circle cx="190" cy="150" r="190" fill="url(#gl)"/><path d="M178 130h24l-4 16h-16z" fill="#2a2a2a"/><circle cx="190" cy="150" r="7" fill="#ffe2a8"/><rect x="292" y="300" width="101" height="190" fill="#3d2a1e"/><rect x="292" y="296" width="101" height="10" fill="#5c4130"/><g fill="#dfe7e9" opacity=".55"><rect x="302" y="262" width="12" height="30" rx="2"/><rect x="320" y="266" width="12" height="26" rx="2"/><rect x="338" y="262" width="12" height="30" rx="2"/></g><g fill="#0e0a08" opacity=".92"><circle cx="352" cy="232" r="19"/><path d="M322 300 q4-50 30-52 q26 2 30 52z"/></g><rect y="470" width="393" height="382" fill="url(#fl)"/><ellipse cx="170" cy="560" rx="150" ry="22" fill="#6b4a32"/><rect x="40" y="556" width="260" height="14" fill="#5a3d28"/><rect x="60" y="568" width="10" height="90" fill="#3d2a1d"/><rect x="270" y="568" width="10" height="90" fill="#3d2a1d"/><g><ellipse cx="128" cy="548" rx="16" ry="4" fill="#efe6d8"/><path d="M118 520h20l-3 28h-14z" fill="#c48a55"/><ellipse cx="208" cy="548" rx="16" ry="4" fill="#efe6d8"/><path d="M198 520h20l-3 28h-14z" fill="#c48a55"/></g><rect x="30" y="660" width="70" height="12" rx="3" fill="#2d6c74"/><rect x="36" y="672" width="8" height="40" fill="#24565c"/><rect x="86" y="672" width="8" height="40" fill="#24565c"/><rect x="250" y="664" width="70" height="12" rx="3" fill="#b8473c"/><rect x="256" y="676" width="8" height="40" fill="#8f3229"/><rect x="306" y="676" width="8" height="40" fill="#8f3229"/><g transform="rotate(-18 330 600)"><path d="M330 540 v120" stroke="#6f6a66" stroke-width="4"/><path d="M300 560 q30 -40 60 0 q-14 -6 -22 6 q-8 -10 -16 0 q-10 -12 -22 -6z" fill="#e58aa0"/></g></svg>`;
+SCENE.classroom=`<svg viewBox="0 0 393 852" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="cw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9eab92"/><stop offset="1" stop-color="#6f7b66"/></linearGradient><linearGradient id="ev" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a25f"/><stop offset="1" stop-color="#5d6d86"/></linearGradient></defs><rect width="393" height="852" fill="url(#cw)"/><rect x="40" y="170" width="240" height="140" fill="#26362d" stroke="#5a4230" stroke-width="8"/><text x="60" y="210" font-family="Fraunces,serif" font-style="italic" font-size="18" fill="#dfe6d8" opacity=".8">Present Perfect</text><text x="60" y="240" font-family="Fraunces,serif" font-style="italic" font-size="15" fill="#dfe6d8" opacity=".6">I have waited / I have been waiting</text><rect x="300" y="160" width="80" height="170" fill="url(#ev)" stroke="#5a4230" stroke-width="6"/><line x1="340" y1="160" x2="340" y2="330" stroke="#5a4230" stroke-width="4"/><g transform="translate(196 70)"><rect x="-2" y="-70" width="4" height="40" fill="#333"/><circle r="10" cy="-28" fill="#444"/><g><path d="M0 -28 L-90 -22 L-90 -34 Z M0 -28 L90 -34 L90 -22 Z" fill="#555" opacity=".85"/><animateTransform attributeName="transform" type="rotate" from="0 0 -28" to="360 0 -28" dur="1.6s" repeatCount="indefinite"/></g></g><g fill="#5b412d"><rect x="20" y="470" width="150" height="16" rx="3"/><rect x="223" y="470" width="150" height="16" rx="3"/><rect x="0" y="580" width="170" height="18" rx="3"/><rect x="223" y="580" width="170" height="18" rx="3"/></g><g fill="#2b2420" opacity=".85"><circle cx="70" cy="430" r="16"/><path d="M48 470 q2 -30 22 -30 q20 0 22 30z"/><circle cx="130" cy="432" r="15"/><path d="M110 470 q2 -28 20 -28 q18 0 20 28z"/><circle cx="270" cy="430" r="16"/><path d="M248 470 q2 -30 22 -30 q20 0 22 30z"/><circle cx="330" cy="534" r="17" opacity=".95"/><path d="M306 580 q2 -32 24 -32 q22 0 24 32z"/></g><rect y="640" width="393" height="212" fill="#4a3d32"/><g transform="translate(330 560) rotate(-10)"><path d="M-30 0 L40 -6" stroke="#1d2328" stroke-width="7" stroke-linecap="round"/><rect x="-36" y="-6" width="14" height="10" fill="#f6f3ec"/></g></svg>`;
+SCENE.bedroom=`<svg viewBox="0 0 393 852" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="bw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a35"/><stop offset="1" stop-color="#0e161c"/></linearGradient><radialGradient id="ph" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#9fd0d6" stop-opacity=".35"/><stop offset="1" stop-color="#9fd0d6" stop-opacity="0"/></radialGradient></defs><rect width="393" height="852" fill="url(#bw)"/><rect x="60" y="140" width="200" height="250" fill="#24394a"/><clipPath id="bwin"><rect x="60" y="140" width="200" height="250"/></clipPath><g clip-path="url(#bwin)"><g stroke="#8fb0c2" stroke-width="1.2" opacity=".45">${Array.from({length:40},(_,i)=>`<line x1="${66+(i*53)%190}" y1="${(i*31)%500}" x2="${62+(i*53)%190}" y2="${(i*31)%500+18}"/>`).join('')}${Array.from({length:40},(_,i)=>`<line x1="${66+(i*53)%190}" y1="${(i*31)%500-500}" x2="${62+(i*53)%190}" y2="${(i*31)%500-482}"/>`).join('')}<animateTransform attributeName="transform" type="translate" from="4 0" to="-4 500" dur="2.2s" repeatCount="indefinite"/></g></g><rect x="60" y="140" width="200" height="250" fill="none" stroke="#0a1015" stroke-width="10"/><line x1="160" y1="140" x2="160" y2="390" stroke="#0a1015" stroke-width="6"/><rect x="30" y="520" width="240" height="14" fill="#3a2d24"/><rect x="40" y="534" width="10" height="160" fill="#2c221b"/><rect x="250" y="534" width="10" height="160" fill="#2c221b"/><circle cx="150" cy="512" r="70" fill="url(#ph)"/><rect x="134" y="506" width="34" height="12" rx="3" fill="#bfe3e6"/><rect x="190" y="470" width="44" height="50" rx="4" fill="#2b3740"/><circle cx="212" cy="494" r="12" fill="#11181d" stroke="#56646d" stroke-width="3"/><g transform="rotate(10 330 640)"><path d="M330 520 v220" stroke="#6f6a66" stroke-width="4"/><path d="M290 560 q40 -60 80 0 q-16 -8 -26 8 q-10 -14 -20 0 q-14 -14 -34 -8z" fill="#c9758a"/></g><g transform="rotate(4 360 650)"><path d="M352 540 L364 742" stroke="#1d2328" stroke-width="12" stroke-linecap="round"/><rect x="356" y="730" width="14" height="20" fill="#e9e6df"/></g><rect y="760" width="393" height="92" fill="#0b1115"/></svg>`;
+
+
+
+/* webtoon images (Magnific) */
+ART.umbrellaBed='<img src="img/umbrella-bed.webp" alt="" draggable="false">';
+ART.teaTable=()=>'<img src="img/tea-table.webp" alt="" draggable="false">';
+ART.pinkUmbrella='<img src="img/pink-umbrella.webp" alt="" draggable="false">';
+ART.dog='<img src="img/dog.webp" alt="" draggable="false">';
+ART.yellowUmbrella='<img src="img/yellow-umbrella.webp" alt="" draggable="false">';
+ART.thingyan='<img src="img/thingyan.webp" alt="" draggable="false">';
+SCENE.teashop1='<img src="img/dr-01-drops-off.webp" alt="" draggable="false">';
+SCENE.teashopWait='<img src="img/dr-02-sits.webp" alt="" draggable="false">';
+SCENE.teashop2='<img src="img/dr-03-runs-in.webp" alt="" draggable="false">';
+SCENE.teashopCounter='<img src="img/dr-04-hnin.webp" alt="" draggable="false">';
+SCENE.teashopHnin='<img src="img/dr-15-hnin-closeup.webp" alt="" draggable="false">';
+SCENE.teashop3='<img src="img/dr-05-frown-wide.webp" alt="" draggable="false">';
+SCENE.teashopWhat='<img src="img/dr-06-what.webp" alt="" draggable="false">';
+SCENE.teashopLaugh='<img src="img/dr-07-laugh.webp" alt="" draggable="false">';
+SCENE.teashopSamosa='<img src="img/dr-08-samosa.webp" alt="" draggable="false">';
+SCENE.teashopTea='<img src="img/dr-09-tea.webp" alt="" draggable="false">';
+SCENE.teashopSeeds='<img src="img/dr-10-seeds.webp" alt="" draggable="false">';
+SCENE.teashopPhone='<img src="img/dr-11-phone.webp" alt="" draggable="false">';
+SCENE.teashopCall='<img src="img/dr-12-coming-ma.webp" alt="" draggable="false">';
+SCENE.teashop5='<img src="img/ap-11-runs-out.webp" alt="" draggable="false">';
+SCENE.walkHome='<img src="img/dr-13-walk-open.webp" alt="" draggable="false">';
+SCENE.walkArm='<img src="img/dr-14-walk-arm.webp" alt="" draggable="false">';
+SCENE.classroom1='<img src="img/cl-01-establish.webp" alt="" draggable="false">';
+SCENE.classroom2='<img src="img/cl-02-returns.webp" alt="" draggable="false">';
+SCENE.classroom3='<img src="img/cl-03-note.webp" alt="" draggable="false">';
+SCENE.classroomTeacher='<img src="img/cl-04-teacher.webp" alt="" draggable="false">';
+SCENE.classroomMay='<img src="img/cl-05-may-answers.webp" alt="" draggable="false">';
+SCENE.classroom4='<img src="img/cl-06-talk.webp" alt="" draggable="false">';
+SCENE.bedroom='<img src="img/rm-02-reading.webp" alt="" draggable="false">';
+SCENE.roomEmpty='<img src="img/rm-01-empty.webp" alt="" draggable="false">';
+SCENE.roomUmbrellas='<img src="img/rm-03-umbrellas.webp" alt="" draggable="false">';
+
+/* ============ STATE ============ */
+const S={flags:{},memories:[],unsent:[],threads:{},contact:null,speed:1,rain:0,sound:false,busy:false};
+const C={
+  may:{name:'May Thiri',ini:'MT',img:1,bg:'#F0DACB',fg:'#8F4630'},
+  mom:{name:'Mom',ini:'M',img:1,bg:'#CCDAD5',fg:'#1F4643'},
+  thura:{name:'Thura',ini:'T',img:1,bg:'#CCDAD5',fg:'#1F4643'},
+  hnin:{name:'Hnin',ini:'H',img:1,bg:'#CCDAD5',fg:'#1F4643'}
+};
+const $=s=>document.querySelector(s);
+const stage=$('#stage');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms/S.speed));
+const rawSleep=ms=>new Promise(r=>setTimeout(r,ms));
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+
+/* ============ AUDIO ============ */
+const Audio_={ctx:null,gain:null,
+  init(){ if(this.ctx) return; try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)(); this.ctx=ctx;
+    const len=ctx.sampleRate*4, buf=ctx.createBuffer(2,len,ctx.sampleRate);
+    for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);let b0=0,b1=0,b2=0;for(let i=0;i<len;i++){const w=Math.random()*2-1;b0=.99765*b0+w*.099;b1=.963*b1+w*.2965;b2=.57*b2+w*1.0526;d[i]=(b0+b1+b2+w*.1848)*.11;}}
+    const src=ctx.createBufferSource();src.buffer=buf;src.loop=true;
+    const hp=ctx.createBiquadFilter();hp.type='highpass';hp.frequency.value=400;
+    const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=5200;
+    this.gain=ctx.createGain();this.gain.gain.value=0;
+    src.connect(hp).connect(lp).connect(this.gain).connect(ctx.destination);src.start();
+  }catch(e){this.ctx=null}},
+  level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.05,.11,.2][S.rain]||0:0; this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.8); },
+  blip(hi){ if(!this.ctx||!S.sound) return; try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=hi?880:660;g.gain.value=0;o.connect(g).connect(this.ctx.destination);const t=this.ctx.currentTime;g.gain.linearRampToValueAtTime(.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.start(t);o.stop(t+.2);}catch(e){} }
+};
+
+/* ============ RAIN CANVAS ============ */
+function Rain(cv,opts){const ctx=cv.getContext('2d');let drops=[];const o=Object.assign({color:'170,195,210'},opts);
+  function size(){const r=cv.getBoundingClientRect();cv.width=r.width*devicePixelRatio;cv.height=r.height*devicePixelRatio;}
+  size();addEventListener('resize',size);
+  function tick(){const n=[0,60,160,320][o.level()]||0;while(drops.length<n)drops.push(mk(true));if(drops.length>n)drops.length=n;
+    ctx.clearRect(0,0,cv.width,cv.height);ctx.strokeStyle=`rgba(${o.color},.35)`;ctx.lineWidth=1*devicePixelRatio;ctx.beginPath();
+    for(const d of drops){ctx.moveTo(d.x,d.y);ctx.lineTo(d.x-d.l*.12,d.y+d.l);d.y+=d.v;d.x-=d.v*.12;if(d.y>cv.height){Object.assign(d,mk(false))}}
+    ctx.stroke();requestAnimationFrame(tick);}
+  function mk(any){return{x:Math.random()*cv.width*1.1,y:any?Math.random()*cv.height:-20,l:(10+Math.random()*18)*devicePixelRatio,v:(9+Math.random()*9)*devicePixelRatio}}
+  tick();}
+Rain($('#bgRain'),{level:()=>S.rain});
+function setRain(n){S.rain=n;Audio_.level();}
+
+/* ============ LAYOUT ============ */
+function fit(){const sc=$('#scaler');const availH=innerHeight-52,availW=innerWidth;const s=Math.min(availH/852,availW/393,1);
+  sc.style.transform=`scale(${s})`;sc.style.width=393+'px';sc.style.height=852*s+'px';
+  stage.classList.toggle('full',innerWidth<430);}
+addEventListener('resize',fit);fit();
+
+/* ============ UI HELPERS ============ */
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));
+  $('#status').classList.toggle('light',id==='lock'||id==='scene');
+  $('#status').style.opacity=id==='scene'?0:1;}
+function setTime(t){$('#clock').textContent=t.replace(/ ?[AP]M/,'');}
+function av(c,sm,online){const x=C[c];return `<div class="av${sm?' sm':''}" style="background:${x.bg};color:${x.fg}">${x.img?`<img src="img/av-${c}.webp" alt="" draggable="false">`:x.ini}${online?'<i class="on"></i>':''}</div>`}
+let toastT;
+function toast(html){const t=$('#toast');t.innerHTML=IC.star+html;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2800);}
+function waitClick(el){return new Promise(r=>{const h=e=>{e.stopPropagation();el.removeEventListener('click',h);r(e)};el.addEventListener('click',h)})}
+function waitStage(delay=120){return new Promise(r=>{setTimeout(()=>{const h=e=>{if(e.target.closest('.opt,.dbtns,#banner'))return;stage.removeEventListener('click',h);r()};stage.addEventListener('click',h)},delay)})}
+
+/* ============ CHAT ============ */
+const msgs=$('#msgs');
+function scrollDown(){requestAnimationFrame(()=>{msgs.scrollTop=msgs.scrollHeight})}
+function el(m,prev){
+  const d=document.createElement('div');
+  if(m.k==='div'){d.className='div';d.textContent=m.text;return d}
+  if(m.k==='sys'){d.className='sys';d.textContent=m.text;return d}
+  if(m.k==='call'){d.className='call';d.innerHTML=(m.missed?IC.phoneX:IC.phone)+esc(m.text);return d}
+  if(m.k==='rcpt'){d.className='rcpt';d.textContent=m.text;return d}
+  d.className='row '+m.dir+(prev&&prev.dir!==m.dir?' gap':'');
+  if(m.k==='text'){d.innerHTML=`<div class="b">${esc(m.text)}</div>`}
+  if(m.k==='photo'){d.innerHTML=`<div class="b photo">${ART[m.art]&&typeof ART[m.art]==='function'?ART[m.art]():ART[m.art]}</div>`}
+  if(m.k==='sticker'){d.innerHTML=ART.STK[m.art]}
+  if(m.k==='voice'){d.innerHTML=`<div class="b"><div class="voice"><div class="pl">${IC.play}</div><div class="wv">${Array.from({length:26},(_,i)=>`<i style="height:${20+Math.abs(Math.sin(i*1.7))*70}%"></i>`).join('')}</div><small>${m.text}</small></div>${m.tr?`<div class="vtr">“${esc(m.tr)}”</div>`:''}</div>`}
+  return d;
+}
+function renderThread(){msgs.innerHTML='';const th=S.threads[S.contact]||[];let prev=null;
+  th.forEach(m=>{msgs.appendChild(el(m,prev));if(m.dir)prev=m});
+  const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'&&lo.rc){const r=el({k:'rcpt',text:lo.rc});r.id='rc';msgs.appendChild(r)}
+  scrollDown();}
+function push(m,c=S.contact){(S.threads[c]=S.threads[c]||[]).push(m);
+  if(c===S.contact&&$('#chat').classList.contains('on')){const th=S.threads[c];const prev=[...th].slice(0,-1).reverse().find(x=>x.dir);
+    const r=$('#rc');if(r&&m.dir)r.remove();msgs.appendChild(el(m,prev));if(m.dir==='out'){m.rc='Sent';const rc=el({k:'rcpt',text:'Sent'});rc.id='rc';msgs.appendChild(rc)}scrollDown();}}
+function markSeen(){const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'){lo.rc='Seen';const r=$('#rc');if(r)r.textContent='Seen'}}
+function openChat(c,stat){S.contact=c;$('#chAv').innerHTML=av(c,true);$('#chName').textContent=C[c].name;$('#chStat').textContent=stat||'Active now';show('chat');renderThread();}
+async function typingFor(ms){markSeen();const t=document.createElement('div');t.className='row in gap';t.innerHTML='<div class="b typing"><i></i><i></i><i></i></div>';msgs.appendChild(t);scrollDown();await sleep(ms);t.remove();}
+async function incoming(m){const len=(m.text||'').length;const dur=m.k==='text'?Math.min(2300,Math.max(650,380+len*30)):1300;
+  await typingFor(dur);push(Object.assign({dir:'in'},m));Audio_.blip(false);await sleep(m.k==='text'?Math.min(1800,600+len*22):900);}
+const field=$('#field'),sendic=$('#sendic');
+function setField(t,cursor){field.innerHTML=t?esc(t)+(cursor?'<span class="cur"></span>':''):'<span class="ph">Message</span>';sendic.classList.toggle('on',!!t);}
+async function typeField(t){for(let i=1;i<=t.length;i++){setField(t.slice(0,i),true);await rawSleep(Math.max(8,24/S.speed))}}
+async function hesitate(t){const cut=Math.max(0,t.lastIndexOf(' ',t.length-2));
+  for(let i=t.length-1;i>=cut;i--){setField(t.slice(0,i),true);await rawSleep(Math.max(20,90/S.speed))}
+  await sleep(900);
+  for(let i=cut-1;i>=0;i--){setField(t.slice(0,i),true);await rawSleep(Math.max(14,55/S.speed))}setField('');}
+async function backspace(t){for(let i=t.length-1;i>=0;i--){setField(t.slice(0,i),true);await rawSleep(Math.max(10,38/S.speed))}setField('');}
+async function outgoing(m){if(m.k==='text'){await typeField(m.text);await rawSleep(220)}setField('');push(Object.assign({dir:'out'},m));Audio_.blip(true);await sleep(450);}
+function tray(html){$('#tray').innerHTML=html;scrollDown();}
+function choose(opts,hint,scene){return new Promise(res=>{
+  const wrap=scene?$('#dlg'):$('#tray');
+  const h=(scene?'':'')+ (hint?`<div class="${scene?'lbl':'hint'}">${hint}</div>`:'')+opts.map((o,i)=>`<button class="opt${o.act?' act':''}${o.ph?' ph':''}" data-i="${i}">${o.ph?(typeof ART[o.ph]==='function'?ART[o.ph]():ART[o.ph]):''}<span>${esc(o.label)}</span></button>`).join('');
+  if(scene){const keep=[...wrap.querySelectorAll('.nm,.tx')].map(e=>e.outerHTML).join('');wrap.innerHTML=keep+`<div class="opts" style="margin-top:14px">${h}</div>`}else{wrap.innerHTML=`<div class="tray">${h}</div>`;scrollDown()}
+  wrap.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();wrap.innerHTML='';res(+b.dataset.i)}));});}
+
+/* ============ SCENE ============ */
+let dlgTyping=false,dlgSkip=false;
+async function dialog(name,text,cls){const d=$('#dlg');d.innerHTML=`${name?`<div class="nm">${esc(name)}</div>`:''}<div class="tx ${cls||''}"></div><div class="more" style="display:none">Tap to continue</div>`;
+  const tx=d.querySelector('.tx');dlgTyping=true;dlgSkip=false;
+  const skipH=()=>{dlgSkip=true};stage.addEventListener('click',skipH,{once:true});
+  for(let i=1;i<=text.length;i++){if(dlgSkip){tx.textContent=text;break}tx.textContent=text.slice(0,i);await rawSleep(Math.max(6,22/S.speed))}
+  stage.removeEventListener('click',skipH);dlgTyping=false;d.querySelector('.more').style.display='block';await waitStage(150);}
+
+/* ============ BANNER ============ */
+function banner(c,title,text,accept){const b=$('#banner');b.innerHTML=`${av(c,true)}<div class="t"><small>ChatChat · now</small><b>${esc(title)}</b><span>${esc(text)}</span></div>${accept?'<div class="acc">Accept</div>':''}`;b.classList.add('on');Audio_.blip(false);
+  return new Promise(r=>{const h=e=>{e.stopPropagation();b.removeEventListener('click',h);b.classList.remove('on');r()};b.addEventListener('click',h)});}
+
+/* ============ CHAT LIST ============ */
+function renderList(rows,only){const R=$('#rows');R.innerHTML=rows.map(r=>`<button class="crow${only&&r.c!==only?' dim':''}${only===r.c?' pulse':''}" data-c="${r.c}">${av(r.c,false,r.on)}<div class="meta"><div class="nm">${C[r.c].name}<span>${r.time||''}</span></div><div class="pv"><span>${r.you?'<b>You:</b> ':''}${esc(r.text)}</span><i>${r.unread?`<span class="badge">${r.unread}</span>`:(r.seen?'<span style="font-size:11px">Seen</span>':'')}</i></div></div></button>`).join('');}
+function waitRow(only){return new Promise(r=>{$('#rows').querySelectorAll('.crow').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();if(b.dataset.c===only){r()}else{b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake')}}))})}
+
+/* ============ MEMORIES ============ */
+const MEM_INFO={
+ broken:{t:'The Broken Umbrella',ty:'Object',icon:'umb'},
+ wrong:{t:'The Wrong Umbrella',ty:'Photo',art:'umbrellaBed'},
+ note:{t:"The Thief's Note",ty:'Note',icon:'note'},
+ table:{t:'Two Cups in the Rain',ty:'Photo',art:'teaTable'},
+ pink:{t:'It Did Its Best',ty:'Photo',art:'pinkUmbrella'},
+ saya:{t:'Saya, Who Stays Dry',ty:'Photo',art:'dog'},
+ yellow:{t:'The Yellow Umbrella',ty:'Photo',art:'yellowUmbrella'},
+ shoulder:{t:'The Wet Shoulder',ty:'Moment',art:'wetShoulder'},
+ walk:{t:'The Photo Walk',ty:'Your three shots',art:'walk3'},
+ lamp:{t:'The Lamp',ty:'Promise',art:'lamp'}
+};
+function addMem(id){if(S.memories.includes(id))return;S.memories.push(id);toast(`Memory kept · <b>${MEM_INFO[id].t}</b>`)}
+function addUnsent(text,when){S.unsent.push({text,when});toast(`Not sent · kept in <b>Memories</b>`)}
+function memCards(all,only){const ids=Object.keys(MEM_INFO);return ids.map(id=>{const m=MEM_INFO[id],has=S.memories.includes(id);if(!has&&!all)return '';if(only==='kept'&&!has||only==='other'&&has)return '';
+  const pic=has?(m.art?(typeof ART[m.art]==='function'?ART[m.art]():ART[m.art]):`<div class="ph">${IC[m.icon]}</div>`):`<div class="ph"></div>`;
+  return `<div class="mcard${has?'':' lock'}">${pic}<div class="c">${has?m.t:'Another path'}<span>${has?m.ty:'Not chosen'}</span></div></div>`}).join('')}
+function unsentHTML(){return `<div class="unsent"><h3>Unsent</h3>${S.unsent.length?S.unsent.map((u,i)=>`<div class="u"><span>“${esc(u.text)}”</span><small>#${i+1} · ${u.when}</small></div>`).join(''):'<p class="e">Nothing yet. Every message you choose not to send will be kept here.</p>'}</div>`}
+$('#bAlbum').onclick=()=>{const a=$('#album');if(a.classList.contains('on')){a.classList.remove('on');return}
+  a.innerHTML=`<button class="icbtn x" id="ax" aria-label="Close">${IC.x}</button><h2>Memories</h2><div class="mgrid">${memCards(false)||'<p style="color:#7b858c;font-size:14px;grid-column:1/-1">Photos, notes and keepsakes you find will appear here.</p>'}</div>${unsentHTML()}`;
+  a.classList.add('on');$('#ax').onclick=e=>{e.stopPropagation();a.classList.remove('on')};};
+$('#bSound').onclick=()=>{Audio_.init();if(Audio_.ctx&&Audio_.ctx.state==='suspended')Audio_.ctx.resume();S.sound=!S.sound;$('#bSound span:last-child').textContent=S.sound?'On':'Off';$('#bSound .ic').className='ic i-'+(S.sound?SPK_ON:SPK_OFF);Audio_.level()};
+$('#bSpeed').onclick=()=>{S.speed=S.speed===1?2:S.speed===2?3:1;$('#bSpeed span:last-child').textContent=S.speed+'×'};
+
+/* ============ ENGINE ============ */
+function swipeUp(){return new Promise(r=>{const lk=$('#lk');lk.classList.remove('snap');lk.style.transform='';lk.style.opacity='';
+  let y0=null,t0=0,dy=0;const H=lk.offsetHeight||800;
+  const set=d=>{lk.style.transform=`translateY(${d}px)`;lk.style.opacity=String(1-Math.min(.6,-d/H))};
+  const down=e=>{y0=e.clientY;t0=performance.now();dy=0;lk.classList.remove('snap');lk.setPointerCapture&&lk.setPointerCapture(e.pointerId)};
+  const move=e=>{if(y0===null)return;dy=Math.min(0,e.clientY-y0);set(dy)};
+  const up=e=>{if(y0===null)return;const v=-dy/Math.max(1,performance.now()-t0);y0=null;lk.classList.add('snap');
+    if(-dy>H*.22||v>.6){set(-H);done()}else{set(0);if(-dy<6){lk.animate([{transform:'translateY(0)'},{transform:'translateY(-18px)'},{transform:'translateY(0)'}],{duration:420,easing:'ease-out'})}}};
+  const done=()=>{lk.removeEventListener('pointerdown',down);lk.removeEventListener('pointermove',move);lk.removeEventListener('pointerup',up);lk.removeEventListener('pointercancel',up);setTimeout(r,320)};
+  lk.addEventListener('pointerdown',down);lk.addEventListener('pointermove',move);lk.addEventListener('pointerup',up);lk.addEventListener('pointercancel',up);})}
+async function holdChat(){ if(!$('#chat').classList.contains('on'))return;
+  await rawSleep(1200);
+  tray(`<div class="tray"><button class="opt cont">Continue</button></div>`);
+  await new Promise(r=>{$('#tray .cont').onclick=e=>{e.stopPropagation();r()}});tray('');}
+async function run(steps){for(const s of steps){await exec(s)}}
+async function exec(s){
+  if(typeof s==='function'){return run(s()||[])}
+  const [k,v]=Object.entries(s)[0];
+  switch(k){
+  case 'time': setTime(v);break;
+  case 'rain': setRain(v);break;
+  case 'pause': await sleep(v);break;
+  case 'flag': Object.assign(S.flags,v);break;
+  case 'mem': addMem(v);await rawSleep(300);break;
+  case 'lock':{ $('#wall').innerHTML=ART.teaTable();$('#lockDate').textContent=v.date;$('#lockTime').textContent=v.time;show('lock');await swipeUp();break}
+  case 'list':{ renderList(v.rows,v.only);show('list');if(v.only){await waitRow(v.only)}break}
+  case 'open': openChat(v.c,v.stat);await sleep(500);break;
+  case 'notify':{ await holdChat();renderList(v.rows,null);show('list');await sleep(900);if(v.div)push({k:'div',text:v.div},v.c);push(Object.assign({dir:'in'},v.m||{k:'text',text:v.text}),v.c);await banner(v.c,C[v.c].name,v.text);openChat(v.c,v.stat);await sleep(600);break}
+  case 'friend':{ await holdChat();renderList(v.rows,null);show('list');await sleep(900);await banner('may','May Thiri','sent you a friend request',true);toast('You and <b>May Thiri</b> are now connected');openChat('may','Active now');push({k:'sys',text:'You are now connected on moe'});await sleep(900);break}
+  case 'in': await incoming({k:'text',text:v});break;
+  case 'inPhoto': await incoming({k:'photo',art:v});break;
+  case 'inVoice': await incoming({k:'voice',text:v[0],tr:v[1]});break;
+  case 'outPhoto': await outgoing({k:'photo',art:v});break;
+  case 'photowalk': await photoWalk();break;
+  case 'inSticker': await incoming({k:'sticker',art:v});break;
+  case 'out': await outgoing({k:'text',text:v});break;
+  case 'typing': await typingFor(v);break;
+  case 'falseStart':{ await typingFor(1400);await sleep(900);break}
+  case 'div': push({k:'div',text:v});await sleep(300);break;
+  case 'sys': push({k:'sys',text:v});await sleep(500);break;
+  case 'offline':{ $('#chStat').textContent=v;await sleep(400);break}
+  case 'choice':{
+    const inScene=$('#scene').classList.contains('on');
+    const i=await choose(v.opts,v.hint,inScene);const o=v.opts[i];
+    if(v.flag)S.flags[v.flag]=o.v!==undefined?o.v:'ABC'[i];
+    if(!inScene){ if(o.send)await outgoing({k:'text',text:o.send});else if(o.sticker)await outgoing({k:'sticker',art:o.sticker});else if(o.photo)await outgoing({k:'photo',art:o.photo}); }
+    else if(o.say){ await dialog('Min',o.say,'min') }
+    if(o.then)await run(o.then);break}
+  case 'draft':{
+    let text=v.text;
+    if(v.opts){const i=await choose(v.opts.map(t=>({label:t})),v.hint);text=v.opts[i];if(v.flag)S.flags[v.flag]='ABC'[i]}
+    await typeField(text);
+    if(v.auto){await sleep(2400);await hesitate(text);await sleep(1100);addUnsent(text,v.when);await sleep(1500);break}
+    tray(`<div class="dbtns"><button class="del">${IC.trash}Delete</button><button class="snd">${IC.send}Send</button></div>`);
+    const send=await new Promise(r=>{$('#tray .del').onclick=e=>{e.stopPropagation();r(false)};$('#tray .snd').onclick=e=>{e.stopPropagation();r(true)}});
+    tray('');
+    if(send){setField('');push({k:'text',dir:'out',text});Audio_.blip(true);await sleep(500);if(v.flag)S.flags[v.flag]=true;if(v.onSend)await run(v.onSend)}
+    else{await backspace(text);addUnsent(text,v.when);if(v.flag)S.flags[v.flag]=false;await sleep(700);if(v.onDelete)await run(v.onDelete)}
+    break}
+  case 'scene':{ await holdChat();$('#sart').innerHTML=SCENE[v.art];S.k=0;$('#scap').textContent=v.cap||'';$('#dlg').innerHTML='';show('scene');if(v.rain!==undefined)setRain(v.rain);await sleep(1100);break}
+  case 'shot':{ const a=$('#sart');const old=[...a.children];a.insertAdjacentHTML('beforeend',SCENE[v]);const n=a.lastElementChild;S.k=(S.k||0)+1;if(S.k%2)n.classList.add('k2');n.classList.add('in');requestAnimationFrame(()=>requestAnimationFrame(()=>n.classList.remove('in')));setTimeout(()=>old.forEach(o=>o.remove()),1000);await rawSleep(450);break}
+  case 'say': await dialog(v[0],v[1]);break;
+  case 'min': await dialog('Min',v,'min');break;
+  case 'narr': await dialog('',v,'narr');break;
+  case 'title':{ await holdChat();const t=$('#title');$('#tTap').classList.remove('on');
+    if(t.classList.contains('on')){t.classList.add('swap');await rawSleep(700);$('#tBig').innerHTML=v.big;$('#tSmall').textContent=v.small||'';t.classList.remove('swap');if(v.rain!==undefined)setRain(v.rain);await rawSleep(1600);}
+    else{$('#tBig').innerHTML=v.big;$('#tSmall').textContent=v.small||'';t.classList.add('on');await rawSleep(1000);$('#viewer').classList.remove('on','zoom');show('');if(v.rain!==undefined)setRain(v.rain);await rawSleep(1400);}
+    if(v.time)setTime(v.time);    $('#tTap').classList.add('on');await waitStage(0);$('#tTap').classList.remove('on');
+    if(!v.keep){t.classList.remove('on');await rawSleep(900);}break}
+  case 'scrollback': await scrollBack();break;
+  case 'gallery': await gallery();break;
+  case 'reset': S.threads=v();break;
+  case 'end': endCard(v);await new Promise(()=>{});break;
+  case 'if': await run(v.test(S.flags)?v.then:(v.else||[]));break;
+  }
+}
+
+/* ============ SPECIAL SEQUENCES ============ */
+async function scrollBack(){
+  const h=document.createElement('div');h.className='uphint';h.innerHTML=IC.up+'Read older messages';await rawSleep(200);$('#chat').appendChild(h);
+  await waitClick(h);h.remove();
+  const sc=$('#scroll'),col=$('#scol'),fl=$('#flash');
+  col.innerHTML=Array.from({length:140},(_,i)=>`<i class="${(i*7)%3===0?'o':''}" style="width:${35+((i*37)%45)}%"></i>`).join('');
+  col.style.transition='none';col.style.transform='translateY(0)';sc.classList.add('on');await rawSleep(80);
+  col.style.transition='transform 7s cubic-bezier(.3,.1,.3,1)';col.style.transform='translateY(5600px)';
+  const fd=d=>`<div class="fdate">${d}</div>`;
+  const flashes=[`<div class="fwrap">${fd('Aug 2020')}<div class="call">${IC.phoneX}Missed voice call</div></div>`,`<div class="fwrap">${fd('Mar 2019')}<div class="call">${IC.phone}Voice call · 2:14:07</div></div>`,`<div class="fwrap">${fd('Jun 2018')}<div class="row in" style="width:100%;padding:0 16px;box-sizing:border-box"><div class="b">goodnight umbrella thief</div></div></div>`];
+  for(const [i,f] of flashes.entries()){await rawSleep(1500);fl.innerHTML=f;fl.classList.add('on');await rawSleep(1100);if(i<flashes.length-1)fl.classList.remove('on')}
+  await rawSleep(1600);
+  const ph=document.createElement('div');ph.className='uphint';ph.innerHTML='<span class="ic i-images"></span>Open Photos';$('#chat').appendChild(ph);
+  await waitClick(ph);ph.remove();
+  sc.classList.remove('on');$('#older').classList.remove('on');setTimeout(()=>fl.classList.remove('on'),400);}
+async function gallery(){
+  const g=$('#ggrid');const hues=[30,200,15,90,340,180,50,260,120,10,300,160,45,220,70];
+  g.innerHTML=hues.map((h,i)=>`<div class="${i===4?'hot':''}">${i===4?ART.thingyan:ART.thumb(h,28)}</div>`).join('');
+  show('gallery');await sleep(600);await waitClick(g.querySelector('.hot'));
+  const v=$('#viewer');$('#vimg').innerHTML=ART.thingyan;$('#vdet').textContent='13 April 2019 · 3:26 PM';v.classList.add('on');
+  $('#status').classList.add('light');
+  const vt=$('#vtap');setTimeout(()=>vt.classList.add('on'),1800);
+  await Promise.race([waitStage(600),rawSleep(6500)]);vt.classList.remove('on');
+  setRain(3);v.classList.add('zoom');await rawSleep(2700);}
+async function photoWalk(){
+  S.walk=[];const sp=$('#pwSpots'),rolls=$('#pwRolls').children,vf=$('#vf'),win=$('#vfWin'),pan=$('#vfPan'),fr=$('#vfFr');
+  [...rolls].forEach(r=>{r.className='';r.style.backgroundImage=''});$('#pwDone').classList.remove('on');
+  sp.innerHTML=SPOTS.map((x,i)=>`<button class="spot" data-i="${i}"><img src="${x.src}" alt=""><span>${x.name}</span></button>`).join('');
+  show('pwalk');
+  await new Promise(done=>{
+    let cur=null,ox=0,oy=0,W=0,drag=null,fb=null;
+    const place=()=>{pan.style.transform=`translate(${ox}px,${oy}px)`};
+    const cx=v=>Math.max(win.clientWidth-W,Math.min(0,v)),cy=v=>Math.max(win.clientHeight-W,Math.min(0,v));
+    const openSpot=i=>{cur=SPOTS[i];pan.innerHTML=`<img src="${cur.src}" alt="">`;$('#vfName').textContent=cur.name;$('#vfCount').textContent=`${S.walk.length+1} of 3`;
+      $('#vfRes').classList.remove('on');$('#vfHint').style.display='';vf.classList.add('on');
+      requestAnimationFrame(()=>{W=Math.max(win.clientWidth,win.clientHeight)*1.45;pan.style.width=W+'px';pan.style.height=W+'px';
+        const r=win.getBoundingClientRect(),f=fr.getBoundingClientRect();fb={l:f.left-r.left,t:f.top-r.top,w:f.width,h:f.height};
+        // start with the subject pushed out of the frame, so the player has to find it
+        ox=cx(win.clientWidth/2-cur.sx*W+(cur.sx>.5?-1:1)*win.clientWidth*.6);oy=cy(win.clientHeight/2-cur.sy*W+(cur.sy>.5?-1:1)*win.clientHeight*.35);place();});};
+    sp.querySelectorAll('.spot').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();openSpot(+b.dataset.i)}));
+    win.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY,ox,oy};win.setPointerCapture(e.pointerId);$('#vfHint').style.display='none'};
+    win.onpointermove=e=>{if(!drag)return;ox=cx(drag.ox+e.clientX-drag.x);oy=cy(drag.oy+e.clientY-drag.y);place()};
+    win.onpointerup=win.onpointercancel=()=>{drag=null};
+    $('#vfBack').onclick=e=>{e.stopPropagation();vf.classList.remove('on')};
+    $('#vfShut').onclick=async e=>{e.stopPropagation();if(!cur||$('#vfRes').classList.contains('on'))return;
+      const fl=$('#vfFlash');fl.classList.add('on');Audio_.blip&&Audio_.blip(true);setTimeout(()=>fl.classList.remove('on'),60);
+      const sx=cur.sx*W+ox,sy=cur.sy*W+oy,inF=sx>fb.l&&sx<fb.l+fb.w&&sy>fb.t&&sy<fb.t+fb.h;
+      const px=Math.round((-ox)/Math.max(1,W-win.clientWidth)*100),py=Math.round((-oy)/Math.max(1,W-win.clientHeight)*100);
+      S.walk.push({id:cur.id,px,py,ok:inF});const r=rolls[S.walk.length-1];r.className='f';r.style.backgroundImage=`url('${cur.src}')`;r.style.backgroundSize='240%';r.style.backgroundPosition=`${px}% ${py}%`;
+      sp.querySelector(`[data-i="${SPOTS.indexOf(cur)}"]`).classList.add('done');
+      const res=$('#vfRes');res.innerHTML=`<small>${inF?'In the frame':'Mostly out of the frame'}</small>${inF?cur.line:'Not quite what he meant. He keeps it anyway. Some of his favourites started like this.'}`;res.classList.add('on');
+      await rawSleep(2300);vf.classList.remove('on');cur=null;
+      if(S.walk.length>=3){sp.querySelectorAll('.spot').forEach(b=>b.classList.add('done'));$('#pwDone').classList.add('on')}};
+    $('#pwDone').onclick=e=>{e.stopPropagation();done()};
+  });
+  S.flags.c2_walk_framed=S.walk.filter(w=>w.ok).length;
+}
+function endCard(n){const e=$('#end');const D=n===2?{k:'Chapter 2 complete',h:'Monsoon Season',l:'One umbrella, two people, and a promise made over a lamp.',nx:'Chapter 3 · Thingyan',nd:'November 2018 to December 2019.'}:{k:'Chapter 1 complete',h:'The First Rain',l:'Two strangers, one wrong umbrella, and a joke that was only the beginning.',nx:'Chapter 2 · Monsoon Season',nd:'July to October 2018.'};
+  e.innerHTML=`<div class="k">${D.k}</div><h2>${D.h}</h2><p class="lead">${D.l}</p>
+  <h3 class="mh">Kept <span>${S.memories.length}</span></h3><div class="mgrid">${memCards(true,'kept')||'<p class="e">None this time.</p>'}</div>
+  ${memCards(true,'other')?`<h3 class="mh">Other paths <span>${Object.keys(MEM_INFO).length-S.memories.length}</span></h3><p class="mhs">Moments you didn't find this time. Play again to choose differently.</p><div class="mgrid">${memCards(true,'other')}</div>`:''}${unsentHTML()}
+  <div class="next"><small>Coming next</small><b>${D.nx}</b>${D.nd}</div>
+  <div class="btns"><button class="b1" id="again">Play again</button></div>`;
+  e.classList.add('on');$('#again').onclick=()=>location.reload();}
+
+/* ============ SCRIPT ============ */
+const PROLOGUE=[
+ {reset:()=>({
+   may:[{k:'div',text:'2 Nov'},{k:'voice',dir:'in',text:'0:41'},{k:'div',text:'3 Nov'},{k:'text',dir:'out',text:"It's okay. Take your time. I'll be here.",rc:'Seen 3 Nov, 7:02 AM'}],
+   mom:[{k:'text',dir:'in',text:"Don't stay up late. There is rice in the pot."}],
+   thura:[{k:'text',dir:'in',text:'bro answer me'}],hnin:[]})},
+ {rain:2},{time:'11:47 PM'},
+ {lock:{date:'Thursday, 26 November',time:'11:47'}},
+ {list:{only:'may',rows:[
+   {c:'thura',text:'bro answer me',time:'9:58 PM',unread:3},
+   {c:'mom',text:"Don't stay up late. There is rice in the pot.",time:'8:12 PM'},
+   {c:'may',text:"It's okay. Take your time. I'll be here.",you:true,time:'3 Nov',seen:true}]}},
+ {open:{c:'may',stat:'Active 18 days ago'}},
+ {pause:1600},
+ {draft:{hint:'What does Min type?',opts:['Are you awake?',"It's raining here.",'I miss you.'],flag:'prologue_draft',auto:true,when:'Nov 2020'}},
+ {scrollback:true},
+ {gallery:true},
+ {title:{big:'<em>a story told in messages</em>Before the Rain Ends',small:'',rain:1,keep:true}},
+];
+
+const ch1Rows=()=>[{c:'thura',text:'football sat?',time:'Sun'},{c:'mom',text:'Did you eat?',time:'Sun'}];
+
+const pick=(flag,map)=>()=>map[S.flags[flag]]||map.A||Object.values(map)[0]||[];
+
+const CH1=[
+ {reset:()=>({may:[],mom:[{k:'div',text:'Sunday'},{k:'text',dir:'in',text:'Did you eat?'},{k:'text',dir:'out',text:'Yes, Mom.'}],thura:[{k:'div',text:'Sunday'},{k:'text',dir:'in',text:'football sat?'}],hnin:[]})},
+ {rain:0},{time:'4:05 PM'},
+ // C1.1 Mom
+ {notify:{c:'mom',text:'Min, take the samosas to Daw Aye Aye at the tea shop. She ordered 30.',rows:ch1Rows(),stat:'Active now'}},
+ {in:'Take the umbrella. The sky is dark.'},
+ {choice:{flag:'c1_mom',opts:[
+   {label:'Okay, Mom.',send:'Okay, Mom.',then:[{in:'Good boy. I put two extra in the bag for you.'}]},
+   {label:'The sky is always dark in June.',send:'The sky is always dark in June.',then:[{in:'Then you should always take it.'},{in:'There are two extra samosas. Those are yours, not Daw Aye Aye\'s.'}]},
+   {label:"I'm already going.",send:"I'm already going.",then:[{in:'You are not. Daw Aye Aye just called me.'},{in:'Go now. And eat the two extra ones I packed.'}]}]}},
+ // C1.2 Tea shop
+ {scene:{art:'teashop1',cap:'Shwe Pyi Tea Shop · June 2018',rain:3}},
+ {narr:'Min drops off the samosas. Then the rain comes, all at once.'},
+ {shot:'teashopWait'},
+ {narr:'He sits at the corner table by the window. His black umbrella leans on the chair: white tape on the handle, MH in his father\'s handwriting.'},
+ {shot:'teashop2'},
+ {narr:'A girl runs in, soaked, holding a pink umbrella with bent spokes. Every table is full except his.'},
+ {shot:'teashopCounter'},
+ {say:['Daw Aye Aye','Sit, sit, girl. Share with Min. He doesn\'t bite. He doesn\'t even talk.']},
+ {shot:'teashopHnin'},
+ {narr:'Behind the counter, Hnin, Daw Aye Aye\'s niece and Min\'s neighbour since they were kids, stops wiping a glass.'},
+ {shot:'teashop3'},
+ {narr:'The girl sits on the edge of the other chair. She sees him looking at her umbrella, and frowns.'},
+ {shot:'teashopWhat'},
+ {say:['The girl','What? Never seen a broken umbrella before?']},
+ {choice:{flag:'c1_first_words',hint:'Say',opts:[
+   {label:"I've seen one. Just not one that looks worse than the rain.",say:"I've seen one. Just not one that looks worse than the rain.",then:[{shot:'teashopLaugh'},{narr:'She laughs, loud and surprised.'},{say:['The girl','Wow. Okay. Rude.']}]},
+   {label:'…It fought well.',say:'…It fought well.',then:[{shot:'teashopLaugh'},{narr:'She stares at him. Then she laughs.'},{say:['The girl','It did. It died for me.']}]},
+   {label:'Do you want some tea?',say:'Do you want some tea?',then:[{say:['The girl','Is that a real question or are you being polite?']},{min:'Both.'}]}]}},
+ pick('c1_first_words',{
+   A:[{narr:'She wrings out her sleeve, still smiling, as if deciding whether to forgive him. She\'s shivering.'}],
+   B:[{narr:'She props the dead umbrella against his chair like it deserves a rest. She\'s shivering.'}],
+   C:[{narr:'She pulls her wet bag onto her lap and looks out at the rain instead of at him. She\'s shivering.'}]}),
+ {narr:'Min still has the paper bag with Mom\'s two extra samosas.'},
+ {choice:{flag:'c1_kindness',hint:'Do',opts:[
+   {label:'Push the samosas toward her.',act:1,v:'samosa',then:[{shot:'teashopSamosa'},{say:['The girl','Are these yours?']},{min:'My mother\'s. She makes them.'},{narr:'She is already eating one.'},{say:['The girl','Tell your mother she\'s my favourite person now.']}]},
+   {label:'Order her a sweet tea.',act:1,v:'tea',then:[{shot:'teashopTea'},{min:'One more cho seint, please.'},{say:['The girl','I can pay.']},{min:'It\'s raining. Nobody pays when it\'s raining.'},{say:['The girl','That\'s not a rule.']},{min:'It is here.'}]},
+   {label:'Say nothing. Watch the rain.',act:1,v:'seeds',then:[{narr:'Rain. A long quiet.'},{shot:'teashopSeeds'},{narr:'Then she slides a packet of sunflower seeds across the table.'},{say:['The girl','You looked lonely. Don\'t tell anyone I\'m nice.']}]}]}},
+ {shot:'teashopPhone'},
+ {narr:'Her phone buzzes. A crack runs across the screen.'},
+ {shot:'teashopCall'},
+ pick('c1_kindness',{
+   samosa:[{say:['The girl','Coming, Ma! … Thank your mother for me. Really.']}],
+   tea:[{say:['The girl','Coming, Ma! … Next tea is mine. That\'s a rule too.']}],
+   seeds:[{say:['The girl','Coming, Ma! … Keep the seeds. You need them more.']}]}),
+ {rain:2},
+ {shot:'teashop5'},
+ {narr:'The rain eases. She grabs the black umbrella by the door and runs out into the street.'},
+ {narr:'Her broken pink one is still on Min\'s table.'},
+ {shot:'teashop1'},
+ pick('c1_kindness',{
+   samosa:[{say:['Daw Aye Aye','She ate your samosas and took your umbrella. Good day for her.']}],
+   tea:[{say:['Daw Aye Aye','You buy a girl tea, she takes your umbrella. That\'s how it goes.']}],
+   seeds:[{say:['Daw Aye Aye','Seeds for an umbrella. Fair trade, Min?']}]}),
+ {choice:{flag:'c1_umbrella',hint:'Say',opts:[
+   {label:"It's fine. It's just an umbrella.",say:"It's fine. It's just an umbrella.",then:[{say:['Daw Aye Aye','Your father\'s handwriting is on that umbrella, and it\'s "just an umbrella"?']},{narr:'Min doesn\'t answer.'}]},
+   {label:"She'll bring it back.",say:"She'll bring it back.",then:[{say:['Daw Aye Aye','You don\'t even know her name.']},{min:'Then she\'ll have to tell me.'}]},
+   {label:'Pick up the pink umbrella.',act:1,then:[{say:['Daw Aye Aye','You want that? It\'s rubbish.']},{min:'It\'s still good for a photo.'}]}]}},
+ pick('c1_umbrella',{
+   A:[{shot:'walkArm'},{narr:'Min walks home in the rain with the pink umbrella under his arm, thinking about the tape on the other one.'}],
+   B:[{shot:'walkHome'},{narr:'Min walks home in the rain holding the pink umbrella. It keeps none of the rain off. He doesn\'t mind.'}],
+   C:[{shot:'walkHome'},{narr:'Min walks home holding the pink umbrella open over his head, out of stubbornness. It keeps none of the rain off.'}]}),
+ {mem:'broken'},{pause:1200},
+ // C1.3 First message
+ {rain:1},{time:'10:31 PM'},
+ {friend:{rows:[{c:'mom',text:'Okay. Sleep early.',time:'9:10 PM'},...ch1Rows().slice(0,1)]}},
+ {falseStart:true},
+ {in:'hey'},
+ {in:'I think you took my umbrella'},
+ {choice:{flag:'c1_first_msg',opts:[
+   {label:"I'm pretty sure you have mine.",send:"I'm pretty sure you have mine.",then:[{in:'prove it'},{out:'It has MH on the handle.'}]},
+   {label:'You mean the umbrella that lost to the rain?',send:'You mean the umbrella that lost to the rain?',then:[{in:'excuse me it was a GOOD umbrella'},{in:'it had a hard life'},{out:'You have mine.'}]},
+   {label:'How did you find me?',send:'How did you find me?',then:[{in:'daw aye aye'},{in:'I went back for my umbrella and she told me your name, your mom\'s name, your mom\'s shop and that you have "a good heart but no mouth"'},{in:'so. hi'}]}]}},
+ {inPhoto:'umbrellaBed'},
+ pick('c1_first_msg',{
+   A:[{in:'…oh'},{in:'ok you win. it has a name tag like a schoolboy'}],
+   B:[{in:'ok fine. it IS yours'},{in:'but mine was braver. yours has a name tag like a schoolboy'}],
+   C:[{in:'anyway. I have this. and it has a name tag like a schoolboy'}]}),
+ {mem:'wrong'},
+ pick('c1_first_msg',{A:[{in:"so what's MH"}],B:[{in:"what's MH. mister helpful?"}],C:[{in:"MH. let me guess"},{in:"no I can't guess"}]}),
+ {out:'Min Htet.'},
+ pick('c1_first_msg',{
+   A:[{in:'Min Htet. sounds very serious'},{in:"I'm May. May Thiri. not serious at all"}],
+   B:[{in:'Min Htet. ok that suits you'},{in:"I'm May Thiri. friends say May"}],
+   C:[{in:'Min Htet. I knew the first part already. daw aye aye'},{in:"I'm May, by the way. May Thiri"}]}),
+ {in:'wait'},
+ {in:"are you the boy in teacher daw nu's class who sits at the back by the fan??"},
+ {choice:{flag:'c1_class_q',opts:[
+   {label:'Yes.',send:'Yes.',then:[{in:'you never talk'},{out:'I talk.'},{in:"you're talking now"},{out:'This is typing.'}]},
+   {label:'The fan is the best seat.',send:'The fan is the best seat.',then:[{in:'hahaha it is. best place to sleep'},{out:"I don't sleep in class."},{in:'you slept on tuesday. I saw'}]},
+   {label:'You noticed?',send:'You noticed?',then:[{in:"everyone noticed. you're the only one who brings a camera to english class"},{out:"It's on the way."},{in:'on the way to what'},{out:'Everything.'}]}]}},
+ pick('c1_class_q',{
+   A:[{in:"ok quiet boy. I'll bring your umbrella tomorrow before class"},{in:"don't tell anyone I stole it. I have a reputation"}],
+   B:[{in:"anyway sleepy boy. umbrella tomorrow, before class"},{in:"and don't tell anyone I stole it. I have a reputation"}],
+   C:[{in:"…ok that was a good answer. I'll bring your umbrella tomorrow"},{in:"please don't tell anyone I stole it. I have a reputation"}]}),
+ {out:'What reputation?'},
+ pick('c1_class_q',{A:[{in:"I don't know yet. I'm building one"}],B:[{in:"don't know yet. still building it"}],C:[{in:"working on it. it's going to be a good one"}]}),
+ {pause:2400},
+ {draft:{text:"Your umbrella is still here. It's broken, but I kept it.",flag:'c1_told_kept',when:'Jun 2018',
+   onSend:[{in:'wait you KEPT it??'},{in:'why'},{out:'It looked like it tried hard.'},{typing:1600},{pause:600},{in:"that's the weirdest nice thing anyone has said to me"}]}},
+ pick('c1_told_kept',{
+   true:[{in:'goodnight umbrella thief. and umbrella keeper'}],
+   false:[{pause:900},{in:'ok I should sleep'},{in:'goodnight umbrella thief'}]}),
+ {choice:{flag:'c1_goodnight',opts:[
+   {label:"You're the thief.",send:"You're the thief.",then:[{in:'details'},{offline:'Offline'},{sys:'May Thiri is offline'}]},
+   {label:'Goodnight, May.',send:'Goodnight, May.',then:[{inSticker:'sleepy'}]},
+   {label:'Send a sticker',sticker:'catUmb',act:1,then:[{in:"STOP that's so cute"},{in:'where did you get that'},{out:'It came free with the app.'},{in:'liar'}]}]}},
+ {pause:1200},
+ // C1.4 Class
+ {scene:{art:'classroom1',cap:"Teacher Daw Nu's English class · the next evening",rain:0}},
+ {narr:'A ceiling fan. Fifteen students. The lesson is the present perfect.'},
+ {shot:'classroom2'},
+ {narr:'May walks to the back of the room and puts the black umbrella on Min\'s desk. The whole class turns around.'},
+ {shot:'classroom3'},
+ {narr:'A strip of paper is taped to the handle, under MH: “Sorry. Thank you. Your umbrella is better than mine. — the thief”'},
+ {shot:'classroomTeacher'},
+ {say:['Teacher Daw Nu','Ma May Thiri, are you returning property or making a proposal?']},
+ {shot:'classroomMay'},
+ pick('c1_goodnight',{
+   A:[{say:['May','Returning stolen property, Teacher! He says I\'m the thief.']}],
+   B:[{say:['May','Returning property, Teacher!']}],
+   C:[{say:['May','Returning property, Teacher. Nothing else.']},{narr:'She glances at Min and nearly laughs.'}]}),
+ {choice:{flag:'c1_return',hint:'Say, quietly',opts:[
+   {label:'…Thank you.',say:'…Thank you.',then:[{shot:'classroom4'},{narr:'She turns to him, grinning.'},{say:['May','You can talk!']}]},
+   {label:'You can keep it.',say:'You can keep it.',then:[{shot:'classroom4'},{say:['May','No. Then I\'d have to remember you every time it rains.']}]},
+   {label:'Give back her broken pink umbrella.',act:1,then:[{shot:'classroom4'},{say:['May','You brought it?? It\'s dead, Min.']},{min:'It should go home to its family.'},{narr:'She laughs so hard that Teacher Daw Nu tells her off.'},{say:['May','Keep it. It likes you more than me.']},{narr:'He takes it home again.'}]}]}},
+ {mem:'note'},{pause:1000},
+ // C1.5 Thura
+ {rain:0},{time:'6:52 PM'},
+ {notify:{c:'thura',text:'bro',rows:[{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}]}},
+ {in:'BRO'},
+ pick('c1_return',{
+   A:[{in:'who was that. the whole class is talking. daw nu said PROPOSAL'}],
+   B:[{in:'who was that. daw nu said PROPOSAL and you said keep it??'}],
+   C:[{in:'who was that. you gave her a DEAD umbrella. in front of daw nu'}]}),
+ {choice:{flag:'c1_thura',opts:[
+   {label:'She took my umbrella by mistake.',send:'She took my umbrella by mistake.',then:[{in:'"by mistake" ok ok ok'}]},
+   {label:'Nobody.',send:'Nobody.',then:[{in:"nobody doesn't write you notes"},{out:'It says sorry.'},{in:"that's how it starts"}]},
+   {label:'Her name is May.',send:'Her name is May.',then:[{in:'you know her NAME'},{in:'who are you and what did you do with min'}]}]}},
+ pick('c1_thura',{
+   A:[{in:"careful though. girls like that don't stay in this town"},{pause:1500},{in:'joking. go eat'}],
+   B:[{in:"just saying. girls like that don't stay in this town"},{pause:1500},{in:'joking. mostly. go eat'}],
+   C:[{in:"be careful bro. girls like that don't stay in this town"},{pause:1500},{in:'…joking. I\'m happy for you. go eat'}]}),
+ {pause:900},
+ // C1.5b Hnin
+ {time:'7:15 PM'},
+ {notify:{c:'hnin',text:"you left your mom's tray at the shop again",rows:[{c:'thura',text:'joking. go eat',time:'6:54 PM'},{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}],stat:'Active now'}},
+ {in:"I'll bring it to your house tomorrow morning"},
+ {in:'also. that girl took your umbrella and you just watched her go'},
+ {choice:{flag:'c1_hnin',opts:[
+   {label:'It was a mistake.',send:'It was a mistake.',then:[{in:'hm. some mistakes are on purpose'}]},
+   {label:'She brought it back today.',send:'She brought it back today.',then:[{in:"oh. that's good"},{pause:1400},{in:"she's pretty"}]},
+   {label:'You saw that?',send:'You saw that?',then:[{in:"I see everything from behind the counter. that's my whole job"}]}]}},
+ pick('c1_hnin',{
+   A:[{in:'anyway. take your own umbrella next time'},{in:'not everyone has a spare to lend you'}],
+   B:[{pause:1200},{in:'anyway'},{in:'next time it rains, not everyone will have a spare to lend you'}],
+   C:[{in:'so take your own umbrella next time, Min Htet'},{in:"I can't lend you mine every time"}]}),
+ {pause:900},
+ // C1.6 Mom
+ {time:'8:40 PM'},
+ ()=>{const k=S.flags.c1_kindness;const first=k==='samosa'?'Daw Aye Aye says a girl ate my samosas.':k==='tea'?'Daw Aye Aye says you bought a girl tea.':'Daw Aye Aye says a girl gave you seeds and you gave her nothing.';
+   return [{notify:{c:'mom',text:first,rows:[{c:'hnin',text:"I can't lend you mine every time",time:'7:16 PM'},{c:'thura',text:'joking. go eat',time:'6:54 PM'},{c:'may',text:'goodnight umbrella thief',time:'Mon'}]}}]},
+ {in:'Is she a nice girl?'},
+ {choice:{flag:'c1_mom2',opts:[
+   {label:"She's just a classmate.",send:"She's just a classmate.",then:[{in:'Okay.'},{in:'Take your own umbrella tomorrow.'}]},
+   {label:'She laughs a lot.',send:'She laughs a lot.',then:[{in:'Good. This house is too quiet.'}]},
+   {label:'Mom, please.',send:'Mom, please.',then:[{inSticker:'laugh'},{in:'I am only asking.'}]}]}},
+ {pause:900},
+ // C1.7 May
+ {scene:{art:'roomEmpty',cap:"Min's room · 11 PM",rain:1}},
+ {narr:'Home. The rain has started again. The pink umbrella has its own corner now.'},
+ {rain:1},{time:'11:02 PM'},
+ {notify:{c:'may',text:'ok I have a question',rows:[{c:'mom',text:'Is she a nice girl?',time:'8:41 PM'},{c:'hnin',text:"I can't lend you mine every time",time:'7:16 PM'},{c:'thura',text:'joking. go eat',time:'6:54 PM'}]}},
+ pick('c1_return',{
+   A:[{in:'daw aye aye says you take photos of "strange things"'},{in:'show me one strange thing'}],
+   B:[{in:'since you wanted to give away your umbrella so easily'},{in:'daw aye aye says you take photos of "strange things". show me one'}],
+   C:[{in:'after you tried to return my dead umbrella today'},{in:'daw aye aye says you take photos of "strange things". show me one'}]}),
+ {choice:{flag:'c1_photo_sent',hint:'Send a photo from your gallery',opts:[
+   {label:'The tea-shop table in the rain',ph:'teaTable',photo:'teaTable',v:'table',then:[{mem:'table'},{in:'whose cups'},{out:'Ours. From today.'},{in:'you took a photo of my tea??'},{in:"that's either creepy or poetic"},{out:'Which one?'},{in:'still deciding'}]},
+   {label:'Her pink umbrella against your wall',ph:'pinkUmbrella',photo:'pinkUmbrella',v:'umbrella',then:[{mem:'pink'},{in:'OH MY GOD'},{if:{test:f=>f.c1_told_kept===false&&f.c1_return!=='C',then:[{in:"you didn't tell me you kept it!!"}]}},{in:'it looks so sad'},{out:'It looks like it did its best.'}]},
+   {label:'A street dog asleep under a stall',ph:'dog',photo:'dog',v:'dog',then:[{mem:'saya'},{in:'who is he'},{out:'He lives near the market. I call him Saya.'},{in:'you NAMED him. saya means teacher'},{out:"He knows how to stay dry. That's more than we know."}]}]}},
+ pick('c1_photo_sent',{
+   table:[{in:'ok. poetic. final answer'},{in:"most people only take photos of beautiful things"}],
+   umbrella:[{in:"you're officially strange"},{in:'I like it'},{in:"who takes photos of broken things"}]  ,
+   dog:[{in:"ok you're officially strange. and saya is perfect"},{in:"I've never seen anyone take photos of things that aren't beautiful"}]}),
+ {choice:{flag:'c1_why_photos',opts:[
+   {label:'Everything looks beautiful when it rains.',send:'Everything looks beautiful when it rains.',then:[{in:"that's such a lie"},{pause:1200},{in:"ok it's a little true"}]},
+   {label:"Beautiful things don't need photos. Everyone already looks at them.",send:"Beautiful things don't need photos. Everyone already looks at them.",then:[{in:'wow'},{in:'min htet, back-of-the-class philosopher'}]},
+   {label:'I take photos so I remember.',send:'I take photos so I remember.',then:[{in:'remember what'},{out:'How things were. Before they change.'},{in:"things don't change that fast here"},{out:'They do. Just quietly.'}]}]}},
+ pick('c1_why_photos',{
+   A:[{in:'ok rain expert. can you teach me? the camera'}],
+   B:[{in:'philosopher. teach me? the camera'}],
+   C:[{pause:1400},{in:'then teach me'},{in:'I want to remember things too'}]}),
+ {out:"It's an old camera."},
+ pick('c1_why_photos',{A:[{in:'I learn fast. tomorrow after class??'}],B:[{in:'old is fine. I learn fast. tomorrow after class??'}],C:[{in:"old is good. it remembers more. tomorrow after class?"}]}),
+ {choice:{flag:'c1_tomorrow',opts:[
+   {label:'Tomorrow.',send:'Tomorrow.',then:[{in:'deal'}]},
+   {label:"If it doesn't rain.",send:"If it doesn't rain.",then:[{in:"it's june min. it will rain"},{out:'Then yes.'}]},
+   {label:'Bring your own umbrella.',send:'Bring your own umbrella.',then:[{in:'rude'}]}]}},
+ {inPhoto:'yellowUmbrella'},
+ pick('c1_tomorrow',{
+   A:[{in:'also. bought this today. yellow, so I can never take yours by accident again'}],
+   B:[{in:'see? ready for rain. bright yellow, so I never take yours by accident again'}],
+   C:[{in:'already done. yellow. impossible to mix up with a serious black umbrella'}]}),
+ {mem:'yellow'},
+ {pause:2000},
+ {draft:{text:"I wouldn't mind.",flag:'c1_wouldnt_mind',when:'Jun 2018',
+   onSend:[{typing:1500},{pause:1100},{typing:1700},{in:'goodnight min'}],
+   onDelete:[{out:'Goodnight.'},{in:'night! see you tomorrow, camera boy'}]}},
+ {pause:1600},
+ // close
+ {scene:{art:'bedroom',cap:'',rain:1}},
+ pick('c1_wouldnt_mind',{
+   true:[{narr:'Min\'s room, late. He reads "goodnight min" more times than he would admit.'}],
+   false:[{narr:'Min\'s room, late. The draft he didn\'t send is still somewhere in his head.'}]}),
+ {shot:'roomUmbrellas'},
+ {narr:'The pink umbrella leans in the corner. The black one stands beside it, dry. On the roof, the rain is softer now.'},
+ {title:{big:'<em>End of Chapter 1</em>The First Rain',small:''}}
+];
+
+
+/* ============ CHAPTER 2 · MONSOON SEASON ============ */
+SCENE.walkShare='<img src="img/c2-walk-share.webp" alt="" draggable="false">';
+SCENE.walkDrift='<img src="img/c2-walk-drift.webp" alt="" draggable="false">';
+SCENE.walkGate='<img src="img/c2-walk-gate.webp" alt="" draggable="false">';
+SCENE.pagoda='<img src="img/c2-pagoda.webp" alt="" draggable="false">';
+SCENE.pagodaLamp='<img src="img/c2-pagoda-lamp.webp" alt="" draggable="false">';
+SCENE.pagodaHands='<img src="img/c2-pagoda-hands.webp" alt="" draggable="false">';
+SCENE.lampWall='<img src="img/c2-lamp-wall.webp" alt="" draggable="false">';
+const CH2=[
+ {title:{big:'<em>Chapter 2</em>Monsoon Season',small:'July to October 2018',rain:2,time:'5:18 PM'}},
+ // C2.1 May
+ {notify:{c:'may',text:'Voice message',div:'Jul 2018',m:{k:'voice',text:'0:06',tr:"it's doing it AGAIN"},rows:[{c:'mom',text:'Is she a nice girl?',time:'Jun'},{c:'hnin',text:"I can't lend you mine every time",time:'Jun'},{c:'thura',text:'joking. go eat',time:'Jun'}]}},
+ {in:'I have a problem'},
+ {in:'I gave back the good umbrella and mine is still dead'},
+ {choice:{flag:'c2_walk',opts:[
+   {label:"I'll bring two umbrellas.",send:"I'll bring two umbrellas.",then:[{in:'two?? who carries two umbrellas'},{out:'Someone who has met you.'},{in:'no. bring one'},{in:"I'll hold it. I'm very helpful"},{out:'…One.'}]},
+   {label:'We can share one.',send:'We can share one.',then:[{typing:1600},{pause:900},{in:"ok. after class. don't be late"}]},
+   {label:'Buy a new one.',send:'Buy a new one.',then:[{in:'wow'},{in:"ok then I'll just walk in the rain and get sick and it'll be your fault"},{out:"…After class. I'll bring mine."}]}]}},
+ {pause:900},
+ // C2.2 Walk home
+ {scene:{art:'walkShare',cap:'After class · dusk',rain:1}},
+ {narr:'One black umbrella with white tape on the handle. Two people under it.'},
+ {shot:'walkDrift'},
+ {narr:'May holds the handle "to help". The umbrella drifts toward her, a little more with every step. Min\'s left shoulder is soaked.'},
+ {choice:{flag:'c2_shoulder',opts:[
+   {label:'(Tilt the umbrella toward her anyway.)',act:1,then:[{narr:'She notices. She moves closer, so it covers both of them.'},{say:['May',"You're so stupid."]},{narr:'She says it softly.'}]},
+   {label:'(Say nothing. Keep walking.)',act:1,then:[{shot:'walkGate'},{narr:'At her gate she sees his shirt.'},{say:['May','Min! Your whole arm.']},{min:"It's fine. It dries."}]},
+   {label:"You're stealing it again.",say:"You're stealing it again.",then:[{say:['May',"I'm borrowing it. With you attached."]},{narr:"She laughs, and doesn't move it back."}]}]}},
+ {mem:'shoulder'},
+ // Mom, that night
+ {rain:1},{time:'9:12 PM'},
+ {notify:{c:'mom',text:'Why is only one side of your shirt wet?',rows:[{c:'may',text:"ok. after class. don't be late",time:'4:02 PM'},{c:'hnin',text:"I can't lend you mine every time",time:'Jun'},{c:'thura',text:'joking. go eat',time:'Jun'}]}},
+ {choice:{flag:'c2_mom',opts:[
+   {label:'The umbrella is small.',send:'The umbrella is small.',then:[{in:'The umbrella is the same size as last year.'}]},
+   {label:'I walked a friend home.',send:'I walked a friend home.',then:[{in:'The same friend who sent the umbrella back with a note?'},{in:'Daw Aye Aye talks.'}]},
+   {label:'(Send a sticker.)',sticker:'catUmb',then:[{in:'I know that sticker. That is your hiding sticker.'}]}]}},
+ {pause:900},
+ // C2.3 Thura
+ {time:'10:40 PM'},
+ {notify:{c:'thura',text:"football saturday. you're coming. no excuses",rows:[{c:'mom',text:'Why is only one side of your shirt wet?',time:'9:12 PM'},{c:'may',text:"ok. after class. don't be late",time:'4:02 PM'},{c:'hnin',text:"I can't lend you mine every time",time:'Jun'}]}},
+ {choice:{flag:'c2_thura',opts:[
+   {label:"I'll come.",send:"I'll come.",then:[{in:'finally. a normal friend'},{in:"just don't forget us when you're famous"}]},
+   {label:'I have class.',send:'I have class.',then:[{in:'class is at 5. football is at 3. try again'},{in:"…just don't forget us when you're famous"}]},
+   {label:"I'm walking someone home.",send:"I'm walking someone home.",then:[{in:'"someone"'},{in:"bro it's been one month and you're already a different person"},{in:"just don't forget us when you're famous"}]}]}},
+ {pause:900},
+ // C2.4 Photo walk
+ {time:'8:03 PM'},
+ {notify:{c:'may',text:'you said you take photos of how things really are',div:'Aug 2018',rows:[{c:'thura',text:"just don't forget us when you're famous",time:'Sat'},{c:'mom',text:'Daw Aye Aye talks.',time:'Fri'},{c:'hnin',text:"I can't lend you mine every time",time:'Jun'}]}},
+ {in:'show me. sunday'},
+ {in:'I want to see what you see'},
+ {out:"Sunday. I'll bring yours back."},
+ {in:'my DEAD umbrella?? why'},
+ {out:'It should see the river once.'},
+ {in:"ok that's actually sweet. don't tell anyone"},
+ {pause:700},
+ {title:{big:'<em>Sunday</em>',small:'The rain stops for an hour. Long enough.',rain:0}},
+ {photowalk:true},
+ {mem:'walk'},
+ {rain:0},{time:'6:20 PM'},
+ {open:{c:'may'}},
+ ()=>(S.walk||[]).map(w=>{const sp=SPOTS.find(x=>x.id===w.id);ART['shot_'+w.id]=`<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`;return {outPhoto:'shot_'+w.id}}),
+ {typing:1800},
+ {if:{test:f=>f.c2_walk_framed>=3,then:[{in:"ok these are actually good. I'm annoyed"}],else:[{in:"some of these are crooked and I love them"}]}},
+ {in:'which one is your favourite'},
+ ()=>{const L={tea:["The tea shop.","ha. our tea shop. you're sentimental"],monastery:["The monks.",'the little monks!! I want to adopt them'],river:["The river.","that's my favourite too. how did you know"],market:["The market.",'it looks like a painting'],shop:["Mom's shop.","your mom's shop is so cute. I'm visiting"],dog:["Saya.",'SAYA. he is famous now']};
+   const opts=(S.walk||[]).map(w=>({label:L[w.id][0],send:L[w.id][0],v:w.id,then:[{in:L[w.id][1]}]}));
+   opts.push({label:"(Send the one he didn't show her.)",v:'may',ph:'mayCandid',photo:'mayCandid',then:[{typing:1500},{pause:700},{typing:1300},{in:"you're not allowed to do that"},{in:'send me the original'}]});
+   return [{choice:{flag:'c2_fav_photo',hint:'Which one is his favourite?',opts}}]},
+ {pause:900},
+ // C2.5 Hnin
+ {time:'6:41 PM'},
+ {notify:{c:'hnin',text:'you forgot the tray again',rows:[{c:'may',text:'ok I picked my favourite',time:'6:22 PM'},{c:'thura',text:"just don't forget us when you're famous",time:'Sat'},{c:'mom',text:'Daw Aye Aye talks.',time:'Fri'}]}},
+ {in:'you were at the river all morning. the whole street saw'},
+ {choice:{flag:'c2_hnin',opts:[
+   {label:"Sorry. I'll come now.",send:"Sorry. I'll come now.",then:[{in:"don't run. it's raining. I'll keep it inside"}]},
+   {label:'We were taking photos.',send:'We were taking photos.',then:[{in:'"we"'},{pause:1400},{in:"ok. the tray's inside"}]},
+   {label:'Since when do you watch the river?',send:'Since when do you watch the river?',then:[{in:"I don't. I watch the tray"}]}]}},
+ {pause:900},
+ // C2.6 Thadingyut
+ {rain:0},{time:'7:30 PM'},
+ {notify:{c:'may',text:'Photo',div:'Oct 2018',m:{k:'photo',art:'candles'},rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Aug'},{c:'thura',text:"just don't forget us when you're famous",time:'Aug'},{c:'mom',text:'Daw Aye Aye talks.',time:'Aug'}]}},
+ {in:'the pagoda is so pretty tonight. are you coming or are you going to send me a photo of a dog'},
+ {out:'Coming.'},
+ {scene:{art:'pagoda',cap:'Thadingyut · the festival of lights',rain:0}},
+ {narr:'The pagoda platform at night, hundreds of small clay lamps. At the foot of the steps, Hnin is at her aunt\'s stall, selling tea to the crowd.'},
+ {shot:'pagodaLamp'},
+ {narr:'May is trying to light one in the wind. It keeps going out.'},
+ {choice:{flag:'c2_lights',opts:[
+   {label:'Let me.',say:'Let me.',then:[{narr:'He lights it first try.'},{say:['May','Show-off.']}]},
+   {label:'(Shield the flame with your hands.)',act:1,then:[{shot:'pagodaHands'},{narr:'It takes. Neither of them moves their hands for a second too long.'}]},
+   {label:"You're bad at fire.",say:"You're bad at fire.",then:[{say:['May',"I'm bad at wind."]},{narr:'It lights. She points at him like she won.'}]}]}},
+ {say:['May',"Next year, let's light one together. From the start. Promise?"]},
+ {min:'I promise.'},
+ {mem:'lamp'},
+ // C2.7 Late
+ {time:'11:48 PM'},
+ {notify:{c:'may',text:'min',rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Aug'},{c:'thura',text:"just don't forget us when you're famous",time:'Aug'},{c:'mom',text:'Daw Aye Aye talks.',time:'Aug'}]}},
+ {in:'what are we'},
+ {pause:1200},
+ {draft:{text:"I don't want to be only friends.",flag:'c2_friends',when:'Oct 2018',
+   onSend:[{typing:2600},{pause:2200},{typing:3200},{pause:2600},{typing:2400},{in:'ok good'},{in:'me neither'},{in:'goodnight before I die of embarrassment'}],
+   onDelete:[{out:'Friends who share umbrellas.'},{in:"that's not a thing"},{in:"…ok it's a thing now"}]}},
+ {pause:1500},
+ {scene:{art:'lampWall',cap:'',rain:0}},
+ {narr:'On the pagoda wall, long after everyone has gone home, one small lamp is still burning.'},
+ {title:{big:'<em>End of Chapter 2</em>Monsoon Season',small:''}},
+ {end:2}
+];
+/* ============ START ============ */
+$('#go').onclick=async e=>{e.stopPropagation();Audio_.init();if(Audio_.ctx){S.sound=true;$('#bSound span:last-child').textContent='On';$('#bSound .ic').className='ic i-'+SPK_ON;if(Audio_.ctx.state==='suspended')Audio_.ctx.resume()}
+  $('#start').classList.remove('on');await rawSleep(600);
+  await runFlow(0);};
+const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2];
+const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
+  if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}
+  return cur})})();
+const devT=$('#devT'),devL=$('#devL');devT.max=FLOW.length-1;
+devT.oninput=()=>{devL.textContent=devT.value+' · '+FLOW_LBL[devT.value]};
+devT.onchange=()=>{const v=devT.value;try{sessionStorage.setItem('bre_jump',v)}catch(e){}
+  try{history.replaceState(null,'','#jump='+v)}catch(e){location.hash='jump='+v}
+  location.reload()};
+async function runFlow(i){for(;i<FLOW.length;i++){devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];await exec(FLOW[i])}}
+(()=>{let j=null;try{j=sessionStorage.getItem('bre_jump');sessionStorage.removeItem('bre_jump')}catch(e){}
+  const m=/jump=(\d+)/.exec(location.hash);if(m){j=m[1];try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+  if(j!==null){$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
+$('#bSound span:last-child').textContent='Off';$('#bSound .ic').className='ic i-'+SPK_OFF;
+</script>
+</body>
+</html>

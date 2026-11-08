@@ -67,6 +67,16 @@ button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .scaler{transform-origin:top center}
 .stage{position:relative;width:393px;height:852px;border-radius:46px;overflow:hidden;background:var(--paper-100);color:var(--ink-body);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px #0b0e0d,0 0 0 11px var(--n-line);user-select:none}
 .stage.full{border-radius:18px;box-shadow:none}
+body.m .bar{width:100%;height:44px;padding:0 10px}
+body.m .bar .ttl{font-size:15px}
+body.m .pill{height:34px;padding:0 10px}
+body.m .pill span:not(.ic){display:none}
+body.m #bAlbum span:not(.ic){display:inline}
+body.m #bDev{display:flex}
+body.m .devbar{display:none;width:100%}
+body.m.dev .devbar{display:flex}
+body.m .stage.full{border-radius:0;box-shadow:none}
+#bDev{display:none}
 .view{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s ease}
 .view.on{opacity:1;pointer-events:auto}
 
@@ -374,7 +384,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 
 /* water street side quest */
 #wstreet{background:#2b3a3c;overflow:hidden}
-#wsField{position:absolute;inset:0;overflow:hidden;touch-action:none}
+#wsField{position:absolute;inset:0;overflow:hidden;overflow:clip;touch-action:none}
 #wsBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
 #wsField svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 #wsField svg .div{stroke:url(#wsFade);stroke-width:2.2;stroke-dasharray:14 12;opacity:.85}
@@ -385,7 +395,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #wsField .spr{position:absolute;pointer-events:none;user-select:none;transform:translate(-50%,-100%);filter:drop-shadow(0 6px 4px rgba(0,0,0,.25))}
 #wsField .pal{pointer-events:auto;cursor:pointer;transition:filter .25s}
 #wsField .pal.far{pointer-events:none}
-#wsField .pal.hit{filter:drop-shadow(0 6px 4px rgba(0,0,0,.25)) brightness(.86) saturate(.7) hue-rotate(-10deg)}
+#wsField .pal.hit{animation:none;background-position-x:33.333%;filter:drop-shadow(0 6px 4px rgba(0,0,0,.25)) brightness(.86) saturate(.7) hue-rotate(-10deg)}
 #wsMin{z-index:150;transition:left .14s ease}
 #wsField .spr{transform-origin:50% 100%}
 #wsField .anim{background-size:400% 100%;background-repeat:no-repeat;background-position:0 0}
@@ -437,6 +447,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
     <div class="ctl">
       <button class="pill" id="bSound" title="Rain sound"><span class="ic i-speaker-high"></span><span>Sound</span></button>
       <button class="pill" id="bSpeed" title="Message speed"><span class="ic i-fast-forward"></span><span>1×</span></button>
+      <button class="pill" id="bDev" title="Dev timeline">Dev</button>
       <button class="pill" id="bAlbum" title="Memories"><span class="ic i-images"></span><span>Memories</span></button>
     </div>
   </div>
@@ -631,10 +642,14 @@ Rain($('#bgRain'),{level:()=>S.rain});
 function setRain(n){S.rain=n;Audio_.level();}
 
 /* ============ LAYOUT ============ */
-function fit(){const sc=$('#scaler');const availH=innerHeight-52,availW=innerWidth;const s=Math.min(availH/852,availW/393,1);
-  sc.style.transform=`scale(${s})`;sc.style.width=393+'px';sc.style.height=852*s+'px';
-  stage.classList.toggle('full',innerWidth<430);}
+function fit(){const sc=$('#scaler'),m=innerWidth<520;document.body.classList.toggle('m',m);
+  const top=$('.wrap').getBoundingClientRect().top;
+  if(m){sc.style.transform='none';sc.style.width=innerWidth+'px';sc.style.height=(innerHeight-top)+'px';stage.style.width=innerWidth+'px';stage.style.height=(innerHeight-top)+'px';stage.classList.add('full');return}
+  stage.style.width='';stage.style.height='';
+  const s=Math.min((innerHeight-top-12)/852,innerWidth/393,1);
+  sc.style.transform=`scale(${s})`;sc.style.width=393+'px';sc.style.height=852*s+'px';stage.classList.remove('full');}
 addEventListener('resize',fit);fit();
+$('#bDev').onclick=e=>{e.stopPropagation();document.body.classList.toggle('dev');fit()};
 
 /* ============ UI HELPERS ============ */
 function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));
@@ -921,7 +936,7 @@ function wsRun(bag){return new Promise(async done=>{
   const t0=performance.now();let last=t0,nextPal=t0+700,nextTruck=t0+2400/sp;
   const spawn=(k,l)=>{let el,ar;if(k==='truck'){el=document.createElement('img');el.src='img/ws-truck.webp';ar=254/360}else{el=document.createElement('div');const g=Math.random()<.5;el.style.backgroundImage=`url(img/ws-pal${g?1:2}-run.webp)`;el.classList.add('anim');ar=g?.38:.403}el.classList.add('spr',k);
     const o={k,l,z:6.2,el,ar};f.appendChild(el);ents.push(o);
-    if(k==='pal')el.onpointerdown=e=>{e.stopPropagation();if(over||o.hit||o.z>4.2)return;o.hit=1;spl++;el.classList.add('hit');const p=at(1/o.z,o.l);pop(p.x,p.y-LANEW*1.1/o.z,'Splash!');Audio_.blip(true);lv()};
+    if(k==='pal')el.onpointerdown=e=>{e.stopPropagation();if(over||o.hit||o.z>4.2)return;o.hit=1;spl++;el.classList.add('hit');const p=at(1/o.z,o.l);pop(p.x,p.y-LANEW*1.1/o.z,'Splash!');Audio_.blip(true);lv();o.exit=performance.now();o.dir=o.l===0?-1:o.l===2?1:(Math.random()<.5?-1:1);const b=document.createElement('div');b.className='burst';b.style.left=p.x+'px';b.style.top=(p.y-LANEW*.45/o.z)+'px';b.style.transform=`scale(${Math.min(1,1.3/o.z)})`;f.appendChild(b);setTimeout(()=>b.remove(),600)};
     if(k==='truck'){$('#wsDz'+l).classList.add('on')}
     return o};
   const busy=()=>ents.some(o=>o.k==='truck');
@@ -929,17 +944,18 @@ function wsRun(bag){return new Promise(async done=>{
     $('#wsSongI').style.width=(p*100)+'%';
     if(p<.9&&now>nextPal){const tr=ents.find(o=>o.k==='truck');let l=Math.floor(Math.random()*3);if(tr&&l===tr.l)l=(l+1)%3;spawn('pal',l);nextPal=now+(1000-p*350+Math.random()*450)/sp}
     if(p<.88&&now>nextTruck&&!busy()){const free=[0,1,2].filter(l=>!ents.some(q=>q.l===l&&q.z>2.2));if(free.length){const l=free.includes(lane)&&Math.random()<.65?lane:free[Math.floor(Math.random()*free.length)];spawn('truck',l)}nextTruck=now+(3300-p*1100)/sp}
-    for(const o of ents){const ah=ents.filter(q=>q!==o&&q.l===o.l&&q.z<o.z&&!q.done).reduce((m,q)=>Math.max(m,q.z),0);const v=(o.k==='truck'?.001+p*.0005:.0008+p*.0004)*dt*sp;o.z=Math.max(.55,ah?ah+.9:0,o.z-v*o.z*.55-v*.4);
+    for(const o of ents){const ah=ents.filter(q=>q!==o&&q.l===o.l&&q.z<o.z&&!q.done&&!q.exit).reduce((m,q)=>Math.max(m,q.z),0);const v=(o.k==='truck'?.001+p*.0005:.0008+p*.0004)*dt*sp;if(!o.exit)o.z=Math.max(.55,ah?ah+.9:0,o.z-v*o.z*.55-v*.4);
       const s=1/o.z,pt=at(Math.min(s,1.6),o.l),h=Math.min(LANEW*(o.k==='truck'?1.15:1.0)*s,LANEW*s*.9/o.ar);
-      o.el.style.left=pt.x+'px';o.el.style.top=(pt.y+LANEW*.18*s)+'px';o.el.style.height=h+'px';if(o.k!=='truck')o.el.style.width=(h*o.ar)+'px';o.el.style.zIndex=Math.round(s*100)+(o.k==='truck'?1:0);
+      let dx=0;if(o.exit){const e=(now-o.exit)/(S.speed>1?.5:1);const k=Math.max(0,Math.min(1,(e-280)/420));dx=o.dir*k*LANEW*.9*s;o.el.style.opacity=1-k;if(k>=1)o.gone=1}
+      o.el.style.left=(pt.x+dx)+'px';o.el.style.top=(pt.y+LANEW*.18*s)+'px';o.el.style.height=h+'px';if(o.k!=='truck')o.el.style.width=(h*o.ar)+'px';o.el.style.zIndex=Math.round(s*100)+(o.k==='truck'?1:0);
       if(o.k==='pal'&&!o.hit)o.el.classList.toggle('far',o.z>4.2);if(o.done)o.el.style.opacity=Math.max(0,(o.z-.6)/.45);
-      if(!o.done&&o.z<=1.05){o.done=1;
+      if(!o.done&&!o.exit&&o.z<=1.05){o.done=1;
         if(o.k==='truck'){$('#wsDz'+o.l).classList.remove('on');const b=document.createElement('div');b.className='burst';const q=at(1,o.l);b.style.left=q.x+'px';b.style.top=q.y+'px';f.appendChild(b);setTimeout(()=>b.remove(),600);
           if(o.l===lane){lives--;wet+=2;me.classList.remove('hit');void me.offsetWidth;me.classList.add('hit');pop(q.x,q.y-LANEW*1.3,lives>0?'Camera hit!':'Camera soaked',true);navigator.vibrate&&navigator.vibrate(60);lv()}
           else pop(at(1,lane).x,at(1,lane).y-LANEW*1.3,'Missed!')}
         else if(!o.hit&&o.l===lane){wet++;pop(at(1,lane).x,at(1,lane).y-LANEW*1.3,'Splashed!',true)}}
     }
-    ents=ents.filter(o=>{if(o.z<=.6){o.el.remove();return false}return true});
+    ents=ents.filter(o=>{if(o.z<=.6||o.gone){o.el.remove();return false}return true});
     if(lives<=0){over=true;finish(false);return}
     if(p<1)requestAnimationFrame(frame);else{over=true;finish(true)}}
   async function finish(ok){f.onpointerdown=null;me.classList.remove('run');ents.forEach(o=>o.el.remove());ents=[];f.querySelectorAll('.dz').forEach(e=>e.classList.remove('on'));

@@ -364,6 +364,19 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #post .when{padding:4px 16px;font:400 12px/16px var(--sans);color:var(--ink-faint)}
 #post .pf{flex:none;padding:6px 16px 26px}
 
+
+.bar .lt{display:flex;align-items:center;gap:8px;min-width:0}
+.pill.xb{padding:0;width:32px;justify-content:center;display:none}
+body.playing .pill.xb{display:flex}
+#leave .card{position:absolute;left:16px;right:16px;bottom:28px;background:var(--paper-50);border-radius:20px;padding:22px 20px 16px;color:var(--ink-body);box-shadow:0 20px 50px rgba(0,0,0,.4);transform:translateY(30px);transition:transform .35s ease}
+#leave.on .card{transform:none}
+#leave{background:rgba(10,14,13,.55);transition:opacity .3s}
+#leave h3{font:400 24px/30px var(--serif);color:var(--ink)}
+#leave p{font:400 14px/21px var(--sans);color:var(--ink-muted);margin-top:6px}
+#leave .bt{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+#leave button{height:46px;border-radius:6px;font:500 15px/20px var(--sans)}
+#leave .stay{background:var(--inverse);color:var(--inverse-ink)}
+#leave .go2{background:transparent;color:var(--ink-body);border:1.5px solid var(--line-strong)}
 /* library */
 #start{background:var(--m900);color:var(--on-deep);display:block;padding:0;text-align:left}
 #start .lib{position:absolute;inset:0;overflow-y:auto;padding:58px 20px 40px;transition:transform .45s ease,opacity .45s}
@@ -536,7 +549,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 <canvas id="bgRain"></canvas>
 <div class="page">
   <div class="bar">
-    <div class="ttl">Before the Rain Ends</div>
+    <div class="lt"><button class="pill xb" id="bExit" title="Back to Stories" aria-label="Back to Stories"><span class="ic i-arrow-left"></span></button><div class="ttl">Before the Rain Ends</div></div>
     <div class="ctl">
       <button class="pill" id="bSound" title="Rain sound"><span class="ic i-speaker-high"></span><span>Sound</span></button>
       <button class="pill" id="bSpeed" title="Message speed"><span class="ic i-fast-forward"></span><span>1×</span></button>
@@ -591,6 +604,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
     <div class="ov" id="title"><h1 id="tBig"></h1><p id="tSmall"></p><div class="tap" id="tTap">Tap to continue</div></div>
     <div class="ov" id="album"></div>
     <div class="ov" id="end"></div>
+    <div class="ov" id="leave"><div class="card"><h3>Leave the story?</h3><p id="leaveP"></p><div class="bt"><button class="stay" id="leaveStay">Keep playing</button><button class="go2" id="leaveGo">Back to Stories</button></div></div></div>
     <div class="ov on" id="start">
       <div class="lib" id="lib">
         <div class="lhd"><div class="eb">ChatChat</div><h1>Stories</h1></div>
@@ -759,6 +773,8 @@ function fit(){const sc=$('#scaler'),m=innerWidth<520;document.body.classList.to
 
 addEventListener('resize',fit);fit();
 addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey||/input|textarea/i.test((e.target.tagName||'')))return;
+  if(e.key==='Escape'&&document.body.classList.contains('playing')){e.preventDefault();if($('#leave').classList.contains('on'))$('#leave').classList.remove('on');else $('#bExit').click();return}
+  if($('#leave').classList.contains('on')){if(e.key==='Enter'){e.preventDefault();$('#leaveStay').click()}return}
   const vis=el=>el&&el.offsetParent!==null&&getComputedStyle(el).visibility!=='hidden';
   if(e.key>='1'&&e.key<='9'){const os=[...document.querySelectorAll('#stage .opt,#stage .dbtns button')].filter(vis);const b=os[+e.key-1];if(b){e.preventDefault();b.click()}return}
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){const f=$('#wsField');if(f&&$('#wstreet').classList.contains('on')&&f.onpointerdown){e.preventDefault();const r=f.getBoundingClientRect();f.onpointerdown({stopPropagation(){},clientX:e.key==='ArrowLeft'?r.left+5:r.right-5,clientY:r.top+r.height/2})}return}
@@ -1839,12 +1855,15 @@ const SAVE_KEY='chatchat.saves.v1';let SAVES={};
 try{SAVES=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}}catch(e){SAVES={}}
 function sv(){return SAVES[STORY.id]=SAVES[STORY.id]||{cps:{},done:[],cur:null}}
 function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(SAVES))}catch(e){}}
-function snap(){return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day:S.day||0}))}
-function restore(c){S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null}
+function snap(){return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day:S.day||0,tl:S.tlabel||null,rain:S.rain||0}))}
+function restore(c){S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0)}
+const SAFE=['notify','scene','title','browse','friend','lock'];
+function chOf(i){let k=0;CH_START.forEach((x,j)=>{if(x<=i)k=j});return k}
 function markDone(k){const v=sv();if(!v.done.includes(k))v.done.push(k);persist()}
 let DEVJUMP=false;
 async function runFlow(i){for(;i<FLOW.length;i++){devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];
-  if(!DEVJUMP){const k=CH_START.indexOf(i);if(k>=0){const v=sv();v.cps[k]=snap();v.cur=k;if(k>0)markDone(k-1);persist()}
+  if(!DEVJUMP){const st=FLOW[i];const kk=st&&typeof st==='object'?Object.keys(st)[0]:null;if(kk&&SAFE.includes(kk)){const v=sv();v.pos={i,k:chOf(i),s:snap()};persist()}
+    const k=CH_START.indexOf(i);if(k>=0){const v=sv();v.cps[k]=snap();v.cur=k;if(k>0)markDone(k-1);persist()}
     if(CH_END[i]!==undefined){markDone(CH_END[i]);const v=sv();v.cps[CH_END[i]+1]=snap();v.cur=CH_END[i]+1;persist()}
     if(FLOW[i]&&FLOW[i].end!==undefined)markDone(FLOW[i].end)}
   await exec(FLOW[i])}}
@@ -1857,16 +1876,23 @@ function renderLib(){const {v,nextK,any,frac}=libState();const C_=STORY.chapters
   $('#libPr').classList.toggle('on',!!any);$('#libBar').style.width=Math.round(frac*100)+'%';
   $('#libWhere').textContent=nextK===null?'All chapters so far finished':(nextK===0?'Prologue':'Chapter '+nextK+' · '+C_[nextK].t);
   $('#chList').innerHTML=C_.map((c,k)=>{const done=v.done.includes(k),open=!c.soon&&(k===0||done||v.done.includes(k-1)||v.cps[k]);const cls=c.soon?'lock':done?'done':open?'next':'lock';
-    const st=c.soon?'Coming soon':done?'Played':open?(v.cps[k]&&v.cur===k?'In progress':'Up next'):'Locked';
+    const st=c.soon?'Coming soon':done?'Played':open?((v.pos&&v.pos.k===k)||(v.cps[k]&&v.cur===k)?'In progress':'Up next'):'Locked';
     const tag=open?'button':'div';
     return `<${tag} class="cr ${cls}" data-k="${k}"><div class="n">${done?'✓':c.n}</div><div class="t"><b>${k===0?'Prologue':'Chapter '+c.n+' · '+c.t}</b><span>${c.d}</span></div><div class="st">${st}</div></${tag}>`}).join('');
-  $('#chList').querySelectorAll('button.cr').forEach(b=>b.onclick=e=>{e.stopPropagation();playFrom(+b.dataset.k)});
+  $('#chList').querySelectorAll('button.cr').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=+b.dataset.k;playFrom(k,!v.done.includes(k))});
   $('#chOver').classList.remove('sure');$('#chOver').textContent='Start over';$('#chOver').style.display=any?'':'none';}
-async function playFrom(k){startAudio();const v=sv();if(k>0&&!v.cps[k])k=0;
-  if(k>0)restore(v.cps[k]);else restore({});
+async function playFrom(k,resume){startAudio();const v=sv();let at;
+  if(resume&&v.pos&&v.pos.k===k){restore(v.pos.s);at=v.pos.i}
+  else{if(k>0&&!v.cps[k])k=0;restore(k>0?v.cps[k]:{});at=CH_START[k]}
+  document.body.classList.add('playing');
   $('#start').classList.remove('on');await rawSleep(600);$('#start').classList.remove('chap');
-  await runFlow(CH_START[k]);}
-$('#go').onclick=e=>{e.stopPropagation();const {nextK}=libState();playFrom(nextK===null?0:nextK)};
+  await runFlow(at);}
+$('#go').onclick=e=>{e.stopPropagation();const {nextK}=libState();playFrom(nextK===null?0:nextK,true)};
+$('#bExit').onclick=e=>{e.stopPropagation();const v=sv();const p=v.pos;
+  $('#leaveP').textContent=DEVJUMP?'Dev jump: progress from here is not saved.':'Your progress is saved. Next time you\'ll pick up from the start of this chat or scene.';$('#leave').classList.add('on')};
+$('#leave').onclick=e=>{e.stopPropagation();if(e.target.id==='leave')$('#leave').classList.remove('on')};
+$('#leaveStay').onclick=e=>{e.stopPropagation();$('#leave').classList.remove('on')};
+$('#leaveGo').onclick=e=>{e.stopPropagation();try{history.replaceState(null,'',location.pathname+location.search)}catch(_){ }location.reload()};
 $('#hero').onclick=e=>{e.stopPropagation();$('#go').click()};
 $('#libCh').onclick=e=>{e.stopPropagation();renderLib();$('#start').classList.add('chap')};
 $('#chBack').onclick=e=>{e.stopPropagation();$('#start').classList.remove('chap')};
@@ -1875,7 +1901,7 @@ $('#chOver').onclick=e=>{e.stopPropagation();const b=$('#chOver');if(!b.classLis
 renderLib();
 (()=>{let j=null;try{j=sessionStorage.getItem('bre_jump');sessionStorage.removeItem('bre_jump')}catch(e){}
   const m=/jump=(\d+)/.exec(location.hash);if(m){j=m[1];try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
-  if(j!==null){DEVJUMP=true;$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
+  if(j!==null){DEVJUMP=true;document.body.classList.add('playing');$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
 $('#bSound span:last-child').textContent='Off';$('#bSound .ic').className='ic i-'+SPK_OFF;
 </script>
 </body>

@@ -383,6 +383,23 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #end .mh{font:600 15px/20px var(--sans);margin:22px 0 10px;display:flex;gap:8px;align-items:baseline}#end .mh span{font-weight:400;color:var(--ink-muted,#7b858c);font-size:13px}#end .mhs{font:400 13px/18px var(--sans);color:var(--ink-muted,#7b858c);margin:-4px 0 10px}#end .mh+ .mgrid{margin-top:0}
 
 /* water street side quest */
+#padauk{background:#1d2a2c;overflow:hidden}
+#pdBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+#padauk .ph{position:absolute;left:0;right:0;top:0;padding:52px 20px 40px;background:linear-gradient(rgba(20,30,32,.78),rgba(20,30,32,0));color:#fff;z-index:3}
+#padauk .eb{font:600 12px/16px var(--sans);color:#ffd36b;letter-spacing:.02em}
+#padauk h2{font:600 22px/28px var(--serif);margin-top:2px}
+#padauk .sub{font:400 13px/18px var(--sans);opacity:.85;margin-top:4px}
+#padauk .tb{height:6px;border-radius:999px;background:rgba(255,255,255,.25);margin-top:12px;overflow:hidden}
+#padauk .tb i{display:block;height:100%;width:100%;background:#ffd36b;border-radius:999px;transform-origin:left}
+#padauk .spot{position:absolute;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:3px solid #fff3c4;box-shadow:0 0 0 6px rgba(255,211,107,.35),0 0 24px rgba(255,211,107,.8);z-index:2;animation:pdPulse 1.1s ease-in-out infinite alternate;transition:opacity .4s,transform .4s}
+#padauk .spot.gone{opacity:0;transform:scale(.5);pointer-events:none}
+@keyframes pdPulse{to{box-shadow:0 0 0 12px rgba(255,211,107,.15),0 0 34px rgba(255,211,107,1)}}
+#padauk .pop{position:absolute;z-index:4;transform:translate(-50%,0);font:600 13px/17px var(--sans);color:#fff;background:rgba(20,30,32,.75);padding:5px 10px;border-radius:999px;white-space:nowrap;animation:wsUp 1.6s forwards}
+#pdPick{position:absolute;inset:0;z-index:5;background:rgba(20,30,32,.72);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;color:#fff}
+#pdPick .zoom{width:220px;height:220px;border-radius:50%;border:6px solid #fff3c4;background-repeat:no-repeat;box-shadow:0 20px 50px rgba(0,0,0,.4);animation:pop .5s ease}
+#pdPick h2{font:600 22px/28px var(--serif);margin-top:20px}
+#pdPick p{font:400 14px/20px var(--sans);opacity:.85;margin-top:6px;max-width:300px}
+#pdPick button{margin-top:22px;padding:14px 28px;border-radius:999px;background:#fffaf2;color:#1d2a2c;font:600 15px/20px var(--sans)}
 #wstreet{background:#2b3a3c;overflow:hidden}
 #wsField{position:absolute;inset:0;overflow:hidden;overflow:clip;touch-action:none}
 #wsBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
@@ -484,6 +501,8 @@ img{display:block;user-select:none;-webkit-user-drag:none}
       <div id="vf"><div class="bar"><span id="vfBack" role="button">Back</span><b id="vfName"></b><span id="vfCount"></span></div><div class="win" id="vfWin"><div class="pan" id="vfPan"></div><div class="fr" id="vfFr"><div class="mask"></div><i></i><i></i><i></i><i></i></div><div class="hint" id="vfHint">Drag to frame</div><div class="flashw" id="vfFlash"></div><div class="res" id="vfRes"></div></div><div class="ctl"><button class="shut" id="vfShut" aria-label="Take photo"></button></div></div>
     </div>
 
+    <div class="view" id="padauk"><img id="pdBg" src="img/c3-padauk.webp" alt="" draggable="false"><div class="ph"><div class="eb">Side moment · Padauk</div><h2>Pick one for May's hair</h2><p class="sub">Tap a sprig before the aunties' hooked poles get there.</p><div class="tb"><i id="pdT"></i></div></div>
+      <div id="pdPick"><div class="zoom" id="pdZoom"></div><h2 id="pdName"></h2><p id="pdLine"></p><button id="pdGo">Keep it for May</button></div></div>
     <div class="view" id="wstreet"><div id="wsField"></div>
       <div id="wsHud"><div class="row"><i class="ic i-music-notes"></i><div class="song"><i id="wsSongI"></i><b></b></div></div><div class="lives" id="wsLives"></div></div>
       <div id="wsCount"></div><div id="wsCard"></div></div>
@@ -784,6 +803,7 @@ async function exec(s){
   case 'outPhoto': await outgoing({k:'photo',art:v});break;
   case 'photowalk': await photoWalk();break;
   case 'waterstreet': await waterStreet();break;
+  case 'padauk': await padaukPick();break;
   case 'inCall': await incoming({k:'call',text:v});break;
   case 'inSticker': await incoming({k:'sticker',art:v});break;
   case 'out': await outgoing({k:'text',text:v});break;
@@ -884,6 +904,30 @@ async function photoWalk(){
     $('#pwDone').onclick=e=>{e.stopPropagation();done()};
   });
   S.flags.c2_walk_framed=S.walk.filter(w=>w.ok).length;
+}
+async function padaukPick(){
+  const V=$('#padauk'),bg=$('#pdBg');[...V.querySelectorAll('.spot,.pop')].forEach(e=>e.remove());$('#pdPick').style.display='none';$('#pdT').style.transform='scaleX(1)';
+  show('padauk');if(!bg.complete)await new Promise(r=>bg.onload=r);
+  const W=V.clientWidth,H=V.clientHeight,IW=450,IH=800,sc=Math.max(W/IW,H/IH),ox=(W-IW*sc)/2,oy=(H-IH*sc)/2,sp=S.speed>1?3:1;
+  const P={full:[.31,.22,'The fullest one, up high','Min climbs the wall for it. Daw Khin next door holds the wall steady and tells him he\'ll break his neck.'],
+           buds:[.755,.43,'A young one, still in bud','Not open yet. By the afternoon it will be.'],
+           fallen:[.47,.76,'The one that fell on the wall','The aunties got the rest. This one was waiting on the bricks.']};
+  const xy=k=>({x:ox+P[k][0]*IW*sc,y:oy+P[k][1]*IH*sc});
+  const el={};for(const k in P){const d=document.createElement('div');d.className='spot';const q=xy(k);d.style.left=q.x+'px';d.style.top=q.y+'px';V.appendChild(d);el[k]=d}
+  const pop=(k,t)=>{const p=document.createElement('div');p.className='pop';const q=xy(k);p.textContent=t;p.style.left=q.x+'px';p.style.top=(q.y-70)+'px';V.appendChild(p);setTimeout(()=>p.remove(),1600)};
+  const DUR=10000/sp,t0=performance.now();let pick=null,timers=[];
+  const take=(k,at)=>timers.push(setTimeout(()=>{if(pick)return;el[k].classList.add('gone');el[k].dataset.gone=1;pop(k,'An aunty\'s hook got it')},at/sp));
+  take('full',5000);take('buds',8000);
+  pick=await new Promise(res=>{
+    for(const k in el)el[k].onpointerdown=e=>{e.stopPropagation();if(el[k].dataset.gone)return;res(k)};
+    (function tick(){const p=Math.min(1,(performance.now()-t0)/DUR);$('#pdT').style.transform=`scaleX(${1-p})`;if(p>=1)return res('fallen');if(!V.classList.contains('on'))return;requestAnimationFrame(tick)})();
+  });
+  timers.forEach(clearTimeout);for(const k in el)el[k].onpointerdown=null;
+  S.flags.c3_padauk=pick;Audio_.blip(true);
+  const z=$('#pdZoom'),q=xy(pick),Z=3.2;z.style.backgroundImage='url(img/c3-padauk.webp)';
+  z.style.backgroundSize=`${IW*sc*Z}px ${IH*sc*Z}px`;z.style.backgroundPosition=`${104-(q.x-ox)*Z}px ${104-(q.y-oy)*Z}px`;
+  $('#pdName').textContent=P[pick][2];$('#pdLine').textContent=P[pick][3];$('#pdPick').style.display='flex';
+  await new Promise(r=>{$('#pdGo').onclick=e=>{e.stopPropagation();r()}});
 }
 async function waterStreet(){
   const V=$('#wstreet'),f=$('#wsField'),card=$('#wsCard'),hud=$('#wsHud');
@@ -1332,7 +1376,7 @@ SCENE.mayEnd='<img src="img/c3-may-end.webp" alt="" draggable="false">';
 SCENE.crowd='<img src="img/c3-crowd.webp" alt="" draggable="false">';
 SCENE.crowdLetGo='<img src="img/c3-letgo.webp" alt="" draggable="false">';
 SCENE.mango='<img src="img/c3-mango.webp" alt="" draggable="false">';
-SCENE.mangoPhoto='<div style="position:absolute;inset:0;background:#1a1f1e;display:flex;align-items:flex-start;justify-content:center;padding-top:22%"><div style="width:84%;background:#f6f1e7;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:rotate(-2deg)"><img src="img/thingyan.webp" alt="" draggable="false" style="position:static;width:100%;height:auto;display:block"></div></div>';
+SCENE.mangoPhoto='<div style="position:absolute;inset:0;background:#1a1f1e;display:flex;align-items:flex-start;justify-content:center;padding-top:22%"><div style="width:84%;background:#f6f1e7;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:rotate(-2deg)"><img src="img/thingyan.webp" alt="" draggable="false" style="position:static;width:100%;height:auto;display:block;animation:none;transform:none"></div></div>';
 SCENE.towel='<img src="img/c3-towel.webp" alt="" draggable="false">';
 SCENE.pagoda19='<img src="img/c3-pagoda19.webp" alt="" draggable="false">';
 SCENE.lamp2='<img src="img/c3-lamp2.webp" alt="" draggable="false">';
@@ -1349,6 +1393,20 @@ const CH3=[
    {label:'Call me. Read me the questions.',send:'Call me. Read me the questions.',then:[{inCall:'Voice call · 2:14:07'},{in:'you fell asleep on question 40'},{in:'I could hear you breathing. you sound like a fan'}]}]}},
  {in:"if I pass I'm buying you a new umbrella"},
  {pause:900},
+ // C3.2 Thingyan morning · padauk
+ {rain:0},{time:'6:12 AM'},
+ {notify:{c:'may',text:'MIN',div:'13 Apr 2019',rows:[{c:'thura',text:'truck. 2pm. bring nothing dry',time:'Fri'}]}},
+ {in:'the padauk bloomed last night'},
+ {in:'the big tree on your lane'},
+ {in:'the aunties will have it stripped by 8'},
+ {in:"I'm not asking. I'm just saying"},
+ {padauk:true},
+ {time:'6:31 AM'},
+ {open:{c:'may'}},
+ {if:{test:f=>f.c3_padauk==='full',then:[{out:'Got the best one. Had to climb the wall'},{in:'MIN'},{in:'are you hurt'},{out:"Daw Khin held the wall. She says you owe her a bowl of water"},{in:'deal'}]}},
+ {if:{test:f=>f.c3_padauk==='buds',then:[{out:"Got one. It's not open yet"},{in:'oh'},{in:"so it'll still be open tonight"},{in:"that's actually smart. who are you"}]}},
+ {if:{test:f=>f.c3_padauk==='fallen',then:[{out:'The aunties got the tree. I found one on the wall'},{in:'off the WALL'},{in:"…it's still the best one. bring it"}]}},
+ {pause:900},
  // C3.2 Thingyan
  {rain:0},{time:'2:40 PM'},
  {scene:{art:'wstreet',cap:'Thingyan · 13 April 2019',rain:0}},
@@ -1357,6 +1415,10 @@ const CH3=[
  {waterstreet:true},
  {scene:{art:'mayEnd',cap:'',rain:0}},
  {if:{test:f=>f.c3_wet==='dry',then:[{say:['May',"How are you dry? That's illegal on Thingyan."]},{narr:'She fixes that with one bowl of water.'}],else:[{say:['May',"You're supposed to splash me, not get splashed!"]}]}},
+ {narr:'The padauk is in her hair. Still there, somehow, after all that water.'},
+ {if:{test:f=>f.c3_padauk==='full',then:[{say:['May',"You climbed a wall for this. It's staying in all day."]}]}},
+ {if:{test:f=>f.c3_padauk==='buds',then:[{say:['May','Look. It opened.']}]}},
+ {if:{test:f=>f.c3_padauk==='fallen',then:[{say:['May','Nobody needs to know it was on a wall.']}]}},
  {shot:'crowd'},
  {narr:'A crowd pushes past the pandal. May grabs Min\'s hand so she doesn\'t lose him.'},
  {if:{test:f=>f.c2_friends===true,then:[{narr:"She doesn't let go. Under the tea shop awning, Hnin sees, and goes back to folding towels."}],else:[{narr:'Someone from her street calls her name.'},{shot:'crowdLetGo'},{narr:'She lets go, quick, like it never happened.'}]}},

@@ -9,7 +9,7 @@ ChatChat is meant to hold more stories later, each with small side-quest mini ga
 - **Prologue** · November 2020
 - **Chapter 1 · The First Rain** · June 2018
 - **Chapter 2 · Monsoon Season** · July to October 2018, with the Photo walk side quest
-- **Chapter 3 · Thingyan** · March to December 2019, with the Water street side quest (placeholder art)
+- **Chapter 3 · Thingyan** · March to December 2019, with the Water street side quest
 
 ## Run it
 

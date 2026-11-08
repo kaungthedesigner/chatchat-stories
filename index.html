@@ -56,6 +56,11 @@ button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .bar{height:48px;flex:none;display:flex;align-items:center;gap:8px;width:393px;max-width:100vw;padding:0 12px;justify-content:space-between}
 .bar .ttl{font-family:var(--serif);font-style:italic;font-weight:300;font-size:16px;color:var(--n-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar .ctl{display:flex;gap:6px;flex:none}
+body:not(.m) .bar{width:min(620px,100vw);height:60px;padding:6px 16px 0;gap:16px}
+body:not(.m) .bar .ttl{font-size:18px}
+body:not(.m) .bar .ctl{gap:10px}
+body:not(.m) .devbar{width:min(620px,100vw);padding:0 16px 8px}
+.prod body:not(.m) .bar{margin-bottom:22px}
 .prod .devbar,.prod #bDev{display:none!important}
 .devbar{flex:none;display:flex;align-items:center;gap:8px;width:393px;max-width:100vw;padding:0 12px 6px;font:500 12px/16px var(--sans);color:var(--n-muted)}
 .devbar .dv{padding:2px 6px;border-radius:2px;background:var(--n-clay);color:#161A19;font-weight:600}
@@ -389,6 +394,15 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #post .cm b{font-weight:600;color:var(--ink);margin-right:6px}
 #post .cm.me b{color:var(--m700)}
 #post .cm.del{font-style:italic;color:var(--ink-faint);font-size:13px}
+#chat .b.lnk{padding:0;overflow:hidden;max-width:80%}
+#chat .b.lnk a{display:block;color:inherit;text-decoration:none}
+#chat .b.lnk .lt{display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(0,0,0,.05)}
+#chat .b.lnk .lg{flex:none;width:36px;height:36px;border-radius:8px;background:#1d2a2c;color:#fff;display:grid;place-items:center;font:700 13px/1 var(--sans)}
+#chat .b.lnk b{display:block;font:600 14px/19px var(--sans)}
+#chat .b.lnk small{font:400 12px/16px var(--sans);opacity:.7}
+#chat .b.lnk ul{list-style:none;padding:8px 12px 10px;display:grid;gap:4px}
+#chat .b.lnk li{font:400 13px/18px var(--sans);padding-left:14px;position:relative}
+#chat .b.lnk li:before{content:'';position:absolute;left:2px;top:7px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5}
 #post .pf{flex:none;padding:6px 16px 26px}
 
 
@@ -841,6 +855,7 @@ function el(m,prev){
   if(m.k==='text'){d.innerHTML=`<div class="b">${esc(m.text)}</div>`}
   if(m.k==='photo'){d.innerHTML=`<div class="b photo">${ART[m.art]&&typeof ART[m.art]==='function'?ART[m.art]():ART[m.art]}</div>`}
   if(m.k==='sticker'){d.innerHTML=ART.STK[m.art]}
+  if(m.k==='link'){const L=LINKS[m.id];d.innerHTML=`<div class="b lnk"><a href="${L.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="lt"><div class="lg">${L.badge}</div><div><b>${esc(L.title)}</b><small>${esc(L.domain)}</small></div></div><ul>${L.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></a></div>`}
   if(m.k==='voice'){d.innerHTML=`<div class="b"><div class="voice"><div class="pl">${IC.play}</div><div class="wv">${Array.from({length:26},(_,i)=>`<i style="height:${20+Math.abs(Math.sin(i*1.7))*70}%"></i>`).join('')}</div><small>${m.text}</small></div>${m.tr?`<div class="vtr">${m.tr[0]==='('?esc(m.tr):'“'+esc(m.tr)+'”'}</div>`:''}</div>`}
   return d;
 }
@@ -886,7 +901,7 @@ function banner(c,title,text,accept){const b=$('#banner');b.innerHTML=`${av(c,tr
 
 /* ============ CHAT LIST ============ */
 function liveRows(rows,skip){return (rows||[]).map(r=>{if(r.c===skip)return r;const t=(S.threads[r.c]||[]).filter(m=>m.k!=='div'&&m.k!=='sys');const m=t[t.length-1];if(!m)return r.text?r:Object.assign({},r,{text:'…'});
-  const text=m.k==='text'?m.text:m.k==='sticker'?'Sticker':m.k==='photo'?'Photo':m.k==='voice'?'Voice message':(m.text||r.text);return Object.assign({},r,{text,you:m.dir==='out',unread:0,seen:false})})}
+  const text=m.k==='text'?m.text:m.k==='sticker'?'Sticker':m.k==='photo'?'Photo':m.k==='link'?'Link':m.k==='voice'?'Voice message':(m.text||r.text);return Object.assign({},r,{text,you:m.dir==='out',unread:0,seen:false})})}
 function renderList(rows,only){const R=$('#rows');R.innerHTML=rows.map(r=>`<button class="crow${only&&r.c!==only?' dim':''}${only===r.c?' pulse':''}" data-c="${r.c}">${av(r.c,false,r.on)}<div class="meta"><div class="nm">${C[r.c].name}<span>${r.time||''}</span></div><div class="pv"><span>${r.you?'<b>You:</b> ':''}${esc(r.text)}</span><i>${r.unread?`<span class="badge">${r.unread}</span>`:(r.seen?'<span style="font-size:11px">Seen</span>':'')}</i></div></div></button>`).join('');}
 function waitRow(only){return new Promise(r=>{$('#rows').querySelectorAll('.crow').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();if(b.dataset.c===only){r()}else{b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake')}}))})}
 
@@ -950,6 +965,7 @@ async function exec(s){
   case 'friend':{ await holdChat();renderList(v.rows,null);show('list');await sleep(900);await banner('may','May Thiri','sent you a friend request',true);toast('You and <b>May Thiri</b> are now connected');openChat('may','Active now');push({k:'sys',text:'You are now connected on ChatChat'});await sleep(900);break}
   case 'in': await incoming({k:'text',text:v});break;
   case 'inPhoto': await incoming({k:'photo',art:v});break;
+  case 'inLink': await incoming({k:'link',id:v});break;
   case 'inVoice': await incoming({k:'voice',text:v[0],tr:v[1]});break;
   case 'outPhoto': await outgoing({k:'photo',art:v});break;
   case 'photowalk': await photoWalk();break;
@@ -1019,6 +1035,8 @@ async function profileStep(v){
   $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML='';
   $('#post .who b').textContent='Post';if(v.back)show('chat');await sleep(500);
 }
+const LINKS={sbtv:{url:'https://www.watchsbtv.com/',domain:'watchsbtv.com',title:'SBTV · Football, all in one place',badge:'SB',
+  points:['Watch every football match and the highlights in one place','Weekly predictions on the big matches earn SBTV Coins','Redeem your coins for lucky draws and rewards']}};
 const fv=(x)=>typeof x==='function'?x(S.flags):x;
 const artHTML=a=>typeof ART[a]==='function'?ART[a]():ART[a];
 const cmtHTML=c=>c.del?`<div class="cm del">${esc(c.del)} deleted a comment</div>`:`<div class="cm${c.me?' me':''}"><b>${esc(c.n)}</b>${esc(c.t)}</div>`;
@@ -1405,8 +1423,8 @@ const CH1=[
  {mem:'note'},{pause:1000},
  // C1.5 Thura
  {rain:0},{time:'6:40 PM'},
- {glance:{c:'thura',text:'4 out of 5 world cup predictions on sbtv this week. call me coach',likes:'Hnin and 3 others',when:'June 2018',
-   cmts:[{n:'Hnin',t:'coach, you owe the shop 3 teas'},{n:'Thura',t:"coins first. lucky draw. then tea"}],
+ {glance:{c:'thura',text:'football saturday. losers buy the tea.',likes:'Hnin and 3 others',when:'June 2018',
+   cmts:[{n:'Hnin',t:'losers also wash the glasses'},{n:'Thura',t:'then I will win. obviously'}],
    rows:[{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}]}},
  {time:'6:52 PM'},
  {notify:{c:'thura',text:'bro',rows:[{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}]}},
@@ -1909,8 +1927,14 @@ const CH3=[
    {label:'How does a bike go backwards?',send:'How does a bike go backwards?',then:[{in:"I don't know bro. I'm a genius"}]},
    {label:'Did the customer notice?',send:'Did the customer notice?',then:[{in:'he noticed when he reversed into the tea shop'},{in:'hnin threw a stool at me. not at him. at ME'}]},
    {label:"Bring it here. I'll take a photo.",send:"Bring it here. I'll take a photo.",then:[{in:'no. evidence is how they catch you'}]}]}},
- {in:"also I'm 9 for 9 on sbtv predictions this month"},
- {in:"if I win the lucky draw I'm buying a bike that goes forwards"},
+ {in:'also. big match saturday. come watch at mine'},
+ {in:"I don't have the channel anymore. I watch everything on this now"},
+ {inLink:'sbtv'},
+ {in:'every match. highlights the next morning if I fall asleep'},
+ {in:"and I'm 9 for 9 on the predictions this month. free. the coins go to the lucky draw"},
+ {choice:{flag:'c3_thura_match',opts:[
+   {label:"I'll come. I'll bring tea.",send:"I'll come. I'll bring tea.",then:[{in:"from hnin's shop? she'll make me pay my tab first"}]},
+   {label:'What do you win?',send:'What do you win?',then:[{in:"rewards bro. if it's a bike I'm getting one that goes forwards"}]}]}},
  {in:"anyway. how's may. you two still disgusting?"},
  {if:{test:f=>f.c2_friends===true,then:[{in:'disgusting means happy. I checked'}],else:[{in:'or still "just friends". bro.'}]}},
  {pause:900},

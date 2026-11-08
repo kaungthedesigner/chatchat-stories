@@ -897,7 +897,7 @@ function wsRun(bag){return new Promise(async done=>{
   if(!bg.complete)await new Promise(r=>bg.onload=r);
   const W=f.clientWidth,H=f.clientHeight,IW=404,IH=800,sc=Math.max(W/IW,H/IH),ox=(W-IW*sc)/2,oy=(H-IH*sc)/2;
   // road geometry in image px: vanishing row VY, centre line cx(y), half width hw(y)
-  const VY=334,NY=716,cx=y=>202-(y-500)*.02,hw=y=>.45*(y-VY);
+  const VY=337,NY=716,cx=y=>205-(y-400)*.043,hw=y=>.475*(y-VY);
   const at=(s,l)=>{const y=VY+s*(NY-VY);return{x:ox+(cx(y)+(l-1)*(2/3)*hw(y))*sc,y:oy+y*sc}};
   const LANEW=(2/3)*hw(NY)*sc,max=bag?5:3,sp=S.speed>1?2:1;
   let lives=max,lane=1,wet=0,spl=0,ents=[],over=false;
@@ -943,8 +943,8 @@ function wsRun(bag){return new Promise(async done=>{
     if(lives<=0){over=true;finish(false);return}
     if(p<1)requestAnimationFrame(frame);else{over=true;finish(true)}}
   async function finish(ok){f.onpointerdown=null;me.classList.remove('run');ents.forEach(o=>o.el.remove());ents=[];f.querySelectorAll('.dz').forEach(e=>e.classList.remove('on'));
-    if(ok){const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';const m=at(.42,1);may.style.left=m.x+'px';may.style.top=m.y+'px';may.style.height=(LANEW*.5)+'px';f.appendChild(may);
-      lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease, width 1.3s ease';me.classList.add('run');await rawSleep(80);const q=at(.5,1);me.style.top=(q.y+LANEW*.09)+'px';me.style.height=(LANEW*.55)+'px';me.style.width=(LANEW*.55*.42)+'px';await rawSleep(S.speed>1?300:1400)}
+    if(ok){const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';const m=at(.42,1);may.style.left=m.x+'px';may.style.top=(m.y+LANEW*.18*.42)+'px';may.style.height=(LANEW*.95*.42)+'px';f.appendChild(may);
+      lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease, width 1.3s ease';me.classList.add('run');await rawSleep(80);const q=at(.47,1);me.style.top=(q.y+LANEW*.18*.47)+'px';me.style.height=(LANEW*1.05*.47)+'px';me.style.width=(LANEW*1.05*.47*.42)+'px';await rawSleep(S.speed>1?300:1400)}
     else await rawSleep(S.speed>1?200:900);
     me.style.transition='';done({ok,wet,spl,lives,max})}
   requestAnimationFrame(frame)})}

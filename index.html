@@ -65,7 +65,7 @@ button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .pill .ic{width:18px;height:18px;font-size:18px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
 .wrap{flex:1;width:100%;display:flex;align-items:flex-start;justify-content:center;min-height:0}
 .scaler{transform-origin:top center}
-.stage{position:relative;width:393px;height:852px;border-radius:46px;overflow:hidden;background:var(--paper-100);color:var(--ink-body);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px #0b0e0d,0 0 0 11px var(--n-line);user-select:none}
+.stage{position:relative;width:393px;height:852px;border-radius:46px;overflow:hidden;overflow:clip;background:var(--paper-100);color:var(--ink-body);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px #0b0e0d,0 0 0 11px var(--n-line);user-select:none}
 .stage.full{border-radius:18px;box-shadow:none}
 body.m .bar{width:100%;height:44px;padding:0 10px}
 body.m .bar .ttl{font-size:15px}
@@ -382,6 +382,12 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #post .pgrid i.txt span{font:italic 400 15px/20px var(--serif);color:var(--ink)}
 #post .pgrid i.txt small{position:absolute;left:10px;bottom:8px;font:400 10px/12px var(--sans);color:var(--ink-muted)}
 #post .vtap2{text-align:center;font:400 12px/16px var(--sans);color:var(--ink-muted);padding:10px 0 4px;animation:pulse 2.2s infinite}
+#post .ptx{margin:0 16px;padding:28px 20px;border-radius:14px;background:var(--paper-200);font:400 22px/30px var(--serif);color:var(--ink)}
+#post .cms{padding:4px 16px 0;display:grid;gap:6px}
+#post .cm{font:400 14px/20px var(--sans);color:var(--ink-body);animation:rise .3s ease-out both}
+#post .cm b{font-weight:600;color:var(--ink);margin-right:6px}
+#post .cm.me b{color:var(--m700)}
+#post .cm.del{font-style:italic;color:var(--ink-faint);font-size:13px}
 #post .pf{flex:none;padding:6px 16px 26px}
 
 
@@ -948,6 +954,7 @@ async function exec(s){
   case 'padauk': await padaukPick();break;
   case 'post': await postStep(v);break;
   case 'profile': await profileStep(v);break;
+  case 'glance': await glanceStep(v);break;
   case 'inCall': await incoming({k:'call',text:v});break;
   case 'inSticker': await incoming({k:'sticker',art:v});break;
   case 'out': await outgoing({k:'text',text:v});break;
@@ -1009,25 +1016,43 @@ async function profileStep(v){
   $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML='';
   $('#post .who b').textContent='Post';if(v.back)show('chat');await sleep(500);
 }
+const fv=(x)=>typeof x==='function'?x(S.flags):x;
+const artHTML=a=>typeof ART[a]==='function'?ART[a]():ART[a];
+const cmtHTML=c=>c.del?`<div class="cm del">${esc(c.del)} deleted a comment</div>`:`<div class="cm${c.me?' me':''}"><b>${esc(c.n)}</b>${esc(c.t)}</div>`;
+function postBody(v,tag){const art=fv(v.art),text=fv(v.text);
+  return `<div class="pa">${av(v.c,true)}<div><b>${esc(C[v.c].name)}</b><span>${tag?'with Min Htet':esc(v.place||'')}</span></div></div>
+   ${art?`<div class="pi">${artHTML(art)}</div>`:`<div class="ptx">${esc(text)}</div>`}
+   <div class="acts"><span class="hrt">${HEART}</span><span>${BUBBLE}</span></div>
+   <div class="lk" id="postLk">Liked by ${esc(v.likes)}</div>
+   ${art?`<div class="cap"><b>${esc(v.handle||C[v.c].name.split(' ')[0].toLowerCase())}</b>${esc(fv(v.cap))}</div>`:''}
+   <div class="cms" id="postCms"></div>
+   <div class="when">${esc(v.when||'')}</div>`}
+async function showCmts(list,gap){for(const c of list||[]){$('#postCms').insertAdjacentHTML('beforeend',cmtHTML(c));$('#postBody').scrollTo({top:9999,behavior:'smooth'});await sleep(gap||650)}}
+function trayPick(labels){return new Promise(res=>{$('#postTray').innerHTML=`<div class="tray">${labels.map((o,i)=>`<button class="opt" data-i="${i}"><span>${esc(o)}</span></button>`).join('')}</div>`;
+  $('#postTray').querySelectorAll('.opt').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();$('#postTray').innerHTML='';res(+b.dataset.i)}))})}
 async function postStep(v){
   await holdChat();renderList(liveRows(v.rows,null),null);show('list');await sleep(900);
-  const tag=typeof v.tag==='function'?v.tag(S.flags):v.tag;
+  const tag=fv(v.tag);
   await banner(v.c,C[v.c].name,tag?'tagged you in a photo':'posted a photo');
-  const others=v.likes;
-  const likeLine=me=>`Liked by ${me?'you, ':''}${others}`;
-  $('#postBody').innerHTML=`<div class="pa">${av(v.c,true)}<div><b>${esc(C[v.c].name)}</b><span>${tag?'with Min Htet':esc(v.place||'')}</span></div></div>
-   <div class="pi">${(a=>typeof ART[a]==='function'?ART[a]():ART[a])(typeof v.art==='function'?v.art(S.flags):v.art)}</div>
-   <div class="acts"><span class="hrt">${HEART}</span><span>${BUBBLE}</span></div>
-   <div class="lk" id="postLk">${likeLine(false)}</div>
-   <div class="cap"><b>${esc(C[v.c].name.split(' ')[0].toLowerCase())}</b>${esc(typeof v.cap==='function'?v.cap(S.flags):v.cap)}</div>
-   <div class="when">${esc(v.when||'')}</div>`;
-  $('#postTray').innerHTML='';show('post');await sleep(1600);
-  const opts=v.opts||['Like','Scroll past'];
-  const i=await new Promise(res=>{$('#postTray').innerHTML=`<div class="tray">${opts.map((o,i)=>`<button class="opt" data-i="${i}"><span>${esc(o)}</span></button>`).join('')}</div>`;
-    $('#postTray').querySelectorAll('.opt').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();$('#postTray').innerHTML='';res(+b.dataset.i)}))});
-  const liked=i===0;if(v.flag)S.flags[v.flag]=liked;
-  if(liked){$('#post .hrt').classList.add('on');$('#postLk').textContent=likeLine(true);Audio_.blip(true);await sleep(1400)}
-  else{$('#postBody').scrollTo({top:400,behavior:'smooth'});await sleep(900)}
+  $('#postBody').innerHTML=postBody(v,tag);$('#postBody').scrollTop=0;
+  $('#postTray').innerHTML='';show('post');await sleep(1400);
+  await showCmts(fv(v.cmts));await sleep(500);
+  const co=fv(v.cOpts);
+  const i=await trayPick(co?['Like','Comment','Scroll past']:['Like','Scroll past']);
+  const mode=i===0?'like':(co&&i===1)?'comment':'skip';
+  if(v.flag)S.flags[v.flag]=mode==='like'?true:mode==='comment'?'c':false;
+  if(mode==='like'){$('#post .hrt').classList.add('on');$('#postLk').textContent='Liked by you, '+v.likes;Audio_.blip(true);await sleep(1400)}
+  else if(mode==='comment'){const j=await trayPick(co.map(o=>o.label));const o=co[j];if(v.cflag)S.flags[v.cflag]='ABC'[j];
+    await showCmts([{n:'Min Htet',t:o.label,me:true}]);Audio_.blip(true);await sleep(1300);
+    await showCmts(o.reply.map(r=>({n:r[0],t:r[1]})),1100);await sleep(1200)}
+  else{$('#postBody').scrollTo({top:9999,behavior:'smooth'});await sleep(900)}
+}
+async function glanceStep(v){
+  await holdChat();renderList(liveRows(v.rows,null),null);show('list');await sleep(800);
+  await banner(v.c,C[v.c].name,'posted');
+  $('#postBody').innerHTML=postBody(v,false);$('#postBody').scrollTop=0;$('#postTray').innerHTML='';show('post');await sleep(1300);
+  await showCmts(fv(v.cmts),900);await sleep(600);
+  $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(200);$('#postTray').innerHTML='';
 }
 /* ============ SPECIAL SEQUENCES ============ */
 async function scrollBack(){
@@ -1213,7 +1238,6 @@ const PROLOGUE=[
  {open:{c:'may',stat:'Active 18 days ago'}},
  {pause:1600},
  {draft:{hint:'What does Min type?',opts:['Are you awake?',"It's raining here.",'I miss you.'],flag:'prologue_draft',auto:true,when:'Nov 2020'}},
- {profile:{c:'may',stat:'Active 18 days ago',bio:'umbrella thief victim. broken ones only',posts:24,friends:212,when:'Jul 2020',text:'it rains differently here',grid:['img/thingyan.webp','img/c3-lamp2.webp','img/c2-spot-river.webp','img/c2-candles.webp','img/c2-pagoda.webp','img/c3-pagoda19.webp','img/c2-spot-tea.webp','img/c2-spot-market.webp'],back:true}},
  {scrollback:true},
  {gallery:true},
  {title:{big:'<em>a story told in messages</em>Before the Rain Ends',small:'',rain:1,keep:true}},
@@ -1290,6 +1314,8 @@ const CH1=[
  {rain:1},{time:'9:24 PM'},
  {post:{c:'hnin',art:'teaTable',flag:'c1_post_like',tag:false,place:'Shwe Pyi Tea Shop',likes:'Daw Aye Aye and 4 others',when:'June 2018',
    cap:'rain all day. two customers. one table. three hours. two teas.',
+   cmts:[{n:'Daw Aye Aye',t:'Hnin, wipe the table.'},{n:'Hnin',t:'I did.'}],cflag:'c1_post_cmt',
+   cOpts:[{label:'The tea was good.',reply:[['Hnin',"it's the same tea as always"]]},{label:'One of them took the wrong umbrella.',reply:[['Hnin','I know. I was there']]}],
    rows:[{c:'mom',text:'Okay. Sleep early.',time:'9:10 PM'},...ch1Rows().slice(0,1)]}},
  {pause:600},
  // C1.3 First message
@@ -1375,7 +1401,11 @@ const CH1=[
    {label:'Give back her broken pink umbrella.',act:1,then:[{shot:'classroom4'},{say:['May','You brought it?? It\'s dead, Min.']},{min:'It should go home to its family.'},{narr:'She laughs so hard that Teacher Daw Nu tells her off.'},{say:['May','Keep it. It likes you more than me.']},{narr:'He takes it home again.'}]}]}},
  {mem:'note'},{pause:1000},
  // C1.5 Thura
- {rain:0},{time:'6:52 PM'},
+ {rain:0},{time:'6:40 PM'},
+ {glance:{c:'thura',text:'4 out of 5 world cup predictions on sbtv this week. call me coach',likes:'Hnin and 3 others',when:'June 2018',
+   cmts:[{n:'Hnin',t:'coach, you owe the shop 3 teas'},{n:'Thura',t:"coins first. lucky draw. then tea"}],
+   rows:[{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}]}},
+ {time:'6:52 PM'},
  {notify:{c:'thura',text:'bro',rows:[{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}]}},
  {in:'BRO'},
  pick('c1_return',{
@@ -1400,8 +1430,9 @@ const CH1=[
    {label:'It was a mistake.',send:'It was a mistake.',then:[{in:'hm. some mistakes are on purpose'}]},
    {label:'She brought it back today.',send:'She brought it back today.',then:[{in:"oh. that's good"},{pause:1400},{in:"she's pretty"}]},
    {label:'You saw that?',send:'You saw that?',then:[{in:"I see everything from behind the counter. that's my whole job"}]}]}},
- {if:{test:f=>f.c1_post_like===true,then:[{in:'also. you liked my post'},{in:"you've never liked one of my posts"},{pause:1200},{in:'so that table means something. noted'}],
-   else:[{in:'also. Daw Aye Aye liked my post before you did'},{in:"she doesn't know how her phone works"}]}},
+ {if:{test:f=>f.c1_post_like===true,then:[{in:'also. you liked my post'},{in:"you've never liked one of my posts"},{pause:1200},{in:'so that table means something. noted'}]}},
+ {if:{test:f=>f.c1_post_like==='c',then:[{in:'also. you commented on my post'},{in:'in public. where Daw Aye Aye can see'},{in:"she's already asking me questions"}]}},
+ {if:{test:f=>f.c1_post_like===false,then:[{in:'also. Daw Aye Aye liked my post before you did'},{in:"she doesn't know how her phone works"}]}},
  pick('c1_hnin',{
    A:[{in:'anyway. take your own umbrella next time'},{in:'not everyone has a spare to lend you'}],
    B:[{pause:1200},{in:'anyway'},{in:'next time it rains, not everyone will have a spare to lend you'}],
@@ -1553,11 +1584,17 @@ const CH2=[
  {post:{c:'may',flag:'c2_post_like',tag:false,place:'Sunday, after the rain',likes:'Thura, Hnin and 9 others',when:'August 2018',
    art:f=>f.c2_fav_photo==='may'?'mayCandid':'shot_'+(f.c2_fav_photo||((S.walk||[])[0]||{}).id),
    cap:f=>f.c2_fav_photo==='may'?"someone took this without asking. it's my favourite now":'photo by the umbrella thief. I just stood next to him',
+   cmts:f=>[{n:'Thura',t:'bro since when are you an artist'},{n:'Mom',t:f.c2_fav_photo==='may'?'Is this the nice girl? Very nice.':'Very nice photo. Who took it.'},{n:'May Thiri',t:f.c2_fav_photo==='may'?'hi auntie':'your son did auntie'}],cflag:'c2_post_cmt',
+   cOpts:f=>f.c2_fav_photo==='may'?[{label:'You said not to post that one.',reply:[['May Thiri','I said send me the original. this is me being nice']]},{label:"It's my favourite too.",reply:[['May Thiri','…min everyone can see this']]}]
+     :[{label:'The umbrella deserves credit too.',reply:[['May Thiri','the umbrella is retired. this was its last job']]},{label:"Next time you're in one.",reply:[['May Thiri','next time we BOTH are']]}],
    rows:[{c:'hnin',text:'',time:'6:41 PM'},{c:'thura',text:'',time:'Sat'},{c:'mom',text:'',time:'Fri'}]}},
  {if:{test:f=>f.c2_post_like===true,
    then:[{notify:{c:'may',text:'you liked your own photo',rows:[{c:'hnin',text:'',time:'6:41 PM'},{c:'thura',text:'',time:'Sat'},{c:'mom',text:'',time:'Fri'}]}},{in:"that's the most min htet thing you've ever done"},
      {choice:{flag:'c2_post_reply',opts:[{label:"It's a good photo.",send:"It's a good photo.",then:[{in:'it IS. ok you can stay humble tomorrow'}]},{label:'I liked the caption.',send:'I liked the caption.',then:[{in:'…ok that one got me'}]}]}}],
-   else:[{notify:{c:'may',text:"it's YOUR photo",rows:[{c:'hnin',text:'',time:'6:41 PM'},{c:'thura',text:'',time:'Sat'},{c:'mom',text:'',time:'Fri'}]}},{in:"and you didn't even like it"},{in:'thura liked it. THURA'},
+   else:[]}},
+ {if:{test:f=>f.c2_post_like==='c',then:[{notify:{c:'may',text:'your MOM is in my comments',rows:[{c:'hnin',text:'',time:'6:41 PM'},{c:'thura',text:'',time:'Sat'},{c:'mom',text:'',time:'Fri'}]}},{in:'she wants to know if I eat curry'},
+     {choice:{flag:'c2_post_reply',opts:[{label:'She does that.',send:'She does that.',then:[{in:'I like her. tell her yes'}]},{label:'Sorry.',send:'Sorry.',then:[{in:"don't be. she's funny. I'm keeping her"}]}]}}]}},
+ {if:{test:f=>f.c2_post_like===false,then:[{notify:{c:'may',text:"it's YOUR photo",rows:[{c:'hnin',text:'',time:'6:41 PM'},{c:'thura',text:'',time:'Sat'},{c:'mom',text:'',time:'Fri'}]}},{in:"and you didn't even like it"},{in:'thura liked it. THURA'},
      {choice:{flag:'c2_post_reply',opts:[{label:'I was looking at it.',send:'I was looking at it.',then:[{in:'look AND like. two steps. you can do it'}]},{label:'Liking it now.',send:'Liking it now.',then:[{in:'thank you. the photographer has been located'}]}]}}]}},
  {pause:900},
  // C2.5b Mom learns stickers
@@ -1577,6 +1614,10 @@ const CH2=[
  {in:'Bring her for dinner one day. Not now. One day.'},
  {in:'I will make the good curry, not the Tuesday curry.'},
  {pause:900},
+ {time:'8:31 PM'},
+ {glance:{c:'mom',text:'Testing. Is this posted.',likes:'Daw Aye Aye and 7 others',when:'September 2018',
+   cmts:[{n:'Daw Aye Aye',t:'It is posted.'},{n:'Mom',t:'Thank you Daw Aye Aye.'},{n:'Thura',t:'welcome to the internet auntie'},{n:'Mom',t:'Thura go home.'}],
+   rows:[{c:'hnin',text:'',time:'Aug'},{c:'may',text:'',time:'Aug'},{c:'thura',text:'',time:'Aug'}]}},
  // C2.5c May, the bangs
  {time:'9:47 PM'},
  {notify:{c:'may',text:'ok be honest',rows:[{c:'mom',text:'',time:'8:22 PM'},{c:'hnin',text:"I don't. I watch the tray",time:'Aug'},{c:'thura',text:"just don't forget us when you're famous",time:'Aug'}]}},
@@ -1763,6 +1804,8 @@ const CH3=[
  {time:'8:47 PM'},
  {post:{c:'may',art:'thingyan',flag:'c3_post_like',tag:f=>f.c2_friends===true,place:'Thingyan',likes:'Thura, Hnin and 14 others',when:'13 April 2019',
    cap:f=>f.c2_friends===true?'my victim. he never stood a chance':'thingyan. nobody stayed dry',
+   cmts:f=>[{n:'Thura',t:'I did that. the truck did that.'},{del:'Hnin'},...(f.c2_friends===true?[{n:'Mom',t:'Min, change your shirt. You will get sick.'}]:[])],cflag:'c3_post_cmt',
+   cOpts:[{label:'Worth it.',reply:[['May Thiri','it was']]},{label:"Next year I'm driving the truck.",reply:[['Thura','over my dead body']]}],
    rows:[{c:'thura',text:'',time:'2:10 PM'},{c:'hnin',text:'',time:'Mar'},{c:'mom',text:'',time:'Mar'}]}},
  {pause:600},
  // C3.2b May, the towel
@@ -1781,6 +1824,7 @@ const CH3=[
    {label:"Next Thingyan, I'll bring the towel.",send:"Next Thingyan, I'll bring the towel.",then:[{in:'a whole towel. for me'},{in:'ok. deal. a pink one'}]},
    {label:"Hnin gives everyone towels. You're the one who soaked me.",send:"Hnin gives everyone towels. You're the one who soaked me.",then:[{in:'hahaha'},{in:'true. you were MY victim'}]}]}},
  {if:{test:f=>f.c3_post_like===true,then:[{in:'also. you liked the photo in like four seconds'},{in:"don't think I didn't see"}]}},
+ {if:{test:f=>f.c3_post_like==='c',then:[{in:'also. thura screenshotted your comment'},{in:'he sent it to me. twice'}]}},
  {pause:900},
  // C3.2c Hnin, the same night
  {time:'11:20 PM'},
@@ -1799,6 +1843,10 @@ const CH3=[
    {label:"You're my oldest friend.",send:"You're my oldest friend.",then:[{typing:1500},{in:'yes'},{in:"I know. that's the problem"},{offline:'Offline'}]},
    {label:'(Leave it.)',then:[{pause:2200},{in:'goodnight, neighbour'}]}]}},
  {pause:1200},
+ {time:'11:58 PM'},
+ {glance:{c:'hnin',text:'towels lent today: 40. towels returned: 6.',likes:'Daw Aye Aye and 12 others',when:'13 April 2019',
+   cmts:[{n:'Thura',t:"I have two. they're mine now"},{n:'Daw Aye Aye',t:'Hnin come downstairs and count again.'}],
+   rows:[{c:'may',text:'',time:'10:52 PM'},{c:'thura',text:'',time:'2:10 PM'},{c:'mom',text:'',time:'Mar'}]}},
  // C3.3 Results
  {rain:0},{time:'9:05 AM'},
  {notify:{c:'may',text:'I PASSED',div:'Jun 2019',rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Apr'},{c:'thura',text:'sent a photo',time:'Apr'},{c:'mom',text:'Daw Aye Aye talks.',time:'Mar'}]}},
@@ -1810,7 +1858,7 @@ const CH3=[
    {label:'Stay.',send:'Stay.',then:[{in:'ha'},{typing:1500},{pause:1200},{in:'they said maybe next year anyway. the business needs me here first'}]},
    {label:'What do you want?',send:'What do you want?',then:[{in:'I always wanted to leave this town'},{in:'but I wanted to CHOOSE to. not be sent'},{in:'does that make sense'},{out:'It does.'}]}]}},
  {in:'local college this year. the city is "maybe next year"'},
- {if:{test:f=>f.c3_post_like!==true,then:[{pause:1200},{in:'also you never liked my thingyan photo'},{in:"two months, min. I'm counting"},
+ {if:{test:f=>f.c3_post_like===false,then:[{pause:1200},{in:'also you never liked my thingyan photo'},{in:"two months, min. I'm counting"},
    {choice:{flag:'c3_post_late',opts:[
      {label:'Liking it now.',send:'Liking it now.',then:[{in:'too late'},{in:"that's a pity like. it doesn't count"}]},
      {label:'I looked at it a lot.',send:'I looked at it a lot.',then:[{typing:1400},{in:"…that's worse"},{in:'and also better'}]}]}}]}},
@@ -1858,6 +1906,8 @@ const CH3=[
    {label:'How does a bike go backwards?',send:'How does a bike go backwards?',then:[{in:"I don't know bro. I'm a genius"}]},
    {label:'Did the customer notice?',send:'Did the customer notice?',then:[{in:'he noticed when he reversed into the tea shop'},{in:'hnin threw a stool at me. not at him. at ME'}]},
    {label:"Bring it here. I'll take a photo.",send:"Bring it here. I'll take a photo.",then:[{in:'no. evidence is how they catch you'}]}]}},
+ {in:"also I'm 9 for 9 on sbtv predictions this month"},
+ {in:"if I win the lucky draw I'm buying a bike that goes forwards"},
  {in:"anyway. how's may. you two still disgusting?"},
  {if:{test:f=>f.c2_friends===true,then:[{in:'disgusting means happy. I checked'}],else:[{in:'or still "just friends". bro.'}]}},
  {pause:900},

@@ -363,6 +363,57 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #post .cap b{font-weight:600;color:var(--ink);margin-right:6px}
 #post .when{padding:4px 16px;font:400 12px/16px var(--sans);color:var(--ink-faint)}
 #post .pf{flex:none;padding:6px 16px 26px}
+
+/* library */
+#start{background:var(--m900);color:var(--on-deep);display:block;padding:0;text-align:left}
+#start .lib{position:absolute;inset:0;overflow-y:auto;padding:58px 20px 40px;transition:transform .45s ease,opacity .45s}
+#start .lib::-webkit-scrollbar{display:none}
+#start.chap .lib{transform:translateX(-30%);opacity:0;pointer-events:none}
+#start .lhd .eb{font:600 12px/16px var(--sans);color:var(--n-clay);margin:0}
+#start .lhd h1{font:300 40px/46px var(--serif);letter-spacing:-.02em;font-variation-settings:'opsz' 144;margin:2px 0 18px}
+#start .hero{position:relative;height:430px;border-radius:22px;overflow:hidden;cursor:pointer;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+#start .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform 1.2s ease}
+#start .hero:hover img{transform:scale(1.03)}
+#start .hs{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,26,25,0) 35%,rgba(20,26,25,.55) 62%,rgba(20,26,25,.94))}
+#start .hx{position:absolute;left:0;right:0;bottom:0;padding:20px}
+#start .hx .tag{font:600 12px/16px var(--sans);color:var(--n-clay)}
+#start .hx h2{font:300 34px/38px var(--serif);letter-spacing:-.015em;margin-top:4px;font-variation-settings:'opsz' 144}
+#start .hx p{font:300 italic 16px/22px var(--serif);color:var(--n-body);margin-top:6px}
+#start .pr{display:none;margin-top:14px;align-items:center;gap:10px;font:400 12px/16px var(--sans);color:rgba(251,247,239,.8)}
+#start .pr.on{display:flex}
+#start .pr .pbar{flex:none;width:96px;height:4px;border-radius:2px;background:rgba(251,247,239,.22);overflow:hidden}
+#start .pr .pbar i{display:block;height:100%;background:var(--paper-50);border-radius:2px}
+#start .hbtns{display:flex;gap:10px;margin-top:16px}
+#start .hbtns button{flex:1;height:46px;border-radius:6px;font:500 15px/20px var(--sans)}
+#start button.go{margin:0;background:var(--paper-50);color:var(--ink);padding:0}
+#start button.go:hover{background:var(--paper-200)}
+#start button.sec{background:transparent;color:var(--on-deep);border:1.5px solid rgba(251,247,239,.35)}
+#start button.sec:hover{background:rgba(251,247,239,.08)}
+#start .meta{font:400 13px/20px var(--sans);color:rgba(251,247,239,.6);margin-top:12px;text-align:center}
+#start .sh{font:500 18px/24px var(--serif);margin:32px 0 12px}
+#start .soon{display:flex;gap:14px;align-items:center;padding:18px;border-radius:16px;border:1.5px dashed rgba(251,247,239,.25);color:rgba(251,247,239,.75)}
+#start .soon .ic{width:28px;height:28px;font-size:28px;color:var(--n-clay)}
+#start .soon b{display:block;font:500 15px/20px var(--sans);color:var(--on-deep)}
+#start .soon span{font:400 13px/18px var(--sans)}
+#start .chs{position:absolute;inset:0;padding:54px 20px 40px;transform:translateX(100%);transition:transform .45s ease;background:var(--m900);display:flex;flex-direction:column;overflow-y:auto}
+#start.chap .chs{transform:none}
+#start .chh{display:flex;align-items:center;gap:8px;margin-bottom:18px}
+#start .chh .bk{width:40px;height:40px;display:grid;place-items:center;color:var(--on-deep);margin-left:-8px}
+#start .chh small{display:block;font:400 12px/16px var(--sans);color:var(--n-clay)}
+#start .chh b{font:400 26px/32px var(--serif)}
+#start .chl{display:grid;gap:10px}
+#start .cr{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:rgba(251,247,239,.06);text-align:left;color:var(--on-deep);width:100%}
+#start button.cr:hover{background:rgba(251,247,239,.11)}
+#start .cr .n{flex:none;width:36px;height:36px;border-radius:999px;display:grid;place-items:center;font:500 14px/1 var(--sans);background:rgba(251,247,239,.12)}
+#start .cr.done .n{background:var(--paper-50);color:var(--ink)}
+#start .cr.next .n{background:var(--n-clay);color:var(--m900)}
+#start .cr .t{flex:1;min-width:0}
+#start .cr .t b{display:block;font:500 17px/22px var(--serif)}
+#start .cr .t span{font:400 12px/16px var(--sans);color:rgba(251,247,239,.62)}
+#start .cr .st{font:500 12px/16px var(--sans);color:rgba(251,247,239,.7)}
+#start .cr.lock{opacity:.5}
+#start .over{margin-top:auto;align-self:center;padding:14px 20px;font:500 14px/20px var(--sans);color:rgba(251,247,239,.7)}
+#start .over.sure{color:#F2A08C}
 /* photo walk side quest */
 #pwalk{background:#0f1312;color:var(--n-ink);display:flex;flex-direction:column}
 #pwalk .ph1{padding:58px 20px 10px}
@@ -541,11 +592,21 @@ img{display:block;user-select:none;-webkit-user-drag:none}
     <div class="ov" id="album"></div>
     <div class="ov" id="end"></div>
     <div class="ov on" id="start">
-      <span class="ic um">umbrella</span><div class="eb">A story told in messages</div>
-      <h1>Before the<br>Rain Ends</h1>
-      <div class="sub">For the days when you miss someone.</div>
-      <div class="meta">Prologue &amp; Chapters 1–3 · about 65 minutes<br>Tap a reply to send it. Some things you can choose not to send.<br>Best with sound on.</div>
-      <button class="go" id="go">Begin</button>
+      <div class="lib" id="lib">
+        <div class="lhd"><div class="eb">ChatChat</div><h1>Stories</h1></div>
+        <div class="hero" id="hero" role="button" tabindex="0">
+          <img src="img/dr-13-walk-open.webp" alt="" draggable="false">
+          <div class="hs"></div>
+          <div class="hx"><div class="tag">A story told in messages</div><h2>Before the Rain Ends</h2><p>For the days when you miss someone.</p>
+            <div class="pr" id="libPr"><div class="pbar"><i id="libBar"></i></div><span id="libWhere"></span></div></div>
+        </div>
+        <div class="hbtns"><button class="go" id="go">Begin</button><button class="sec" id="libCh">Chapters</button></div>
+        <div class="meta" id="libMeta">Prologue &amp; Chapters 1–3 · about 65 minutes</div>
+        <h3 class="sh">More stories</h3>
+        <div class="soon"><span class="ic i-note-pencil"></span><div><b>A new story is being written</b><span>It will appear here when it's ready.</span></div></div>
+      </div>
+      <div class="chs" id="chs"><div class="chh"><button class="bk" id="chBack" aria-label="Back"><span class="ic i-arrow-left"></span></button><div><small>Before the Rain Ends</small><b>Chapters</b></div></div><div class="chl" id="chList"></div>
+        <button class="over" id="chOver">Start over</button></div>
     </div>
   </div>
   </div></div>
@@ -1754,9 +1815,7 @@ const CH3=[
  {end:3}
 ];
 /* ============ START ============ */
-$('#go').onclick=async e=>{e.stopPropagation();Audio_.init();if(Audio_.ctx){S.sound=true;$('#bSound span:last-child').textContent='On';$('#bSound .ic').className='ic i-'+SPK_ON;if(Audio_.ctx.state==='suspended')Audio_.ctx.resume()}
-  $('#start').classList.remove('on');await rawSleep(600);
-  await runFlow(0);};
+function startAudio(){Audio_.init();if(Audio_.ctx){S.sound=true;$('#bSound span:last-child').textContent='On';$('#bSound .ic').className='ic i-'+SPK_ON;if(Audio_.ctx.state==='suspended')Audio_.ctx.resume()}}
 const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2,...CH3];
 const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
   if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}
@@ -1766,10 +1825,57 @@ devT.oninput=()=>{devL.textContent=devT.value+' · '+FLOW_LBL[devT.value]};
 devT.onchange=()=>{const v=devT.value;try{sessionStorage.setItem('bre_jump',v)}catch(e){}
   try{history.replaceState(null,'','#jump='+v)}catch(e){location.hash='jump='+v}
   location.reload()};
-async function runFlow(i){for(;i<FLOW.length;i++){devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];await exec(FLOW[i])}}
+/* ============ STORIES · SAVES ============ */
+const STORIES=[{id:'bre',title:'Before the Rain Ends',chapters:[
+  {n:'P',t:'Prologue',d:'November 2020'},
+  {n:'1',t:'The First Rain',d:'June 2018'},
+  {n:'2',t:'Monsoon Season',d:'July to October 2018'},
+  {n:'3',t:'Thingyan',d:'March to December 2019'},
+  {n:'4',t:'The Station',d:'2020',soon:true}]}];
+const STORY=STORIES[0];
+const CH_START=(()=>{const a=[0];FLOW.forEach((st,i)=>{const m=st&&st.title&&/^<em>Chapter (\d+)<\/em>/.exec(st.title.big);if(m)a[+m[1]]=i});return a})();
+const CH_END=(()=>{const a={};FLOW.forEach((st,i)=>{const m=st&&st.title&&/^<em>End of Chapter (\d+)<\/em>/.exec(st.title.big);if(m)a[i]=+m[1]});return a})();
+const SAVE_KEY='chatchat.saves.v1';let SAVES={};
+try{SAVES=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}}catch(e){SAVES={}}
+function sv(){return SAVES[STORY.id]=SAVES[STORY.id]||{cps:{},done:[],cur:null}}
+function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(SAVES))}catch(e){}}
+function snap(){return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day:S.day||0}))}
+function restore(c){S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null}
+function markDone(k){const v=sv();if(!v.done.includes(k))v.done.push(k);persist()}
+let DEVJUMP=false;
+async function runFlow(i){for(;i<FLOW.length;i++){devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];
+  if(!DEVJUMP){const k=CH_START.indexOf(i);if(k>=0){const v=sv();v.cps[k]=snap();v.cur=k;if(k>0)markDone(k-1);persist()}
+    if(CH_END[i]!==undefined){markDone(CH_END[i]);const v=sv();v.cps[CH_END[i]+1]=snap();v.cur=CH_END[i]+1;persist()}
+    if(FLOW[i]&&FLOW[i].end!==undefined)markDone(FLOW[i].end)}
+  await exec(FLOW[i])}}
+function libState(){const v=sv();const played=CH_START.length;
+  const nextK=(()=>{for(let k=0;k<played;k++)if(!v.done.includes(k))return k;return null})();
+  const any=v.cur!==null||v.done.length;const frac=v.done.filter(k=>k<played).length/played;
+  return {v,nextK,any,frac}}
+function renderLib(){const {v,nextK,any,frac}=libState();const C_=STORY.chapters;
+  $('#go').textContent=!any?'Begin':nextK===null?'Play again':'Continue';
+  $('#libPr').classList.toggle('on',!!any);$('#libBar').style.width=Math.round(frac*100)+'%';
+  $('#libWhere').textContent=nextK===null?'All chapters so far finished':(nextK===0?'Prologue':'Chapter '+nextK+' · '+C_[nextK].t);
+  $('#chList').innerHTML=C_.map((c,k)=>{const done=v.done.includes(k),open=!c.soon&&(k===0||done||v.done.includes(k-1)||v.cps[k]);const cls=c.soon?'lock':done?'done':open?'next':'lock';
+    const st=c.soon?'Coming soon':done?'Played':open?(v.cps[k]&&v.cur===k?'In progress':'Up next'):'Locked';
+    const tag=open?'button':'div';
+    return `<${tag} class="cr ${cls}" data-k="${k}"><div class="n">${done?'✓':c.n}</div><div class="t"><b>${k===0?'Prologue':'Chapter '+c.n+' · '+c.t}</b><span>${c.d}</span></div><div class="st">${st}</div></${tag}>`}).join('');
+  $('#chList').querySelectorAll('button.cr').forEach(b=>b.onclick=e=>{e.stopPropagation();playFrom(+b.dataset.k)});
+  $('#chOver').classList.remove('sure');$('#chOver').textContent='Start over';$('#chOver').style.display=any?'':'none';}
+async function playFrom(k){startAudio();const v=sv();if(k>0&&!v.cps[k])k=0;
+  if(k>0)restore(v.cps[k]);else restore({});
+  $('#start').classList.remove('on');await rawSleep(600);$('#start').classList.remove('chap');
+  await runFlow(CH_START[k]);}
+$('#go').onclick=e=>{e.stopPropagation();const {nextK}=libState();playFrom(nextK===null?0:nextK)};
+$('#hero').onclick=e=>{e.stopPropagation();$('#go').click()};
+$('#libCh').onclick=e=>{e.stopPropagation();renderLib();$('#start').classList.add('chap')};
+$('#chBack').onclick=e=>{e.stopPropagation();$('#start').classList.remove('chap')};
+$('#chOver').onclick=e=>{e.stopPropagation();const b=$('#chOver');if(!b.classList.contains('sure')){b.classList.add('sure');b.textContent='Tap again to erase your progress';return}
+  delete SAVES[STORY.id];persist();renderLib();$('#start').classList.remove('chap')};
+renderLib();
 (()=>{let j=null;try{j=sessionStorage.getItem('bre_jump');sessionStorage.removeItem('bre_jump')}catch(e){}
   const m=/jump=(\d+)/.exec(location.hash);if(m){j=m[1];try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
-  if(j!==null){$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
+  if(j!==null){DEVJUMP=true;$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
 $('#bSound span:last-child').textContent='Off';$('#bSound .ic').className='ic i-'+SPK_OFF;
 </script>
 </body>

@@ -388,10 +388,10 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #wsField .pal.hit{filter:drop-shadow(0 6px 4px rgba(0,0,0,.25)) brightness(.86) saturate(.7) hue-rotate(-10deg)}
 #wsMin{z-index:150;transition:left .14s ease}
 #wsField .spr{transform-origin:50% 100%}
-#wsMin.run{animation:wsRun .3s ease-in-out infinite alternate}
-@keyframes wsRun{from{margin-top:0;rotate:-1.5deg}to{margin-top:-6px;rotate:1.5deg}}
-#wsField .pal:not(.hit){animation:wsWob .36s ease-in-out infinite alternate}
-@keyframes wsWob{from{margin-top:0;rotate:-1.5deg}to{margin-top:-4px;rotate:1.5deg}}
+#wsField .anim{background-size:400% 100%;background-repeat:no-repeat;background-position:0 0}
+#wsMin.run{animation:wsRun .44s steps(4) infinite}
+@keyframes wsRun{to{background-position-x:133.333%}}
+#wsField .pal{animation:wsRun .5s steps(4) infinite}
 #wsField .truck{animation:wsBump .2s ease-in-out infinite alternate}
 @keyframes wsBump{from{margin-top:0}to{margin-top:-2px}}
 #wsMin.hit{animation:wsHit .45s}
@@ -911,7 +911,7 @@ function wsRun(bag){return new Promise(async done=>{
   f.appendChild(svg);
   const lv=()=>{$('#wsLives').innerHTML=Array.from({length:max},(_,i)=>`<i class="ic i-camera${i<lives?'':' off'}"></i>`).join('')+`<span style="margin-left:4px">${bag?'In a plastic bag':'Camera'}</span><span class="sc"><i class="ic i-drop"></i>${spl}</span>`};
   hud.style.display='block';$('#wsSongI').style.width='0';lv();
-  const me=document.createElement('img');me.src='img/ws-min.webp';me.id='wsMin';me.className='spr';me.style.height=(LANEW*1.05)+'px';f.appendChild(me);
+  const me=document.createElement('div');me.id='wsMin';me.className='spr anim';me.style.backgroundImage='url(img/ws-min-run.webp)';me.style.height=(LANEW*1.05)+'px';me.style.width=(LANEW*1.05*.513)+'px';f.appendChild(me);
   const put=()=>{const p=at(1,lane);me.style.left=p.x+'px';me.style.top=(p.y+LANEW*.18)+'px'};put();
   let lastPop=0,popN=0;const pop=(x,y,t,bad)=>{const n=performance.now();popN=n-lastPop<700?popN+1:0;lastPop=n;y-=popN*22;const p=document.createElement('div');p.className='pop'+(bad?' bad':'');p.textContent=t;p.style.left=x+'px';p.style.top=y+'px';f.appendChild(p);setTimeout(()=>p.remove(),800)};
   const cnt=$('#wsCount');cnt.style.display='flex';for(const n of ['3','2','1']){cnt.textContent=n;await rawSleep(S.speed>1?120:520)}cnt.style.display='none';
@@ -919,8 +919,8 @@ function wsRun(bag){return new Promise(async done=>{
   f.onpointerdown=e=>{if(over)return;e.stopPropagation();const r=f.getBoundingClientRect(),x=e.clientX-r.left;
     lane=Math.max(0,Math.min(2,lane+(x<W/2?-1:1)));put()};
   const t0=performance.now();let last=t0,nextPal=t0+700,nextTruck=t0+2400/sp;
-  const spawn=(k,l)=>{const el=document.createElement('img');el.className='spr '+k;el.src=k==='truck'?'img/ws-truck.webp':Math.random()<.5?'img/ws-pal1.webp':'img/ws-pal2.webp';
-    const o={k,l,z:6.2,el,ar:k==='truck'?254/360:el.src.includes('pal1')?302/360:330/360};f.appendChild(el);ents.push(o);
+  const spawn=(k,l)=>{let el,ar;if(k==='truck'){el=document.createElement('img');el.src='img/ws-truck.webp';ar=254/360}else{el=document.createElement('div');const g=Math.random()<.5;el.style.backgroundImage=`url(img/ws-pal${g?1:2}-run.webp)`;el.classList.add('anim');ar=g?.38:.403}el.classList.add('spr',k);
+    const o={k,l,z:6.2,el,ar};f.appendChild(el);ents.push(o);
     if(k==='pal')el.onpointerdown=e=>{e.stopPropagation();if(over||o.hit||o.z>4.2)return;o.hit=1;spl++;el.classList.add('hit');const p=at(1/o.z,o.l);pop(p.x,p.y-LANEW*1.1/o.z,'Splash!');Audio_.blip(true);lv()};
     if(k==='truck'){$('#wsDz'+l).classList.add('on')}
     return o};
@@ -931,7 +931,7 @@ function wsRun(bag){return new Promise(async done=>{
     if(p<.88&&now>nextTruck&&!busy()){const free=[0,1,2].filter(l=>!ents.some(q=>q.l===l&&q.z>2.2));if(free.length){const l=free.includes(lane)&&Math.random()<.65?lane:free[Math.floor(Math.random()*free.length)];spawn('truck',l)}nextTruck=now+(3300-p*1100)/sp}
     for(const o of ents){const ah=ents.filter(q=>q!==o&&q.l===o.l&&q.z<o.z&&!q.done).reduce((m,q)=>Math.max(m,q.z),0);const v=(o.k==='truck'?.001+p*.0005:.0008+p*.0004)*dt*sp;o.z=Math.max(.55,ah?ah+.9:0,o.z-v*o.z*.55-v*.4);
       const s=1/o.z,pt=at(Math.min(s,1.6),o.l),h=Math.min(LANEW*(o.k==='truck'?1.15:1.0)*s,LANEW*s*.9/o.ar);
-      o.el.style.left=pt.x+'px';o.el.style.top=(pt.y+LANEW*.18*s)+'px';o.el.style.height=h+'px';o.el.style.zIndex=Math.round(s*100)+(o.k==='truck'?1:0);
+      o.el.style.left=pt.x+'px';o.el.style.top=(pt.y+LANEW*.18*s)+'px';o.el.style.height=h+'px';if(o.k!=='truck')o.el.style.width=(h*o.ar)+'px';o.el.style.zIndex=Math.round(s*100)+(o.k==='truck'?1:0);
       if(o.k==='pal'&&!o.hit)o.el.classList.toggle('far',o.z>4.2);if(o.done)o.el.style.opacity=Math.max(0,(o.z-.6)/.45);
       if(!o.done&&o.z<=1.05){o.done=1;
         if(o.k==='truck'){$('#wsDz'+o.l).classList.remove('on');const b=document.createElement('div');b.className='burst';const q=at(1,o.l);b.style.left=q.x+'px';b.style.top=q.y+'px';f.appendChild(b);setTimeout(()=>b.remove(),600);
@@ -944,7 +944,7 @@ function wsRun(bag){return new Promise(async done=>{
     if(p<1)requestAnimationFrame(frame);else{over=true;finish(true)}}
   async function finish(ok){f.onpointerdown=null;me.classList.remove('run');ents.forEach(o=>o.el.remove());ents=[];f.querySelectorAll('.dz').forEach(e=>e.classList.remove('on'));
     if(ok){const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';const m=at(.42,1);may.style.left=m.x+'px';may.style.top=m.y+'px';may.style.height=(LANEW*.5)+'px';f.appendChild(may);
-      lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease';await rawSleep(80);const q=at(.5,1);me.style.top=(q.y+LANEW*.09)+'px';me.style.height=(LANEW*.55)+'px';await rawSleep(S.speed>1?300:1400)}
+      lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease, width 1.3s ease';me.classList.add('run');await rawSleep(80);const q=at(.5,1);me.style.top=(q.y+LANEW*.09)+'px';me.style.height=(LANEW*.55)+'px';me.style.width=(LANEW*.55*.513)+'px';await rawSleep(S.speed>1?300:1400)}
     else await rawSleep(S.speed>1?200:900);
     me.style.transition='';done({ok,wet,spl,lives,max})}
   requestAnimationFrame(frame)})}

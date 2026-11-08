@@ -518,7 +518,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
       <span class="ic um">umbrella</span><div class="eb">A story told in messages</div>
       <h1>Before the<br>Rain Ends</h1>
       <div class="sub">For the days when you miss someone.</div>
-      <div class="meta">Prologue &amp; Chapters 1–3 · about 55 minutes<br>Tap a reply to send it. Some things you can choose not to send.<br>Best with sound on.</div>
+      <div class="meta">Prologue &amp; Chapters 1–3 · about 65 minutes<br>Tap a reply to send it. Some things you can choose not to send.<br>Best with sound on.</div>
       <button class="go" id="go">Begin</button>
     </div>
   </div>
@@ -739,6 +739,8 @@ function banner(c,title,text,accept){const b=$('#banner');b.innerHTML=`${av(c,tr
   return new Promise(r=>{const h=e=>{e.stopPropagation();b.removeEventListener('click',h);b.classList.remove('on');r()};b.addEventListener('click',h)});}
 
 /* ============ CHAT LIST ============ */
+function liveRows(rows,skip){return (rows||[]).map(r=>{if(r.c===skip)return r;const t=(S.threads[r.c]||[]).filter(m=>m.k!=='div'&&m.k!=='sys');const m=t[t.length-1];if(!m)return r.text?r:Object.assign({},r,{text:'…'});
+  const text=m.k==='text'?m.text:m.k==='sticker'?'Sticker':m.k==='photo'?'Photo':m.k==='voice'?'Voice message':(m.text||r.text);return Object.assign({},r,{text,you:m.dir==='out',unread:0,seen:false})})}
 function renderList(rows,only){const R=$('#rows');R.innerHTML=rows.map(r=>`<button class="crow${only&&r.c!==only?' dim':''}${only===r.c?' pulse':''}" data-c="${r.c}">${av(r.c,false,r.on)}<div class="meta"><div class="nm">${C[r.c].name}<span>${r.time||''}</span></div><div class="pv"><span>${r.you?'<b>You:</b> ':''}${esc(r.text)}</span><i>${r.unread?`<span class="badge">${r.unread}</span>`:(r.seen?'<span style="font-size:11px">Seen</span>':'')}</i></div></div></button>`).join('');}
 function waitRow(only){return new Promise(r=>{$('#rows').querySelectorAll('.crow').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();if(b.dataset.c===only){r()}else{b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake')}}))})}
 
@@ -796,7 +798,7 @@ async function exec(s){
   case 'lock':{ $('#wall').innerHTML=ART.teaTable();$('#lockDate').textContent=v.date;$('#lockTime').textContent=v.time;show('lock');await swipeUp();break}
   case 'list':{ renderList(v.rows,v.only);show('list');if(v.only){await waitRow(v.only)}break}
   case 'open': openChat(v.c,v.stat);await sleep(500);break;
-  case 'notify':{ await holdChat();renderList(v.rows,null);show('list');await sleep(900);if(v.div)push({k:'div',text:v.div},v.c);push(Object.assign({dir:'in'},v.m||{k:'text',text:v.text}),v.c);await banner(v.c,C[v.c].name,v.text);openChat(v.c,v.stat);await sleep(600);break}
+  case 'notify':{ await holdChat();renderList(liveRows(v.rows,v.c),null);show('list');await sleep(900);if(v.div)push({k:'div',text:v.div},v.c);push(Object.assign({dir:'in'},v.m||{k:'text',text:v.text}),v.c);await banner(v.c,C[v.c].name,v.text);openChat(v.c,v.stat);await sleep(600);break}
   case 'friend':{ await holdChat();renderList(v.rows,null);show('list');await sleep(900);await banner('may','May Thiri','sent you a friend request',true);toast('You and <b>May Thiri</b> are now connected');openChat('may','Active now');push({k:'sys',text:'You are now connected on moe'});await sleep(900);break}
   case 'in': await incoming({k:'text',text:v});break;
   case 'inPhoto': await incoming({k:'photo',art:v});break;
@@ -1150,6 +1152,24 @@ const CH1=[
    {label:'Goodnight, May.',send:'Goodnight, May.',then:[{inSticker:'sleepy'}]},
    {label:'Send a sticker',sticker:'catUmb',act:1,then:[{in:"STOP that's so cute"},{in:'where did you get that'},{out:'It came free with the app.'},{in:'liar'}]}]}},
  {pause:1200},
+ // C1.3b Hnin, next morning
+ {rain:0},{time:'7:05 AM'},
+ {notify:{c:'hnin',text:'your light was on until 1am',rows:[{c:'may',text:'goodnight umbrella thief',time:'12:58 AM'},{c:'mom',text:'Okay. Sleep early.',time:'Sun'},{c:'thura',text:'football sat?',time:'Sun'}]}},
+ {in:'I could see it from our kitchen'},
+ {in:'were you studying? you never study'},
+ {choice:{flag:'c1_hnin_am',opts:[
+   {label:'I was reading.',send:'I was reading.',then:[{in:'reading what'},{out:'Messages.'},{in:'from who'},{out:'Nobody.'},{in:'nobody types for two hours, Min Htet'}]},
+   {label:'Why are you awake at 7?',send:'Why are you awake at 7?',then:[{in:'the shop opens at 6'},{in:'some of us have jobs. you have a camera and a seat by the fan'}]},
+   {label:'Were you watching my window?',send:'Were you watching my window?',then:[{in:'I was boiling water'},{in:'your window is in the way. move your house'}]}]}},
+ {in:'anyway. your mom says the samosas were too salty yesterday'},
+ {in:'she is blaming the new oil. it was not the oil'},
+ {out:'What was it?'},
+ {in:'she was on the phone with your aunt the whole time she was frying'},
+ {in:"don't tell her I said that"},
+ {out:"I'm telling her."},
+ {in:"then I'm telling her about your light"},
+ {inSticker:'teaCup'},
+ {pause:900},
  // C1.4 Class
  {scene:{art:'classroom1',cap:"Teacher Daw Nu's English class · the next evening",rain:0}},
  {narr:'A ceiling fan. Fifteen students. The lesson is the present perfect.'},
@@ -1341,6 +1361,97 @@ const CH2=[
    {label:'We were taking photos.',send:'We were taking photos.',then:[{in:'"we"'},{pause:1400},{in:"ok. the tray's inside"}]},
    {label:'Since when do you watch the river?',send:'Since when do you watch the river?',then:[{in:"I don't. I watch the tray"}]}]}},
  {pause:900},
+ // C2.5b Mom learns stickers
+ {rain:1},{time:'8:15 PM'},
+ {notify:{c:'mom',text:'How do I send the moving cat.',div:'Sep 2018',rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Aug'},{c:'may',text:'ok I picked my favourite',time:'Aug'},{c:'thura',text:"just don't forget us when you're famous",time:'Aug'}]}},
+ {in:'Daw Aye Aye sends me a moving cat every morning. I want to send one back.'},
+ {choice:{flag:'c2_mom_stk',opts:[
+   {label:'Tap the smiley face, then the cat.',send:'Tap the smiley face, then the cat.',then:[{inSticker:'laugh'},{in:'This is not a cat.'},{in:'Why is this man laughing.'},{out:'Press the one next to it.'},{in:'Too late. I sent the laughing man to the monastery donation group.'},{in:'Sayadaw replied.'}]},
+   {label:"I'll do it for you tomorrow.",send:"I'll do it for you tomorrow.",then:[{in:'Tomorrow you will be out with your camera friend.'},{in:'I know how tomorrow works.'}]},
+   {label:'(Send her the cat sticker.)',sticker:'catUmb',then:[{in:'Yes. This one.'},{in:'How do I keep it.'},{out:'Press and hold.'},{in:'I pressed. Now the cat is on my phone forever.'},{in:'Good.'}]}]}},
+ {in:'Also. Daw Aye Aye says the girl with the yellow umbrella walked past the shop three times on Thursday.'},
+ {in:'Three times.'},
+ {choice:{flag:'c2_mom_yellow',opts:[
+   {label:'Maybe she likes samosas.',send:'Maybe she likes samosas.',then:[{in:'Then she can come in and buy one like a normal person.'}]},
+   {label:'Mom.',send:'Mom.',then:[{in:'I am only reporting.'}]},
+   {label:'It was four times.',send:'It was four times.',then:[{typing:1400},{in:'Daw Aye Aye missed one?'},{in:'She will be very upset.'}]}]}},
+ {in:'Bring her for dinner one day. Not now. One day.'},
+ {in:'I will make the good curry, not the Tuesday curry.'},
+ {pause:900},
+ // C2.5c May, the bangs
+ {time:'9:47 PM'},
+ {notify:{c:'may',text:'ok be honest',rows:[{c:'mom',text:'',time:'8:22 PM'},{c:'hnin',text:"I don't. I watch the tray",time:'Aug'},{c:'thura',text:"just don't forget us when you're famous",time:'Aug'}]}},
+ {in:'I cut my own bangs'},
+ {in:'with the KITCHEN scissors'},
+ {in:"my mom says I look like a mushroom. don't laugh"},
+ {in:'you will see tomorrow. prepare yourself'},
+ {pause:1200},
+ {choice:{flag:'c2_bangs',opts:[
+   {label:'Okay.',send:'Okay.',then:[{typing:1400},{in:'okay?'},{in:'OKAY??'},{in:'I tell you I attacked my own face with kitchen scissors and you say okay like I told you the bus is late'}]},
+   {label:"I'm sure it's fine.",send:"I'm sure it's fine.",then:[{in:'"fine"'},{in:"fine is what my dad says about soup he doesn't like"}]},
+   {label:'Send a photo.',send:'Send a photo.',then:[{in:'NO'},{in:'you will see it tomorrow like everyone else and act normal'},{out:'I always act normal.'},{in:'yes. about EVERYTHING. that is the problem'}]}]}},
+ {pause:900},
+ {in:'goodnight.'},
+ {offline:'Offline'},{sys:'May Thiri is offline'},
+ {pause:1600},
+ // C2.5d Hnin, advice
+ {time:'10:06 PM'},
+ {open:{c:'hnin',stat:'Active now'}},
+ {out:'Hnin. Question.'},
+ {typing:900},{in:'no'},{pause:900},{in:'…what'},
+ {choice:{flag:'c2_ask_hnin',opts:[
+   {label:'How do you know if a girl is angry?',send:'How do you know if a girl is angry?',then:[{in:'she starts using full stops'},{out:'She just said "goodnight." With a full stop.'},{in:'oh you are dead'}]},
+   {label:'If a girl says goodnight, is it fine?',send:'If a girl says goodnight, is it fine?',then:[{in:'depends. was there a full stop'},{out:'Yes.'},{in:'then no. it is not fine'}]},
+   {label:'What do girls want when they are angry?',send:'What do girls want when they are angry?',then:[{in:'to not be asked what girls want'}]}]}},
+ {in:'what did you say to her'},
+ pick('c2_bangs',{
+   A:[{out:'She cut her bangs. I said okay.'},{in:'min htet.'},{in:'she told you something about her face and you said OKAY'}],
+   B:[{out:"She cut her bangs. I said I'm sure it's fine."},{in:'"fine"'},{in:"you said fine. you're like a broken fan"}],
+   C:[{out:'She cut her bangs. I asked for a photo.'},{in:'you asked for evidence. like a policeman'}]}),
+ {in:"listen. don't say sorry first. she knows you're sorry. you're always sorry"},
+ {in:'tell her one thing you actually noticed. not okay. not fine. one real thing'},
+ {pause:1400},
+ {in:"that's all anyone wants. to be noticed"},
+ {pause:1800},
+ {in:"that's what I read, anyway"},
+ {choice:{flag:'c2_hnin_thanks',opts:[
+   {label:'Thank you, Hnin.',send:'Thank you, Hnin.',then:[{in:"don't thank me. you'll forget the tray again tomorrow"}]},
+   {label:'How do you know all this?',send:'How do you know all this?',then:[{in:'I work at a tea shop. everyone tells me everything'},{pause:1200},{in:'nobody asks what I think though'}]},
+   {label:'You cut your hair too.',send:'You cut your hair too.',then:[{typing:1600},{pause:1400},{in:'two weeks ago'},{in:'go fix your thing, Min Htet'}]}]}},
+ {pause:1200},
+ // C2.5e May, the fix
+ {time:'7:02 AM'},
+ {open:{c:'may',stat:'Active 9h ago'}},
+ {div:'Next morning'},
+ {choice:{flag:'c2_fix',hint:'Tell her one real thing',opts:[
+   {label:"You tuck your hair behind your left ear when you're thinking. Now you can't. That's all I'll notice.",send:"You tuck your hair behind your left ear when you're thinking. Now you can't. That's all I'll notice.",then:[{typing:2200},{pause:1500},{in:'…'},{in:'how do you know which ear'},{out:'I sit behind you.'},{in:"ok I'm still mad but less"}]},
+   {label:'You said "prepare yourself". You only say that when you\'re nervous. You don\'t need to be.',send:'You said "prepare yourself". You only say that when you\'re nervous. You don\'t need to be.',then:[{typing:1800},{in:'stop being nice at 7am'},{in:"it's illegal"}]},
+   {label:"I'm sorry. I'm bad at talking about faces.",send:"I'm sorry. I'm bad at talking about faces.",then:[{in:'FACES??'},{in:'hahahahaha'},{in:'ok that was so bad it fixed it'}]}]}},
+ {in:'you owe me tea. two. and you hold the umbrella for a WEEK'},
+ {out:'Deal.'},
+ {pause:1200},
+ {in:'also my mom says it suits me. so'},
+ {in:'see you in class'},
+ {pause:900},
+ // C2.5f Thura, 1 AM
+ {rain:1},{time:'1:12 AM'},
+ {notify:{c:'thura',text:'bro are you awake',rows:[{c:'may',text:'',time:'Thu'},{c:'hnin',text:'',time:'Wed'},{c:'mom',text:'',time:'Wed'}]}},
+ {in:"I think I'm in love"},
+ {in:'the girl at the phone shop gave me a free screen protector'},
+ {in:'FREE bro'},
+ {choice:{flag:'c2_thura_love',opts:[
+   {label:'She gives everyone one.',send:'She gives everyone one.',then:[{in:'she gave it to me with her HANDS'},{out:"That's how screen protectors work."}]},
+   {label:'Did you talk to her?',send:'Did you talk to her?',then:[{in:'I said thank you'},{in:'and then I said thank you again. by accident'},{in:"I'm never going back. I'll buy a new phone in another town"}]},
+   {label:'Go to sleep, Thura.',send:'Go to sleep, Thura.',then:[{in:"says the man who's online at 1am"},{in:'who are YOU talking to'}]}]}},
+ {pause:1200},
+ {in:"seriously though. everyone's leaving this town"},
+ {in:'my cousin went to malaysia. ko zaw went to the city'},
+ {in:"it's gonna be just you, me and the phone shop girl"},
+ {choice:{flag:'c2_thura_stay',opts:[
+   {label:"I'm not going anywhere.",send:"I'm not going anywhere.",then:[{in:'good. promise'},{out:'Go to sleep.'},{in:"that's not a promise but ok"}]},
+   {label:'You could go too.',send:'You could go too.',then:[{in:'and leave my mom alone with the motorbike shop? nah'},{in:'someone has to stay and remember everyone'}]},
+   {label:'(Send the sleepy sticker.)',sticker:'sleepy',then:[{in:"ok ok. goodnight. don't tell anyone I'm soft"}]}]}},
+ {pause:900},
  // C2.6 Thadingyut
  {rain:0},{time:'7:30 PM'},
  {notify:{c:'may',text:'Photo',div:'Oct 2018',m:{k:'photo',art:'candles'},rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Aug'},{c:'thura',text:"just don't forget us when you're famous",time:'Aug'},{c:'mom',text:'Daw Aye Aye talks.',time:'Aug'}]}},
@@ -1395,6 +1506,18 @@ const CH3=[
    {label:'Call me. Read me the questions.',send:'Call me. Read me the questions.',then:[{inCall:'Voice call · 2:14:07'},{in:'you fell asleep on question 40'},{in:'I could hear you breathing. you sound like a fan'}]}]}},
  {in:"if I pass I'm buying you a new umbrella"},
  {pause:900},
+ // C3.1b Exam night
+ {rain:0},{time:'1:36 AM'},
+ {notify:{c:'may',text:'are you awake',rows:[{c:'hnin',text:'',time:'Mar'},{c:'thura',text:'',time:'Mar'},{c:'mom',text:'',time:'Mar'}]}},
+ {in:'my brain is full. there is no more room'},
+ {in:'tell me something boring so I can sleep'},
+ {choice:{flag:'c3_boring',opts:[
+   {label:'Mom put the spice shelf in alphabetical order. Again.',send:'Mom put the spice shelf in alphabetical order. Again.',then:[{in:'burmese or english'},{out:'Both. On different days.'},{in:"ok that's not boring that's insane"},{in:'hahaha'}]},
+   {label:'Saya ate a whole samosa today. Then he slept for four hours.',send:'Saya ate a whole samosa today. Then he slept for four hours.',then:[{in:'saya is living my dream'},{in:"I want to be a dog after exams"}]},
+   {label:'The fan in class turns 40 times a minute on speed one. I counted.',send:'The fan in class turns 40 times a minute on speed one. I counted.',then:[{in:'min'},{in:'MIN'},{in:"ok that worked. I'm so bored I could die"}]}]}},
+ {in:'goodnight. thank you for being boring'},
+ {inSticker:'sleepy'},
+ {pause:900},
  // C3.2 Thingyan morning · padauk
  {rain:0},{time:'6:12 AM'},
  {notify:{c:'may',text:'MIN',div:'13 Apr 2019',rows:[{c:'thura',text:'truck. 2pm. bring nothing dry',time:'Fri'}]}},
@@ -1437,6 +1560,39 @@ const CH3=[
  {narr:'Hnin hands Min a towel, not May.'},
  {say:['Hnin',"You'll get sick."]},
  {narr:'Then, a beat later, she hands May one too.'},
+ // C3.2b May, the towel
+ {rain:0},{time:'10:48 PM'},
+ {notify:{c:'may',text:'so. the towel',rows:[{c:'thura',text:'',time:'2:10 PM'},{c:'hnin',text:'',time:'Mar'},{c:'mom',text:'',time:'Mar'}]}},
+ {in:'she gave YOU the towel first'},
+ {in:'I was standing RIGHT there. dripping. like a fish'},
+ {choice:{flag:'c3_towel',opts:[
+   {label:"She's known me since we were five.",send:"She's known me since we were five.",then:[{in:"and I've known you since june"},{in:'so she gets a thirteen year head start on towels??'}]},
+   {label:'She gave you one too.',send:'She gave you one too.',then:[{in:'SECOND. she gave me one second'},{in:'I counted'}]},
+   {label:'Are you jealous?',send:'Are you jealous?',then:[{in:'no'},{in:"I'm OBSERVANT"},{in:'there is a difference'}]}]}},
+ {pause:1400},
+ {if:{test:f=>f.c2_friends===true,then:[{in:'I like hnin. I just want to be first sometimes'}],else:[{in:"I know we're not… anything"},{in:'I just want to be first sometimes'}]}},
+ {choice:{flag:'c3_first',opts:[
+   {label:'You found me at the end of the street. You were first today.',send:'You found me at the end of the street. You were first today.',then:[{typing:1600},{in:'…ok that was good'},{in:"I'm keeping that one"}]},
+   {label:"Next Thingyan, I'll bring the towel.",send:"Next Thingyan, I'll bring the towel.",then:[{in:'a whole towel. for me'},{in:'ok. deal. a pink one'}]},
+   {label:"Hnin gives everyone towels. You're the one who soaked me.",send:"Hnin gives everyone towels. You're the one who soaked me.",then:[{in:'hahaha'},{in:'true. you were MY victim'}]}]}},
+ {pause:900},
+ // C3.2c Hnin, the same night
+ {time:'11:20 PM'},
+ {notify:{c:'hnin',text:'the towel was clean, by the way',rows:[{c:'may',text:'',time:'10:52 PM'},{c:'thura',text:'',time:'2:10 PM'},{c:'mom',text:'',time:'Mar'}]}},
+ {if:{test:f=>f.c2_friends===true,then:[{in:'your girlfriend looked at me like I stole her bowl'}],else:[{in:'your… friend looked at me like I stole her bowl'}]}},
+ {in:'it was a towel. not a ring'},
+ {choice:{flag:'c3_hnin_towel',opts:[
+   {label:'She was joking.',send:'She was joking.',then:[{in:'she was not joking'},{in:'I know that look. I sell tea to aunties'}]},
+   {label:'Why did you give it to me first?',send:'Why did you give it to me first?',then:[{typing:2000},{pause:1600},{typing:1400},{in:'you were closer'},{pause:1400},{in:"don't overthink it, Min Htet"}]},
+   {label:'Thank you for the towel.',send:'Thank you for the towel.',then:[{in:"you're welcome"},{in:'someone has to look after you. you never look after yourself'}]}]}},
+ {pause:1400},
+ {in:"don't worry. I know where I stand"},
+ {in:'behind the counter. same as always'},
+ {choice:{flag:'c3_hnin_counter',opts:[
+   {label:"That's not true.",send:"That's not true.",then:[{in:"it is. and it's fine"},{in:'goodnight'}]},
+   {label:"You're my oldest friend.",send:"You're my oldest friend.",then:[{typing:1500},{in:'yes'},{in:"I know. that's the problem"},{offline:'Offline'}]},
+   {label:'(Leave it.)',then:[{pause:2200},{in:'goodnight, neighbour'}]}]}},
+ {pause:1200},
  // C3.3 Results
  {rain:0},{time:'9:05 AM'},
  {notify:{c:'may',text:'I PASSED',div:'Jun 2019',rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Apr'},{c:'thura',text:'sent a photo',time:'Apr'},{c:'mom',text:'Daw Aye Aye talks.',time:'Mar'}]}},
@@ -1457,6 +1613,20 @@ const CH3=[
    {label:"It's just college.",send:"It's just college.",then:[{in:'sure'},{in:'just saying, people go to the city and the city keeps them'}]},
    {label:'Mind your own business.',send:'Mind your own business.',then:[{in:'ok ok'},{in:"sorry bro. I'm happy for you. really"}]}]}},
  {pause:900},
+ // C3.4b Mom
+ {rain:1},{time:'9:30 PM'},
+ {notify:{c:'mom',text:"Daw Aye Aye says May's father went to Yangon three times this month.",div:'Aug 2019',rows:[{c:'thura',text:'',time:'Jul'},{c:'may',text:'',time:'Jul'},{c:'hnin',text:'',time:'Apr'}]}},
+ {in:'Is everything okay with her family?'},
+ {choice:{flag:'c3_mom_yangon',opts:[
+   {label:"It's just business.",send:"It's just business.",then:[{in:'Business is never just business.'}]},
+   {label:"I don't know.",send:"I don't know.",then:[{in:'Then ask her. Gently.'}]},
+   {label:'Daw Aye Aye talks too much.',send:'Daw Aye Aye talks too much.',then:[{in:'Yes.'},{in:'She is also usually right.'}]}]}},
+ {in:'Bring her for dinner. I have been asking for a year.'},
+ {choice:{flag:'c3_mom_dinner',opts:[
+   {label:'Next week.',send:'Next week.',then:[{in:'You said that in October.'},{in:'I wrote it on the calendar. It is still there.'}]},
+   {label:"She's shy.",send:"She's shy.",then:[{in:'That girl walked past the shop four times in one day. She is not shy.'}]},
+   {label:'(Send the cat sticker.)',sticker:'catUmb',then:[{in:'Hiding sticker.'},{in:'Next week. I am buying the chicken.'}]}]}},
+ {pause:900},
  // C3.5 Thadingyut, one year on
  {time:'7:40 PM'},
  {scene:{art:'pagoda19',cap:'Thadingyut · October 2019',rain:0}},
@@ -1468,6 +1638,19 @@ const CH3=[
    {label:'(Take a photo of her lighting it.)',act:1,then:[{say:['May',"You're supposed to be in the memory, not taking it."]},{narr:'She pulls him into the frame.'}]}]}},
  {shot:'lamp2'},
  {mem:'lamp2'},
+ // C3.5b Thura, the motorbike
+ {rain:0},{time:'4:12 PM'},
+ {notify:{c:'thura',text:'bro',div:'Nov 2019',rows:[{c:'may',text:'',time:'Oct'},{c:'mom',text:'',time:'Aug'},{c:'hnin',text:'',time:'Apr'}]}},
+ {in:'I fixed my first bike today. alone'},
+ {in:'it works'},
+ {in:'it works backwards'},
+ {choice:{flag:'c3_thura_bike',opts:[
+   {label:'How does a bike go backwards?',send:'How does a bike go backwards?',then:[{in:"I don't know bro. I'm a genius"}]},
+   {label:'Did the customer notice?',send:'Did the customer notice?',then:[{in:'he noticed when he reversed into the tea shop'},{in:'hnin threw a stool at me. not at him. at ME'}]},
+   {label:"Bring it here. I'll take a photo.",send:"Bring it here. I'll take a photo.",then:[{in:'no. evidence is how they catch you'}]}]}},
+ {in:"anyway. how's may. you two still disgusting?"},
+ {if:{test:f=>f.c2_friends===true,then:[{in:'disgusting means happy. I checked'}],else:[{in:'or still "just friends". bro.'}]}},
+ {pause:900},
  // C3.6 The phone call
  {time:'10:03 PM'},
  {notify:{c:'may',text:'Voice message',div:'Dec 2019',m:{k:'voice',text:'0:09',tr:"(Her voice, low. A man's voice through a wall, then a door.)"},rows:[{c:'thura',text:"sorry bro. I'm happy for you. really",time:'Jul'},{c:'hnin',text:"I don't. I watch the tray",time:'Apr'},{c:'mom',text:'Daw Aye Aye talks.',time:'Mar'}]}},

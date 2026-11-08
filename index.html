@@ -77,6 +77,8 @@ body.m .bar{width:100%;height:44px;padding:0 10px}
 body.m .bar .ttl{font-size:15px}
 body.m .pill{height:34px;padding:0 10px}
 body.m .pill span:not(.ic){display:none}
+.pill.sp{min-width:44px;justify-content:center;font-weight:600}
+.pill.sp.on{background:var(--paper-50);color:var(--ink);border-color:var(--paper-50)}
 body.m #bAlbum span:not(.ic){display:inline}
 body.m #bDev{display:flex}
 body.m .devbar{display:none;width:100%}
@@ -595,7 +597,7 @@ body.playing .pill.xb{display:flex}
     <div class="lt"><button class="pill xb" id="bExit" title="Back to Stories" aria-label="Back to Stories"><span class="ic i-arrow-left"></span></button><div class="ttl">Before the Rain Ends</div></div>
     <div class="ctl">
       <button class="pill" id="bSound" title="Rain sound"><span class="ic i-speaker-high"></span><span>Sound</span></button>
-      <button class="pill" id="bSpeed" title="Message speed"><span class="ic i-fast-forward"></span><span>1×</span></button>
+      <button class="pill sp" id="bSpeed" title="Play at 2× speed" aria-pressed="false">2×</button>
       <button class="pill" id="bDev" title="Dev timeline">Dev</button>
       <button class="pill" id="bAlbum" title="Memories"><span class="ic i-images"></span><span>Memories</span></button>
     </div>
@@ -933,7 +935,7 @@ $('#bAlbum').onclick=()=>{const a=$('#album');if(a.classList.contains('on')){a.c
   a.classList.add('on');
   $('#ax').onclick=e=>{e.stopPropagation();a.classList.remove('on')};};
 $('#bSound').onclick=()=>{Audio_.init();if(Audio_.ctx&&Audio_.ctx.state==='suspended')Audio_.ctx.resume();S.sound=!S.sound;$('#bSound span:last-child').textContent=S.sound?'On':'Off';$('#bSound .ic').className='ic i-'+(S.sound?SPK_ON:SPK_OFF);Audio_.level()};
-$('#bSpeed').onclick=()=>{S.speed=S.speed===1?2:S.speed===2?3:1;$('#bSpeed span:last-child').textContent=S.speed+'×'};
+$('#bSpeed').onclick=e=>{e.stopPropagation();S.speed=S.speed===2?1:2;const on=S.speed===2;$('#bSpeed').classList.toggle('on',on);$('#bSpeed').setAttribute('aria-pressed',on)};
 
 /* ============ ENGINE ============ */
 function swipeUp(){return new Promise(r=>{const lk=$('#lk');lk.classList.remove('snap');lk.style.transform='';lk.style.opacity='';

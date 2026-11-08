@@ -1245,6 +1245,7 @@ const CH2=[
 SCENE.wstreet='<img src="img/c3-street.webp" alt="" draggable="false">';
 SCENE.mayEnd='<img src="img/c3-may-end.webp" alt="" draggable="false">';
 SCENE.crowd='<img src="img/c3-crowd.webp" alt="" draggable="false">';
+SCENE.crowdLetGo='<img src="img/c3-letgo.webp" alt="" draggable="false">';
 SCENE.mango='<img src="img/c3-mango.webp" alt="" draggable="false">';
 SCENE.mangoPhoto='<div style="position:absolute;inset:0;background:#1a1f1e;display:flex;align-items:flex-start;justify-content:center;padding-top:22%"><div style="width:84%;background:#f6f1e7;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:rotate(-2deg)"><img src="img/thingyan.webp" alt="" draggable="false" style="position:static;width:100%;height:auto;display:block"></div></div>';
 SCENE.towel='<img src="img/c3-towel.webp" alt="" draggable="false">';
@@ -1273,7 +1274,7 @@ const CH3=[
  {if:{test:f=>f.c3_wet==='dry',then:[{say:['May',"How are you dry? That's illegal on Thingyan."]},{narr:'She fixes that with one bowl of water.'}],else:[{say:['May',"You're supposed to splash me, not get splashed!"]}]}},
  {shot:'crowd'},
  {narr:'A crowd pushes past the pandal. May grabs Min\'s hand so she doesn\'t lose him.'},
- {if:{test:f=>f.c2_friends===true,then:[{narr:"She doesn't let go. Under the tea shop awning, Hnin sees, and goes back to folding towels."}],else:[{narr:'Someone from her street calls her name. She lets go, quick, like it never happened.'}]}},
+ {if:{test:f=>f.c2_friends===true,then:[{narr:"She doesn't let go. Under the tea shop awning, Hnin sees, and goes back to folding towels."}],else:[{narr:'Someone from her street calls her name.'},{shot:'crowdLetGo'},{narr:'She lets go, quick, like it never happened.'}]}},
  {shot:'mango'},
  {narr:'Under the mango tree, Min sets his camera on the wall and starts the self-timer.'},
  {choice:{flag:'c3_photo',opts:[

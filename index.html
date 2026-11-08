@@ -362,18 +362,25 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #post .cap{padding:4px 16px;font:400 15px/22px var(--sans);color:var(--ink-body)}
 #post .cap b{font-weight:600;color:var(--ink);margin-right:6px}
 #post .when{padding:4px 16px;font:400 12px/16px var(--sans);color:var(--ink-faint)}
-#post .prof{display:flex;flex-direction:column;align-items:center;padding:20px 16px 14px;border-bottom:1px solid var(--line)}
-#post .prof .av{width:84px;height:84px}
-#post .prof>b{font:500 22px/28px var(--serif);color:var(--ink);margin-top:10px}
-#post .prof>span{font:400 12px/16px var(--sans);color:var(--ink-muted)}
-#post .nums{display:flex;gap:36px;margin-top:12px;text-align:center}
-#post .nums b{display:block;font:600 16px/20px var(--sans);color:var(--ink)}
-#post .nums small{font:400 12px/16px var(--sans);color:var(--ink-muted)}
-#post .tp{border-bottom:1px solid var(--line);padding-bottom:12px}
-#post .tp .tx{padding:2px 16px 8px;font:400 17px/25px var(--sans);color:var(--ink-body)}
-#post .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding-top:2px}
-#post .pgrid i{aspect-ratio:1;overflow:hidden;display:block;background:#000;opacity:.85}
-#post .pgrid i img,#post .pgrid i svg{width:100%;height:100%;object-fit:cover;display:block}
+#post .prof{padding:16px 16px 14px}
+#post .ptop{display:flex;align-items:center;gap:24px}
+#post .ptop .av{width:80px;height:80px;flex:none}
+#post .nums{flex:1;display:flex;justify-content:space-around;text-align:center}
+#post .nums b{display:block;font:600 18px/22px var(--sans);color:var(--ink)}
+#post .nums small{font:400 13px/18px var(--sans);color:var(--ink-muted)}
+#post .pn{display:block;font:500 18px/24px var(--serif);color:var(--ink);margin-top:12px}
+#post .bio{font:400 14px/20px var(--sans);color:var(--ink-body);margin-top:2px}
+#post .act{display:block;font:400 12px/16px var(--sans);color:var(--ink-faint);margin-top:4px}
+#post .pbtn{display:flex;gap:8px;margin-top:14px}
+#post .pbtn span{flex:1;height:34px;display:grid;place-items:center;border-radius:6px;background:var(--paper-200);font:500 14px/1 var(--sans);color:var(--ink)}
+#post .ptabs{display:flex;justify-content:center;border-top:1px solid var(--line);margin-top:2px}
+#post .ptabs b{padding:10px 0;border-top:1.5px solid var(--ink);margin-top:-1px;font:500 13px/16px var(--sans);color:var(--ink)}
+#post .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+#post .pgrid i{aspect-ratio:1;overflow:hidden;display:block;background:#000}
+#post .pgrid i img{width:100%;height:100%;object-fit:cover;display:block}
+#post .pgrid i.txt{background:var(--paper-200);display:flex;flex-direction:column;justify-content:center;padding:10px;position:relative}
+#post .pgrid i.txt span{font:italic 400 15px/20px var(--serif);color:var(--ink)}
+#post .pgrid i.txt small{position:absolute;left:10px;bottom:8px;font:400 10px/12px var(--sans);color:var(--ink-muted)}
 #post .vtap2{text-align:center;font:400 12px/16px var(--sans);color:var(--ink-muted);padding:10px 0 4px;animation:pulse 2.2s infinite}
 #post .pf{flex:none;padding:6px 16px 26px}
 
@@ -991,11 +998,14 @@ const HEART='<svg viewBox="0 0 256 256"><path d="M128,216S28,160,28,92A52,52,0,0
 const BUBBLE='<svg viewBox="0 0 256 256"><path d="M79.93,211.11a96,96,0,1,0-35-35h0L32.42,213.46a8,8,0,0,0,10.12,10.12l37.39-12.47Z"/></svg>';
 async function profileStep(v){
   await holdChat();const c=v.c;
-  const grid=(v.grid||[]).map(a=>`<i>${typeof ART[a]==='function'?ART[a]():ART[a]}</i>`).join('');
-  $('#postBody').innerHTML=`<div class="prof">${av(c)}<b>${esc(C[c].name)}</b><span>${esc(v.stat||'')}</span><div class="nums"><div><b>${v.posts}</b><small>posts</small></div><div><b>${v.friends}</b><small>friends</small></div></div></div>
-   <div class="tp"><div class="pa">${av(c,true)}<div><b>${esc(C[c].name)}</b><span>${esc(v.when)}</span></div></div><p class="tx">${esc(v.text)}</p><div class="lk">${esc(v.likes)}</div></div>
-   <div class="pgrid">${grid}</div>`;
-  $('#post .who b').textContent=C[c].name;$('#postTray').innerHTML='';show('post');await sleep(1200);
+  const img=src=>`<i><img src="${src}" alt="" draggable="false"></i>`;
+  const tiles=`<i class="txt"><span>${esc(v.text)}</span><small>${esc(v.when)}</small></i>`+(v.grid||[]).map(img).join('');
+  $('#postBody').innerHTML=`<div class="prof">
+     <div class="ptop">${av(c)}<div class="nums"><div><b>${v.posts}</b><small>posts</small></div><div><b>${v.friends}</b><small>friends</small></div></div></div>
+     <b class="pn">${esc(C[c].name)}</b><p class="bio">${esc(v.bio||'')}</p><span class="act">${esc(v.stat||'')}</span>
+     <div class="pbtn"><span>Friends</span><span>Message</span></div></div>
+   <div class="ptabs"><b>Posts</b></div><div class="pgrid">${tiles}</div>`;
+  $('#post .who b').textContent=C[c].name;$('#postTray').innerHTML='';$('#postBody').scrollTop=0;show('post');await sleep(1200);
   $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML='';
   $('#post .who b').textContent='Post';if(v.back)show('chat');await sleep(500);
 }
@@ -1203,7 +1213,7 @@ const PROLOGUE=[
  {open:{c:'may',stat:'Active 18 days ago'}},
  {pause:1600},
  {draft:{hint:'What does Min type?',opts:['Are you awake?',"It's raining here.",'I miss you.'],flag:'prologue_draft',auto:true,when:'Nov 2020'}},
- {profile:{c:'may',stat:'Active 18 days ago',posts:24,friends:212,when:'July 2020 · the city',text:'it rains differently here',likes:'Liked by 31 people',grid:['thingyan','lamp2','candles'],back:true}},
+ {profile:{c:'may',stat:'Active 18 days ago',bio:'umbrella thief victim. broken ones only',posts:24,friends:212,when:'Jul 2020',text:'it rains differently here',grid:['img/thingyan.webp','img/c3-lamp2.webp','img/c2-spot-river.webp','img/c2-candles.webp','img/c2-pagoda.webp','img/c3-pagoda19.webp','img/c2-spot-tea.webp','img/c2-spot-market.webp'],back:true}},
  {scrollback:true},
  {gallery:true},
  {title:{big:'<em>a story told in messages</em>Before the Rain Ends',small:'',rain:1,keep:true}},

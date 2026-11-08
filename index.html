@@ -375,25 +375,25 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 /* water street side quest */
 #wstreet{background:#2b3a3c;overflow:hidden}
 #wsField{position:absolute;inset:0;overflow:hidden;touch-action:none}
-#wsBg{position:absolute;left:0;bottom:0;width:100%;height:auto;will-change:transform;user-select:none;pointer-events:none}
+#wsBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
+#wsField svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+#wsField svg .div{stroke:#fff;stroke-width:2.2;stroke-dasharray:14 12;opacity:.85}
+#wsField svg .dz{fill:#3e8fd0;opacity:0;transition:opacity .25s}
+#wsField svg .dz.on{opacity:.32;animation:wsDz .5s ease-in-out infinite alternate}
+@keyframes wsDz{to{opacity:.5}}
 #wsField .lane{position:absolute;top:0;bottom:0;width:30%;margin-left:-15%;pointer-events:none}
 #wsField .spr{position:absolute;pointer-events:none;user-select:none;transform:translate(-50%,-100%);filter:drop-shadow(0 6px 4px rgba(0,0,0,.25))}
-#wsField .pal{height:92px;pointer-events:auto;cursor:pointer;transition:filter .25s}
+#wsField .pal{pointer-events:auto;cursor:pointer;transition:filter .25s}
+#wsField .pal.far{pointer-events:none}
 #wsField .pal.hit{filter:drop-shadow(0 6px 4px rgba(0,0,0,.25)) brightness(.86) saturate(.7) hue-rotate(-10deg)}
-#wsField .truck{height:118px;transition:right .35s ease;transform:translate(0,-100%);right:-140px;z-index:3}
-#wsField .truck.in{right:-34px}
-#wsMin{height:104px;z-index:4;transition:left .14s ease}
+#wsMin{z-index:150;transition:left .14s ease}
 #wsMin.run{animation:wsRun .32s ease-in-out infinite alternate}
 @keyframes wsRun{to{margin-top:-5px}}
 #wsMin.hit{animation:wsHit .45s}
 @keyframes wsHit{0%,100%{margin-left:0}25%{margin-left:-8px}50%{margin-left:8px}75%{margin-left:-4px}}
-#wsField .may{height:120px;z-index:2}
-#wsField .tgt{position:absolute;width:86px;height:40px;margin:-20px 0 0 -43px;border-radius:50%;border:3px dashed #e8f6ff;background:rgba(62,143,208,.28);z-index:1;pointer-events:none;animation:wsTgt var(--t,1s) linear forwards}
-@keyframes wsTgt{from{transform:scale(1.5);opacity:.4}to{transform:scale(1);opacity:1}}
+#wsField .may{z-index:40}
 #wsField .burst{position:absolute;width:120px;height:120px;margin:-90px 0 0 -60px;z-index:5;pointer-events:none;background:radial-gradient(circle at 50% 70%,rgba(255,255,255,.95) 0 14%,rgba(160,215,245,.85) 15% 38%,rgba(62,143,208,0) 62%);animation:wsBurst .55s ease-out forwards}
 @keyframes wsBurst{from{transform:scale(.3);opacity:1}to{transform:scale(1.25);opacity:0}}
-#wsField .jet{position:absolute;height:12px;border-radius:8px;background:linear-gradient(90deg,rgba(120,190,235,.0),rgba(170,220,248,.95));z-index:2;pointer-events:none;transform-origin:right center;animation:wsJet .55s ease-out forwards}
-@keyframes wsJet{from{opacity:0;transform:scaleX(.2)}30%{opacity:1;transform:scaleX(1)}to{opacity:0}}
 #wsField .pop{position:absolute;z-index:6;pointer-events:none;font:700 14px/18px var(--sans);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45);transform:translate(-50%,0);animation:wsUp .8s forwards;white-space:nowrap}
 #wsField .pop.bad{color:#ffd9cf}
 @keyframes wsUp{to{margin-top:-38px;opacity:0}}
@@ -871,7 +871,7 @@ async function waterStreet(){
   await cardShow(`<div class="eb">Side quest · Water street</div><h2>Reach May before the song ends</h2><p>She's waiting at the far end of the street, by the pandal.</p>
     <ul><li><span class="th ic"><i class="ic i-person"></i></span><span><b>Tap left or right</b> of the screen to change lanes.</span></li>
     <li><span class="th" style="background-image:url(img/ws-pal1.webp)"></span><span><b>Tap friends to splash them</b> before they splash you. Getting wet is fine. It's Thingyan.</span></li>
-    <li><span class="th" style="background-image:url(img/ws-truck.webp)"></span><span><b>Get out of the way of Thura's hose.</b> Three direct hits and Min's camera is ruined.</span></li></ul>`,[['wsStart','Start']]);
+    <li><span class="th" style="background-image:url(img/ws-truck.webp)"></span><span><b>Thura's truck drives down one lane</b> and that lane turns blue. Be in another lane when it reaches you. Three hits and Min's camera is ruined.</span></li></ul>`,[['wsStart','Start']]);
   let bag=false,fails=0,res;
   for(;;){res=await wsRun(bag);if(res.ok)break;fails++;
     const b=await cardShow(`<div class="eb">Camera soaked</div><h2>Thura got the camera</h2><p>Min needs it for a photo under the mango tree. Try that street again.</p>`,
@@ -885,47 +885,58 @@ async function waterStreet(){
 }
 function wsRun(bag){return new Promise(async done=>{
   const f=$('#wsField'),hud=$('#wsHud'),bg=$('#wsBg');
-  [...f.querySelectorAll('.spr,.tgt,.burst,.jet,.pop')].forEach(e=>e.remove());
+  [...f.querySelectorAll('.spr,.burst,.pop,svg')].forEach(e=>e.remove());
   if(!bg.complete)await new Promise(r=>bg.onload=r);
-  const W=f.clientWidth,H=f.clientHeight,LX=[W*.31,W*.5,W*.69],MY=H-96,max=bag?5:3;let lives=max,lane=1,wet=0,spl=0,ents=[],tgts=[],over=false;
-  const DUR=26000/(S.speed>1?2:1),travel=Math.max(0,bg.offsetHeight-H);
+  const W=f.clientWidth,H=f.clientHeight,IW=404,IH=800,sc=Math.max(W/IW,H/IH),ox=(W-IW*sc)/2,oy=(H-IH*sc)/2;
+  // road geometry in image px: vanishing row VY, centre line cx(y), half width hw(y)
+  const VY=337,NY=716,cx=y=>205-(y-400)*.043,hw=y=>.475*(y-VY);
+  const at=(s,l)=>{const y=VY+s*(NY-VY);return{x:ox+(cx(y)+(l-1)*(2/3)*hw(y))*sc,y:oy+y*sc}};
+  const LANEW=(2/3)*hw(NY)*sc,max=bag?5:3,sp=S.speed>1?2:1;
+  let lives=max,lane=1,wet=0,spl=0,ents=[],over=false;
+  const DUR=26000/sp;
+  // lane overlay (same cover mapping as the background)
+  const NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox',`0 0 ${IW} ${IH}`);svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+  const y0=VY+12,y1=IH;let d='';
+  [-1/3,1/3].forEach(k=>{svg.insertAdjacentHTML('beforeend',`<line x1="${cx(y0)+k*hw(y0)}" y1="${y0}" x2="${cx(y1)+k*hw(y1)}" y2="${y1}" class="div"/>`)});
+  const quad=l=>{const a=(l-1)*(2/3)-1/3,b=a+2/3;return `${cx(y0)+a*hw(y0)},${y0} ${cx(y0)+b*hw(y0)},${y0} ${cx(y1)+b*hw(y1)},${y1} ${cx(y1)+a*hw(y1)},${y1}`};
+  [0,1,2].forEach(l=>svg.insertAdjacentHTML('beforeend',`<polygon points="${quad(l)}" class="dz" id="wsDz${l}"/>`));
+  f.appendChild(svg);
   const lv=()=>{$('#wsLives').innerHTML=Array.from({length:max},(_,i)=>`<i class="ic i-camera${i<lives?'':' off'}"></i>`).join('')+`<span style="margin-left:4px">${bag?'In a plastic bag':'Camera'}</span><span class="sc"><i class="ic i-drop"></i>${spl}</span>`};
-  hud.style.display='block';$('#wsSongI').style.width='0';lv();bg.style.transform='translateY(0)';
-  const me=document.createElement('img');me.src='img/ws-min.webp';me.id='wsMin';me.className='spr';me.style.top=MY+'px';f.appendChild(me);
-  const put=()=>{me.style.left=LX[lane]+'px'};put();
+  hud.style.display='block';$('#wsSongI').style.width='0';lv();
+  const me=document.createElement('img');me.src='img/ws-min.webp';me.id='wsMin';me.className='spr';me.style.height=(LANEW*1.05)+'px';f.appendChild(me);
+  const put=()=>{const p=at(1,lane);me.style.left=p.x+'px';me.style.top=(p.y+LANEW*.18)+'px'};put();
   const pop=(x,y,t,bad)=>{const p=document.createElement('div');p.className='pop'+(bad?' bad':'');p.textContent=t;p.style.left=x+'px';p.style.top=y+'px';f.appendChild(p);setTimeout(()=>p.remove(),800)};
   const cnt=$('#wsCount');cnt.style.display='flex';for(const n of ['3','2','1']){cnt.textContent=n;await rawSleep(S.speed>1?120:520)}cnt.style.display='none';
   me.classList.add('run');
-  f.onpointerdown=e=>{if(over)return;e.stopPropagation();const r=f.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
-    const p=ents.find(o=>!o.hit&&Math.abs(LX[o.l]-x)<52&&y>o.y-96&&y<o.y+10);
-    if(p){p.hit=1;spl++;p.el.classList.add('hit');pop(LX[p.l],p.y-110,'Splash!');Audio_.blip(true);lv();return}
+  f.onpointerdown=e=>{if(over)return;e.stopPropagation();const r=f.getBoundingClientRect(),x=e.clientX-r.left;
     lane=Math.max(0,Math.min(2,lane+(x<W/2?-1:1)));put()};
-  const t0=performance.now();let last=t0,nextPal=t0+900,nextHose=t0+2600;
-  const spawnPal=()=>{const el=document.createElement('img');el.src=Math.random()<.5?'img/ws-pal1.webp':'img/ws-pal2.webp';el.className='spr pal';const l=Math.floor(Math.random()*3);el.style.left=LX[l]+'px';f.appendChild(el);ents.push({l,y:120,el})};
-  const hose=p=>{const safe=Math.floor(Math.random()*3);let ls=[Math.random()<.6?lane:Math.floor(Math.random()*3)];
-    if(p>.55&&Math.random()<.5){const o=[0,1,2].filter(x=>x!==ls[0]);ls.push(o[Math.floor(Math.random()*2)])}
-    const warn=(1150-p*380)/(S.speed>1?2:1),tr=document.createElement('img');tr.src='img/ws-truck.webp';tr.className='spr truck';tr.style.top=(MY-30)+'px';f.appendChild(tr);requestAnimationFrame(()=>tr.classList.add('in'));
-    const els=ls.map(l=>{const t=document.createElement('div');t.className='tgt';t.style.setProperty('--t',warn+'ms');t.style.left=LX[l]+'px';t.style.top=(MY-8)+'px';f.appendChild(t);return t});
-    tgts.push({at:performance.now()+warn,ls,els,tr})};
-  const impact=t=>{t.els.forEach(e=>e.remove());t.ls.forEach(l=>{const j=document.createElement('div');j.className='jet';j.style.right='70px';j.style.width=(W-70-LX[l])+'px';j.style.top=(MY-52)+'px';f.appendChild(j);setTimeout(()=>j.remove(),600);
-      const b=document.createElement('div');b.className='burst';b.style.left=LX[l]+'px';b.style.top=(MY-10)+'px';f.appendChild(b);setTimeout(()=>b.remove(),600)});
-    if(t.ls.includes(lane)){lives--;wet+=2;me.classList.remove('hit');void me.offsetWidth;me.classList.add('hit');pop(LX[lane],MY-130,lives>0?'Camera hit!':'Camera soaked',true);navigator.vibrate&&navigator.vibrate(60);lv()}
-    else pop(LX[t.ls[0]],MY-130,'Missed!');
-    setTimeout(()=>{t.tr.classList.remove('in');setTimeout(()=>t.tr.remove(),400)},350)};
+  const t0=performance.now();let last=t0,nextPal=t0+700,nextTruck=t0+2400/sp;
+  const spawn=(k,l)=>{const el=document.createElement('img');el.className='spr '+k;el.src=k==='truck'?'img/ws-truck.webp':Math.random()<.5?'img/ws-pal1.webp':'img/ws-pal2.webp';
+    const o={k,l,z:7,el};f.appendChild(el);ents.push(o);
+    if(k==='pal')el.onpointerdown=e=>{e.stopPropagation();if(over||o.hit||o.z>4.2)return;o.hit=1;spl++;el.classList.add('hit');const p=at(1/o.z,o.l);pop(p.x,p.y-LANEW*1.1/o.z,'Splash!');Audio_.blip(true);lv()};
+    if(k==='truck'){$('#wsDz'+l).classList.add('on')}
+    return o};
+  const busy=()=>ents.some(o=>o.k==='truck');
   function frame(now){if(over)return;const dt=Math.min(50,now-last);last=now;const p=Math.min(1,(now-t0)/DUR);
-    $('#wsSongI').style.width=(p*100)+'%';bg.style.transform=`translateY(${p*travel}px)`;
-    if(p<.9&&now>nextPal){spawnPal();nextPal=now+(900-p*300+Math.random()*500)/(S.speed>1?2:1)}
-    if(p<.9&&now>nextHose&&!tgts.length){hose(p);nextHose=now+(3200-p*900)/(S.speed>1?2:1)}
-    tgts=tgts.filter(t=>{if(now>=t.at){impact(t);return false}return true});
-    const sp=(.11+p*.06)*dt*(S.speed>1?2:1);
-    ents.forEach(o=>{o.y+=sp;o.el.style.top=o.y+'px';
-      if(!o.hit&&!o.done&&o.l===lane&&o.y>MY-30&&o.y<MY+20){o.done=1;wet++;pop(LX[lane],MY-130,'Splashed!',true)}});
-    ents=ents.filter(o=>{if(o.y>H+110){o.el.remove();return false}return true});
+    $('#wsSongI').style.width=(p*100)+'%';
+    if(p<.9&&now>nextPal){const tr=ents.find(o=>o.k==='truck');let l=Math.floor(Math.random()*3);if(tr&&l===tr.l)l=(l+1)%3;spawn('pal',l);nextPal=now+(1000-p*350+Math.random()*450)/sp}
+    if(p<.88&&now>nextTruck&&!busy()){spawn('truck',Math.random()<.65?lane:Math.floor(Math.random()*3));nextTruck=now+(3300-p*1100)/sp}
+    for(const o of ents){const v=(o.k==='truck'?.001+p*.0005:.0008+p*.0004)*dt*sp;o.z=Math.max(.55,o.z-v*o.z*.55-v*.4);
+      const s=1/o.z,pt=at(Math.min(s,1.6),o.l),h=LANEW*(o.k==='truck'?1.15:1.0)*s;
+      o.el.style.left=pt.x+'px';o.el.style.top=(pt.y+LANEW*.18*s)+'px';o.el.style.height=h+'px';o.el.style.zIndex=Math.round(s*100)+(o.k==='truck'?1:0);
+      if(o.k==='pal'&&!o.hit)o.el.classList.toggle('far',o.z>4.2);
+      if(!o.done&&o.z<=1.05){o.done=1;
+        if(o.k==='truck'){$('#wsDz'+o.l).classList.remove('on');const b=document.createElement('div');b.className='burst';const q=at(1,o.l);b.style.left=q.x+'px';b.style.top=q.y+'px';f.appendChild(b);setTimeout(()=>b.remove(),600);
+          if(o.l===lane){lives--;wet+=2;me.classList.remove('hit');void me.offsetWidth;me.classList.add('hit');pop(q.x,q.y-LANEW*1.3,lives>0?'Camera hit!':'Camera soaked',true);navigator.vibrate&&navigator.vibrate(60);lv()}
+          else pop(at(1,lane).x,at(1,lane).y-LANEW*1.3,'Missed!')}
+        else if(!o.hit&&o.l===lane){wet++;pop(at(1,lane).x,at(1,lane).y-LANEW*1.3,'Splashed!',true)}}
+    }
+    ents=ents.filter(o=>{if(o.z<=.6){o.el.remove();return false}return true});
     if(lives<=0){over=true;finish(false);return}
     if(p<1)requestAnimationFrame(frame);else{over=true;finish(true)}}
-  async function finish(ok){f.onpointerdown=null;me.classList.remove('run');tgts.forEach(t=>{t.els.forEach(e=>e.remove());t.tr.remove()});tgts=[];
-    if(ok){ents.forEach(o=>o.el.remove());ents=[];const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';may.style.left=W*.5+'px';may.style.top=(H*.42)+'px';f.appendChild(may);
-      lane=1;put();me.style.transition='left .3s ease, top 1.2s ease';await rawSleep(80);me.style.top=(H*.42+70)+'px';await rawSleep(S.speed>1?300:1300)}
+  async function finish(ok){f.onpointerdown=null;me.classList.remove('run');ents.forEach(o=>o.el.remove());ents=[];f.querySelectorAll('.dz').forEach(e=>e.classList.remove('on'));
+    if(ok){const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';const m=at(.42,1);may.style.left=m.x+'px';may.style.top=m.y+'px';may.style.height=(LANEW*.5)+'px';f.appendChild(may);
+      lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease';await rawSleep(80);const q=at(.5,1);me.style.top=(q.y+LANEW*.09)+'px';me.style.height=(LANEW*.55)+'px';await rawSleep(S.speed>1?300:1400)}
     else await rawSleep(S.speed>1?200:900);
     me.style.transition='';done({ok,wet,spl,lives,max})}
   requestAnimationFrame(frame)})}

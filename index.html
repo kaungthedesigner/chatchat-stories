@@ -903,7 +903,7 @@ async function waterStreet(){
   S.flags.c3_ws_fails=fails;S.flags.c3_ws_bag=bag;
   const wet=res.wet;S.flags.c3_wet=wet<=1?'dry':wet<=4?'wet':'soaked';S.flags.c3_splashes=res.spl;
   const L={dry:['Mostly dry','Min reaches the end of the street almost dry. On Thingyan, that is a crime.'],wet:['Wet','Min reaches the end of the street wet through, just in time.'],soaked:['Soaked','Min reaches the end of the street dripping from his hair to his flip-flops.']}[S.flags.c3_wet];
-  await cardShow(`<div class="eb">${L[0]} · ${res.spl} splash${res.spl===1?'':'es'} · camera ${res.lives===res.max?'bone dry':'still working'}</div><h2>He made it</h2><p>${L[1]}</p>`,[['wsDone','Find May']]);
+  await cardShow(`<div class="eb">${L[0]} · camera ${res.lives===res.max?'bone dry':'still working'}</div><h2>He made it</h2><p>${L[1]}</p><p style="margin-top:8px;font-weight:500;color:#1d2a2c">You splashed ${res.spl} friend${res.spl===1?'':'s'}. Min got splashed ${res.got} time${res.got===1?'':'s'}.</p>`,[['wsDone','Find May']]);
   hud.style.display='none';
 }
 function wsRun(bag){return new Promise(async done=>{
@@ -915,7 +915,7 @@ function wsRun(bag){return new Promise(async done=>{
   const VY=337,NY=716,cx=y=>205-(y-400)*.043,hw=y=>.475*(y-VY);
   const at=(s,l)=>{const y=VY+s*(NY-VY);return{x:ox+(cx(y)+(l-1)*(2/3)*hw(y))*sc,y:oy+y*sc}};
   const LANEW=(2/3)*hw(NY)*sc,max=bag?5:3,sp=S.speed>1?2:1;
-  let lives=max,lane=1,wet=0,spl=0,ents=[],over=false;
+  let lives=max,lane=1,wet=0,spl=0,got=0,ents=[],over=false;
   const DUR=26000/sp;
   // lane overlay (same cover mapping as the background)
   const NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox',`0 0 ${IW} ${IH}`);svg.setAttribute('preserveAspectRatio','xMidYMid slice');
@@ -924,7 +924,7 @@ function wsRun(bag){return new Promise(async done=>{
   const quad=l=>{const a=(l-1)*(2/3)-1/3,b=a+2/3;return `${cx(y0)+a*hw(y0)},${y0} ${cx(y0)+b*hw(y0)},${y0} ${cx(y1)+b*hw(y1)},${y1} ${cx(y1)+a*hw(y1)},${y1}`};
   [0,1,2].forEach(l=>svg.insertAdjacentHTML('beforeend',`<polygon points="${quad(l)}" class="dz" id="wsDz${l}"/>`));
   f.appendChild(svg);
-  const lv=()=>{$('#wsLives').innerHTML=Array.from({length:max},(_,i)=>`<i class="ic i-camera${i<lives?'':' off'}"></i>`).join('')+`<span style="margin-left:4px">${bag?'In a plastic bag':'Camera'}</span><span class="sc"><i class="ic i-drop"></i>${spl}</span>`};
+  const lv=()=>{$('#wsLives').innerHTML=Array.from({length:max},(_,i)=>`<i class="ic i-camera${i<lives?'':' off'}"></i>`).join('')+`<span style="margin-left:4px">${bag?'In a plastic bag':'Camera'}</span><span class="sc" title="Friends you splashed"><i class="ic i-smiley"></i>${spl}<i class="ic i-drop" style="margin-left:10px"></i>${got}</span>`};
   hud.style.display='block';$('#wsSongI').style.width='0';lv();
   const me=document.createElement('div');me.id='wsMin';me.className='spr anim';me.style.backgroundImage='url(img/ws-min-run.webp)';me.style.height=(LANEW*1.05)+'px';me.style.width=(LANEW*1.05*.42)+'px';f.appendChild(me);
   const put=()=>{const p=at(1,lane);me.style.left=p.x+'px';me.style.top=(p.y+LANEW*.18)+'px'};put();
@@ -951,9 +951,9 @@ function wsRun(bag){return new Promise(async done=>{
       if(o.k==='pal'&&!o.hit)o.el.classList.toggle('far',o.z>4.2);if(o.done)o.el.style.opacity=Math.max(0,(o.z-.6)/.45);
       if(!o.done&&!o.exit&&o.z<=1.05){o.done=1;
         if(o.k==='truck'){$('#wsDz'+o.l).classList.remove('on');const b=document.createElement('div');b.className='burst';const q=at(1,o.l);b.style.left=q.x+'px';b.style.top=q.y+'px';f.appendChild(b);setTimeout(()=>b.remove(),600);
-          if(o.l===lane){lives--;wet+=2;me.classList.remove('hit');void me.offsetWidth;me.classList.add('hit');pop(q.x,q.y-LANEW*1.3,lives>0?'Camera hit!':'Camera soaked',true);navigator.vibrate&&navigator.vibrate(60);lv()}
+          if(o.l===lane){lives--;wet+=2;got++;me.classList.remove('hit');void me.offsetWidth;me.classList.add('hit');pop(q.x,q.y-LANEW*1.3,lives>0?'Camera hit!':'Camera soaked',true);navigator.vibrate&&navigator.vibrate(60);lv()}
           else pop(at(1,lane).x,at(1,lane).y-LANEW*1.3,'Missed!')}
-        else if(!o.hit&&o.l===lane){wet++;pop(at(1,lane).x,at(1,lane).y-LANEW*1.3,'Splashed!',true)}}
+        else if(!o.hit&&o.l===lane){wet++;got++;lv();pop(at(1,lane).x,at(1,lane).y-LANEW*1.3,'Splashed!',true)}}
     }
     ents=ents.filter(o=>{if(o.z<=.6||o.gone){o.el.remove();return false}return true});
     if(lives<=0){over=true;finish(false);return}
@@ -962,7 +962,7 @@ function wsRun(bag){return new Promise(async done=>{
     if(ok){const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';const m=at(.42,1);may.style.left=m.x+'px';may.style.top=(m.y+LANEW*.18*.42)+'px';may.style.height=(LANEW*.95*.42)+'px';f.appendChild(may);
       lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease, width 1.3s ease';me.classList.add('run');await rawSleep(80);const q=at(.47,1);me.style.top=(q.y+LANEW*.18*.47)+'px';me.style.height=(LANEW*1.05*.47)+'px';me.style.width=(LANEW*1.05*.47*.42)+'px';await rawSleep(S.speed>1?300:1400)}
     else await rawSleep(S.speed>1?200:900);
-    me.style.transition='';done({ok,wet,spl,lives,max})}
+    me.style.transition='';done({ok,wet,spl,got,lives,max})}
   requestAnimationFrame(frame)})}
 function icon(n){return `<i class="ic i-${n}"></i>`}
 function endCard(n){const e=$('#end');const D=n===3?{k:'Chapter 3 complete',h:'Thingyan',l:'Their best year: exams, a water festival, a second lamp, and a phone call in the next room.',nx:'Chapter 4 · The Station',nd:'2020.'}:n===2?{k:'Chapter 2 complete',h:'Monsoon Season',l:'One umbrella, two people, and a promise made over a lamp.',nx:'Chapter 3 · Thingyan',nd:'November 2018 to December 2019.'}:{k:'Chapter 1 complete',h:'The First Rain',l:'Two strangers, one wrong umbrella, and a joke that was only the beginning.',nx:'Chapter 2 · Monsoon Season',nd:'July to October 2018.'};

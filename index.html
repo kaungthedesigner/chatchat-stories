@@ -373,37 +373,52 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #end .mh{font:600 15px/20px var(--sans);margin:22px 0 10px;display:flex;gap:8px;align-items:baseline}#end .mh span{font-weight:400;color:var(--ink-muted,#7b858c);font-size:13px}#end .mhs{font:400 13px/18px var(--sans);color:var(--ink-muted,#7b858c);margin:-4px 0 10px}#end .mh+ .mgrid{margin-top:0}
 
 /* water street side quest */
-#wstreet{background:#cfe6ea;display:flex;flex-direction:column;overflow:hidden}
-#wstreet .wh{padding:56px 20px 10px;background:linear-gradient(#cfe6ea,rgba(207,230,234,0));position:relative;z-index:3}
-#wstreet .eb{font:600 12px/16px var(--sans);color:var(--n-clay,#b5562f)}
-#wstreet h2{font:600 22px/28px var(--serif);color:#1d2a2c;margin-top:2px}
-#wstreet .sub{font:400 13px/18px var(--sans);color:#4c5b5e;margin-top:4px}
-#wstreet .bars{display:flex;gap:14px;margin-top:10px;font:500 12px/16px var(--sans);color:#33474a;align-items:center}
-#wstreet .bar{flex:1;height:6px;border-radius:999px;background:rgba(29,42,44,.12);overflow:hidden}
-#wstreet .bar i{display:block;height:100%;width:0;background:#2f6f7a;border-radius:999px}
-#wstreet .bar.w i{background:#3e8fd0}
-#wsField{position:relative;flex:1;overflow:hidden;touch-action:none;background:repeating-linear-gradient(180deg,#b9d6db 0 40px,#c4dde1 40px 80px)}
-#wsField:before,#wsField:after{content:'';position:absolute;top:0;bottom:0;width:22px;background:#d9c9a8;z-index:1}
-#wsField:before{left:0}#wsField:after{right:0}
-#wsField .ln{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.55)}
-#wsField .ent{position:absolute;width:56px;height:56px;margin-left:-28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;z-index:2}
-#wsField .ent .ic{font-size:30px;width:30px;height:30px}
-#wsField .hose{background:rgba(62,143,208,.25);color:#1f6aa8}
-#wsField .hose:after{content:'';position:absolute;left:50%;top:-60px;width:10px;margin-left:-5px;height:60px;background:linear-gradient(rgba(62,143,208,0),rgba(62,143,208,.6));border-radius:6px}
-#wsField .pal{background:#f3e3c4;color:#9a5b2a;box-shadow:0 2px 0 rgba(0,0,0,.08)}
-#wsField .pal.hit{background:#bfe3f0;color:#1f6aa8;transition:background .2s}
-#wsField .may{background:#f7d9de;color:#b0485f;width:72px;height:72px;margin-left:-36px}
-#wsMin{position:absolute;bottom:26px;width:64px;height:64px;margin-left:-32px;border-radius:50%;background:#fff;color:#2f6f7a;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:left .16s ease}
-#wsMin .ic{font-size:34px;width:34px;height:34px}
-#wsMin.wet{animation:wsWet .35s}
-@keyframes wsWet{0%,100%{transform:none}30%{transform:translateX(-5px)}60%{transform:translateX(5px)}}
-#wsField .spl{position:absolute;pointer-events:none;color:#3e8fd0;font:600 13px/16px var(--sans);z-index:4;animation:wsUp .7s forwards}
-@keyframes wsUp{to{transform:translateY(-34px);opacity:0}}
-#wstreet .wtip{position:absolute;left:0;right:0;bottom:104px;text-align:center;font:500 13px/18px var(--sans);color:#1d2a2c;z-index:3;pointer-events:none}
-#wsStart,#wsDone{position:absolute;left:20px;right:20px;bottom:30px;padding:14px;border-radius:999px;background:#1d2a2c;color:#fff;font:600 15px/20px var(--sans);z-index:5}
-#wsDone{display:none}
-#wsRes{position:absolute;left:20px;right:20px;top:42%;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.94);font:400 15px/21px var(--sans);color:#1d2a2c;z-index:5;display:none;text-align:center}
-#wsRes b{display:block;font:600 17px/22px var(--serif);margin-bottom:4px}
+#wstreet{background:#2b3a3c;overflow:hidden}
+#wsField{position:absolute;inset:0;overflow:hidden;touch-action:none}
+#wsBg{position:absolute;left:0;bottom:0;width:100%;height:auto;will-change:transform;user-select:none;pointer-events:none}
+#wsField .lane{position:absolute;top:0;bottom:0;width:30%;margin-left:-15%;pointer-events:none}
+#wsField .spr{position:absolute;pointer-events:none;user-select:none;transform:translate(-50%,-100%);filter:drop-shadow(0 6px 4px rgba(0,0,0,.25))}
+#wsField .pal{height:92px;pointer-events:auto;cursor:pointer;transition:filter .25s}
+#wsField .pal.hit{filter:drop-shadow(0 6px 4px rgba(0,0,0,.25)) brightness(.86) saturate(.7) hue-rotate(-10deg)}
+#wsField .truck{height:118px;transition:right .35s ease;transform:translate(0,-100%);right:-140px;z-index:3}
+#wsField .truck.in{right:-34px}
+#wsMin{height:104px;z-index:4;transition:left .14s ease}
+#wsMin.run{animation:wsRun .32s ease-in-out infinite alternate}
+@keyframes wsRun{to{margin-top:-5px}}
+#wsMin.hit{animation:wsHit .45s}
+@keyframes wsHit{0%,100%{margin-left:0}25%{margin-left:-8px}50%{margin-left:8px}75%{margin-left:-4px}}
+#wsField .may{height:120px;z-index:2}
+#wsField .tgt{position:absolute;width:86px;height:40px;margin:-20px 0 0 -43px;border-radius:50%;border:3px dashed #e8f6ff;background:rgba(62,143,208,.28);z-index:1;pointer-events:none;animation:wsTgt var(--t,1s) linear forwards}
+@keyframes wsTgt{from{transform:scale(1.5);opacity:.4}to{transform:scale(1);opacity:1}}
+#wsField .burst{position:absolute;width:120px;height:120px;margin:-90px 0 0 -60px;z-index:5;pointer-events:none;background:radial-gradient(circle at 50% 70%,rgba(255,255,255,.95) 0 14%,rgba(160,215,245,.85) 15% 38%,rgba(62,143,208,0) 62%);animation:wsBurst .55s ease-out forwards}
+@keyframes wsBurst{from{transform:scale(.3);opacity:1}to{transform:scale(1.25);opacity:0}}
+#wsField .jet{position:absolute;height:12px;border-radius:8px;background:linear-gradient(90deg,rgba(120,190,235,.0),rgba(170,220,248,.95));z-index:2;pointer-events:none;transform-origin:right center;animation:wsJet .55s ease-out forwards}
+@keyframes wsJet{from{opacity:0;transform:scaleX(.2)}30%{opacity:1;transform:scaleX(1)}to{opacity:0}}
+#wsField .pop{position:absolute;z-index:6;pointer-events:none;font:700 14px/18px var(--sans);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45);transform:translate(-50%,0);animation:wsUp .8s forwards;white-space:nowrap}
+#wsField .pop.bad{color:#ffd9cf}
+@keyframes wsUp{to{margin-top:-38px;opacity:0}}
+#wsHud{position:absolute;left:0;right:0;top:0;padding:52px 16px 26px;background:linear-gradient(rgba(20,30,32,.72),rgba(20,30,32,0));z-index:7;color:#fff;display:none}
+#wsHud .row{display:flex;align-items:center;gap:10px}
+#wsHud .song{flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,.25);position:relative}
+#wsHud .song i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;background:#ffd36b}
+#wsHud .song b{position:absolute;right:-6px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:#f7d9de url(img/ws-may.webp) center 8%/180% auto no-repeat;border:2px solid #fff}
+#wsHud .ic{font-size:18px;width:18px;height:18px}
+#wsHud .lives{display:flex;gap:4px;margin-top:10px;align-items:center;font:500 12px/16px var(--sans)}
+#wsHud .lives .ic.off{opacity:.28}
+#wsHud .sc{margin-left:auto;display:flex;gap:4px;align-items:center;font:600 13px/16px var(--sans)}
+#wsCard{position:absolute;left:16px;right:16px;bottom:24px;z-index:8;background:#fffaf2;border-radius:20px;padding:20px 18px 16px;box-shadow:0 18px 50px rgba(0,0,0,.35);color:#1d2a2c;display:none}
+#wsCard .eb{font:600 12px/16px var(--sans);color:#b5562f;letter-spacing:.02em}
+#wsCard h2{font:600 22px/27px var(--serif);margin:3px 0 8px}
+#wsCard p{font:400 14px/20px var(--sans);color:#4c5b5e}
+#wsCard ul{list-style:none;margin:10px 0 4px;display:grid;gap:8px}
+#wsCard li{display:flex;gap:12px;align-items:center;font:400 14px/19px var(--sans);color:#33474a}
+#wsCard li .th{flex:none;width:44px;height:44px;border-radius:12px;background:#dceef1 center/contain no-repeat}
+#wsCard li .th.ic{display:flex;align-items:center;justify-content:center;font-size:22px;color:#2f6f7a;background:#dceef1}
+#wsCard li b{color:#1d2a2c;font-weight:600}
+#wsCard .btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+#wsCard button{padding:14px;border-radius:999px;background:#1d2a2c;color:#fff;font:600 15px/20px var(--sans)}
+#wsCard button.sec{background:#e9e1d3;color:#1d2a2c}
+#wsCount{position:absolute;inset:0;z-index:8;display:none;align-items:center;justify-content:center;font:600 72px/1 var(--serif);color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.4);pointer-events:none}
 </style>
 </head>
 <body>
@@ -450,8 +465,9 @@ img{display:block;user-select:none;-webkit-user-drag:none}
       <div id="vf"><div class="bar"><span id="vfBack" role="button">Back</span><b id="vfName"></b><span id="vfCount"></span></div><div class="win" id="vfWin"><div class="pan" id="vfPan"></div><div class="fr" id="vfFr"><div class="mask"></div><i></i><i></i><i></i><i></i></div><div class="hint" id="vfHint">Drag to frame</div><div class="flashw" id="vfFlash"></div><div class="res" id="vfRes"></div></div><div class="ctl"><button class="shut" id="vfShut" aria-label="Take photo"></button></div></div>
     </div>
 
-    <div class="view" id="wstreet"><div class="wh"><div class="eb">Side quest · Water street</div><h2>Reach May before the song ends</h2><p class="sub">Tap left or right to change lanes. Tap a friend to splash them. Dodge Thura's hose, or don't.</p><div class="bars"><span>Song</span><div class="bar" id="wsSong"><i></i></div><span>Wet</span><div class="bar w" id="wsWetB"><i></i></div></div></div>
-      <div id="wsField"></div><div class="wtip" id="wsTip"></div><button id="wsStart">Start</button><div id="wsRes"></div><button id="wsDone">Find May</button></div>
+    <div class="view" id="wstreet"><div id="wsField"></div>
+      <div id="wsHud"><div class="row"><i class="ic i-music-notes"></i><div class="song"><i id="wsSongI"></i><b></b></div></div><div class="lives" id="wsLives"></div></div>
+      <div id="wsCount"></div><div id="wsCard"></div></div>
 
     <div id="banner"></div>
     <div id="toast"></div>
@@ -847,38 +863,72 @@ async function photoWalk(){
   S.flags.c2_walk_framed=S.walk.filter(w=>w.ok).length;
 }
 async function waterStreet(){
-  const f=$('#wsField'),tip=$('#wsTip');f.innerHTML='';$('#wsRes').style.display='none';$('#wsDone').style.display='none';$('#wsStart').style.display='block';
-  $('#wsSong i').style.width='0';$('#wsWetB i').style.width='0';tip.textContent='';
+  const V=$('#wstreet'),f=$('#wsField'),card=$('#wsCard'),hud=$('#wsHud');
+  f.innerHTML='<img id="wsBg" src="img/ws-street.webp" alt="" draggable="false">';hud.style.display='none';
   show('wstreet');
-  await new Promise(r=>{$('#wsStart').onclick=e=>{e.stopPropagation();$('#wsStart').style.display='none';r()}});
-  const W=f.clientWidth,H=f.clientHeight,LX=[W*.24,W*.5,W*.76];let lane=1,wet=0,spl=0,ents=[],t0=performance.now(),last=t0,next=0;const DUR=24000/(S.speed>1?1.4:1);
-  [W*.37,W*.63].forEach(x=>{const l=document.createElement('div');l.className='ln';l.style.left=x+'px';f.appendChild(l)});
-  const me=document.createElement('div');me.id='wsMin';me.innerHTML=icon('person');f.appendChild(me);
-  const put=()=>{me.style.left=LX[lane]+'px'};put();
-  tip.textContent='Tap left or right';
-  f.onpointerdown=e=>{e.stopPropagation();const r=f.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
-    const pal=ents.find(o=>o.k==='pal'&&!o.hit&&Math.abs(LX[o.l]-x)<40&&Math.abs(o.y-y)<44);
-    if(pal){pal.hit=1;spl++;pal.el.classList.add('hit');pop(LX[pal.l],pal.y,'Splash!');Audio_.blip&&Audio_.blip(true);return}
-    lane=Math.max(0,Math.min(2,lane+(x<W/2?-1:1)));put();tip.textContent=''};
-  function pop(x,y,t){const p=document.createElement('div');p.className='spl';p.textContent=t;p.style.left=(x-20)+'px';p.style.top=(y-30)+'px';f.appendChild(p);setTimeout(()=>p.remove(),700)}
-  function spawn(k){const el=document.createElement('div');el.className='ent '+k;el.innerHTML=icon(k==='hose'?'drop':'smiley');const l=Math.floor(Math.random()*3);el.style.left=LX[l]+'px';f.appendChild(el);ents.push({k,l,y:-40,el})}
-  await new Promise(done=>{
-    function frame(now){const dt=Math.min(50,now-last);last=now;const el=now-t0,p=Math.min(1,el/DUR);
-      $('#wsSong i').style.width=(p*100)+'%';
-      if(p<.92&&now>next){spawn(Math.random()<.55?'hose':'pal');next=now+520+Math.random()*420}
-      const sp=(.22+p*.12)*dt;
-      ents.forEach(o=>{o.y+=sp;o.el.style.top=(o.y-28)+'px';
-        if(!o.done&&o.y>H-90&&o.y<H-20&&o.l===lane){o.done=1;if(o.k==='hose'){wet++;me.classList.remove('wet');void me.offsetWidth;me.classList.add('wet');pop(LX[lane],H-80,'Soaked');$('#wsWetB i').style.width=Math.min(100,wet*12)+'%'}}});
-      ents=ents.filter(o=>{if(o.y>H+40){o.el.remove();return false}return true});
-      if(p<1)requestAnimationFrame(frame);else done()}
-    requestAnimationFrame(frame)});
-  ents.forEach(o=>o.el.remove());f.onpointerdown=null;
-  const may=document.createElement('div');may.className='ent may';may.innerHTML=icon('smiley');may.style.left=LX[lane]+'px';may.style.top='30%';f.appendChild(may);
-  S.flags.c3_wet=wet<=2?'dry':wet<=5?'wet':'soaked';S.flags.c3_splashes=spl;
-  const L={dry:['Mostly dry','Min arrives at the end of the street almost dry. On Thingyan, that is a crime.'],wet:['Wet','Min arrives at the end of the street wet through, just in time.'],soaked:['Soaked','Min arrives at the end of the street dripping from his hair to his flip-flops.']}[S.flags.c3_wet];
-  const r=$('#wsRes');r.innerHTML=`<b>${L[0]} · ${spl} splash${spl===1?'':'es'}</b>${L[1]}`;r.style.display='block';$('#wsDone').style.display='block';
-  await new Promise(res=>{$('#wsDone').onclick=e=>{e.stopPropagation();res()}});
+  const cardShow=(html,btns)=>new Promise(res=>{card.innerHTML=html+'<div class="btns">'+btns.map((b,i)=>`<button id="${b[0]}" class="${i?'sec':''}">${b[1]}</button>`).join('')+'</div>';card.style.display='block';
+    btns.forEach(b=>{$('#'+b[0]).onclick=e=>{e.stopPropagation();card.style.display='none';res(b[0])}})});
+  await cardShow(`<div class="eb">Side quest · Water street</div><h2>Reach May before the song ends</h2><p>She's waiting at the far end of the street, by the pandal.</p>
+    <ul><li><span class="th ic"><i class="ic i-person"></i></span><span><b>Tap left or right</b> of the screen to change lanes.</span></li>
+    <li><span class="th" style="background-image:url(img/ws-pal1.webp)"></span><span><b>Tap friends to splash them</b> before they splash you. Getting wet is fine. It's Thingyan.</span></li>
+    <li><span class="th" style="background-image:url(img/ws-truck.webp)"></span><span><b>Get out of the way of Thura's hose.</b> Three direct hits and Min's camera is ruined.</span></li></ul>`,[['wsStart','Start']]);
+  let bag=false,fails=0,res;
+  for(;;){res=await wsRun(bag);if(res.ok)break;fails++;
+    const b=await cardShow(`<div class="eb">Camera soaked</div><h2>Thura got the camera</h2><p>Min needs it for a photo under the mango tree. Try that street again.</p>`,
+      fails>=1&&!bag?[['wsRetry','Try again'],['wsBag','Wrap the camera in a plastic bag']]:[['wsRetry','Try again']]);
+    if(b==='wsBag')bag=true;}
+  S.flags.c3_ws_fails=fails;S.flags.c3_ws_bag=bag;
+  const wet=res.wet;S.flags.c3_wet=wet<=1?'dry':wet<=4?'wet':'soaked';S.flags.c3_splashes=res.spl;
+  const L={dry:['Mostly dry','Min reaches the end of the street almost dry. On Thingyan, that is a crime.'],wet:['Wet','Min reaches the end of the street wet through, just in time.'],soaked:['Soaked','Min reaches the end of the street dripping from his hair to his flip-flops.']}[S.flags.c3_wet];
+  await cardShow(`<div class="eb">${L[0]} · ${res.spl} splash${res.spl===1?'':'es'} · camera ${res.lives===res.max?'bone dry':'still working'}</div><h2>He made it</h2><p>${L[1]}</p>`,[['wsDone','Find May']]);
+  hud.style.display='none';
 }
+function wsRun(bag){return new Promise(async done=>{
+  const f=$('#wsField'),hud=$('#wsHud'),bg=$('#wsBg');
+  [...f.querySelectorAll('.spr,.tgt,.burst,.jet,.pop')].forEach(e=>e.remove());
+  if(!bg.complete)await new Promise(r=>bg.onload=r);
+  const W=f.clientWidth,H=f.clientHeight,LX=[W*.31,W*.5,W*.69],MY=H-96,max=bag?5:3;let lives=max,lane=1,wet=0,spl=0,ents=[],tgts=[],over=false;
+  const DUR=26000/(S.speed>1?2:1),travel=Math.max(0,bg.offsetHeight-H);
+  const lv=()=>{$('#wsLives').innerHTML=Array.from({length:max},(_,i)=>`<i class="ic i-camera${i<lives?'':' off'}"></i>`).join('')+`<span style="margin-left:4px">${bag?'In a plastic bag':'Camera'}</span><span class="sc"><i class="ic i-drop"></i>${spl}</span>`};
+  hud.style.display='block';$('#wsSongI').style.width='0';lv();bg.style.transform='translateY(0)';
+  const me=document.createElement('img');me.src='img/ws-min.webp';me.id='wsMin';me.className='spr';me.style.top=MY+'px';f.appendChild(me);
+  const put=()=>{me.style.left=LX[lane]+'px'};put();
+  const pop=(x,y,t,bad)=>{const p=document.createElement('div');p.className='pop'+(bad?' bad':'');p.textContent=t;p.style.left=x+'px';p.style.top=y+'px';f.appendChild(p);setTimeout(()=>p.remove(),800)};
+  const cnt=$('#wsCount');cnt.style.display='flex';for(const n of ['3','2','1']){cnt.textContent=n;await rawSleep(S.speed>1?120:520)}cnt.style.display='none';
+  me.classList.add('run');
+  f.onpointerdown=e=>{if(over)return;e.stopPropagation();const r=f.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    const p=ents.find(o=>!o.hit&&Math.abs(LX[o.l]-x)<52&&y>o.y-96&&y<o.y+10);
+    if(p){p.hit=1;spl++;p.el.classList.add('hit');pop(LX[p.l],p.y-110,'Splash!');Audio_.blip(true);lv();return}
+    lane=Math.max(0,Math.min(2,lane+(x<W/2?-1:1)));put()};
+  const t0=performance.now();let last=t0,nextPal=t0+900,nextHose=t0+2600;
+  const spawnPal=()=>{const el=document.createElement('img');el.src=Math.random()<.5?'img/ws-pal1.webp':'img/ws-pal2.webp';el.className='spr pal';const l=Math.floor(Math.random()*3);el.style.left=LX[l]+'px';f.appendChild(el);ents.push({l,y:120,el})};
+  const hose=p=>{const safe=Math.floor(Math.random()*3);let ls=[Math.random()<.6?lane:Math.floor(Math.random()*3)];
+    if(p>.55&&Math.random()<.5){const o=[0,1,2].filter(x=>x!==ls[0]);ls.push(o[Math.floor(Math.random()*2)])}
+    const warn=(1150-p*380)/(S.speed>1?2:1),tr=document.createElement('img');tr.src='img/ws-truck.webp';tr.className='spr truck';tr.style.top=(MY-30)+'px';f.appendChild(tr);requestAnimationFrame(()=>tr.classList.add('in'));
+    const els=ls.map(l=>{const t=document.createElement('div');t.className='tgt';t.style.setProperty('--t',warn+'ms');t.style.left=LX[l]+'px';t.style.top=(MY-8)+'px';f.appendChild(t);return t});
+    tgts.push({at:performance.now()+warn,ls,els,tr})};
+  const impact=t=>{t.els.forEach(e=>e.remove());t.ls.forEach(l=>{const j=document.createElement('div');j.className='jet';j.style.right='70px';j.style.width=(W-70-LX[l])+'px';j.style.top=(MY-52)+'px';f.appendChild(j);setTimeout(()=>j.remove(),600);
+      const b=document.createElement('div');b.className='burst';b.style.left=LX[l]+'px';b.style.top=(MY-10)+'px';f.appendChild(b);setTimeout(()=>b.remove(),600)});
+    if(t.ls.includes(lane)){lives--;wet+=2;me.classList.remove('hit');void me.offsetWidth;me.classList.add('hit');pop(LX[lane],MY-130,lives>0?'Camera hit!':'Camera soaked',true);navigator.vibrate&&navigator.vibrate(60);lv()}
+    else pop(LX[t.ls[0]],MY-130,'Missed!');
+    setTimeout(()=>{t.tr.classList.remove('in');setTimeout(()=>t.tr.remove(),400)},350)};
+  function frame(now){if(over)return;const dt=Math.min(50,now-last);last=now;const p=Math.min(1,(now-t0)/DUR);
+    $('#wsSongI').style.width=(p*100)+'%';bg.style.transform=`translateY(${p*travel}px)`;
+    if(p<.9&&now>nextPal){spawnPal();nextPal=now+(900-p*300+Math.random()*500)/(S.speed>1?2:1)}
+    if(p<.9&&now>nextHose&&!tgts.length){hose(p);nextHose=now+(3200-p*900)/(S.speed>1?2:1)}
+    tgts=tgts.filter(t=>{if(now>=t.at){impact(t);return false}return true});
+    const sp=(.11+p*.06)*dt*(S.speed>1?2:1);
+    ents.forEach(o=>{o.y+=sp;o.el.style.top=o.y+'px';
+      if(!o.hit&&!o.done&&o.l===lane&&o.y>MY-30&&o.y<MY+20){o.done=1;wet++;pop(LX[lane],MY-130,'Splashed!',true)}});
+    ents=ents.filter(o=>{if(o.y>H+110){o.el.remove();return false}return true});
+    if(lives<=0){over=true;finish(false);return}
+    if(p<1)requestAnimationFrame(frame);else{over=true;finish(true)}}
+  async function finish(ok){f.onpointerdown=null;me.classList.remove('run');tgts.forEach(t=>{t.els.forEach(e=>e.remove());t.tr.remove()});tgts=[];
+    if(ok){ents.forEach(o=>o.el.remove());ents=[];const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';may.style.left=W*.5+'px';may.style.top=(H*.42)+'px';f.appendChild(may);
+      lane=1;put();me.style.transition='left .3s ease, top 1.2s ease';await rawSleep(80);me.style.top=(H*.42+70)+'px';await rawSleep(S.speed>1?300:1300)}
+    else await rawSleep(S.speed>1?200:900);
+    me.style.transition='';done({ok,wet,spl,lives,max})}
+  requestAnimationFrame(frame)})}
 function icon(n){return `<i class="ic i-${n}"></i>`}
 function endCard(n){const e=$('#end');const D=n===3?{k:'Chapter 3 complete',h:'Thingyan',l:'Their best year: exams, a water festival, a second lamp, and a phone call in the next room.',nx:'Chapter 4 · The Station',nd:'2020.'}:n===2?{k:'Chapter 2 complete',h:'Monsoon Season',l:'One umbrella, two people, and a promise made over a lamp.',nx:'Chapter 3 · Thingyan',nd:'November 2018 to December 2019.'}:{k:'Chapter 1 complete',h:'The First Rain',l:'Two strangers, one wrong umbrella, and a joke that was only the beginning.',nx:'Chapter 2 · Monsoon Season',nd:'July to October 2018.'};
   e.innerHTML=`<div class="k">${D.k}</div><h2>${D.h}</h2><p class="lead">${D.l}</p>

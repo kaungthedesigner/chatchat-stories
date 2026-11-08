@@ -909,9 +909,9 @@ async function padaukPick(){
   const V=$('#padauk'),bg=$('#pdBg');[...V.querySelectorAll('.spot,.pop')].forEach(e=>e.remove());$('#pdPick').style.display='none';$('#pdT').style.transform='scaleX(1)';
   show('padauk');if(!bg.complete)await new Promise(r=>bg.onload=r);
   const W=V.clientWidth,H=V.clientHeight,IW=450,IH=800,sc=Math.max(W/IW,H/IH),ox=(W-IW*sc)/2,oy=(H-IH*sc)/2,sp=S.speed>1?3:1;
-  const P={full:[.31,.22,'The fullest one, up high','Min climbs the wall for it. Daw Khin next door holds the wall steady and tells him he\'ll break his neck.'],
-           buds:[.755,.43,'A young one, still in bud','Not open yet. By the afternoon it will be.'],
-           fallen:[.47,.76,'The one that fell on the wall','The aunties got the rest. This one was waiting on the bricks.']};
+  const P={full:[.355,.375,'The fullest one, up high','Min climbs the wall for it. Daw Khin next door holds the wall steady and tells him he\'ll break his neck.'],
+           buds:[.735,.505,'A young one, still in bud','Not open yet. By the afternoon it will be.'],
+           fallen:[.445,.765,'The one that fell on the wall','The aunties got the rest. This one was waiting on the bricks.']};
   const xy=k=>({x:ox+P[k][0]*IW*sc,y:oy+P[k][1]*IH*sc});
   const el={};for(const k in P){const d=document.createElement('div');d.className='spot';const q=xy(k);d.style.left=q.x+'px';d.style.top=q.y+'px';V.appendChild(d);el[k]=d}
   const pop=(k,t)=>{const p=document.createElement('div');p.className='pop';const q=xy(k);p.textContent=t;p.style.left=q.x+'px';p.style.top=(q.y-70)+'px';V.appendChild(p);setTimeout(()=>p.remove(),1600)};

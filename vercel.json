@@ -1,0 +1,6 @@
+{
+  "buildCommand": "sh build-vercel.sh",
+  "outputDirectory": "public",
+  "framework": null,
+  "cleanUrls": true
+}

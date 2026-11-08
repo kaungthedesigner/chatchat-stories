@@ -799,7 +799,7 @@ async function exec(s){
   case 'list':{ renderList(v.rows,v.only);show('list');if(v.only){await waitRow(v.only)}break}
   case 'open': openChat(v.c,v.stat);await sleep(500);break;
   case 'notify':{ await holdChat();renderList(liveRows(v.rows,v.c),null);show('list');await sleep(900);if(v.div)push({k:'div',text:v.div},v.c);push(Object.assign({dir:'in'},v.m||{k:'text',text:v.text}),v.c);await banner(v.c,C[v.c].name,v.text);openChat(v.c,v.stat);await sleep(600);break}
-  case 'friend':{ await holdChat();renderList(v.rows,null);show('list');await sleep(900);await banner('may','May Thiri','sent you a friend request',true);toast('You and <b>May Thiri</b> are now connected');openChat('may','Active now');push({k:'sys',text:'You are now connected on moe'});await sleep(900);break}
+  case 'friend':{ await holdChat();renderList(v.rows,null);show('list');await sleep(900);await banner('may','May Thiri','sent you a friend request',true);toast('You and <b>May Thiri</b> are now connected');openChat('may','Active now');push({k:'sys',text:'You are now connected on ChatChat'});await sleep(900);break}
   case 'in': await incoming({k:'text',text:v});break;
   case 'inPhoto': await incoming({k:'photo',art:v});break;
   case 'inVoice': await incoming({k:'voice',text:v[0],tr:v[1]});break;

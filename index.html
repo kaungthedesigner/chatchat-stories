@@ -343,6 +343,26 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 
 /* voice transcript */
 .b .vtr{margin-top:6px;font-size:13px;line-height:18px;font-style:italic;opacity:.8}
+
+/* posts */
+#post{background:var(--paper-100);display:flex;flex-direction:column}
+#post .ch{border-bottom:1px solid var(--line)}
+#post .pb{flex:1;overflow-y:auto;padding-bottom:12px}
+#post .pa{display:flex;align-items:center;gap:10px;padding:14px 16px 10px}
+#post .pa b{display:block;font:500 16px/22px var(--serif);color:var(--ink)}
+#post .pa span{font:400 12px/16px var(--sans);color:var(--ink-muted)}
+#post .pi{width:100%;aspect-ratio:4/3;overflow:hidden;background:#000}
+#post .pi img{width:100%;height:100%;object-fit:cover;display:block}
+#post .acts{display:flex;gap:16px;padding:10px 14px 4px;color:var(--ink-body)}
+#post .acts svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:12;stroke-linejoin:round}
+#post .acts .hrt.on{color:#C0392B}
+#post .acts .hrt.on svg{fill:currentColor;animation:hpop .45s ease-out}
+@keyframes hpop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+#post .lk{padding:2px 16px;font:500 14px/20px var(--sans);color:var(--ink)}
+#post .cap{padding:4px 16px;font:400 15px/22px var(--sans);color:var(--ink-body)}
+#post .cap b{font-weight:600;color:var(--ink);margin-right:6px}
+#post .when{padding:4px 16px;font:400 12px/16px var(--sans);color:var(--ink-faint)}
+#post .pf{flex:none;padding:6px 16px 26px}
 /* photo walk side quest */
 #pwalk{background:#0f1312;color:var(--n-ink);display:flex;flex-direction:column}
 #pwalk .ph1{padding:58px 20px 10px}
@@ -511,6 +531,8 @@ img{display:block;user-select:none;-webkit-user-drag:none}
     <div class="view" id="wstreet"><div id="wsField"></div>
       <div id="wsHud"><div class="row"><i class="ic i-music-notes"></i><div class="song"><i id="wsSongI"></i><b></b></div></div><div class="lives" id="wsLives"></div></div>
       <div id="wsCount"></div><div id="wsCard"></div></div>
+
+    <div class="view" id="post"><div class="ch"><div class="back"><span class="ic i-arrow-left"></span></div><div class="who"><b>Post</b></div></div><div class="pb" id="postBody"></div><div class="pf"><div id="postTray"></div><div class="homebar"></div></div></div>
 
     <div id="banner"></div>
     <div id="toast"></div>
@@ -827,6 +849,7 @@ async function exec(s){
   case 'photowalk': await photoWalk();break;
   case 'waterstreet': await waterStreet();break;
   case 'padauk': await padaukPick();break;
+  case 'post': await postStep(v);break;
   case 'inCall': await incoming({k:'call',text:v});break;
   case 'inSticker': await incoming({k:'sticker',art:v});break;
   case 'out': await outgoing({k:'text',text:v});break;
@@ -871,6 +894,30 @@ async function exec(s){
   }
 }
 
+
+/* ============ POSTS ============ */
+const HEART='<svg viewBox="0 0 256 256"><path d="M128,216S28,160,28,92A52,52,0,0,1,128,72h0A52,52,0,0,1,228,92C228,160,128,216,128,216Z"/></svg>';
+const BUBBLE='<svg viewBox="0 0 256 256"><path d="M79.93,211.11a96,96,0,1,0-35-35h0L32.42,213.46a8,8,0,0,0,10.12,10.12l37.39-12.47Z"/></svg>';
+async function postStep(v){
+  await holdChat();renderList(liveRows(v.rows,null),null);show('list');await sleep(900);
+  const tag=typeof v.tag==='function'?v.tag(S.flags):v.tag;
+  await banner(v.c,C[v.c].name,tag?'tagged you in a photo':'posted a photo');
+  const others=v.likes;
+  const likeLine=me=>`Liked by ${me?'you, ':''}${others}`;
+  $('#postBody').innerHTML=`<div class="pa">${av(v.c,true)}<div><b>${esc(C[v.c].name)}</b><span>${tag?'with Min Htet':esc(v.place||'')}</span></div></div>
+   <div class="pi">${ART[v.art]}</div>
+   <div class="acts"><span class="hrt">${HEART}</span><span>${BUBBLE}</span></div>
+   <div class="lk" id="postLk">${likeLine(false)}</div>
+   <div class="cap"><b>${esc(C[v.c].name.split(' ')[0].toLowerCase())}</b>${esc(typeof v.cap==='function'?v.cap(S.flags):v.cap)}</div>
+   <div class="when">${esc(v.when||'')}</div>`;
+  $('#postTray').innerHTML='';show('post');await sleep(1600);
+  const opts=v.opts||['Like','Scroll past'];
+  const i=await new Promise(res=>{$('#postTray').innerHTML=`<div class="tray">${opts.map((o,i)=>`<button class="opt" data-i="${i}"><span>${esc(o)}</span></button>`).join('')}</div>`;
+    $('#postTray').querySelectorAll('.opt').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();$('#postTray').innerHTML='';res(+b.dataset.i)}))});
+  const liked=i===0;if(v.flag)S.flags[v.flag]=liked;
+  if(liked){$('#post .hrt').classList.add('on');$('#postLk').textContent=likeLine(true);Audio_.blip(true);await sleep(1400)}
+  else{$('#postBody').scrollTo({top:400,behavior:'smooth'});await sleep(900)}
+}
 /* ============ SPECIAL SEQUENCES ============ */
 async function scrollBack(){
   const h=document.createElement('div');h.className='uphint';h.innerHTML=IC.up+'Read older messages';await rawSleep(200);$('#chat').appendChild(h);
@@ -1580,6 +1627,12 @@ const CH3=[
  {narr:'Hnin hands Min a towel, not May.'},
  {say:['Hnin',"You'll get sick."]},
  {narr:'Then, a beat later, she hands May one too.'},
+ // C3.2a May posts the Thingyan photo
+ {time:'8:47 PM'},
+ {post:{c:'may',art:'thingyan',flag:'c3_post_like',tag:f=>f.c2_friends===true,place:'Thingyan',likes:'Thura, Hnin and 14 others',when:'13 April 2019',
+   cap:f=>f.c2_friends===true?'my victim. he never stood a chance':'thingyan. nobody stayed dry',
+   rows:[{c:'thura',text:'',time:'2:10 PM'},{c:'hnin',text:'',time:'Mar'},{c:'mom',text:'',time:'Mar'}]}},
+ {pause:600},
  // C3.2b May, the towel
  {rain:0},{time:'10:48 PM'},
  {notify:{c:'may',text:'so. the towel',rows:[{c:'thura',text:'',time:'2:10 PM'},{c:'hnin',text:'',time:'Mar'},{c:'mom',text:'',time:'Mar'}]}},
@@ -1595,6 +1648,7 @@ const CH3=[
    {label:'You found me at the end of the street. You were first today.',send:'You found me at the end of the street. You were first today.',then:[{typing:1600},{in:'…ok that was good'},{in:"I'm keeping that one"}]},
    {label:"Next Thingyan, I'll bring the towel.",send:"Next Thingyan, I'll bring the towel.",then:[{in:'a whole towel. for me'},{in:'ok. deal. a pink one'}]},
    {label:"Hnin gives everyone towels. You're the one who soaked me.",send:"Hnin gives everyone towels. You're the one who soaked me.",then:[{in:'hahaha'},{in:'true. you were MY victim'}]}]}},
+ {if:{test:f=>f.c3_post_like===true,then:[{in:'also. you liked the photo in like four seconds'},{in:"don't think I didn't see"}]}},
  {pause:900},
  // C3.2c Hnin, the same night
  {time:'11:20 PM'},
@@ -1624,6 +1678,10 @@ const CH3=[
    {label:'Stay.',send:'Stay.',then:[{in:'ha'},{typing:1500},{pause:1200},{in:'they said maybe next year anyway. the business needs me here first'}]},
    {label:'What do you want?',send:'What do you want?',then:[{in:'I always wanted to leave this town'},{in:'but I wanted to CHOOSE to. not be sent'},{in:'does that make sense'},{out:'It does.'}]}]}},
  {in:'local college this year. the city is "maybe next year"'},
+ {if:{test:f=>f.c3_post_like!==true,then:[{pause:1200},{in:'also you never liked my thingyan photo'},{in:"two months, min. I'm counting"},
+   {choice:{flag:'c3_post_late',opts:[
+     {label:'Liking it now.',send:'Liking it now.',then:[{in:'too late'},{in:"that's a pity like. it doesn't count"}]},
+     {label:'I looked at it a lot.',send:'I looked at it a lot.',then:[{typing:1400},{in:"…that's worse"},{in:'and also better'}]}]}}]}},
  {pause:900},
  // C3.4 Thura
  {time:'10:12 PM'},

@@ -678,7 +678,12 @@ $('#bDev').onclick=e=>{e.stopPropagation();document.body.classList.toggle('dev')
 function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));
   $('#status').classList.toggle('light',id==='lock'||id==='scene');
   $('#status').style.opacity=id==='scene'?0:1;}
-function setTime(t){$('#clock').textContent=t.replace(/ ?[AP]M/,'');}
+function setTime(t){$('#clock').textContent=t.replace(/ ?[AP]M/,'');const m=t.match(/(\d+):(\d+)\s*([AP]M)/i);if(!m)return;let h=+m[1]%12;if(/p/i.test(m[3]))h+=12;const n=h*60+ +m[2];
+  if(S.now!=null&&n<S.now-30)S.day=(S.day||0)+1;S.now=n;S.tlabel=t;}
+// auto date/time stamps: a divider before a message when the gap since the last one is a new day or an hour or more
+function stampDiv(c){if(S.tlabel==null)return null;const th=S.threads[c]||[];const last=th[th.length-1];if(!last||last.k==='div'||last.k==='sys')return null;
+  const lm=[...th].reverse().find(x=>x.dir);if(!lm)return null;const d=S.day||0;
+  if(!lm.st||lm.st.d!==d)return 'Today '+S.tlabel;if(S.now-lm.st.n>=60)return S.tlabel;return null}
 function av(c,sm,online){const x=C[c];return `<div class="av${sm?' sm':''}" style="background:${x.bg};color:${x.fg}">${x.img?`<img src="img/av-${c}.webp" alt="" draggable="false">`:x.ini}${online?'<i class="on"></i>':''}</div>`}
 let toastT;
 function toast(html){const t=$('#toast');t.innerHTML=IC.star+html;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2800);}
@@ -705,7 +710,7 @@ function renderThread(){msgs.innerHTML='';const th=S.threads[S.contact]||[];let 
   th.forEach(m=>{msgs.appendChild(el(m,prev));if(m.dir)prev=m});
   const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'&&lo.rc){const r=el({k:'rcpt',text:lo.rc});r.id='rc';msgs.appendChild(r)}
   scrollDown();}
-function push(m,c=S.contact){(S.threads[c]=S.threads[c]||[]).push(m);
+function push(m,c=S.contact){if(m.dir&&!m.st){const lab=stampDiv(c);if(lab)push({k:'div',text:lab},c);m.st={d:S.day||0,n:S.now||0}}(S.threads[c]=S.threads[c]||[]).push(m);
   if(c===S.contact&&$('#chat').classList.contains('on')){const th=S.threads[c];const prev=[...th].slice(0,-1).reverse().find(x=>x.dir);
     const r=$('#rc');if(r&&m.dir)r.remove();msgs.appendChild(el(m,prev));if(m.dir==='out'){m.rc='Sent';const rc=el({k:'rcpt',text:'Sent'});rc.id='rc';msgs.appendChild(rc)}scrollDown();}}
 function markSeen(){const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'){lo.rc='Seen';const r=$('#rc');if(r)r.textContent='Seen'}}
@@ -842,7 +847,7 @@ async function exec(s){
   case 'say': await dialog(v[0],v[1]);break;
   case 'min': await dialog('Min',v,'min');break;
   case 'narr': await dialog('',v,'narr');break;
-  case 'title':{ await holdChat();const t=$('#title');$('#tTap').classList.remove('on');
+  case 'title':{ S.day=(S.day||0)+1;S.now=null; await holdChat();const t=$('#title');$('#tTap').classList.remove('on');
     if(t.classList.contains('on')){t.classList.add('swap');await rawSleep(700);$('#tBig').innerHTML=v.big;$('#tSmall').textContent=v.small||'';t.classList.remove('swap');if(v.rain!==undefined)setRain(v.rain);await rawSleep(1600);}
     else{$('#tBig').innerHTML=v.big;$('#tSmall').textContent=v.small||'';t.classList.add('on');await rawSleep(1000);$('#viewer').classList.remove('on','zoom');show('');if(v.rain!==undefined)setRain(v.rain);await rawSleep(1400);}
     if(v.time)setTime(v.time);    $('#tTap').classList.add('on');await waitStage(0);$('#tTap').classList.remove('on');

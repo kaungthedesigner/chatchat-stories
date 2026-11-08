@@ -422,6 +422,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #wsField .truck{animation:wsBump .2s ease-in-out infinite alternate}
 @keyframes wsBump{from{margin-top:0}to{margin-top:-2px}}
 #wsMin.hit{animation:wsHit .45s}
+#wsMin.run.hit{animation:wsRun .44s steps(4) infinite,wsHit .45s}
 @keyframes wsHit{0%,100%{margin-left:0}25%{margin-left:-8px}50%{margin-left:8px}75%{margin-left:-4px}}
 #wsField .may{z-index:40}
 #wsField .burst{position:absolute;width:120px;height:120px;margin:-90px 0 0 -60px;z-index:5;pointer-events:none;background:radial-gradient(circle at 50% 70%,rgba(255,255,255,.95) 0 14%,rgba(160,215,245,.85) 15% 38%,rgba(62,143,208,0) 62%);animation:wsBurst .55s ease-out forwards}

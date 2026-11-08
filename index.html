@@ -911,7 +911,7 @@ function wsRun(bag){return new Promise(async done=>{
   f.appendChild(svg);
   const lv=()=>{$('#wsLives').innerHTML=Array.from({length:max},(_,i)=>`<i class="ic i-camera${i<lives?'':' off'}"></i>`).join('')+`<span style="margin-left:4px">${bag?'In a plastic bag':'Camera'}</span><span class="sc"><i class="ic i-drop"></i>${spl}</span>`};
   hud.style.display='block';$('#wsSongI').style.width='0';lv();
-  const me=document.createElement('div');me.id='wsMin';me.className='spr anim';me.style.backgroundImage='url(img/ws-min-run.webp)';me.style.height=(LANEW*1.05)+'px';me.style.width=(LANEW*1.05*.513)+'px';f.appendChild(me);
+  const me=document.createElement('div');me.id='wsMin';me.className='spr anim';me.style.backgroundImage='url(img/ws-min-run.webp)';me.style.height=(LANEW*1.05)+'px';me.style.width=(LANEW*1.05*.42)+'px';f.appendChild(me);
   const put=()=>{const p=at(1,lane);me.style.left=p.x+'px';me.style.top=(p.y+LANEW*.18)+'px'};put();
   let lastPop=0,popN=0;const pop=(x,y,t,bad)=>{const n=performance.now();popN=n-lastPop<700?popN+1:0;lastPop=n;y-=popN*22;const p=document.createElement('div');p.className='pop'+(bad?' bad':'');p.textContent=t;p.style.left=x+'px';p.style.top=y+'px';f.appendChild(p);setTimeout(()=>p.remove(),800)};
   const cnt=$('#wsCount');cnt.style.display='flex';for(const n of ['3','2','1']){cnt.textContent=n;await rawSleep(S.speed>1?120:520)}cnt.style.display='none';
@@ -944,7 +944,7 @@ function wsRun(bag){return new Promise(async done=>{
     if(p<1)requestAnimationFrame(frame);else{over=true;finish(true)}}
   async function finish(ok){f.onpointerdown=null;me.classList.remove('run');ents.forEach(o=>o.el.remove());ents=[];f.querySelectorAll('.dz').forEach(e=>e.classList.remove('on'));
     if(ok){const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';const m=at(.42,1);may.style.left=m.x+'px';may.style.top=m.y+'px';may.style.height=(LANEW*.5)+'px';f.appendChild(may);
-      lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease, width 1.3s ease';me.classList.add('run');await rawSleep(80);const q=at(.5,1);me.style.top=(q.y+LANEW*.09)+'px';me.style.height=(LANEW*.55)+'px';me.style.width=(LANEW*.55*.513)+'px';await rawSleep(S.speed>1?300:1400)}
+      lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease, width 1.3s ease';me.classList.add('run');await rawSleep(80);const q=at(.5,1);me.style.top=(q.y+LANEW*.09)+'px';me.style.height=(LANEW*.55)+'px';me.style.width=(LANEW*.55*.42)+'px';await rawSleep(S.speed>1?300:1400)}
     else await rawSleep(S.speed>1?200:900);
     me.style.transition='';done({ok,wet,spl,lives,max})}
   requestAnimationFrame(frame)})}

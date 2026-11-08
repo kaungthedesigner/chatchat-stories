@@ -272,6 +272,7 @@ body.m .stage.full{border-radius:0;box-shadow:none}
 @keyframes bob{50%{transform:translate(-50%,-6px)}}
 
 /* overlays */
+#wrap{position:relative}
 .ov{position:absolute;inset:0;z-index:60;opacity:0;pointer-events:none;transition:opacity .9s}
 .ov.on{opacity:1;pointer-events:auto}
 #title{background:var(--m900);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--on-deep)}
@@ -473,7 +474,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
     </div>
   </div>
   <div class="devbar" title="Temporary: drag to jump through the story"><span class="dv">Dev</span><input type="range" id="devT" min="0" max="1" value="0"><span id="devL">Start</span></div>
-  <div class="wrap"><div class="scaler" id="scaler">
+  <div class="wrap" id="wrap"><div class="scaler" id="scaler">
   <div class="stage" id="stage">
     <div class="status" id="status"><span id="clock">11:47</span><span class="sic">
       <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity=".35"/></svg>
@@ -669,9 +670,18 @@ function fit(){const sc=$('#scaler'),m=innerWidth<520;document.body.classList.to
   const top=$('.wrap').getBoundingClientRect().top;
   if(m){sc.style.transform='none';sc.style.width=innerWidth+'px';sc.style.height=(innerHeight-top)+'px';stage.style.width=innerWidth+'px';stage.style.height=(innerHeight-top)+'px';stage.classList.add('full');return}
   stage.style.width='';stage.style.height='';
-  const s=Math.min((innerHeight-top-12)/852,innerWidth/393,1);
-  sc.style.transform=`scale(${s})`;sc.style.width=393+'px';sc.style.height=852*s+'px';stage.classList.remove('full');}
+  const s=Math.min((innerHeight-top-12)/852,innerWidth/393,1.2);
+  sc.style.transform=`scale(${s})`;sc.style.width=393+'px';sc.style.height=852*s+'px';stage.classList.remove('full');
+  S.scale=s;}
+
 addEventListener('resize',fit);fit();
+addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey||/input|textarea/i.test((e.target.tagName||'')))return;
+  const vis=el=>el&&el.offsetParent!==null&&getComputedStyle(el).visibility!=='hidden';
+  if(e.key>='1'&&e.key<='9'){const os=[...document.querySelectorAll('#stage .opt,#stage .dbtns button')].filter(vis);const b=os[+e.key-1];if(b){e.preventDefault();b.click()}return}
+  if(e.key==='ArrowLeft'||e.key==='ArrowRight'){const f=$('#wsField');if(f&&$('#wstreet').classList.contains('on')&&f.onpointerdown){e.preventDefault();const r=f.getBoundingClientRect();f.onpointerdown({stopPropagation(){},clientX:e.key==='ArrowLeft'?r.left+5:r.right-5,clientY:r.top+r.height/2})}return}
+  if(e.key===' '||e.key==='Enter'){if(vis($('#go'))&&$('#start').classList.contains('on')){e.preventDefault();$('#go').click();return}
+    const btn=[...document.querySelectorAll('#stage .ov.on button,#stage .view.on button.cta,#wsCard button,#pdPick button')].filter(vis)[0];if(btn&&e.key==='Enter'){e.preventDefault();btn.click();return}
+    e.preventDefault();stage.dispatchEvent(new MouseEvent('click',{bubbles:true}))}});
 $('#bDev').onclick=e=>{e.stopPropagation();document.body.classList.toggle('dev');fit()};
 
 /* ============ UI HELPERS ============ */
@@ -775,7 +785,8 @@ function memCards(all,only){const ids=Object.keys(MEM_INFO);return ids.map(id=>{
 function unsentHTML(){return `<div class="unsent"><h3>Unsent</h3>${S.unsent.length?S.unsent.map((u,i)=>`<div class="u"><span>“${esc(u.text)}”</span><small>#${i+1} · ${u.when}</small></div>`).join(''):'<p class="e">Nothing yet. Every message you choose not to send will be kept here.</p>'}</div>`}
 $('#bAlbum').onclick=()=>{const a=$('#album');if(a.classList.contains('on')){a.classList.remove('on');return}
   a.innerHTML=`<button class="icbtn x" id="ax" aria-label="Close">${IC.x}</button><h2>Memories</h2><div class="mgrid">${memCards(false)||'<p style="color:#7b858c;font-size:14px;grid-column:1/-1">Photos, notes and keepsakes you find will appear here.</p>'}</div>${unsentHTML()}`;
-  a.classList.add('on');$('#ax').onclick=e=>{e.stopPropagation();a.classList.remove('on')};};
+  a.classList.add('on');
+  $('#ax').onclick=e=>{e.stopPropagation();a.classList.remove('on')};};
 $('#bSound').onclick=()=>{Audio_.init();if(Audio_.ctx&&Audio_.ctx.state==='suspended')Audio_.ctx.resume();S.sound=!S.sound;$('#bSound span:last-child').textContent=S.sound?'On':'Off';$('#bSound .ic').className='ic i-'+(S.sound?SPK_ON:SPK_OFF);Audio_.level()};
 $('#bSpeed').onclick=()=>{S.speed=S.speed===1?2:S.speed===2?3:1;$('#bSpeed span:last-child').textContent=S.speed+'×'};
 

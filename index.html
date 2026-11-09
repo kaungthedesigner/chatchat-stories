@@ -932,7 +932,7 @@ const Audio_={ctx:null,gain:null,
   songStop(ms){const c=this.ctx,g=this.songGain,n=this.songNode;if(!c||!g||!n)return;this.songNode=null;this.songGain=null;const t=c.currentTime,d=(ms||0)/1000;
     try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+Math.max(.02,d));n.stop(t+Math.max(.03,d)+.05)}catch(e){}},
   // water splash: a soft low thump, a short wet burst, then a scatter of droplets falling in pitch
-  splash(big){if(!this.ctx||!S.sound)return;try{const c=this.ctx,t=c.currentTime,sr=c.sampleRate;
+  splash(big){if(!this.ctx||!S.sound)return;if(this.sfx('splash',big?1:.6,big?.85:1.08+Math.random()*.08))return;try{const c=this.ctx,t=c.currentTime,sr=c.sampleRate;
     const th=c.createOscillator(),tg=c.createGain();th.type='sine';th.frequency.setValueAtTime(big?150:210,t);th.frequency.exponentialRampToValueAtTime(55,t+.16);tg.gain.setValueAtTime(big?.32:.18,t);tg.gain.exponentialRampToValueAtTime(.001,t+.2);th.connect(tg).connect(c.destination);th.start(t);th.stop(t+.22);
     const d=big?.5:.28,n=Math.floor(sr*d),b=c.createBuffer(1,n,sr),x=b.getChannelData(0);let lp=0;
     for(let i=0;i<n;i++){const e=Math.pow(1-i/n,3);lp=lp*.55+(Math.random()*2-1)*.45;x[i]=lp*e}
@@ -941,13 +941,28 @@ const Audio_={ctx:null,gain:null,
     const drops=big?14:7;for(let k=0;k<drops;k++){const at=t+.04+Math.random()*(big?.45:.25),o=c.createOscillator(),og=c.createGain(),f0=700+Math.random()*900;
       o.type='sine';o.frequency.setValueAtTime(f0,at);o.frequency.exponentialRampToValueAtTime(f0*1.9,at+.035);og.gain.setValueAtTime(0,at);og.gain.linearRampToValueAtTime(big?.05:.04,at+.004);og.gain.exponentialRampToValueAtTime(.0008,at+.05);
       o.connect(og).connect(c.destination);o.start(at);o.stop(at+.06)}}catch(e){}},
+  // outdoor ambience loops (Magnific SFX files in snd/), crossfaded; one at a time, under the rain
+  ambBufs:{},ambName:null,ambWant:null,ambNode:null,ambGain:null,
+  ambLoad(n){if(this.ambBufs[n])return Promise.resolve(this.ambBufs[n]);this.init();if(!this.ctx)return Promise.resolve(null);
+    return fetch('snd/amb-'+n+'.mp3').then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))).then(b=>{this.ambBufs[n]=b;return b}).catch(()=>null)},
+  amb(n){this.ambWant=n||null;const target=S.sound?this.ambWant:null;if(target===this.ambName)return;
+    const c=this.ctx;if(c&&this.ambNode){const g=this.ambGain,nd=this.ambNode,t=c.currentTime;try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+1.2);nd.stop(t+1.3)}catch(e){}}
+    this.ambNode=null;this.ambGain=null;this.ambName=target;if(!target)return;
+    this.ambLoad(target).then(b=>{if(!b||this.ambName!==target||this.ambNode)return;const c=this.ctx;if(c.state==='suspended')c.resume();
+      const src=c.createBufferSource(),g=c.createGain();src.buffer=b;src.loop=true;src.loopStart=.06;src.loopEnd=Math.max(1,b.duration-.06);g.gain.value=0;src.connect(g).connect(c.destination);const t=c.currentTime;
+      src.start(t,Math.random()*Math.max(0,b.duration-2));g.gain.linearRampToValueAtTime(AMB_VOL[target]||.4,t+1.6);this.ambNode=src;this.ambGain=g})},
+  // one-shot SFX files (Magnific, approved): snd/shutter.mp3, snd/splash.mp3
+  sfxBufs:{},
+  sfxLoad(n){if(this.sfxBufs[n]!==undefined)return;this.sfxBufs[n]=null;this.init();if(!this.ctx)return;
+    fetch('snd/'+n+'.mp3').then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))).then(b=>{this.sfxBufs[n]=b}).catch(()=>{delete this.sfxBufs[n]})},
+  sfx(n,vol,rate){const b=this.sfxBufs[n];if(!b||!this.ctx||!S.sound)return false;try{const c=this.ctx;if(c.state==='suspended')c.resume();const src=c.createBufferSource(),g=c.createGain();src.buffer=b;src.playbackRate.value=rate||1;g.gain.value=vol||1;src.connect(g).connect(c.destination);src.start();return true}catch(e){return false}},
   // camera shutter: two short mechanical clicks (curtain open, curtain close) over a tiny low thunk
-  shutter(){if(!S.sound)return;this.init();const c=this.ctx;if(!c)return;if(c.state==='suspended')c.resume();try{const t=c.currentTime,sr=c.sampleRate;
+  shutter(){if(!S.sound)return;this.init();const c=this.ctx;if(!c)return;if(c.state==='suspended')c.resume();if(this.sfx('shutter',.9))return;try{const t=c.currentTime,sr=c.sampleRate;
     const click=(at,vol,fq)=>{const n=Math.floor(sr*.028),b=c.createBuffer(1,n,sr),x=b.getChannelData(0);for(let i=0;i<n;i++)x[i]=(Math.random()*2-1)*Math.pow(1-i/n,6);
       const src=c.createBufferSource();src.buffer=b;const f=c.createBiquadFilter();f.type='bandpass';f.frequency.value=fq;f.Q.value=1.4;const g=c.createGain();g.gain.value=vol;src.connect(f).connect(g).connect(c.destination);src.start(at)};
     click(t,.9,3200);click(t+.075,.7,2300);
     const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.setValueAtTime(240,t);o.frequency.exponentialRampToValueAtTime(90,t+.07);og.gain.setValueAtTime(.12,t);og.gain.exponentialRampToValueAtTime(.001,t+.09);o.connect(og).connect(c.destination);o.start(t);o.stop(t+.1)}catch(e){}},
-  horn(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;this.tone(392,t,.32,.045,'square');this.tone(494,t,.32,.035,'square')},
+  horn(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;[0,.42].forEach(d=>{this.tone(392,t+d,.3,.045,'square');this.tone(494,t+d,.3,.035,'square')})},
   level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.05,.11,.2][S.rain]||0:0; this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.8); },
   blip(hi){ if(!this.ctx||!S.sound) return; try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=hi?880:660;g.gain.value=0;o.connect(g).connect(this.ctx.destination);const t=this.ctx.currentTime;g.gain.linearRampToValueAtTime(.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.start(t);o.stop(t+.2);}catch(e){} }
 };
@@ -992,7 +1007,11 @@ addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey||/input|textare
 $('#bDev').onclick=e=>{e.stopPropagation();document.body.classList.toggle('dev');fit()};
 
 /* ============ UI HELPERS ============ */
+const AMB_ART={walkShare:'dusk',pagoda:'pagoda',lampWall:'pagoda',pagoda19:'pagoda',lamp2:'pagoda',wstreet:'thingyan',mayEnd:'thingyan'};
+const AMB_VIEW={pwalk:'town',padauk:'morning',wstreet:'thingyan'};
+const AMB_VOL={dusk:.45,pagoda:.4,thingyan:.3,morning:.45,town:.45};
 function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));
+  Audio_.amb(id==='scene'?S.amb:AMB_VIEW[id]);
   $('#status').classList.toggle('light',id==='lock'||id==='scene'||id==='callv');
   $('#status').classList.toggle('onlock',id==='lock');
   $('#status').style.opacity=id==='scene'?0:1;}
@@ -1096,7 +1115,7 @@ $('#bAlbum').onclick=()=>{const a=$('#album');if(a.classList.contains('on')){a.c
   a.innerHTML=`<button class="icbtn x" id="ax" aria-label="Close">${IC.x}</button><h2>Memories</h2><div class="mgrid">${memCards(false)||'<p style="color:#7b858c;font-size:14px;grid-column:1/-1">Photos, notes and keepsakes you find will appear here.</p>'}</div>${unsentHTML()}`;
   a.classList.add('on');
   $('#ax').onclick=e=>{e.stopPropagation();a.classList.remove('on')};};
-$('#bSound').onclick=()=>{Audio_.init();if(Audio_.ctx&&Audio_.ctx.state==='suspended')Audio_.ctx.resume();S.sound=!S.sound;if(!S.sound)Audio_.songStop(200);$('#bSound span:last-child').textContent=S.sound?'On':'Off';$('#bSound .ic').className='ic i-'+(S.sound?SPK_ON:SPK_OFF);Audio_.level()};
+$('#bSound').onclick=()=>{Audio_.init();if(Audio_.ctx&&Audio_.ctx.state==='suspended')Audio_.ctx.resume();S.sound=!S.sound;if(!S.sound)Audio_.songStop(200);Audio_.amb(Audio_.ambWant);$('#bSound span:last-child').textContent=S.sound?'On':'Off';$('#bSound .ic').className='ic i-'+(S.sound?SPK_ON:SPK_OFF);Audio_.level()};
 $('#bSpeed').onclick=e=>{e.stopPropagation();S.speed=S.speed===2?1:2;const on=S.speed===2;$('#bSpeed').classList.toggle('on',on);$('#bSpeed').setAttribute('aria-pressed',on)};
 
 /* ============ ENGINE ============ */
@@ -1170,7 +1189,7 @@ async function exec(s){
     if(send){setField('');push({k:'text',dir:'out',text});Audio_.blip(true);await sleep(500);if(v.flag)S.flags[v.flag]=true;if(v.onSend)await run(v.onSend)}
     else{await backspace(text);addUnsent(text,v.when);if(v.flag)S.flags[v.flag]=false;await sleep(700);if(v.onDelete)await run(v.onDelete)}
     break}
-  case 'scene':{ await holdChat();$('#sart').innerHTML=SCENE[v.art];S.k=0;$('#scap').textContent=v.cap||'';$('#dlg').innerHTML='';show('scene');if(v.rain!==undefined)setRain(v.rain);await sleep(1100);break}
+  case 'scene':{ await holdChat();S.amb=v.amb!==undefined?v.amb:AMB_ART[v.art];$('#sart').innerHTML=SCENE[v.art];S.k=0;$('#scap').textContent=v.cap||'';$('#dlg').innerHTML='';show('scene');if(v.rain!==undefined)setRain(v.rain);await sleep(1100);break}
   case 'shot':{ const a=$('#sart');const old=[...a.children];a.insertAdjacentHTML('beforeend',SCENE[v]);const n=a.lastElementChild;S.k=(S.k||0)+1;if(S.k%2)n.classList.add('k2');n.classList.add('in');requestAnimationFrame(()=>requestAnimationFrame(()=>n.classList.remove('in')));setTimeout(()=>old.forEach(o=>o.remove()),1000);await rawSleep(450);break}
   case 'say': await dialog(v[0],v[1]);break;
   case 'min': await dialog('Min',v,'min');break;
@@ -1314,7 +1333,7 @@ async function gallery(){
   const vt=$('#vtap');setTimeout(()=>vt.classList.add('on'),1800);
   await Promise.race([waitStage(600),rawSleep(6500)]);vt.classList.remove('on');
   setRain(3);v.classList.add('zoom');await rawSleep(2700);}
-async function photoWalk(){
+async function photoWalk(){Audio_.sfxLoad('shutter');
   S.walk=[];const sp=$('#pwSpots'),rolls=$('#pwRolls').children,vf=$('#vf'),win=$('#vfWin'),pan=$('#vfPan'),fr=$('#vfFr');
   [...rolls].forEach(r=>{r.className='';r.style.backgroundImage=''});$('#pwDone').classList.remove('on');
   sp.innerHTML=SPOTS.map((x,i)=>`<button class="spot" data-i="${i}"><img src="${x.src}" alt=""><span>${x.name}</span></button>`).join('');
@@ -1371,7 +1390,7 @@ async function padaukPick(){
   $('#pdName').textContent=P[pick][2];$('#pdLine').textContent=P[pick][3];$('#pdPick').style.display='flex';
   await new Promise(r=>{$('#pdGo').onclick=e=>{e.stopPropagation();r()}});
 }
-async function waterStreet(){
+async function waterStreet(){Audio_.sfxLoad('splash');
   const V=$('#wstreet'),f=$('#wsField'),card=$('#wsCard'),hud=$('#wsHud');
   f.innerHTML='<img id="wsBg" src="img/ws-street.webp" alt="" draggable="false">';hud.style.display='none';
   show('wstreet');
@@ -2180,7 +2199,7 @@ const CH3=[
  {end:3}
 ];
 /* ============ START ============ */
-function startAudio(){Audio_.init();if(Audio_.ctx){S.sound=true;$('#bSound span:last-child').textContent='On';$('#bSound .ic').className='ic i-'+SPK_ON;if(Audio_.ctx.state==='suspended')Audio_.ctx.resume()}}
+function startAudio(){Audio_.init();if(Audio_.ctx){S.sound=true;setTimeout(()=>Audio_.amb(Audio_.ambWant),0);$('#bSound span:last-child').textContent='On';$('#bSound .ic').className='ic i-'+SPK_ON;if(Audio_.ctx.state==='suspended')Audio_.ctx.resume()}}
 const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2,...CH3];
 const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
   if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}

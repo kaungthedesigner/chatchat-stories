@@ -491,6 +491,50 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #start .cr.lock{opacity:.5}
 #start .over{margin-top:auto;align-self:center;padding:14px 20px;font:500 14px/20px var(--sans);color:rgba(251,247,239,.7)}
 #start .over.sure{color:#F2A08C}
+/* ===== Stories home: Lamplight design system (the game's shell; each story keeps its own system inside) ===== */
+#start{--ground-100:#141210;--ground-50:#1E1B18;--ground-200:#26221E;--line:#34302B;--line-strong:#6E665C;--ink:#F6EFE3;--ink-body:#D8CEBF;--ink-muted:#A39A8C;--ink-faint:#756D62;
+  --lamp-500:#E8B04B;--lamp-700:#F2C877;--lamp-200:#3A2C14;--on-lamp:#1C1406;--clay-500:#D9927A;--rust-500:#E5806E;--on-cover:#FBF7EF;
+  --shadow-cover:0 24px 48px -20px rgba(0,0,0,.75);--focus-ring:0 0 0 2px #141210,0 0 0 4px #E8B04B;
+  background:var(--ground-100);color:var(--ink)}
+#start button:focus-visible,#start .hero:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+#start .lib{padding:48px 20px 40px}
+#start .lhd h1{font:650 40px/44px var(--sans);letter-spacing:-.03em;margin:0 0 20px;color:var(--ink);font-variation-settings:normal}
+#start .hero{border-radius:24px;box-shadow:var(--shadow-cover)}
+#start .hs{background:linear-gradient(180deg,rgba(12,10,9,0) 38%,rgba(12,10,9,.55) 62%,rgba(12,10,9,.92))}
+#start .hx{padding:24px;color:var(--on-cover)}
+#start .pr .pbar i{background:var(--lamp-500)}
+#start .hbtns{gap:12px;margin-top:16px}
+#start .hbtns button{height:48px;border-radius:10px;font:600 15px/20px var(--sans)}
+#start button.go{background:var(--lamp-500);color:var(--on-lamp)}
+#start button.go:hover{background:var(--lamp-700)}
+#start button.sec{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong)}
+#start button.sec:hover{background:var(--ground-50)}
+#start .meta{font:400 13px/18px var(--sans);color:var(--ink-muted);margin-top:12px}
+#start .sh{font:600 19px/24px var(--sans);letter-spacing:-.01em;margin:32px 0 12px;color:var(--ink)}
+#start .soon{padding:16px;border-radius:16px;border:1.5px dashed var(--line);background:var(--ground-50);color:var(--ink-muted)}
+#start .soon .hg{color:var(--lamp-500)}
+#start .soon b{font:600 15px/20px var(--sans);color:var(--ink)}
+#start .soon span{font:400 13px/18px var(--sans);color:var(--ink-muted)}
+#start .chs{background:var(--ground-100);padding:48px 20px 40px}
+#start .chh small{font:600 12px/16px var(--sans);letter-spacing:.01em;color:var(--clay-500)}
+#start .chh b{font:600 26px/32px var(--sans);letter-spacing:-.02em;color:var(--ink)}
+#start .chh .bk{color:var(--ink)}
+#start .chl{gap:12px}
+#start .cr{background:var(--ground-50);border-radius:16px;padding:16px;color:var(--ink);border:1px solid transparent}
+#start button.cr:hover{background:var(--ground-200)}
+#start .cr.next{background:var(--lamp-200);border-color:rgba(232,176,75,.28)}
+#start .cr .n{background:var(--ground-200);color:var(--ink-body);font:600 14px/1 var(--sans)}
+#start .cr.done .n{background:var(--ink);color:var(--ground-100)}
+#start .cr.next .n{background:var(--lamp-500);color:var(--on-lamp)}
+#start .cr .t b{font:600 16px/22px var(--sans);color:var(--ink)}
+#start .cr .t span{font:400 13px/18px var(--sans);color:var(--ink-muted)}
+#start .cr .st{color:var(--ink-muted)}
+#start .cr.next .st{color:var(--lamp-500)}
+#start .cr.done .st{color:var(--ink-body)}
+#start .cr.lock{opacity:1}
+#start .cr.lock .t b,#start .cr.lock .t span,#start .cr.lock .st,#start .cr.lock .n{color:var(--ink-faint)}
+#start .over{color:var(--ink-muted);font:600 14px/20px var(--sans)}
+#start .over.sure{color:var(--rust-500)}
 /* photo walk side quest */
 #pwalk{background:#0f1312;color:var(--n-ink);display:flex;flex-direction:column}
 #pwalk .ph1{padding:58px 20px 10px}
@@ -671,7 +715,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
     <div class="ov" id="leave"><div class="card"><h3>Leave the story?</h3><p id="leaveP"></p><div class="bt"><button class="stay" id="leaveStay">Keep playing</button><button class="go2" id="leaveGo">Back to Stories</button></div></div></div>
     <div class="ov on" id="start">
       <div class="lib" id="lib">
-        <div class="lhd"><div class="eb">ChatChat</div><h1>Stories</h1></div>
+        <div class="lhd"><h1>Stories</h1></div>
         <div class="hero" id="hero" role="button" tabindex="0">
           <img src="img/dr-13-walk-open.webp" alt="" draggable="false">
           <div class="hs"></div>

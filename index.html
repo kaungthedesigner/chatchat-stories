@@ -294,7 +294,9 @@ body.m{padding-top:env(safe-area-inset-top)}
 #scroll .col{position:absolute;left:16px;right:16px;bottom:0;display:flex;flex-direction:column;gap:6px;filter:blur(2.5px);opacity:.55}
 #scroll .col i{display:block;height:36px;border-radius:18px;background:var(--paper-200)}
 #scroll .col i.o{align-self:flex-end;background:var(--m500)}
-#scroll .flash{position:absolute;left:0;right:0;top:200px;display:flex;justify-content:center;opacity:0;transition:opacity .35s}
+#scroll .flash{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;justify-content:center;opacity:0;transition:opacity .35s}
+#scroll .col{transition:opacity .5s}
+#scroll.fl .col{opacity:.16}
 #scroll .flash.on{opacity:1}
 #scroll .flash{padding:34px 0;background:linear-gradient(180deg,rgba(243,236,223,0),var(--paper-100) 26%,var(--paper-100) 74%,rgba(243,236,223,0));z-index:2}
 #scroll .fwrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px}
@@ -1279,14 +1281,14 @@ async function scrollBack(){
   {const ch=$('#chat'),cr=ch.getBoundingClientRect(),hd=ch.querySelector('.ch'),ft=ch.querySelector('.foot'),k=cr.height/ch.offsetHeight||1;
    if(hd)sc.style.top=Math.round((hd.getBoundingClientRect().bottom-cr.top)/k)+'px';if(ft)sc.style.bottom=Math.round((cr.bottom-ft.getBoundingClientRect().top)/k)+'px';}
   col.style.transition='none';col.style.transform='translateY(0)';sc.classList.add('on');await rawSleep(80);
-  col.style.transition='transform 7s cubic-bezier(.3,.1,.3,1)';col.style.transform='translateY(5600px)';
+  col.style.transition='transform 7s cubic-bezier(.3,.1,.3,1),opacity .5s';col.style.transform='translateY(5600px)';
   const fd=d=>`<div class="fdate">${d}</div>`;
   const flashes=[`<div class="fwrap">${fd('Aug 2020')}<div class="call">${IC.phoneX}Missed voice call</div></div>`,`<div class="fwrap">${fd('Mar 2019')}<div class="call">${IC.phone}Voice call · 2:14:07</div></div>`,`<div class="fwrap">${fd('Jun 2018')}<div class="row in" style="width:100%;padding:0 16px;box-sizing:border-box"><div class="b">goodnight umbrella thief</div></div></div>`];
-  for(const [i,f] of flashes.entries()){await rawSleep(1500);fl.innerHTML=f;fl.classList.add('on');await rawSleep(1100);if(i<flashes.length-1)fl.classList.remove('on')}
+  for(const [i,f] of flashes.entries()){await rawSleep(1500);fl.innerHTML=f;fl.classList.add('on');sc.classList.add('fl');await rawSleep(1100);if(i<flashes.length-1){fl.classList.remove('on');sc.classList.remove('fl')}}
   await rawSleep(1600);
   const ph=document.createElement('div');ph.className='uphint';ph.innerHTML='<span class="ic i-images"></span>Open Photos';$('#chat').appendChild(ph);
   await waitClick(ph);ph.remove();
-  sc.classList.remove('on');$('#older').classList.remove('on');setTimeout(()=>fl.classList.remove('on'),400);}
+  sc.classList.remove('on');$('#older').classList.remove('on');setTimeout(()=>{fl.classList.remove('on');sc.classList.remove('fl')},400);}
 async function gallery(){
   const g=$('#ggrid');const hues=[30,200,15,90,340,180,50,260,120,10,300,160,45,220,70];
   g.innerHTML=hues.map((h,i)=>`<div class="${i===4?'hot':''}">${i===4?ART.thingyan:ART.thumb(h,28)}</div>`).join('');

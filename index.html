@@ -931,37 +931,8 @@ const Audio_={ctx:null,gain:null,
     if(!go()){this.songLoad();let n=0;const t=setInterval(()=>{if(go()||++n>40)clearInterval(t)},100)}},
   songStop(ms){const c=this.ctx,g=this.songGain,n=this.songNode;if(!c||!g||!n)return;this.songNode=null;this.songGain=null;const t=c.currentTime,d=(ms||0)/1000;
     try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+Math.max(.02,d));n.stop(t+Math.max(.03,d)+.05)}catch(e){}},
-  // water splash: a soft low thump, a short wet burst, then a scatter of droplets falling in pitch
-  splash(big){if(!this.ctx||!S.sound)return;if(this.sfx('splash',big?1:.6,big?.85:1.08+Math.random()*.08,1))return;try{const c=this.ctx,t=c.currentTime,sr=c.sampleRate;
-    const th=c.createOscillator(),tg=c.createGain();th.type='sine';th.frequency.setValueAtTime(big?150:210,t);th.frequency.exponentialRampToValueAtTime(55,t+.16);tg.gain.setValueAtTime(big?.32:.18,t);tg.gain.exponentialRampToValueAtTime(.001,t+.2);th.connect(tg).connect(c.destination);th.start(t);th.stop(t+.22);
-    const d=big?.5:.28,n=Math.floor(sr*d),b=c.createBuffer(1,n,sr),x=b.getChannelData(0);let lp=0;
-    for(let i=0;i<n;i++){const e=Math.pow(1-i/n,3);lp=lp*.55+(Math.random()*2-1)*.45;x[i]=lp*e}
-    const src=c.createBufferSource();src.buffer=b;const f=c.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(big?2600:3400,t);f.frequency.exponentialRampToValueAtTime(600,t+d);
-    const g=c.createGain();g.gain.value=big?.7:.45;src.connect(f).connect(g).connect(c.destination);src.start(t);
-    const drops=big?14:7;for(let k=0;k<drops;k++){const at=t+.04+Math.random()*(big?.45:.25),o=c.createOscillator(),og=c.createGain(),f0=700+Math.random()*900;
-      o.type='sine';o.frequency.setValueAtTime(f0,at);o.frequency.exponentialRampToValueAtTime(f0*1.9,at+.035);og.gain.setValueAtTime(0,at);og.gain.linearRampToValueAtTime(big?.05:.04,at+.004);og.gain.exponentialRampToValueAtTime(.0008,at+.05);
-      o.connect(og).connect(c.destination);o.start(at);o.stop(at+.06)}}catch(e){}},
-  // outdoor ambience loops (Magnific SFX files in snd/), crossfaded; one at a time, under the rain
-  ambBufs:{},ambName:null,ambWant:null,ambNode:null,ambGain:null,
-  ambLoad(n){if(this.ambBufs[n])return Promise.resolve(this.ambBufs[n]);this.init();if(!this.ctx)return Promise.resolve(null);
-    return fetch('snd/amb-'+n+'.mp3').then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))).then(b=>{this.ambBufs[n]=b;return b}).catch(()=>null)},
-  amb(n){this.ambWant=n||null;const target=S.sound?this.ambWant:null;if(target===this.ambName)return;
-    const c=this.ctx;if(c&&this.ambNode){const g=this.ambGain,nd=this.ambNode,t=c.currentTime;try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+1.2);nd.stop(t+1.3)}catch(e){}}
-    this.ambNode=null;this.ambGain=null;this.ambName=target;if(!target)return;
-    this.ambLoad(target).then(b=>{if(!b||this.ambName!==target||this.ambNode)return;const c=this.ctx;if(c.state==='suspended')c.resume();
-      const src=c.createBufferSource(),g=c.createGain();src.buffer=b;src.loop=true;src.loopStart=.06;src.loopEnd=Math.max(1,b.duration-.06);g.gain.value=0;src.connect(g).connect(c.destination);const t=c.currentTime;
-      src.start(t,Math.random()*Math.max(0,b.duration-2));g.gain.linearRampToValueAtTime(AMB_VOL[target]||.4,t+1.6);this.ambNode=src;this.ambGain=g})},
-  // one-shot SFX files (Magnific, approved): snd/shutter.mp3, snd/splash.mp3
-  sfxBufs:{},
-  sfxLoad(n){if(this.sfxBufs[n]!==undefined)return;this.sfxBufs[n]=null;this.init();if(!this.ctx)return;
-    fetch('snd/'+n+'.mp3').then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))).then(b=>{this.sfxBufs[n]=b}).catch(()=>{delete this.sfxBufs[n]})},
-  sfx(n,vol,rate,max){const b=this.sfxBufs[n];if(!b||!this.ctx||!S.sound)return false;try{const c=this.ctx;if(c.state==='suspended')c.resume();const src=c.createBufferSource(),g=c.createGain(),t=c.currentTime,v=vol||1;src.buffer=b;src.playbackRate.value=rate||1;g.gain.setValueAtTime(v,t);src.connect(g).connect(c.destination);src.start(t);if(max){g.gain.setValueAtTime(v,t+max-.15);g.gain.linearRampToValueAtTime(0,t+max);src.stop(t+max+.02)}return true}catch(e){return false}},
-  // camera shutter: two short mechanical clicks (curtain open, curtain close) over a tiny low thunk
-  shutter(){if(!S.sound)return;this.init();const c=this.ctx;if(!c)return;if(c.state==='suspended')c.resume();if(this.sfx('shutter',.9))return;try{const t=c.currentTime,sr=c.sampleRate;
-    const click=(at,vol,fq)=>{const n=Math.floor(sr*.028),b=c.createBuffer(1,n,sr),x=b.getChannelData(0);for(let i=0;i<n;i++)x[i]=(Math.random()*2-1)*Math.pow(1-i/n,6);
-      const src=c.createBufferSource();src.buffer=b;const f=c.createBiquadFilter();f.type='bandpass';f.frequency.value=fq;f.Q.value=1.4;const g=c.createGain();g.gain.value=vol;src.connect(f).connect(g).connect(c.destination);src.start(at)};
-    click(t,.9,3200);click(t+.075,.7,2300);
-    const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.setValueAtTime(240,t);o.frequency.exponentialRampToValueAtTime(90,t+.07);og.gain.setValueAtTime(.12,t);og.gain.exponentialRampToValueAtTime(.001,t+.09);o.connect(og).connect(c.destination);o.start(t);o.stop(t+.1)}catch(e){}},
+  // water splash: no sound for now (Kaung removed it; add one back here)
+  splash(big){},
   horn(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;[0,.42].forEach(d=>{this.tone(392,t+d,.3,.045,'square');this.tone(494,t+d,.3,.035,'square')})},
   level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.05,.11,.2][S.rain]||0:0; this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.8); },
   blip(hi){ if(!this.ctx||!S.sound) return; try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=hi?880:660;g.gain.value=0;o.connect(g).connect(this.ctx.destination);const t=this.ctx.currentTime;g.gain.linearRampToValueAtTime(.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.start(t);o.stop(t+.2);}catch(e){} }
@@ -1390,7 +1361,7 @@ async function padaukPick(){
   $('#pdName').textContent=P[pick][2];$('#pdLine').textContent=P[pick][3];$('#pdPick').style.display='flex';
   await new Promise(r=>{$('#pdGo').onclick=e=>{e.stopPropagation();r()}});
 }
-async function waterStreet(){Audio_.sfxLoad('splash');
+async function waterStreet(){
   const V=$('#wstreet'),f=$('#wsField'),card=$('#wsCard'),hud=$('#wsHud');
   f.innerHTML='<img id="wsBg" src="img/ws-street.webp" alt="" draggable="false">';hud.style.display='none';
   show('wstreet');

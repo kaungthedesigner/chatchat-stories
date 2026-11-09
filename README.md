@@ -1,8 +1,8 @@
-# ChatChat · Before the Rain Ends
+# Tales in between · Before the Rain Ends
 
 A chat-based story game in the style of *Seen*, set in a small town in Myanmar. Min Htet and May Thiri meet over a broken umbrella in the monsoon of 2018. The ending is fixed; your replies change how it feels.
 
-ChatChat is meant to hold more stories later, each with small side-quest mini games between the chats.
+Tales in between is the game: a home for stories told in messages. Before the Rain Ends is its first story; more will follow, each with small side-quest mini games between the chats. (ChatChat is the messaging app inside the story, not the game's name.)
 
 ## What's playable
 

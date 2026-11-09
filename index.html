@@ -309,6 +309,13 @@ body.m{padding-top:env(safe-area-inset-top)}
 .uphint{white-space:nowrap}
 .uphint .ic{width:18px;height:18px;font-size:18px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
 @keyframes bob{50%{transform:translate(-50%,-6px)}}
+/* call-to-action hint: reads as a button (filled, pill, pulsing ring) so first-time players know to tap it */
+.uphint.cta{border:0;background:var(--m700);color:var(--on-primary);font-weight:600;padding:12px 20px;border-radius:999px;bottom:128px}
+.uphint.cta::after{content:"";position:absolute;inset:-5px;border-radius:999px;border:2px solid var(--m500);animation:ctaring 1.6s ease-out infinite;pointer-events:none}
+@keyframes ctaring{0%{opacity:.85;transform:scale(.94)}100%{opacity:0;transform:scale(1.16)}}
+.uphint.cta .tip{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);font:400 12px/16px var(--sans);color:var(--ink-muted);white-space:nowrap;opacity:0;transition:opacity .6s}
+.uphint.cta.nudge .tip{opacity:1}
+@media (prefers-reduced-motion:reduce){.uphint.cta::after{animation:none;opacity:.6}}
 
 /* overlays */
 #wrap{position:relative}
@@ -1301,9 +1308,15 @@ async function glanceStep(v){
   $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(200);$('#postTray').innerHTML='';
 }
 /* ============ SPECIAL SEQUENCES ============ */
+// A tappable hint that also accepts a tap anywhere in the chat (after a moment) and, for scrolling back, a pull-down or scroll-up.
+function ctaWait(html,tip,swipe){return new Promise(r=>{const ch=$('#chat'),h=document.createElement('button');h.type='button';h.className='uphint cta';h.innerHTML=html+'<span class="tip">'+tip+'</span>';ch.appendChild(h);
+  let y0=null,fin=false;const any=e=>{if(e.target.closest('.ch')||e.target===h||h.contains(e.target))return;e.stopPropagation();e.preventDefault();done()},
+  wh=e=>{if(swipe&&e.deltaY<-8)done()},ts=e=>{y0=e.touches[0].clientY},tm=e=>{if(swipe&&y0!==null&&e.touches[0].clientY-y0>36)done()};
+  const t1=setTimeout(()=>ch.addEventListener('click',any,true),1800),t2=setTimeout(()=>h.classList.add('nudge'),5000);
+  function done(){if(fin)return;fin=true;clearTimeout(t1);clearTimeout(t2);ch.removeEventListener('click',any,true);ch.removeEventListener('wheel',wh);ch.removeEventListener('touchstart',ts);ch.removeEventListener('touchmove',tm);h.remove();r()}
+  h.addEventListener('click',e=>{e.stopPropagation();done()});ch.addEventListener('wheel',wh,{passive:true});ch.addEventListener('touchstart',ts,{passive:true});ch.addEventListener('touchmove',tm,{passive:true});setTimeout(()=>h.focus({preventScroll:true}),50)})}
 async function scrollBack(){
-  const h=document.createElement('div');h.className='uphint';h.innerHTML=IC.up+'Read older messages';await rawSleep(200);$('#chat').appendChild(h);
-  await waitClick(h);h.remove();
+  await rawSleep(200);await ctaWait(IC.up+'Tap to read older messages','Or pull down to scroll back',true);
   const sc=$('#scroll'),col=$('#scol'),fl=$('#flash');
   col.innerHTML=Array.from({length:140},(_,i)=>`<i class="${(i*7)%3===0?'o':''}" style="width:${35+((i*37)%45)}%"></i>`).join('');
   {const ch=$('#chat'),cr=ch.getBoundingClientRect(),hd=ch.querySelector('.ch'),ft=ch.querySelector('.foot'),k=cr.height/ch.offsetHeight||1;
@@ -1314,8 +1327,7 @@ async function scrollBack(){
   const flashes=[`<div class="fwrap">${fd('Aug 2020')}<div class="call">${IC.phoneX}Missed voice call</div></div>`,`<div class="fwrap">${fd('Mar 2019')}<div class="call">${IC.phone}Voice call · 2:14:07</div></div>`,`<div class="fwrap">${fd('Jun 2018')}<div class="row in" style="width:100%;padding:0 16px;box-sizing:border-box"><div class="b">goodnight umbrella thief</div></div></div>`];
   for(const [i,f] of flashes.entries()){await rawSleep(1500);fl.innerHTML=f;fl.classList.add('on');sc.classList.add('fl');await rawSleep(1100);if(i<flashes.length-1){fl.classList.remove('on');sc.classList.remove('fl')}}
   await rawSleep(1600);
-  const ph=document.createElement('div');ph.className='uphint';ph.innerHTML='<span class="ic i-images"></span>Open Photos';$('#chat').appendChild(ph);
-  await waitClick(ph);ph.remove();
+  await ctaWait('<span class="ic i-images"></span>Tap to open Photos','Or tap anywhere to continue',false);
   sc.classList.remove('on');$('#older').classList.remove('on');setTimeout(()=>{fl.classList.remove('on');sc.classList.remove('fl')},400);}
 async function gallery(){
   const g=$('#ggrid');const hues=[30,200,15,90,340,180,50,260,120,10,300,160,45,220,70];

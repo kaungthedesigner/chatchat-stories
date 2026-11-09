@@ -941,6 +941,12 @@ const Audio_={ctx:null,gain:null,
     const drops=big?14:7;for(let k=0;k<drops;k++){const at=t+.04+Math.random()*(big?.45:.25),o=c.createOscillator(),og=c.createGain(),f0=700+Math.random()*900;
       o.type='sine';o.frequency.setValueAtTime(f0,at);o.frequency.exponentialRampToValueAtTime(f0*1.9,at+.035);og.gain.setValueAtTime(0,at);og.gain.linearRampToValueAtTime(big?.05:.04,at+.004);og.gain.exponentialRampToValueAtTime(.0008,at+.05);
       o.connect(og).connect(c.destination);o.start(at);o.stop(at+.06)}}catch(e){}},
+  // camera shutter: two short mechanical clicks (curtain open, curtain close) over a tiny low thunk
+  shutter(){if(!S.sound)return;this.init();const c=this.ctx;if(!c)return;if(c.state==='suspended')c.resume();try{const t=c.currentTime,sr=c.sampleRate;
+    const click=(at,vol,fq)=>{const n=Math.floor(sr*.028),b=c.createBuffer(1,n,sr),x=b.getChannelData(0);for(let i=0;i<n;i++)x[i]=(Math.random()*2-1)*Math.pow(1-i/n,6);
+      const src=c.createBufferSource();src.buffer=b;const f=c.createBiquadFilter();f.type='bandpass';f.frequency.value=fq;f.Q.value=1.4;const g=c.createGain();g.gain.value=vol;src.connect(f).connect(g).connect(c.destination);src.start(at)};
+    click(t,.9,3200);click(t+.075,.7,2300);
+    const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.setValueAtTime(240,t);o.frequency.exponentialRampToValueAtTime(90,t+.07);og.gain.setValueAtTime(.12,t);og.gain.exponentialRampToValueAtTime(.001,t+.09);o.connect(og).connect(c.destination);o.start(t);o.stop(t+.1)}catch(e){}},
   horn(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;this.tone(392,t,.32,.045,'square');this.tone(494,t,.32,.035,'square')},
   level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.05,.11,.2][S.rain]||0:0; this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.8); },
   blip(hi){ if(!this.ctx||!S.sound) return; try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=hi?880:660;g.gain.value=0;o.connect(g).connect(this.ctx.destination);const t=this.ctx.currentTime;g.gain.linearRampToValueAtTime(.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.start(t);o.stop(t+.2);}catch(e){} }
@@ -1329,7 +1335,7 @@ async function photoWalk(){
     win.onpointerup=win.onpointercancel=()=>{drag=null};
     $('#vfBack').onclick=e=>{e.stopPropagation();vf.classList.remove('on')};
     $('#vfShut').onclick=async e=>{e.stopPropagation();if(!cur||$('#vfRes').classList.contains('on'))return;
-      const fl=$('#vfFlash');fl.classList.add('on');Audio_.blip&&Audio_.blip(true);setTimeout(()=>fl.classList.remove('on'),60);
+      const fl=$('#vfFlash');fl.classList.add('on');Audio_.shutter();setTimeout(()=>fl.classList.remove('on'),60);
       const sx=cur.sx*W+ox,sy=cur.sy*W+oy,inF=sx>fb.l&&sx<fb.l+fb.w&&sy>fb.t&&sy<fb.t+fb.h;
       const px=Math.round((-ox)/Math.max(1,W-win.clientWidth)*100),py=Math.round((-oy)/Math.max(1,W-win.clientHeight)*100);
       S.walk.push({id:cur.id,px,py,ok:inF});const r=rolls[S.walk.length-1];r.className='f';r.style.backgroundImage=`url('${cur.src}')`;r.style.backgroundSize='240%';r.style.backgroundPosition=`${px}% ${py}%`;

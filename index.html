@@ -911,12 +911,14 @@ SCENE.roomEmpty='<img src="img/rm-01-empty.webp" alt="" draggable="false">';
 SCENE.roomUmbrellas='<img src="img/rm-03-umbrellas.webp" alt="" draggable="false">';
 
 /* ===== Chapter 4 art. A shot shows a labelled placeholder until Kaung approves it and the file is in img/. ===== */
-const C4_READY=new Set(['c4-station','c4-roof','c4-promise','c4-handover','c4-window','c4-room','c4-shutter','c4-hnin-umb','c4-gate','c4-empty','c4-ph-bus','c4-ph-warehouse','c4-ph-windows','c4-ph-tea','c4-item-print','c4-item-jars','c4-item-walk','c4-item-sweater','c4-item-seeds','c4-item-stickers']);
+const C4_READY=new Set(['c4-station','c4-roof','c4-promise','c4-handover','c4-window','c4-room','c4-shutter','c4-hnin-umb','c4-gate','c4-empty','c4-ph-bus','c4-ph-warehouse','c4-ph-windows','c4-ph-tea','c4-item-print','c4-item-jars','c4-item-walk','c4-item-sweater','c4-item-seeds','c4-item-stickers','c4-min-look','c4-hug']);
 const c4img=(f,label,pos)=>C4_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false"${pos?` style="object-fit:cover;object-position:${pos}"`:''}>`:PHI(label,'#41525c','#1c262c');
 const c4ph=(f,label)=>C4_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
 SCENE.c4Station=c4img('c4-station','Bus station before dawn');
 SCENE.c4Roof=c4img('c4-roof','Under the station roof');
 SCENE.c4Promise=c4img('c4-promise','May, looking at the bus');
+SCENE.c4MinLook=c4img('c4-min-look','Min, looking at May');
+SCENE.c4Hug=c4img('c4-hug','The goodbye hug');
 SCENE.c4Handover=c4img('c4-handover','The umbrella handover');
 SCENE.c4Window=c4img('c4-window','May at the bus window');
 SCENE.c4Room=c4img('c4-room',"May's half-packed room");
@@ -2344,10 +2346,11 @@ const CH4=[
  {say:['May',"It's only until things get better."]},
  {narr:"She says it like she's checking whether it's true."},
  {if:{test:f=>f.c2_friends===true,then:[{say:['May',"You said you didn't want to be only friends."]},{say:['May',"I'm holding you to it. From far away."]}],else:[{say:['May','We were never anything, right?']},{narr:"She laughs like it was a joke. It wasn't."}]}},
+ {shot:'c4MinLook'},
  {choice:{flag:'c4_promise',opts:[
-   {label:"I'll wait.",say:"I'll wait.",then:[{say:['May',"Don't say it like that. Like it's going to be long."]}]},
-   {label:"Come back for Thadingyut. We'll light the lamp.",say:"Come back for Thadingyut. We'll light the lamp.",then:[{say:['May','Thadingyut. I promise.']},{narr:'Too fast. She looks at the bus while she says it.'}]},
-   {label:"Don't look back. Just go.",say:"Don't look back. Just go.",then:[{say:['May',"That's the worst thing you've ever said to me."]},{narr:'She hugs him anyway.'}]}]}},
+   {label:"I'll wait.",say:"I'll wait.",then:[{say:['May',"Don't say it like that. Like it's going to be long."]},{shot:'c4Hug'},{narr:"She hugs him so he can't see her face."}]},
+   {label:"Come back for Thadingyut. We'll light the lamp.",say:"Come back for Thadingyut. We'll light the lamp.",then:[{say:['May','Thadingyut. I promise.']},{narr:'Too fast. She looks at the bus while she says it.'},{shot:'c4Hug'},{narr:"Then she hugs him so he can't see her face."}]},
+   {label:"Don't look back. Just go.",say:"Don't look back. Just go.",then:[{say:['May',"That's the worst thing you've ever said to me."]},{shot:'c4Hug'},{narr:'She hugs him anyway.'}]}]}},
  {if:{test:f=>f.c1_told_kept===true||f.c1_photo_sent==='umbrella',then:[{say:['May','You still have my pink one.']},{say:['May',"Keep it till I'm back. That's the deal."]}],else:[{narr:"Her broken pink umbrella is rolled up in Min's bag. He doesn't take it out."}]}},
  {shot:'c4Handover'},
  {choice:{flag:'c4_umbrella',opts:[

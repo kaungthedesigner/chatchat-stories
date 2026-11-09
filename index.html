@@ -31,6 +31,11 @@ button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ic{display:inline-flex;align-items:center;justify-content:center;flex:none;font-family:'Phosphor-Light'!important;font-weight:normal;font-style:normal;line-height:1;letter-spacing:0;text-transform:none;-webkit-font-smoothing:antialiased;overflow:hidden;font-size:24px;width:24px;height:24px}
 .ic.i-plus-circle:before{content:"\e3d6"}
 .ic.i-arrow-left:before{content:"\e058"}
+.ic.i-check-circle:before{content:"\e184"}
+.ic.i-circle-half:before{content:"\e18c"}
+.ic.i-play-circle:before{content:"\e3d2"}
+.ic.i-lock:before{content:"\e2fa"}
+.ic.i-hourglass:before{content:"\e2b2"}
 .ic.i-arrow-up:before{content:"\e08e"}
 .ic.i-bookmark-simple:before{content:"\e0ea"}
 .ic.i-phone:before{content:"\e3b8"}
@@ -478,7 +483,11 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #start .cr .t{flex:1;min-width:0}
 #start .cr .t b{display:block;font:500 17px/22px var(--serif)}
 #start .cr .t span{font:400 12px/16px var(--sans);color:rgba(251,247,239,.62)}
-#start .cr .st{font:500 12px/16px var(--sans);color:rgba(251,247,239,.7)}
+#start .cr .st{flex:none;color:rgba(251,247,239,.7)}
+#start .cr .st .ic{font-size:24px;width:24px;height:24px}
+#start .cr.next .st{color:var(--n-clay)}
+#start .cr.done .st{color:var(--paper-50)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #start .cr.lock{opacity:.5}
 #start .over{margin-top:auto;align-self:center;padding:14px 20px;font:500 14px/20px var(--sans);color:rgba(251,247,239,.7)}
 #start .over.sure{color:#F2A08C}
@@ -2022,6 +2031,7 @@ function libState(){const v=sv();const played=CH_START.length;
   const nextK=(()=>{for(let k=0;k<played;k++)if(!v.done.includes(k))return k;return null})();
   const any=v.cur!==null||v.done.length;const frac=v.done.filter(k=>k<played).length/played;
   return {v,nextK,any,frac}}
+const ST_IC={'Coming soon':'hourglass','Played':'check-circle','In progress':'circle-half','Up next':'play-circle','Locked':'lock'};
 function renderLib(){const {v,nextK,any,frac}=libState();const C_=STORY.chapters;
   $('#go').textContent=!any?'Begin':nextK===null?'Play again':'Continue';
   $('#libPr').classList.toggle('on',!!any);$('#libBar').style.width=Math.round(frac*100)+'%';
@@ -2029,7 +2039,7 @@ function renderLib(){const {v,nextK,any,frac}=libState();const C_=STORY.chapters
   $('#chList').innerHTML=C_.map((c,k)=>{const done=v.done.includes(k),open=!c.soon&&(k===0||done||v.done.includes(k-1)||v.cps[k]);const cls=c.soon?'lock':done?'done':open?'next':'lock';
     const st=c.soon?'Coming soon':done?'Played':open?((v.pos&&v.pos.k===k)||(v.cps[k]&&v.cur===k)?'In progress':'Up next'):'Locked';
     const tag=open?'button':'div';
-    return `<${tag} class="cr ${cls}" data-k="${k}"><div class="n">${done?'✓':c.n}</div><div class="t"><b>${k===0?'Prologue':'Chapter '+c.n+' · '+c.t}</b><span>${c.d}</span></div><div class="st">${st}</div></${tag}>`}).join('');
+    return `<${tag} class="cr ${cls}" data-k="${k}"><div class="n">${c.n}</div><div class="t"><b>${k===0?'Prologue':'Chapter '+c.n+' · '+c.t}</b><span>${c.d}</span></div><div class="st" title="${st}"><span class="ic i-${ST_IC[st]}" aria-hidden="true"></span><span class="sr">${st}</span></div></${tag}>`}).join('');
   $('#chList').querySelectorAll('button.cr').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=+b.dataset.k;playFrom(k,!v.done.includes(k))});
   $('#chOver').classList.remove('sure');$('#chOver').textContent='Start over';$('#chOver').style.display=any?'':'none';}
 async function playFrom(k,resume){S.pendTime=null;startAudio();const v=sv();let at;

@@ -204,6 +204,9 @@ body.m .stage.full{border-radius:0;box-shadow:none}
 .comp .plus{color:var(--m700);width:32px;display:grid;place-items:center}
 .comp .plus .ic{width:26px;height:26px;font-size:26px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 26}
 .field{flex:1;min-height:40px;border-radius:999px;background:var(--paper-50);border:1.5px solid var(--line-strong);padding:8px 16px;font:400 15px/22px var(--sans);color:var(--ink-body)}
+.field.multi{border-radius:20px}
+.comp:has(.field.multi){align-items:flex-end}
+.comp:has(.field.multi) .plus,.comp:has(.field.multi) .sendic{margin-bottom:4px}
 .field .ph{color:var(--ink-faint)}
 .field .cur{display:inline-block;width:1.5px;height:17px;background:var(--m700);vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -875,7 +878,7 @@ async function typingFor(ms){markSeen();const t=document.createElement('div');t.
 async function incoming(m){const len=(m.text||'').length;const dur=m.k==='text'?Math.min(2300,Math.max(650,380+len*30)):1300;
   await typingFor(dur);push(Object.assign({dir:'in'},m));Audio_.blip(false);await sleep(m.k==='text'?Math.min(1800,600+len*22):900);}
 const field=$('#field'),sendic=$('#sendic');
-function setField(t,cursor){field.innerHTML=t?esc(t)+(cursor?'<span class="cur"></span>':''):'<span class="ph">Message</span>';sendic.classList.toggle('on',!!t);}
+function setField(t,cursor){field.innerHTML=t?esc(t)+(cursor?'<span class="cur"></span>':''):'<span class="ph">Message</span>';sendic.classList.toggle('on',!!t);field.classList.toggle('multi',!!t&&field.scrollHeight>44);}
 async function typeField(t){for(let i=1;i<=t.length;i++){setField(t.slice(0,i),true);await rawSleep(Math.max(8,24/S.speed))}}
 async function hesitate(t){const cut=Math.max(0,t.lastIndexOf(' ',t.length-2));
   for(let i=t.length-1;i>=cut;i--){setField(t.slice(0,i),true);await rawSleep(Math.max(20,90/S.speed))}
@@ -946,16 +949,19 @@ function swipeUp(){return new Promise(r=>{const lk=$('#lk');lk.classList.remove(
     if(-dy>H*.22||v>.6){set(-H);done()}else{set(0);if(-dy<6){lk.animate([{transform:'translateY(0)'},{transform:'translateY(-18px)'},{transform:'translateY(0)'}],{duration:420,easing:'ease-out'})}}};
   const done=()=>{lk.removeEventListener('pointerdown',down);lk.removeEventListener('pointermove',move);lk.removeEventListener('pointerup',up);lk.removeEventListener('pointercancel',up);setTimeout(r,320)};
   lk.addEventListener('pointerdown',down);lk.addEventListener('pointermove',move);lk.addEventListener('pointerup',up);lk.addEventListener('pointercancel',up);})}
-async function holdChat(){ if(!$('#chat').classList.contains('on'))return;
+const HOLD_STEPS=new Set(['browse','notify','friend','scene','title','post','glance','profile','lock']);
+const flushTime=()=>{if(S.pendTime){setTime(S.pendTime);S.pendTime=null}};
+async function holdChat(){ if(!$('#chat').classList.contains('on'))return flushTime();
   await rawSleep(1200);
   tray(`<div class="tray"><button class="opt cont">Continue</button></div>`);
-  await new Promise(r=>{$('#tray .cont').onclick=e=>{e.stopPropagation();r()}});tray('');}
+  await new Promise(r=>{$('#tray .cont').onclick=e=>{e.stopPropagation();r()}});tray('');flushTime();}
 async function run(steps){for(const s of steps){await exec(s)}}
 async function exec(s){
   if(typeof s==='function'){return run(s()||[])}
   const [k,v]=Object.entries(s)[0];
+  if(S.pendTime&&k!=='time'&&!HOLD_STEPS.has(k)&&k!=='pause'&&k!=='rain'){setTime(S.pendTime);S.pendTime=null}
   switch(k){
-  case 'time': setTime(v);break;
+  case 'time': if($('#chat').classList.contains('on'))S.pendTime=v;else setTime(v);break;
   case 'rain': setRain(v);break;
   case 'pause': await sleep(v);break;
   case 'flag': Object.assign(S.flags,v);break;
@@ -1990,8 +1996,9 @@ const SAVE_KEY='chatchat.saves.v1';let SAVES={};
 try{SAVES=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}}catch(e){SAVES={}}
 function sv(){return SAVES[STORY.id]=SAVES[STORY.id]||{cps:{},done:[],cur:null}}
 function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(SAVES))}catch(e){}}
-function snap(){return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day:S.day||0,tl:S.tlabel||null,rain:S.rain||0,walk:S.walk||null}))}
-function restore(c){S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=`<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`})}
+function snap(){let day=S.day||0,tl=S.tlabel||null;if(S.pendTime){const o={now:S.now,day:S.day,tl:S.tlabel,clk:$('#clock').textContent};setTime(S.pendTime);day=S.day||0;tl=S.tlabel;S.now=o.now;S.day=o.day;S.tlabel=o.tl;$('#clock').textContent=o.clk}
+  return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day,tl,rain:S.rain||0,walk:S.walk||null}))}
+function restore(c){S.pendTime=null;S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=`<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`})}
 const SAFE=['notify','scene','title','browse','friend','lock'];
 function chOf(i){let k=0;CH_START.forEach((x,j)=>{if(x<=i)k=j});return k}
 function markDone(k){const v=sv();if(!v.done.includes(k))v.done.push(k);persist()}
@@ -2016,7 +2023,7 @@ function renderLib(){const {v,nextK,any,frac}=libState();const C_=STORY.chapters
     return `<${tag} class="cr ${cls}" data-k="${k}"><div class="n">${done?'✓':c.n}</div><div class="t"><b>${k===0?'Prologue':'Chapter '+c.n+' · '+c.t}</b><span>${c.d}</span></div><div class="st">${st}</div></${tag}>`}).join('');
   $('#chList').querySelectorAll('button.cr').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=+b.dataset.k;playFrom(k,!v.done.includes(k))});
   $('#chOver').classList.remove('sure');$('#chOver').textContent='Start over';$('#chOver').style.display=any?'':'none';}
-async function playFrom(k,resume){startAudio();const v=sv();let at;
+async function playFrom(k,resume){S.pendTime=null;startAudio();const v=sv();let at;
   if(resume&&v.pos&&v.pos.k===k){restore(v.pos.s);at=v.pos.i}
   else{if(k>0&&!v.cps[k])k=0;restore(k>0?v.cps[k]:{});at=CH_START[k]}
   document.body.classList.add('playing');

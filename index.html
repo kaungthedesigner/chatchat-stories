@@ -419,6 +419,8 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 .bar .lt{display:flex;align-items:center;gap:8px;min-width:0}
 .pill.xb{padding:0;width:32px;justify-content:center;display:none}
 body.playing .pill.xb{display:flex}
+body:not(.playing) .bar:has(#bExit){visibility:hidden}
+body.m:not(.playing) .bar:has(#bExit){display:none}
 #leave .card{position:absolute;left:16px;right:16px;bottom:28px;background:var(--paper-50);border-radius:20px;padding:22px 20px 16px;color:var(--ink-body);box-shadow:0 20px 50px rgba(0,0,0,.4);transform:translateY(30px);transition:transform .35s ease}
 #leave.on .card{transform:none}
 #leave{background:rgba(10,14,13,.55);transition:opacity .3s}

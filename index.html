@@ -2226,31 +2226,34 @@ let DEVJUMP=false;
 async function runFlow(i){for(;i<FLOW.length;i++){devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];
   if(!DEVJUMP){const st=FLOW[i];const kk=st&&typeof st==='object'?Object.keys(st)[0]:null;if(kk&&SAFE.includes(kk)){const v=sv();v.pos={i,k:chOf(i),s:snap()};persist()}
     const k=CH_START.indexOf(i);if(k>=0){const v=sv();v.cps[k]=snap();v.cur=k;if(k>0)markDone(k-1);persist()}
-    if(CH_END[i]!==undefined){markDone(CH_END[i]);const v=sv();v.cps[CH_END[i]+1]=snap();v.cur=CH_END[i]+1;persist()}
+    if(CH_END[i]!==undefined){markDone(CH_END[i]);const v=sv();v.cps[CH_END[i]+1]=snap();v.cur=CH_END[i]+1;if(CH_END[i]>=CH_START.length-1)v.replay=false;persist()}
     if(FLOW[i]&&FLOW[i].end!==undefined)markDone(FLOW[i].end)}
   await exec(FLOW[i])}}
 function libState(){const v=sv();const played=CH_START.length;
   const nextK=(()=>{for(let k=0;k<played;k++)if(!v.done.includes(k))return k;return null})();
   const any=v.cur!==null||v.done.length;const frac=v.done.filter(k=>k<played).length/played;
-  return {v,nextK,any,frac}}
+  const replayK=nextK===null&&v.replay&&v.pos?v.pos.k:null;
+  return {v,nextK,any,frac,replayK}}
 const ST_IC={'Coming soon':'hourglass','Played':'check-circle','In progress':'circle-half','Up next':'play-circle','Locked':'lock'};
-function renderLib(){const {v,nextK,any,frac}=libState();const C_=STORY.chapters;
-  $('#go').textContent=!any?'Begin':nextK===null?'Play again':'Continue';
+function renderLib(){const {v,nextK,any,frac,replayK}=libState();const C_=STORY.chapters;
+  $('#go').textContent=!any?'Begin':nextK===null&&replayK===null?'Play again':'Continue';
   $('#libPr').classList.toggle('on',!!any);$('#libBar').style.width=Math.round(frac*100)+'%';
-  $('#libWhere').textContent=nextK===null?'All chapters so far finished':(nextK===0?'Prologue':'Chapter '+nextK+' · '+C_[nextK].t);
+  const wk=nextK!==null?nextK:replayK;$('#libWhere').textContent=wk===null?'All chapters so far finished':(wk===0?'Prologue':'Chapter '+wk+' · '+C_[wk].t)+(nextK===null?' · replaying':'');
   $('#chList').innerHTML=C_.map((c,k)=>{const done=v.done.includes(k),open=!c.soon&&(k===0||done||v.done.includes(k-1)||v.cps[k]);const cls=c.soon?'lock':done?'done':open?'next':'lock';
-    const st=c.soon?'Coming soon':done?'Played':open?((v.pos&&v.pos.k===k)||(v.cps[k]&&v.cur===k)?'In progress':'Up next'):'Locked';
+    const rep=done&&replayK===k;const st=c.soon?'Coming soon':rep?'In progress':done?'Played':open?((v.pos&&v.pos.k===k)||(v.cps[k]&&v.cur===k)?'In progress':'Up next'):'Locked';
     const tag=open?'button':'div';
     return `<${tag} class="cr ${cls}" data-k="${k}"><div class="n">${c.n}</div><div class="t"><b>${k===0?'Prologue':'Chapter '+c.n+' · '+c.t}</b><span>${c.d}</span></div><div class="st" title="${st}"><span class="ic i-${ST_IC[st]}" aria-hidden="true"></span><span class="sr">${st}</span></div></${tag}>`}).join('');
-  $('#chList').querySelectorAll('button.cr').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=+b.dataset.k;playFrom(k,!v.done.includes(k))});
+  $('#chList').querySelectorAll('button.cr').forEach(b=>b.onclick=e=>{e.stopPropagation();const k=+b.dataset.k;playFrom(k,!v.done.includes(k)||replayK===k)});
   $('#chOver').classList.remove('sure');$('#chOver').textContent='Start over';$('#chOver').style.display=any?'':'none';}
+// Replaying never locks chapters already played: v.done is kept, and v.replay marks a replay in progress so Continue resumes it
 async function playFrom(k,resume){S.pendTime=null;startAudio();const v=sv();let at;
+  if(v.done.includes(k)&&!(resume&&v.replay&&v.pos&&v.pos.k===k)){v.replay=true;v.pos=null;persist()}else if(!v.done.includes(k))v.replay=false;
   if(resume&&v.pos&&v.pos.k===k){restore(v.pos.s);at=v.pos.i}
   else{if(k>0&&!v.cps[k])k=0;restore(k>0?v.cps[k]:{});at=CH_START[k]}
   document.body.classList.add('playing');
   $('#start').classList.remove('on');await rawSleep(600);$('#start').classList.remove('chap');
   await runFlow(at);}
-$('#go').onclick=e=>{e.stopPropagation();const {nextK}=libState();playFrom(nextK===null?0:nextK,true)};
+$('#go').onclick=e=>{e.stopPropagation();const {nextK,replayK}=libState();if(nextK!==null)playFrom(nextK,true);else if(replayK!==null)playFrom(replayK,true);else playFrom(0,false)};
 $('#bExit').onclick=e=>{e.stopPropagation();const v=sv();const p=v.pos;
   $('#leaveP').textContent=DEVJUMP?'Dev jump: progress from here is not saved.':'Your progress is saved. Next time you\'ll pick up from the start of this chat or scene.';$('#leave').classList.add('on')};
 $('#leave').onclick=e=>{e.stopPropagation();if(e.target.id==='leave')$('#leave').classList.remove('on')};
@@ -2259,8 +2262,8 @@ $('#leaveGo').onclick=e=>{e.stopPropagation();try{sessionStorage.setItem('bre_ho
 $('#hero').onclick=e=>{e.stopPropagation();$('#go').click()};
 $('#libCh').onclick=e=>{e.stopPropagation();renderLib();$('#start').classList.add('chap')};
 $('#chBack').onclick=e=>{e.stopPropagation();$('#start').classList.remove('chap')};
-$('#chOver').onclick=e=>{e.stopPropagation();const b=$('#chOver');if(!b.classList.contains('sure')){b.classList.add('sure');b.textContent='Tap again to erase your progress';return}
-  delete SAVES[STORY.id];persist();renderLib();$('#start').classList.remove('chap')};
+$('#chOver').onclick=e=>{e.stopPropagation();const b=$('#chOver');if(!b.classList.contains('sure')){b.classList.add('sure');b.textContent='Tap again to start from the Prologue';return}
+  const v=sv();v.pos=null;v.replay=false;persist();playFrom(0,false)};
 renderLib();
 (()=>{if(!DEV_ON)return;let j=null;try{j=sessionStorage.getItem('bre_jump');sessionStorage.removeItem('bre_jump')}catch(e){}
   const m=/jump=(\d+)/.exec(location.hash);if(m){j=m[1];try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
@@ -2268,11 +2271,11 @@ renderLib();
 $('#bSound span:last-child').textContent='Off';$('#bSound .ic').className='ic i-'+SPK_OFF;
 // While there is only one story, opening the game goes straight into it; the Stories home is still one tap away (back arrow)
 (()=>{if(DEVJUMP||STORIES.length>1)return;let home=false;try{home=sessionStorage.getItem('bre_home')==='1';sessionStorage.removeItem('bre_home')}catch(e){}
-  if(home)return;const {nextK}=libState();if(nextK===null)return;
+  if(home)return;const {nextK,replayK}=libState();const startK=nextK!==null?nextK:replayK;if(startK===null)return;
   $('#start').classList.remove('on');document.body.classList.add('playing');
   const wake=e=>{if(e&&e.target&&e.target.closest&&e.target.closest('#bSound'))return;removeEventListener('pointerdown',wake,true);removeEventListener('keydown',wake,true);startAudio()};
   addEventListener('pointerdown',wake,true);addEventListener('keydown',wake,true);
-  playFrom(nextK,true);})();
+  playFrom(startK,true);})();
 </script>
 </body>
 </html>

@@ -933,10 +933,10 @@ const Audio_={ctx:null,gain:null,
     try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+Math.max(.02,d));n.stop(t+Math.max(.03,d)+.05)}catch(e){}},
   // water splash: no sound for now (Kaung removed it; add one back here)
   splash(big){},
-  // outdoor ambience loops (Magnific SFX files in snd/), crossfaded; one at a time, under the rain
+  // scene music (soft loops; Magnific music in snd/, Thingyan reuses the water-street song), crossfaded; one at a time, under the rain
   ambBufs:{},ambName:null,ambWant:null,ambNode:null,ambGain:null,
   ambLoad(n){if(this.ambBufs[n])return Promise.resolve(this.ambBufs[n]);this.init();if(!this.ctx)return Promise.resolve(null);
-    return fetch('snd/amb-'+n+'.mp3').then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))).then(b=>{this.ambBufs[n]=b;return b}).catch(()=>null)},
+    return fetch(MUS_FILE[n]||('snd/mus-'+n+'.mp3')).then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))).then(b=>{this.ambBufs[n]=b;return b}).catch(()=>null)},
   amb(n){this.ambWant=n||null;const target=S.sound?this.ambWant:null;if(target===this.ambName)return;
     const c=this.ctx;if(c&&this.ambNode){const g=this.ambGain,nd=this.ambNode,t=c.currentTime;try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+1.2);nd.stop(t+1.3)}catch(e){}}
     this.ambNode=null;this.ambGain=null;this.ambName=target;if(!target)return;
@@ -999,9 +999,10 @@ addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey||/input|textare
 $('#bDev').onclick=e=>{e.stopPropagation();document.body.classList.toggle('dev');fit()};
 
 /* ============ UI HELPERS ============ */
-const AMB_ART={walkShare:'dusk',pagoda:'pagoda',lampWall:'pagoda',pagoda19:'pagoda',lamp2:'pagoda',wstreet:'thingyan',mayEnd:'thingyan'};
-const AMB_VIEW={pwalk:'town',padauk:'morning',wstreet:'thingyan'};
-const AMB_VOL={dusk:.45,pagoda:.4,thingyan:.3,morning:.45,town:.45};
+const AMB_ART={teashop1:'rain',roomEmpty:'rain',bedroom:'rain',classroom1:'daily',walkShare:'daily',pagoda:'lights',lampWall:'lights',pagoda19:'lights',lamp2:'lights',wstreet:'thingyan',mayEnd:'thingyan'};
+const AMB_VIEW={pwalk:'daily',padauk:'daily'};
+const AMB_VOL={rain:.28,daily:.24,lights:.28,thingyan:.16};
+const MUS_FILE={thingyan:'img/ws-song.mp3'};
 function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));
   Audio_.amb(id==='scene'?S.amb:AMB_VIEW[id]);
   $('#status').classList.toggle('light',id==='lock'||id==='scene'||id==='callv');

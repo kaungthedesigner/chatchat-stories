@@ -2043,7 +2043,7 @@ $('#bExit').onclick=e=>{e.stopPropagation();const v=sv();const p=v.pos;
   $('#leaveP').textContent=DEVJUMP?'Dev jump: progress from here is not saved.':'Your progress is saved. Next time you\'ll pick up from the start of this chat or scene.';$('#leave').classList.add('on')};
 $('#leave').onclick=e=>{e.stopPropagation();if(e.target.id==='leave')$('#leave').classList.remove('on')};
 $('#leaveStay').onclick=e=>{e.stopPropagation();$('#leave').classList.remove('on')};
-$('#leaveGo').onclick=e=>{e.stopPropagation();try{history.replaceState(null,'',location.pathname+location.search)}catch(_){ }location.reload()};
+$('#leaveGo').onclick=e=>{e.stopPropagation();try{sessionStorage.setItem('bre_home','1')}catch(_){ }try{history.replaceState(null,'',location.pathname+location.search)}catch(_){ }location.reload()};
 $('#hero').onclick=e=>{e.stopPropagation();$('#go').click()};
 $('#libCh').onclick=e=>{e.stopPropagation();renderLib();$('#start').classList.add('chap')};
 $('#chBack').onclick=e=>{e.stopPropagation();$('#start').classList.remove('chap')};
@@ -2054,6 +2054,13 @@ renderLib();
   const m=/jump=(\d+)/.exec(location.hash);if(m){j=m[1];try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
   if(j!==null){DEVJUMP=true;document.body.classList.add('playing');$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
 $('#bSound span:last-child').textContent='Off';$('#bSound .ic').className='ic i-'+SPK_OFF;
+// While there is only one story, opening the game goes straight into it; the Stories home is still one tap away (back arrow)
+(()=>{if(DEVJUMP||STORIES.length>1)return;let home=false;try{home=sessionStorage.getItem('bre_home')==='1';sessionStorage.removeItem('bre_home')}catch(e){}
+  if(home)return;const {nextK}=libState();if(nextK===null)return;
+  $('#start').classList.remove('on');document.body.classList.add('playing');
+  const wake=()=>{removeEventListener('pointerdown',wake,true);removeEventListener('keydown',wake,true);startAudio()};
+  addEventListener('pointerdown',wake,true);addEventListener('keydown',wake,true);
+  playFrom(nextK,true);})();
 </script>
 </body>
 </html>

@@ -911,7 +911,7 @@ SCENE.roomEmpty='<img src="img/rm-01-empty.webp" alt="" draggable="false">';
 SCENE.roomUmbrellas='<img src="img/rm-03-umbrellas.webp" alt="" draggable="false">';
 
 /* ===== Chapter 4 art. A shot shows a labelled placeholder until Kaung approves it and the file is in img/. ===== */
-const C4_READY=new Set([]);
+const C4_READY=new Set(['c4-station','c4-roof','c4-promise','c4-handover','c4-window','c4-room','c4-shutter','c4-hnin-umb','c4-gate','c4-empty','c4-ph-bus','c4-ph-warehouse','c4-ph-windows','c4-ph-tea','c4-item-print','c4-item-jars','c4-item-walk','c4-item-sweater','c4-item-seeds','c4-item-stickers']);
 const c4img=(f,label,pos)=>C4_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false"${pos?` style="object-fit:cover;object-position:${pos}"`:''}>`:PHI(label,'#41525c','#1c262c');
 const c4ph=(f,label)=>C4_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
 SCENE.c4Station=c4img('c4-station','Bus station before dawn');

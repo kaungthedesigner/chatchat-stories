@@ -653,7 +653,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #pdPick p{font:400 14px/20px var(--sans);opacity:.85;margin-top:6px;max-width:300px}
 #pdPick button{margin-top:22px;padding:14px 28px;border-radius:999px;background:#fffaf2;color:#1d2a2c;font:600 15px/20px var(--sans)}
 #wstreet{background:#2b3a3c;overflow:hidden}
-#wsField{position:absolute;inset:0;overflow:hidden;overflow:clip;touch-action:none}
+#wsField{position:absolute;inset:0;overflow:hidden;overflow:clip;touch-action:none;z-index:1;isolation:isolate;transform:translateZ(0)}
 #wsBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
 #wsField svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 #wsField svg .div{stroke:url(#wsFade);stroke-width:2.2;stroke-dasharray:14 12;opacity:.85}
@@ -682,7 +682,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #wsField .pop{position:absolute;z-index:6;pointer-events:none;font:700 14px/18px var(--sans);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45);transform:translate(-50%,0);animation:wsUp .8s forwards;white-space:nowrap}
 #wsField .pop.bad{color:#ffd9cf}
 @keyframes wsUp{to{margin-top:-38px;opacity:0}}
-#wsHud{position:absolute;left:0;right:0;top:0;padding:52px 16px 26px;background:linear-gradient(rgba(20,30,32,.72),rgba(20,30,32,0));z-index:300;color:#fff;display:none}
+#wsHud{position:absolute;left:0;right:0;top:0;transform:translateZ(0);padding:52px 16px 26px;background:linear-gradient(rgba(20,30,32,.72),rgba(20,30,32,0));z-index:300;color:#fff;display:none}
 #wsHud .row{display:flex;align-items:center;gap:10px}
 #wsHud .song{flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,.25);position:relative}
 #wsHud .song i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;background:#ffd36b}
@@ -691,7 +691,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #wsHud .lives{display:flex;gap:4px;margin-top:10px;align-items:center;font:500 12px/16px var(--sans)}
 #wsHud .lives .ic.off{opacity:.28}
 #wsHud .sc{margin-left:auto;display:flex;gap:4px;align-items:center;font:600 13px/16px var(--sans)}
-#wsCard{position:absolute;left:16px;right:16px;bottom:24px;z-index:320;background:#fffaf2;border-radius:20px;padding:20px 18px 16px;box-shadow:0 18px 50px rgba(0,0,0,.35);color:#1d2a2c;display:none}
+#wsCard{position:absolute;left:16px;right:16px;bottom:24px;z-index:320;transform:translateZ(0);background:#fffaf2;border-radius:20px;padding:20px 18px 16px;box-shadow:0 18px 50px rgba(0,0,0,.35);color:#1d2a2c;display:none}
 #wsCard .eb{font:600 12px/16px var(--sans);color:#b5562f;letter-spacing:.02em}
 #wsCard h2{font:600 22px/27px var(--serif);margin:3px 0 8px}
 #wsCard p{font:400 14px/20px var(--sans);color:#4c5b5e}
@@ -923,15 +923,25 @@ const Audio_={ctx:null,gain:null,
     const sl=c.createBiquadFilter();sl.type='lowpass';sl.frequency.value=1800;sg.gain.setValueAtTime(0,t);sg.gain.linearRampToValueAtTime(.025,t+.3);sg.gain.linearRampToValueAtTime(0,t+sec);
     src.connect(bp).connect(g).connect(c.destination);sq.connect(sl).connect(sg).connect(c.destination);
     src.start(t);lfo.start(t);sq.start(t);src.stop(t+sec+.05);lfo.stop(t+sec+.05);sq.stop(t+sec+.05)}catch(e){}},
-  // water street: song + splashes + truck horn
-  song:null,
-  songStart(){if(!S.sound)return;try{if(!this.song){this.song=new window.Audio('img/ws-song.mp3');this.song.preload='auto'}const a=this.song;clearInterval(this._sf);a.volume=.55;a.currentTime=0;const pr=a.play();if(pr&&pr.catch)pr.catch(()=>{})}catch(e){}},
-  songStop(ms){const a=this.song;if(!a)return;clearInterval(this._sf);const v0=a.volume,t0=performance.now();this._sf=setInterval(()=>{const k=Math.min(1,(performance.now()-t0)/(ms||900));a.volume=Math.max(0,v0*(1-k));if(k>=1){clearInterval(this._sf);a.pause()}},40)},
-  splash(big){if(!this.ctx||!S.sound)return;try{const c=this.ctx,t=c.currentTime,d=big?.7:.35,n=Math.floor(c.sampleRate*d),b=c.createBuffer(1,n,c.sampleRate),x=b.getChannelData(0);
-    for(let i=0;i<n;i++){const e=Math.pow(1-i/n,big?1.6:2.4);x[i]=(Math.random()*2-1)*e*(i<c.sampleRate*.01?i/(c.sampleRate*.01):1)}
-    const src=c.createBufferSource();src.buffer=b;const bp=c.createBiquadFilter();bp.type='bandpass';bp.frequency.setValueAtTime(big?900:1800,t);bp.frequency.exponentialRampToValueAtTime(big?350:700,t+d);bp.Q.value=.8;
-    const g=c.createGain();g.gain.value=big?.5:.32;src.connect(bp).connect(g).connect(c.destination);src.start(t)}catch(e){}},
-  horn(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;[0,.32].forEach(o=>{this.tone(392,t+o,.24,.045,'square');this.tone(494,t+o,.24,.035,'square')})},
+  // water street: song (decoded into the same AudioContext, so iPhones play it), splash, truck horn
+  song:null,songBuf:null,songNode:null,songGain:null,
+  songLoad(){if(this.songBuf||this._sl)return;this._sl=1;try{fetch('img/ws-song.mp3').then(r=>r.arrayBuffer()).then(ab=>{this.init();if(!this.ctx)return;return new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))}).then(b=>{if(b)this.songBuf=b}).catch(()=>{this._sl=0})}catch(e){this._sl=0}},
+  songStart(){if(!S.sound)return;this.init();const c=this.ctx;if(!c)return;if(c.state==='suspended')c.resume();this.songStop(0);
+    const go=()=>{if(!this.songBuf)return false;const src=c.createBufferSource(),g=c.createGain();src.buffer=this.songBuf;g.gain.value=.5;src.connect(g).connect(c.destination);src.start();this.songNode=src;this.songGain=g;return true};
+    if(!go()){this.songLoad();let n=0;const t=setInterval(()=>{if(go()||++n>40)clearInterval(t)},100)}},
+  songStop(ms){const c=this.ctx,g=this.songGain,n=this.songNode;if(!c||!g||!n)return;this.songNode=null;this.songGain=null;const t=c.currentTime,d=(ms||0)/1000;
+    try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+Math.max(.02,d));n.stop(t+Math.max(.03,d)+.05)}catch(e){}},
+  // water splash: a soft low thump, a short wet burst, then a scatter of droplets falling in pitch
+  splash(big){if(!this.ctx||!S.sound)return;try{const c=this.ctx,t=c.currentTime,sr=c.sampleRate;
+    const th=c.createOscillator(),tg=c.createGain();th.type='sine';th.frequency.setValueAtTime(big?150:210,t);th.frequency.exponentialRampToValueAtTime(55,t+.16);tg.gain.setValueAtTime(big?.32:.18,t);tg.gain.exponentialRampToValueAtTime(.001,t+.2);th.connect(tg).connect(c.destination);th.start(t);th.stop(t+.22);
+    const d=big?.5:.28,n=Math.floor(sr*d),b=c.createBuffer(1,n,sr),x=b.getChannelData(0);let lp=0;
+    for(let i=0;i<n;i++){const e=Math.pow(1-i/n,3);lp=lp*.55+(Math.random()*2-1)*.45;x[i]=lp*e}
+    const src=c.createBufferSource();src.buffer=b;const f=c.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(big?2600:3400,t);f.frequency.exponentialRampToValueAtTime(600,t+d);
+    const g=c.createGain();g.gain.value=big?.7:.45;src.connect(f).connect(g).connect(c.destination);src.start(t);
+    const drops=big?14:7;for(let k=0;k<drops;k++){const at=t+.04+Math.random()*(big?.45:.25),o=c.createOscillator(),og=c.createGain(),f0=700+Math.random()*900;
+      o.type='sine';o.frequency.setValueAtTime(f0,at);o.frequency.exponentialRampToValueAtTime(f0*1.9,at+.035);og.gain.setValueAtTime(0,at);og.gain.linearRampToValueAtTime(big?.05:.04,at+.004);og.gain.exponentialRampToValueAtTime(.0008,at+.05);
+      o.connect(og).connect(c.destination);o.start(at);o.stop(at+.06)}}catch(e){}},
+  horn(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;this.tone(392,t,.32,.045,'square');this.tone(494,t,.32,.035,'square')},
   level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.05,.11,.2][S.rain]||0:0; this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.8); },
   blip(hi){ if(!this.ctx||!S.sound) return; try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=hi?880:660;g.gain.value=0;o.connect(g).connect(this.ctx.destination);const t=this.ctx.currentTime;g.gain.linearRampToValueAtTime(.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.start(t);o.stop(t+.2);}catch(e){} }
 };
@@ -1080,7 +1090,7 @@ $('#bAlbum').onclick=()=>{const a=$('#album');if(a.classList.contains('on')){a.c
   a.innerHTML=`<button class="icbtn x" id="ax" aria-label="Close">${IC.x}</button><h2>Memories</h2><div class="mgrid">${memCards(false)||'<p style="color:#7b858c;font-size:14px;grid-column:1/-1">Photos, notes and keepsakes you find will appear here.</p>'}</div>${unsentHTML()}`;
   a.classList.add('on');
   $('#ax').onclick=e=>{e.stopPropagation();a.classList.remove('on')};};
-$('#bSound').onclick=()=>{Audio_.init();if(Audio_.ctx&&Audio_.ctx.state==='suspended')Audio_.ctx.resume();S.sound=!S.sound;if(!S.sound&&Audio_.song)Audio_.song.pause();$('#bSound span:last-child').textContent=S.sound?'On':'Off';$('#bSound .ic').className='ic i-'+(S.sound?SPK_ON:SPK_OFF);Audio_.level()};
+$('#bSound').onclick=()=>{Audio_.init();if(Audio_.ctx&&Audio_.ctx.state==='suspended')Audio_.ctx.resume();S.sound=!S.sound;if(!S.sound)Audio_.songStop(200);$('#bSound span:last-child').textContent=S.sound?'On':'Off';$('#bSound .ic').className='ic i-'+(S.sound?SPK_ON:SPK_OFF);Audio_.level()};
 $('#bSpeed').onclick=e=>{e.stopPropagation();S.speed=S.speed===2?1:2;const on=S.speed===2;$('#bSpeed').classList.toggle('on',on);$('#bSpeed').setAttribute('aria-pressed',on)};
 
 /* ============ ENGINE ============ */
@@ -1361,7 +1371,7 @@ async function waterStreet(){
   show('wstreet');
   const cardShow=(html,btns)=>new Promise(res=>{card.innerHTML=html+'<div class="btns">'+btns.map((b,i)=>`<button id="${b[0]}" class="${i?'sec':''}">${b[1]}</button>`).join('')+'</div>';card.style.display='block';
     btns.forEach(b=>{$('#'+b[0]).onclick=e=>{e.stopPropagation();card.style.display='none';res(b[0])}})});
-  if(!Audio_.song){try{Audio_.song=new window.Audio('img/ws-song.mp3');Audio_.song.preload='auto';Audio_.song.load()}catch(e){}}
+  Audio_.songLoad();
   await cardShow(`<div class="eb">Side quest · Water street</div><h2>Reach May before the song ends</h2><p>She's waiting at the far end of the street, by the pandal.</p>
     <ul><li><span class="th lr"><svg viewBox="0 0 44 44" fill="none" stroke="#2f6f7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6 12 38M28 6l4 32" stroke-dasharray="3 3" opacity=".55"/><path d="M8 22H3m0 0 3.5-3.5M3 22l3.5 3.5M36 22h5m0 0-3.5-3.5M41 22l-3.5 3.5"/><circle cx="22" cy="15" r="3"/><path d="M22 18v9m-4-6h8m-6.5 13 2.5-7 2.5 7"/></svg></span><span><b>Tap left or right</b> of the screen to change lanes.</span></li>
     <li><span class="th" style="background-image:url(img/ws-pal1.webp)"></span><span><b>Tap friends to splash them</b> before they splash you. Getting wet is fine. It's Thingyan.</span></li>

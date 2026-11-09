@@ -659,6 +659,26 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #pdPick h2{font:600 22px/28px var(--serif);margin-top:20px}
 #pdPick p{font:400 14px/20px var(--sans);opacity:.85;margin-top:6px;max-width:300px}
 #pdPick button{margin-top:22px;padding:14px 28px;border-radius:999px;background:#fffaf2;color:#1d2a2c;font:600 15px/20px var(--sans)}
+/* Ch4 side quest · One box */
+#pack{background:#24302f;overflow:hidden;color:#fff}
+#pkBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(.8);pointer-events:none}
+#pkBg svg,#pkBg img{width:100%;height:100%;object-fit:cover}
+#pack .ph{position:relative;z-index:2;padding:52px 20px 10px}
+#pack .eb{font:600 12px/16px var(--sans);color:#ffd36b;letter-spacing:.02em}
+#pack h2{font:600 22px/28px var(--serif);margin-top:2px}
+#pack .sub{font:400 13px/18px var(--sans);opacity:.85;margin-top:4px}
+#pkBox{position:relative;z-index:2;margin:10px 20px 0;padding:10px;border-radius:14px;background:rgba(196,160,112,.92);display:grid;grid-template-columns:repeat(3,1fr);gap:8px;box-shadow:inset 0 0 0 2px rgba(120,86,50,.5)}
+#pkBox .sl{aspect-ratio:1;border-radius:10px;background:rgba(90,62,34,.25);border:2px dashed rgba(90,62,34,.45);display:flex;align-items:center;justify-content:center;overflow:hidden}
+#pkBox .sl.f{border:0;background:#fffaf2}
+#pkBox .sl img,#pkGrid .it img{width:100%;height:100%;object-fit:contain}
+#pkGrid{position:relative;z-index:2;margin:14px 20px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#pkGrid .it{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px 8px;border-radius:12px;background:rgba(255,250,242,.94);color:#2b2522;font:500 11px/14px var(--sans);text-align:center;border:2px solid transparent;transition:transform .2s,opacity .2s,border-color .2s}
+#pkGrid .it .pic{width:100%;aspect-ratio:1;border-radius:8px;overflow:hidden}
+#pkGrid .it.in{opacity:.35;transform:scale(.94)}
+#pkGrid .it:focus-visible{outline:2px solid #ffd36b;outline-offset:2px}
+#pkGo{position:relative;z-index:2;display:block;margin:16px auto 0;padding:14px 28px;border-radius:999px;background:#fffaf2;color:#1d2a2c;font:600 15px/20px var(--sans);transition:opacity .2s}
+#pkGo:disabled{opacity:.4}
+.pkph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#e8ddcb;color:#6b5a48;font:600 10px/12px var(--sans);padding:4px;text-align:center}
 #wstreet{background:#2b3a3c;overflow:hidden}
 #wsField{position:absolute;inset:0;overflow:hidden;overflow:clip;touch-action:none;z-index:1;isolation:isolate;transform:translateZ(0)}
 #wsBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
@@ -761,6 +781,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
       <div id="vf"><div class="bar"><span id="vfBack" role="button">Back</span><b id="vfName"></b><span id="vfCount"></span></div><div class="win" id="vfWin"><div class="pan" id="vfPan"></div><div class="fr" id="vfFr"><div class="mask"></div><i></i><i></i><i></i><i></i></div><div class="hint" id="vfHint">Drag to frame</div><div class="flashw" id="vfFlash"></div><div class="res" id="vfRes"></div></div><div class="ctl"><button class="shut" id="vfShut" aria-label="Take photo"></button></div></div>
     </div>
 
+    <div class="view" id="pack"><div id="pkBg"></div><div class="ph"><div class="eb">Side quest · One box</div><h2>Help May pack the last box</h2><p class="sub">The Thingyan print goes in first. Pick two more. Whatever doesn't fit stays with Min.</p></div><div id="pkBox"></div><div id="pkGrid"></div><button id="pkGo" disabled>Close the box</button></div>
     <div class="view" id="padauk"><img id="pdBg" src="img/c3-padauk.webp" alt="" draggable="false"><div class="ph"><div class="eb">Side moment · Padauk</div><h2>Pick one for May's hair</h2><p class="sub">Tap a sprig before the aunties' hooked poles get there.</p><div class="tb"><i id="pdT"></i></div></div>
       <div id="pdPick"><div class="zoom" id="pdZoom"></div><h2 id="pdName"></h2><p id="pdLine"></p><button id="pdGo">Keep it for May</button></div></div>
     <div class="view" id="wstreet"><div id="wsField"></div>
@@ -889,6 +910,36 @@ SCENE.bedroom='<img src="img/rm-02-reading.webp" alt="" draggable="false">';
 SCENE.roomEmpty='<img src="img/rm-01-empty.webp" alt="" draggable="false">';
 SCENE.roomUmbrellas='<img src="img/rm-03-umbrellas.webp" alt="" draggable="false">';
 
+/* ===== Chapter 4 art. A shot shows a labelled placeholder until Kaung approves it and the file is in img/. ===== */
+const C4_READY=new Set([]);
+const c4img=(f,label,pos)=>C4_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false"${pos?` style="object-fit:cover;object-position:${pos}"`:''}>`:PHI(label,'#41525c','#1c262c');
+const c4ph=(f,label)=>C4_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
+SCENE.c4Station=c4img('c4-station','Bus station before dawn');
+SCENE.c4Roof=c4img('c4-roof','Under the station roof');
+SCENE.c4Promise=c4img('c4-promise','May, looking at the bus');
+SCENE.c4Handover=c4img('c4-handover','The umbrella handover');
+SCENE.c4Window=c4img('c4-window','May at the bus window');
+SCENE.c4Room=c4img('c4-room',"May's half-packed room");
+SCENE.c4Shutter=c4img('c4-shutter','Tea shop shutter, heavy rain');
+SCENE.c4HninUmb=c4img('c4-hnin-umb',"Hnin's umbrella");
+SCENE.c4Gate=c4img('c4-gate','At the gate');
+SCENE.c4Empty=c4img('c4-empty','Empty station at night');
+ART.busWindow=c4ph('c4-ph-bus','Bus window, 3 AM');
+ART.warehouse=c4ph('c4-ph-warehouse','The warehouse');
+ART.windows=c4ph('c4-ph-windows','View from her window');
+ART.cityTea=c4ph('c4-ph-tea','A city tea shop');
+ART.lastBus=()=>SCENE.c4Window;
+ART.hninUmb=()=>SCENE.c4HninUmb;
+const PACK=[
+ {id:'print',n:'The Thingyan print',f:'c4-item-print'},
+ {id:'jars',n:'The two lamp jars',f:'c4-item-jars',say:"One is yours, so you have to come and light it."},
+ {id:'walk',n:'His photo-walk print',f:'c4-item-walk',say:'Proof the umbrella thief can take a good photo.'},
+ {id:'sweater',n:'Her school sweater',f:'c4-item-sweater',say:"It's cold there, they say."},
+ {id:'seeds',n:'Sunflower seeds',f:'c4-item-seeds',say:'Twelve hours of bus.'},
+ {id:'stickers',n:'The sticker sheet',f:'c4-item-stickers',say:'For emergencies.'}];
+const packPic=it=>C4_READY.has(it.f)?`<img src="img/${it.f}.webp" alt="">`:`<div class="pkph">${esc(it.n)}</div>`;
+ART.shoebox=()=>`<div class="walk3">${(S.flags.c4_left||[]).map(id=>{const it=PACK.find(x=>x.id===id);return `<i style="background:#efe6d8;display:flex;align-items:center;justify-content:center">${packPic(it)}</i>`}).join('')}</div>`;
+
 /* ============ STATE ============ */
 const S={flags:{},memories:[],unsent:[],threads:{},contact:null,speed:1,rain:0,sound:false,busy:false};
 const C={
@@ -1006,7 +1057,7 @@ addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey||/input|textare
 $('#bDev').onclick=e=>{e.stopPropagation();document.body.classList.toggle('dev');fit()};
 
 /* ============ UI HELPERS ============ */
-const AMB_ART={teashop1:'rain',roomEmpty:'rain',bedroom:'rain',classroom1:'daily',walkShare:'daily',pagoda:'lights',lampWall:'lights',pagoda19:'lights',lamp2:'lights',wstreet:'thingyan',mayEnd:'thingyan'};
+const AMB_ART={c4Station:'rain',c4Room:'rain',c4Shutter:'rain',teashop1:'rain',roomEmpty:'rain',bedroom:'rain',classroom1:'daily',walkShare:'daily',pagoda:'lights',lampWall:'lights',pagoda19:'lights',lamp2:'lights',wstreet:'thingyan',mayEnd:'thingyan'};
 const AMB_VIEW={pwalk:'daily',padauk:'daily'};
 const AMB_VOL={rain:.084,daily:.072,lights:.084,thingyan:.048}; // 30% of the first levels (Kaung, 9 Nov)
 const MUS_FILE={thingyan:'img/ws-song.mp3'};
@@ -1103,7 +1154,10 @@ const MEM_INFO={
  walk:{t:'The Photo Walk',ty:'Your three shots',art:'walk3'},
  lamp:{t:'The Lamp',ty:'Promise',art:'lamp'},
  mango:{t:'The Mango Tree',ty:'Photo',art:'thingyan'},
- lamp2:{t:'The Second Lamp',ty:'A promise kept',art:'lamp2'}
+ lamp2:{t:'The Second Lamp',ty:'A promise kept',art:'lamp2'},
+ shoebox:{t:'The Shoebox',ty:'What she left with you',art:'shoebox'},
+ lastBus:{t:'The Last Bus',ty:'Moment',art:'lastBus'},
+ hninUmb:{t:"Hnin's Umbrella",ty:'Moment',art:'hninUmb'}
 };
 function addMem(id){if(S.memories.includes(id))return;S.memories.push(id);toast(`Memory kept · <b>${MEM_INFO[id].t}</b>`)}
 function addUnsent(text,when){S.unsent.push({text,when});toast(`Not sent · kept in <b>Memories</b>`)}
@@ -1159,6 +1213,7 @@ async function exec(s){
   case 'photowalk': await photoWalk();break;
   case 'waterstreet': await waterStreet();break;
   case 'padauk': await padaukPick();break;
+  case 'pack': await packBox();break;
   case 'post': await postStep(v);break;
   case 'profile': await profileStep(v);break;
   case 'glance': await glanceStep(v);break;
@@ -1371,6 +1426,20 @@ async function photoWalk(){Audio_.sfxLoad('shutter');
   });
   S.flags.c2_walk_framed=S.walk.filter(w=>w.ok).length;
 }
+async function packBox(){
+  const V=$('#pack');$('#pkBg').innerHTML=SCENE.c4Room;const go=$('#pkGo');go.disabled=true;
+  let picked=[];
+  const draw=()=>{
+    $('#pkBox').innerHTML=['print',...picked,null,null].slice(0,3).map(id=>{if(!id)return '<div class="sl"></div>';const it=PACK.find(x=>x.id===id);return `<div class="sl f" title="${esc(it.n)}">${packPic(it)}</div>`}).join('');
+    $('#pkGrid').innerHTML=PACK.slice(1).map(it=>`<button class="it${picked.includes(it.id)?' in':''}" data-id="${it.id}" aria-pressed="${picked.includes(it.id)}"><span class="pic">${packPic(it)}</span>${esc(it.n)}</button>`).join('');
+    go.disabled=picked.length<2;
+    $('#pkGrid').querySelectorAll('.it').forEach(b=>b.onclick=e=>{e.stopPropagation();const id=b.dataset.id;
+      if(picked.includes(id))picked=picked.filter(x=>x!==id);else if(picked.length<2)picked.push(id);else{picked.shift();picked.push(id)}
+      Audio_.blip(true);draw()})};
+  draw();show('pack');
+  await new Promise(r=>{go.onclick=e=>{e.stopPropagation();if(!go.disabled)r()}});
+  S.flags.c4_box=picked.slice();S.flags.c4_left=PACK.slice(1).map(x=>x.id).filter(x=>!picked.includes(x));
+}
 async function padaukPick(){
   const V=$('#padauk'),bg=$('#pdBg');[...V.querySelectorAll('.spot,.pop')].forEach(e=>e.remove());$('#pdPick').style.display='none';$('#pdT').style.transform='scaleX(1)';
   show('padauk');if(!bg.complete)await new Promise(r=>bg.onload=r);
@@ -1477,7 +1546,7 @@ function wsRun(bag){return new Promise(async done=>{
     me.style.transition='';done({ok,wet,spl,got,lives,max})}
   requestAnimationFrame(frame)})}
 function icon(n){return `<i class="ic i-${n}"></i>`}
-function endCard(n){const e=$('#end');const D=n===3?{k:'Chapter 3 complete',h:'Thingyan',l:'Their best year: exams, a water festival, a second lamp, and a phone call in the next room.',nx:'Chapter 4 · The Station',nd:'2020.'}:n===2?{k:'Chapter 2 complete',h:'Monsoon Season',l:'One umbrella, two people, and a promise made over a lamp.',nx:'Chapter 3 · Thingyan',nd:'November 2018 to December 2019.'}:{k:'Chapter 1 complete',h:'The First Rain',l:'Two strangers, one wrong umbrella, and a joke that was only the beginning.',nx:'Chapter 2 · Monsoon Season',nd:'July to October 2018.'};
+function endCard(n){const e=$('#end');const D=n===4?{k:'Chapter 4 complete',h:'The Station',l:'A bus before dawn, an umbrella given away, and a road that closes.',nx:'Chapter 5 · Seen',nd:'October 2020 onwards.'}:n===3?{k:'Chapter 3 complete',h:'Thingyan',l:'Their best year: exams, a water festival, a second lamp, and a phone call in the next room.',nx:'Chapter 4 · The Station',nd:'2020.'}:n===2?{k:'Chapter 2 complete',h:'Monsoon Season',l:'One umbrella, two people, and a promise made over a lamp.',nx:'Chapter 3 · Thingyan',nd:'November 2018 to December 2019.'}:{k:'Chapter 1 complete',h:'The First Rain',l:'Two strangers, one wrong umbrella, and a joke that was only the beginning.',nx:'Chapter 2 · Monsoon Season',nd:'July to October 2018.'};
   e.innerHTML=`<div class="k">${D.k}</div><h2>${D.h}</h2><p class="lead">${D.l}</p>
   <h3 class="mh">Kept <span>${S.memories.length}</span></h3><div class="mgrid">${memCards(true,'kept')||'<p class="e">None this time.</p>'}</div>
   ${memCards(true,'other')?`<h3 class="mh">Other paths <span>${Object.keys(MEM_INFO).length-S.memories.length}</span></h3><p class="mhs">Moments you didn't find this time. Play again to choose differently.</p><div class="mgrid">${memCards(true,'other')}</div>`:''}${unsentHTML()}
@@ -2200,12 +2269,171 @@ const CH3=[
  {pause:1400},
  {scene:{art:'lamp2',cap:'',rain:0}},
  {narr:"The camera's last photo of 2019: the two lamps, side by side."},
- {title:{big:'<em>End of Chapter 3</em>Thingyan',small:''}},
- {end:3}
+ {title:{big:'<em>End of Chapter 3</em>Thingyan',small:''}}
+];
+const R4=(last)=>[{c:'may',text:'',time:last&&last.may||''},{c:'hnin',text:'',time:last&&last.hnin||''},{c:'thura',text:'',time:last&&last.thura||''},{c:'mom',text:'',time:last&&last.mom||''}];
+const CH4=[
+ {title:{big:'<em>Chapter 4</em>The Station',small:'January to September 2020',rain:0,time:'11:48 PM'}},
+ // C4.1 The news
+ {notify:{c:'may',text:'are you awake',div:'Mar 2020',rows:R4({hnin:'Dec',thura:'Nov',mom:'Aug'})}},
+ {in:'my dad decided'},
+ {in:"we're moving"},
+ {in:"to the city, my uncle's warehouse"},
+ {in:'and they found me a college there'},
+ {choice:{flag:'c4_news',opts:[
+   {label:'When?',send:'When?',then:[{in:'july'},{in:'after the rains start'}]},
+   {label:'For how long?',send:'For how long?',then:[{in:"I don't know"},{in:'they say until business is better'},{in:"so I don't know"}]},
+   {label:"(Don't answer yet.)",act:1,then:[{pause:2600},{in:'min'},{in:'say something, anything'}]}]}},
+ {pause:900},
+ {in:"I didn't choose this"},
+ {in:'I need you to know I didn\'t choose this'},
+ {pause:900},
+ // C4.2 Mom
+ {time:'7:10 AM'},
+ {notify:{c:'mom',text:"Daw Aye Aye says May's family is leaving.",rows:R4({hnin:'Dec',thura:'Nov'})}},
+ {choice:{flag:'c4_mom',opts:[
+   {label:'In July.',send:'In July.',then:[{in:'Then you have until July. Use it.'}]},
+   {label:"She'll come back.",send:"She'll come back.",then:[{in:'People who leave always say that.'},{pause:1600},{in:"I'm sorry. That was about your father, not her."}]},
+   {label:"I don't want to talk about it.",send:"I don't want to talk about it.",then:[{in:"Okay. I made mohinga. Come eat when you're ready."}]}]}},
+ {pause:900},
+ // C4.2b Thura, lockdown
+ {time:'3:20 PM'},
+ {notify:{c:'thura',text:'bro',div:'Apr 2020',rows:R4({hnin:'Dec'})}},
+ {in:'no thingyan. no football. the tea shop is takeaway only'},
+ {in:'this is the end of civilisation'},
+ {in:'also I heard about may'},
+ {choice:{flag:'c4_thura',opts:[
+   {label:"It's only for a while.",send:"It's only for a while.",then:[{in:'yeah'},{in:"that's what my cousin said. he's been \"a while\" in thailand for 3 years"}]},
+   {label:"You were right. They don't stay.",send:"You were right. They don't stay.",then:[{in:"bro I didn't want to be right"},{in:'I never want to be right about that'}]},
+   {label:"Don't.",send:"Don't.",then:[{in:'ok ok'},{in:'sending you a meme instead'},{inSticker:'laugh'}]}]}},
+ pick('c1_thura',{A:[{in:'everyone\'s leaving this town lol'}],B:[{pause:1400},{in:"everyone's leaving this town"}],C:[{in:"everyone's leaving this town"}]}),
+ {in:'not you though right'},
+ {pause:900},
+ // C4.2c Hnin, takeaway tea
+ {time:'5:45 PM'},
+ {notify:{c:'hnin',text:'tea shop is takeaway only now',div:'May 2020',rows:R4({})}},
+ {in:'tea in plastic bags. auntie hates it'},
+ {in:"your mom ordered two teas for your house. I know one is for may. I'll put extra sugar in it"},
+ {choice:{flag:'c4_hnin_tea',opts:[
+   {label:'Thank you, Hnin.',send:'Thank you, Hnin.',then:[{in:"don't thank me. pay me"}]},
+   {label:"How do you know it's for May?",send:"How do you know it's for May?",then:[{in:'behind the counter. I see everything. same as always'}]},
+   {label:'Make it three. One is for you.',send:'Make it three. One is for you.',then:[{typing:1500},{pause:1300},{in:"I'm working. but ok"}]}]}},
+ {pause:900},
+ // C4.3 Packing
+ {time:'2:15 PM'},
+ {scene:{art:'c4Room',cap:"May's room · June 2020",rain:1}},
+ {narr:'Half the room is already in boxes. One small box is left, and six things that won\'t fit with the rest.'},
+ {narr:'May picks up the Thingyan print first.'},
+ {say:['May','This one comes with me. Obviously.']},
+ {pack:true},
+ {scene:{art:'c4Room',cap:'',rain:1}},
+ ()=>(S.flags.c4_box||[]).map(id=>({say:['May',PACK.find(x=>x.id===id).say]})),
+ {narr:'The other three go into a shoebox. She writes nothing on it. She just hands it to him.'},
+ {mem:'shoebox'},
+ // C4.4 The station
+ {rain:0},{time:'5:10 AM'},
+ {title:{big:'<em>July 2020</em>The station',small:'',rain:1}},
+ {scene:{art:'c4Station',cap:'The bus station · July 2020',rain:1}},
+ {narr:"Buses idling. The tea stall's shutter half down. Everyone in masks. May's family loads the last bags."},
+ {shot:'c4Roof'},
+ {narr:'Min holds his black umbrella. The tape on the handle says MH, in his father\'s writing.'},
+ {if:{test:f=>f.c1_kindness==='samosa',then:[{say:['May',"Your mom's samosas. For the bus. I'm not sharing."]}]}},
+ {if:{test:f=>f.c1_kindness==='tea',then:[{say:['May',"Two teas from Hnin's, in plastic bags. One is yours. Drink it."]}]}},
+ {if:{test:f=>f.c1_kindness==='seeds',then:[{say:['May','Sunflower seeds. Twelve hours of bus. You know me.']}]}},
+ {shot:'c4Promise'},
+ {say:['May',"It's only until things get better."]},
+ {narr:"She says it like she's checking whether it's true."},
+ {if:{test:f=>f.c2_friends===true,then:[{say:['May',"You said you didn't want to be only friends."]},{say:['May',"I'm holding you to it. From far away."]}],else:[{say:['May','We were never anything, right?']},{narr:"She laughs like it was a joke. It wasn't."}]}},
+ {choice:{flag:'c4_promise',opts:[
+   {label:"I'll wait.",say:"I'll wait.",then:[{say:['May',"Don't say it like that. Like it's going to be long."]}]},
+   {label:"Come back for Thadingyut. We'll light the lamp.",say:"Come back for Thadingyut. We'll light the lamp.",then:[{say:['May','Thadingyut. I promise.']},{narr:'Too fast. She looks at the bus while she says it.'}]},
+   {label:"Don't look back. Just go.",say:"Don't look back. Just go.",then:[{say:['May',"That's the worst thing you've ever said to me."]},{narr:'She hugs him anyway.'}]}]}},
+ {if:{test:f=>f.c1_told_kept===true||f.c1_photo_sent==='umbrella',then:[{say:['May','You still have my pink one.']},{say:['May',"Keep it till I'm back. That's the deal."]}],else:[{narr:"Her broken pink umbrella is rolled up in Min's bag. He doesn't take it out."}]}},
+ {shot:'c4Handover'},
+ {choice:{flag:'c4_umbrella',opts:[
+   {label:'(Give her the black umbrella.)',act:1,say:'So you have to bring it back.',then:[{say:['May','Thief.']},{narr:'She takes it.'}]},
+   {label:'(Keep it.)',act:1,then:[{say:['May','Look after it.']},{narr:'At the last second she takes it out of his hand anyway and gets on the bus. A thief to the end.'}]}]}},
+ {shot:'c4Window'},
+ {narr:'The bus pulls out. May has his umbrella. Min walks home in the rain without one.'},
+ {mem:'lastBus'},
+ // C4.5 The night she leaves
+ {rain:1},{time:'11:30 PM'},
+ {open:{c:'may',stat:'Active 6h ago'}},
+ {draft:{text:'Text me when you get there.',flag:'c4_night',when:'Jul 2020',
+   onSend:[{time:'3:12 AM'},{pause:2400},{inPhoto:'busWindow'},{in:'still raining. the whole way'},{in:"I'm holding your umbrella like a baby"},{pause:1400},{div:'Next morning'},{in:"here. alive. it's so loud"}],
+   onDelete:[{pause:1800},{div:'2 days later'},{in:'sorry'},{in:"it's been crazy"},{in:"we're here"}]}},
+ {pause:900},
+ // C4.6 The city
+ {rain:0},{time:'9:40 PM'},
+ {notify:{c:'may',text:'sent a photo',div:'Jul 2020',m:{k:'photo',art:'warehouse'},rows:R4({})}},
+ {in:'this is my life now'},
+ {inVoice:['0:11','(Traffic, a horn, someone calling her "Thiri".)']},
+ {in:'people here call me Thiri'},
+ {in:"it's so weird"},
+ {choice:{flag:'c4_city',opts:[
+   {label:'Do you like it?',send:'Do you like it?',then:[{in:"I don't know yet"},{in:"it's loud. everything is open late. I miss the tea"}]},
+   {label:'Thiri sounds like a stranger.',send:'Thiri sounds like a stranger.',then:[{in:"I'm still May to you"},{in:'only to you'}]},
+   {label:'Send me the view from your window.',send:'Send me the view from your window.',then:[{inPhoto:'windows'},{in:'inspiring right'}]}]}},
+ {if:{test:f=>f.c4_night===true,then:[{in:'you asked me to text you so. texting you'}]}},
+ {pause:900},
+ {time:'10:15 PM'},
+ {glance:{c:'may',text:'it rains differently here',likes:'Thura and 30 others',when:'July 2020',cmts:[{n:'Thura',t:'it rains the same here. come back'}],rows:R4({})}},
+ {time:'8:05 PM'},
+ {post:{c:'may',art:'cityTea',flag:'c4_post',place:'The city',likes:'Thura, Hnin and 22 others',when:'August 2020',
+   cap:"found a tea shop. it's not ours but it's trying",
+   cmts:[{n:'Thura',t:'city girl now'},{n:'Zaw Lin',t:'missed you at the shop today 🙂'},{n:'May Thiri',t:'😂 see you tomorrow'}],cflag:'c4_post_cmt',
+   cOpts:[{label:'Looks like ours.',reply:[['May Thiri','not even close 😭']]},{label:"Who's the second glass?",reply:[['May Thiri','lol a girl from my class. why']]}],
+   rows:R4({})}},
+ {if:{test:f=>f.c4_post===true,then:[{open:{c:'may'}},{in:'you liked it!!'},{in:"I thought you'd be mad I found another tea shop"}]}},
+ {pause:900},
+ // C4.7 The missed call
+ {time:'9:58 PM'},
+ {notify:{c:'may',text:'Missed voice call',div:'Aug 2020',m:{k:'call',missed:true,text:'Missed voice call · 9:42 PM'},rows:R4({})}},
+ {out:'Sorry, I was closing the shop. Call again?'},
+ {pause:2200},
+ {in:"it's ok"},
+ {in:'sleep'},
+ {in:"I'll call tomorrow"},
+ {pause:1400},
+ // C4.8 Lockdown rain
+ {rain:2},{time:'6:20 PM'},
+ {title:{big:'<em>September 2020</em>The second wave',small:'',rain:2}},
+ {scene:{art:'c4Shutter',cap:'The tea shop · September 2020',rain:2}},
+ {narr:'The tea shop pulls its shutter down early. The roads are closing. Min has no umbrella.'},
+ {narr:'Hnin comes out with hers and holds it over both of them without asking.'},
+ {shot:'c4HninUmb'},
+ {say:['Hnin','You always give your umbrella away.']},
+ pick('c1_hnin',{
+   A:[{say:['Hnin','Remember what I said about mistakes?']},{say:['Hnin',"This isn't one. I just have an umbrella."]}],
+   B:[{say:['Hnin','I said she was pretty. She is.']},{say:['Hnin',"I'm sorry she left."]}],
+   C:[{say:['Hnin','I saw you at the station that morning. From the tea stall.']},{say:['Hnin',"I didn't say hi."]}]}),
+ {choice:{flag:'c4_hnin',opts:[
+   {label:'Thank you.',say:'Thank you.',then:[{say:['Hnin',"Don't thank me. Just walk faster."]}]},
+   {label:"You'll get wet.",say:"You'll get wet.",then:[{say:['Hnin',"I'm already wet. I've been wet since July."]},{narr:"She doesn't explain."}]},
+   {label:'(Say nothing.)',act:1,then:[{narr:'They walk.'}]}]}},
+ {shot:'c4Gate'},
+ {narr:'At his gate she tilts the umbrella so his side stays dry, the way he used to for May.'},
+ {mem:'hninUmb'},
+ // C4.9 The roads
+ {rain:2},{time:'11:05 PM'},
+ {notify:{c:'may',text:'they closed the roads',rows:R4({})}},
+ {in:'no buses in or out'},
+ {in:"I can't come for Thadingyut"},
+ {in:"I'm sorry I'm sorry I'm sorry"},
+ {choice:{flag:'c4_roads',opts:[
+   {label:"It's not your fault.",send:"It's not your fault.",then:[{in:'I know'},{in:'it still feels like it'}]},
+   {label:'Next year, then.',send:'Next year, then.',then:[{in:'next year'},{pause:1500},{in:'yeah'}]},
+   {label:"I'll light one for both of us.",send:"I'll light one for both of us.",then:[{in:'send me a photo'},{in:"I'll light one at the window here"},{in:"it won't be the same"}]}]}},
+ {if:{test:f=>f.c4_promise==='B',then:[{in:'I promised'},{in:'I hate that I promised'}]}},
+ {pause:1400},
+ {scene:{art:'c4Empty',cap:'',rain:2}},
+ {narr:'The bus station at night. Rain on the roof. No buses.'},
+ {title:{big:'<em>End of Chapter 4</em>The Station',small:''}},
+ {end:4}
 ];
 /* ============ START ============ */
 function startAudio(){Audio_.init();if(Audio_.ctx){S.sound=true;setTimeout(()=>Audio_.amb(Audio_.ambWant),0);$('#bSound span:last-child').textContent='On';$('#bSound .ic').className='ic i-'+SPK_ON;if(Audio_.ctx.state==='suspended')Audio_.ctx.resume()}}
-const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2,...CH3];
+const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2,...CH3,...CH4];
 const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
   if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}
   return cur})})();
@@ -2220,7 +2448,8 @@ const STORIES=[{id:'bre',title:'Before the Rain Ends',chapters:[
   {n:'1',t:'The First Rain',d:'June 2018'},
   {n:'2',t:'Monsoon Season',d:'July to October 2018'},
   {n:'3',t:'Thingyan',d:'March to December 2019'},
-  {n:'4',t:'The Station',d:'2020',soon:true}]}];
+  {n:'4',t:'The Station',d:'January to September 2020'},
+  {n:'5',t:'Seen',d:'October 2020',soon:true}]}];
 const STORY=STORIES[0];
 const CH_START=(()=>{const a=[0];FLOW.forEach((st,i)=>{const m=st&&st.title&&/^<em>Chapter (\d+)<\/em>/.exec(st.title.big);if(m)a[+m[1]]=i});return a})();
 const CH_END=(()=>{const a={};FLOW.forEach((st,i)=>{const m=st&&st.title&&/^<em>End of Chapter (\d+)<\/em>/.exec(st.title.big);if(m)a[i]=+m[1]});return a})();

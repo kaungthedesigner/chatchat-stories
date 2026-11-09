@@ -932,7 +932,7 @@ const Audio_={ctx:null,gain:null,
   songStop(ms){const c=this.ctx,g=this.songGain,n=this.songNode;if(!c||!g||!n)return;this.songNode=null;this.songGain=null;const t=c.currentTime,d=(ms||0)/1000;
     try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+Math.max(.02,d));n.stop(t+Math.max(.03,d)+.05)}catch(e){}},
   // water splash: a soft low thump, a short wet burst, then a scatter of droplets falling in pitch
-  splash(big){if(!this.ctx||!S.sound)return;if(this.sfx('splash',big?1:.6,big?.85:1.08+Math.random()*.08))return;try{const c=this.ctx,t=c.currentTime,sr=c.sampleRate;
+  splash(big){if(!this.ctx||!S.sound)return;if(this.sfx('splash',big?1:.6,big?.85:1.08+Math.random()*.08,1))return;try{const c=this.ctx,t=c.currentTime,sr=c.sampleRate;
     const th=c.createOscillator(),tg=c.createGain();th.type='sine';th.frequency.setValueAtTime(big?150:210,t);th.frequency.exponentialRampToValueAtTime(55,t+.16);tg.gain.setValueAtTime(big?.32:.18,t);tg.gain.exponentialRampToValueAtTime(.001,t+.2);th.connect(tg).connect(c.destination);th.start(t);th.stop(t+.22);
     const d=big?.5:.28,n=Math.floor(sr*d),b=c.createBuffer(1,n,sr),x=b.getChannelData(0);let lp=0;
     for(let i=0;i<n;i++){const e=Math.pow(1-i/n,3);lp=lp*.55+(Math.random()*2-1)*.45;x[i]=lp*e}
@@ -955,7 +955,7 @@ const Audio_={ctx:null,gain:null,
   sfxBufs:{},
   sfxLoad(n){if(this.sfxBufs[n]!==undefined)return;this.sfxBufs[n]=null;this.init();if(!this.ctx)return;
     fetch('snd/'+n+'.mp3').then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))).then(b=>{this.sfxBufs[n]=b}).catch(()=>{delete this.sfxBufs[n]})},
-  sfx(n,vol,rate){const b=this.sfxBufs[n];if(!b||!this.ctx||!S.sound)return false;try{const c=this.ctx;if(c.state==='suspended')c.resume();const src=c.createBufferSource(),g=c.createGain();src.buffer=b;src.playbackRate.value=rate||1;g.gain.value=vol||1;src.connect(g).connect(c.destination);src.start();return true}catch(e){return false}},
+  sfx(n,vol,rate,max){const b=this.sfxBufs[n];if(!b||!this.ctx||!S.sound)return false;try{const c=this.ctx;if(c.state==='suspended')c.resume();const src=c.createBufferSource(),g=c.createGain(),t=c.currentTime,v=vol||1;src.buffer=b;src.playbackRate.value=rate||1;g.gain.setValueAtTime(v,t);src.connect(g).connect(c.destination);src.start(t);if(max){g.gain.setValueAtTime(v,t+max-.15);g.gain.linearRampToValueAtTime(0,t+max);src.stop(t+max+.02)}return true}catch(e){return false}},
   // camera shutter: two short mechanical clicks (curtain open, curtain close) over a tiny low thunk
   shutter(){if(!S.sound)return;this.init();const c=this.ctx;if(!c)return;if(c.state==='suspended')c.resume();if(this.sfx('shutter',.9))return;try{const t=c.currentTime,sr=c.sampleRate;
     const click=(at,vol,fq)=>{const n=Math.floor(sr*.028),b=c.createBuffer(1,n,sr),x=b.getChannelData(0);for(let i=0;i<n;i++)x[i]=(Math.random()*2-1)*Math.pow(1-i/n,6);

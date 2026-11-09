@@ -1267,6 +1267,8 @@ async function scrollBack(){
   await waitClick(h);h.remove();
   const sc=$('#scroll'),col=$('#scol'),fl=$('#flash');
   col.innerHTML=Array.from({length:140},(_,i)=>`<i class="${(i*7)%3===0?'o':''}" style="width:${35+((i*37)%45)}%"></i>`).join('');
+  {const ch=$('#chat'),cr=ch.getBoundingClientRect(),hd=ch.querySelector('.ch'),ft=ch.querySelector('.foot'),k=cr.height/ch.offsetHeight||1;
+   if(hd)sc.style.top=Math.round((hd.getBoundingClientRect().bottom-cr.top)/k)+'px';if(ft)sc.style.bottom=Math.round((cr.bottom-ft.getBoundingClientRect().top)/k)+'px';}
   col.style.transition='none';col.style.transform='translateY(0)';sc.classList.add('on');await rawSleep(80);
   col.style.transition='transform 7s cubic-bezier(.3,.1,.3,1)';col.style.transform='translateY(5600px)';
   const fd=d=>`<div class="fdate">${d}</div>`;

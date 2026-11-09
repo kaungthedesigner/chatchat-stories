@@ -2270,7 +2270,7 @@ $('#bSound span:last-child').textContent='Off';$('#bSound .ic').className='ic i-
 (()=>{if(DEVJUMP||STORIES.length>1)return;let home=false;try{home=sessionStorage.getItem('bre_home')==='1';sessionStorage.removeItem('bre_home')}catch(e){}
   if(home)return;const {nextK}=libState();if(nextK===null)return;
   $('#start').classList.remove('on');document.body.classList.add('playing');
-  const wake=()=>{removeEventListener('pointerdown',wake,true);removeEventListener('keydown',wake,true);startAudio()};
+  const wake=e=>{if(e&&e.target&&e.target.closest&&e.target.closest('#bSound'))return;removeEventListener('pointerdown',wake,true);removeEventListener('keydown',wake,true);startAudio()};
   addEventListener('pointerdown',wake,true);addEventListener('keydown',wake,true);
   playFrom(nextK,true);})();
 </script>

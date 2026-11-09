@@ -927,7 +927,7 @@ const Audio_={ctx:null,gain:null,
   song:null,songBuf:null,songNode:null,songGain:null,
   songLoad(){if(this.songBuf||this._sl)return;this._sl=1;try{fetch('img/ws-song.mp3').then(r=>r.arrayBuffer()).then(ab=>{this.init();if(!this.ctx)return;return new Promise((res,rej)=>this.ctx.decodeAudioData(ab,res,rej))}).then(b=>{if(b)this.songBuf=b}).catch(()=>{this._sl=0})}catch(e){this._sl=0}},
   songStart(){if(!S.sound)return;this.init();const c=this.ctx;if(!c)return;if(c.state==='suspended')c.resume();this.songStop(0);
-    const go=()=>{if(!this.songBuf)return false;const src=c.createBufferSource(),g=c.createGain();src.buffer=this.songBuf;g.gain.value=.5;src.connect(g).connect(c.destination);src.start();this.songNode=src;this.songGain=g;return true};
+    const go=()=>{if(!this.songBuf)return false;const src=c.createBufferSource(),g=c.createGain();src.buffer=this.songBuf;g.gain.value=.25;src.connect(g).connect(c.destination);src.start();this.songNode=src;this.songGain=g;return true};
     if(!go()){this.songLoad();let n=0;const t=setInterval(()=>{if(go()||++n>40)clearInterval(t)},100)}},
   songStop(ms){const c=this.ctx,g=this.songGain,n=this.songNode;if(!c||!g||!n)return;this.songNode=null;this.songGain=null;const t=c.currentTime,d=(ms||0)/1000;
     try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+Math.max(.02,d));n.stop(t+Math.max(.03,d)+.05)}catch(e){}},
@@ -1001,7 +1001,7 @@ $('#bDev').onclick=e=>{e.stopPropagation();document.body.classList.toggle('dev')
 /* ============ UI HELPERS ============ */
 const AMB_ART={teashop1:'rain',roomEmpty:'rain',bedroom:'rain',classroom1:'daily',walkShare:'daily',pagoda:'lights',lampWall:'lights',pagoda19:'lights',lamp2:'lights',wstreet:'thingyan',mayEnd:'thingyan'};
 const AMB_VIEW={pwalk:'daily',padauk:'daily'};
-const AMB_VOL={rain:.28,daily:.24,lights:.28,thingyan:.16};
+const AMB_VOL={rain:.084,daily:.072,lights:.084,thingyan:.048}; // 30% of the first levels (Kaung, 9 Nov)
 const MUS_FILE={thingyan:'img/ws-song.mp3'};
 function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));
   Audio_.amb(id==='scene'?S.amb:AMB_VIEW[id]);

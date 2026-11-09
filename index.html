@@ -44,6 +44,9 @@ button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ic.i-note-pencil:before{content:"\e34c"}
 .ic.i-fast-forward:before{content:"\e6a6"}
 .ic.i-phone-x:before{content:"\e3c4"}
+.ic.i-phone-disconnect:before{content:"\e3bc"}
+.ic.i-microphone-slash:before{content:"\e328"}
+.ic.i-dots-nine:before{content:"\e1fc"}
 .ic.i-camera:before{content:"\e10e"}
 .ic.i-images:before{content:"\e836"}
 .ic.i-play:before{content:"\e3d0"}
@@ -367,6 +370,44 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 .b .vtr{margin-top:6px;font-size:13px;line-height:18px;font-style:italic;opacity:.8}
 
 /* posts */
+
+/* ===== Voice call (Monsoon deep panel) ===== */
+#callv{background:var(--m900);color:var(--on-deep);display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden}
+#callv .cbg{position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(28px) saturate(.8);opacity:.28;transform:scale(1.1)}
+#callv .cbg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,36,34,.2),rgba(15,36,34,.85) 70%)}
+#callv .ctop{position:relative;margin-top:96px;display:flex;flex-direction:column;align-items:center;gap:6px}
+#callv .cav{position:relative;width:112px;height:112px;border-radius:999px;margin-bottom:14px}
+#callv .cav img,#callv .cav .ini{position:relative;z-index:1;width:112px;height:112px;border-radius:999px;object-fit:cover;display:grid;place-items:center;font:400 40px/1 var(--serif);background:var(--m700)}
+#callv .cav i{position:absolute;inset:0;border-radius:999px;border:1.5px solid rgba(251,247,239,.35);opacity:0}
+#callv.ring .cav i{animation:cring 2.4s ease-out infinite}#callv.ring .cav i:nth-child(2){animation-delay:.8s}#callv.ring .cav i:nth-child(3){animation-delay:1.6s}
+@keyframes cring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+#callv .ctop b{font:400 30px/36px var(--serif);letter-spacing:-.01em}
+#callv .cst{font:400 15px/22px var(--sans);color:rgba(251,247,239,.72);font-variant-numeric:tabular-nums;min-height:22px}
+#callv .cff{display:flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;background:rgba(251,247,239,.14);font:600 13px/1 var(--sans);opacity:0;transform:translateY(-4px);transition:opacity .3s,transform .3s}
+#callv .cff .ic{font-size:18px;width:18px;height:18px}
+#callv.ff .cff{opacity:1;transform:none}#callv.ff .cff .ic{animation:cffp .5s steps(2) infinite}
+@keyframes cffp{50%{opacity:.35}}
+#callv .ccap{position:relative;flex:1;width:100%;padding:28px 28px 0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;overflow:hidden}
+#callv .cl{font:400 16px/23px var(--sans);color:var(--on-deep);opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s;max-width:100%}
+#callv .cl.on{opacity:1;transform:none}
+#callv .cl.old{opacity:.38}
+#callv .cl small{display:block;font:600 12px/16px var(--sans);color:var(--n-clay);margin-bottom:2px}
+#callv .cl.me small{color:var(--n-m700)}
+#callv .cl.nar{font:300 italic 16px/23px var(--serif);color:rgba(251,247,239,.7)}
+#callv .cbit{position:absolute;font:400 14px/20px var(--sans);color:rgba(251,247,239,.55);white-space:nowrap;animation:cbit 1.5s ease-out forwards}
+@keyframes cbit{0%{opacity:0;transform:translateY(10px)}25%{opacity:1}100%{opacity:0;transform:translateY(-22px)}}
+#callv .ctray{position:relative;width:100%;padding:14px 20px 0;display:grid;gap:8px}
+#callv .ctray .opt{background:rgba(251,247,239,.1);border:1.5px solid rgba(251,247,239,.28);color:var(--on-deep);text-align:left}
+#callv .ctray .opt:hover{background:rgba(251,247,239,.16)}
+#callv .cctl{position:relative;display:flex;justify-content:center;gap:28px;padding:22px 0 46px}
+#callv .cb{display:flex;flex-direction:column;align-items:center;gap:8px;font:400 12px/16px var(--sans);color:rgba(251,247,239,.75)}
+#callv .cb span.k{width:64px;height:64px;border-radius:999px;display:grid;place-items:center;background:rgba(251,247,239,.14)}
+#callv .cb .ic{font-size:28px;width:28px;height:28px}
+#callv .cb.end span.k,#callv .cb.dec span.k{background:#C8453A;color:#fff}
+#callv .cb.acc span.k{background:#3F8C6E;color:#fff}
+#callv .cb.go span.k{animation:cpulse 1.4s ease-in-out infinite}
+@keyframes cpulse{50%{box-shadow:0 0 0 10px rgba(200,69,58,.22)}}
+#callv .cb:disabled{opacity:.5;cursor:default}
 #post{background:var(--paper-100);display:flex;flex-direction:column}
 #post .ch{border-bottom:1px solid var(--line)}
 #post .pb{flex:1;overflow-y:auto;padding-bottom:12px}
@@ -704,6 +745,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
       <div id="wsHud"><div class="row"><i class="ic i-music-notes"></i><div class="song"><i id="wsSongI"></i><b></b></div></div><div class="lives" id="wsLives"></div></div>
       <div id="wsCount"></div><div id="wsCard"></div></div>
 
+    <div class="view" id="callv"><div class="cbg" id="cBg"></div><div class="ctop"><div class="cav" id="cAv"></div><b id="cName"></b><div class="cst" id="cSt"></div><div class="cff" id="cFF"><span class="ic i-fast-forward"></span><span>2 hours later</span></div></div><div class="ccap" id="cCap"></div><div class="ctray" id="cTray"></div><div class="cctl" id="cCtl"></div></div>
     <div class="view" id="post"><div class="ch"><div class="back"><span class="ic i-arrow-left"></span></div><div class="who"><b>Post</b></div></div><div class="pb" id="postBody"></div><div class="pf"><div id="postTray"></div><div class="homebar"></div></div></div>
 
     <div id="banner"></div>
@@ -851,6 +893,21 @@ const Audio_={ctx:null,gain:null,
     this.gain=ctx.createGain();this.gain.gain.value=0;
     src.connect(hp).connect(lp).connect(this.gain).connect(ctx.destination);src.start();
   }catch(e){this.ctx=null}},
+  // call sounds, all made here (no files): ringtone, ringback, connect, fast-forward whirr, hang-up
+  tone(f,t0,d,v,type){const c=this.ctx,o=c.createOscillator(),g=c.createGain();o.type=type||'sine';o.frequency.value=f;g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(v,t0+.015);g.gain.setValueAtTime(v,t0+Math.max(.02,d-.06));g.gain.exponentialRampToValueAtTime(.0001,t0+d);o.connect(g).connect(c.destination);o.start(t0);o.stop(t0+d+.05);return o},
+  ring(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;[784,988,1175,988,784,988,1175,1568].forEach((f,i)=>this.tone(f,t+i*.13,.22,.05,'triangle'))},
+  ringback(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;this.tone(425,t,1.0,.035);this.tone(450,t,1.0,.02)},
+  connect(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;this.tone(880,t,.09,.05);this.tone(1320,t+.11,.12,.05)},
+  hangup(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;[620,520,420].forEach((f,i)=>this.tone(f,t+i*.2,.16,.05))},
+  whirr(sec){if(!this.ctx||!S.sound)return;try{const c=this.ctx,t=c.currentTime,n=c.sampleRate*sec,b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0);
+    for(let i=0;i<n;i++)d[i]=Math.random()*2-1;const src=c.createBufferSource();src.buffer=b;
+    const bp=c.createBiquadFilter();bp.type='bandpass';bp.Q.value=6;bp.frequency.setValueAtTime(500,t);bp.frequency.exponentialRampToValueAtTime(2600,t+sec*.35);bp.frequency.setValueAtTime(2600,t+sec*.8);bp.frequency.exponentialRampToValueAtTime(700,t+sec);
+    const g=c.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.16,t+.25);g.gain.setValueAtTime(.16,t+sec-.35);g.gain.linearRampToValueAtTime(0,t+sec);
+    const lfo=c.createOscillator(),lg=c.createGain();lfo.frequency.value=14;lg.gain.value=220;lfo.connect(lg).connect(bp.frequency);
+    const sq=c.createOscillator(),sg=c.createGain();sq.type='sawtooth';sq.frequency.setValueAtTime(180,t);sq.frequency.exponentialRampToValueAtTime(1400,t+sec*.4);sq.frequency.exponentialRampToValueAtTime(300,t+sec);
+    const sl=c.createBiquadFilter();sl.type='lowpass';sl.frequency.value=1800;sg.gain.setValueAtTime(0,t);sg.gain.linearRampToValueAtTime(.025,t+.3);sg.gain.linearRampToValueAtTime(0,t+sec);
+    src.connect(bp).connect(g).connect(c.destination);sq.connect(sl).connect(sg).connect(c.destination);
+    src.start(t);lfo.start(t);sq.start(t);src.stop(t+sec+.05);lfo.stop(t+sec+.05);sq.stop(t+sec+.05)}catch(e){}},
   level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.05,.11,.2][S.rain]||0:0; this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.8); },
   blip(hi){ if(!this.ctx||!S.sound) return; try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=hi?880:660;g.gain.value=0;o.connect(g).connect(this.ctx.destination);const t=this.ctx.currentTime;g.gain.linearRampToValueAtTime(.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.start(t);o.stop(t+.2);}catch(e){} }
 };
@@ -896,7 +953,7 @@ $('#bDev').onclick=e=>{e.stopPropagation();document.body.classList.toggle('dev')
 
 /* ============ UI HELPERS ============ */
 function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));
-  $('#status').classList.toggle('light',id==='lock'||id==='scene');
+  $('#status').classList.toggle('light',id==='lock'||id==='scene'||id==='callv');
   $('#status').style.opacity=id==='scene'?0:1;}
 function setTime(t){$('#clock').textContent=t.replace(/ ?[AP]M/,'');const m=t.match(/(\d+):(\d+)\s*([AP]M)/i);if(!m)return;let h=+m[1]%12;if(/p/i.test(m[3]))h+=12;const n=h*60+ +m[2];
   if(S.now!=null&&n<S.now-30)S.day=(S.day||0)+1;S.now=n;S.tlabel=t;}
@@ -1045,6 +1102,7 @@ async function exec(s){
   case 'post': await postStep(v);break;
   case 'profile': await profileStep(v);break;
   case 'glance': await glanceStep(v);break;
+  case 'call': await callStep(v);break;
   case 'inCall': await incoming({k:'call',text:v});break;
   case 'inSticker': await incoming({k:'sticker',art:v});break;
   case 'out': await outgoing({k:'text',text:v});break;
@@ -1139,6 +1197,49 @@ async function postStep(v){
     await showCmts(o.reply.map(r=>({n:r[0],t:r[1]})),1100);await sleep(1200)}
   else{$('#postBody').scrollTo({top:9999,behavior:'smooth'});await sleep(900)}
 }
+/* ===== Voice call: ring, a few lines, fast-forward, the goodbye, then a record in the chat ===== */
+const fmtDur=sec=>{sec=Math.max(0,Math.round(sec));const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),x=sec%60;return (h?h+':'+String(m).padStart(2,'0'):m)+':'+String(x).padStart(2,'0')};
+const parseDur=t=>t.split(':').map(Number).reduce((a,b)=>a*60+b,0);
+async function callStep(v){const c=v.c,x=C[c],cv=$('#callv'),total=parseDur(v.dur);let el=0,tick=null;
+  await sleep(500);
+  $('#cName').textContent=x.name;$('#cAv').innerHTML=(x.img?`<img src="img/av-${c}.webp" alt="">`:`<div class="ini">${x.ini}</div>`)+'<i></i><i></i><i></i>';
+  $('#cBg').style.backgroundImage=x.img?`url(img/av-${c}.webp)`:'none';$('#cCap').innerHTML='';$('#cTray').innerHTML='';cv.classList.remove('ff');
+  const st=t=>$('#cSt').textContent=t;const ctl=h=>$('#cCtl').innerHTML=h;
+  const btn=(cls,ic,lab,dis)=>`<button class="cb ${cls}"${dis?' disabled':''}><span class="k"><span class="ic i-${ic}"></span></span>${lab}</button>`;
+  const inCall=(dis)=>btn('','microphone-slash','Mute',1)+btn('','speaker-high','Speaker',1)+btn('end','phone-disconnect','End',dis);
+  show('callv');cv.classList.add('ring');
+  let ringT;
+  if(v.dir==='in'){st('Voice call');ctl(btn('dec','phone-x','Decline')+btn('acc','phone','Accept'));
+    const ringLoop=()=>{Audio_.ring();ringT=setTimeout(ringLoop,2200)};ringLoop();
+    for(;;){const a=await new Promise(r=>{$('#cCtl .acc').onclick=e=>{e.stopPropagation();r(1)};$('#cCtl .dec').onclick=e=>{e.stopPropagation();r(0)}});
+      if(a)break; clearTimeout(ringT);S.flags[(v.flag||'call')+'_declined']=true;st('Declined');ctl('');await sleep(1600);st('Voice call');ctl(btn('dec','phone-x','Decline')+btn('acc','phone','Accept'));ringLoop()}
+    clearTimeout(ringT);
+  }else{st('Calling…');ctl(inCall(1));const rb=()=>{Audio_.ringback();ringT=setTimeout(rb,3000)};await sleep(500);rb();await sleep(1200);st('Ringing…');await sleep(v.rings||2600);clearTimeout(ringT)}
+  cv.classList.remove('ring');Audio_.connect();ctl(inCall(1));
+  const run1=()=>{tick=setInterval(()=>{el+=1;st(fmtDur(el))},1000/S.speed)};st('0:00');run1();
+  const cap=$('#cCap');
+  const say=async(l)=>{[...cap.children].forEach(n=>n.classList.add('old'));while(cap.children.length>2)cap.firstElementChild.remove();
+    const d=document.createElement('div');let txt;
+    if(l.nar){d.className='cl nar';txt=l.nar;d.textContent=txt}else{const me=!!l.out;txt=l.out||l.in;d.className='cl'+(me?' me':'');d.innerHTML=`<small>${me?'Min':esc(x.name.split(' ')[0])}</small>${esc(txt)}`}
+    cap.appendChild(d);requestAnimationFrame(()=>requestAnimationFrame(()=>d.classList.add('on')));await sleep(Math.min(3200,900+txt.length*45))};
+  const lines=async(arr)=>{for(const l of arr||[]){if(l.pick){const o=await callPick(l.pick);if(o.then)await lines(o.then)}else if(l.if){await lines(l.if.test(S.flags)?l.if.then:l.if.else)}else await say(l)}};
+  const callPick=async(p)=>{const tr=$('#cTray');tr.innerHTML=(p.hint?`<div class="hint" style="color:rgba(251,247,239,.6)">${esc(p.hint)}</div>`:'')+p.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span>${esc(o.label)}</span></button>`).join('');
+    const i=await new Promise(r=>tr.querySelectorAll('.opt').forEach(b=>b.onclick=e=>{e.stopPropagation();r(+b.dataset.i)}));tr.innerHTML='';const o=p.opts[i];if(p.flag)S.flags[p.flag]='ABC'[i];if(o.say)await say({out:o.say});return o};
+  await sleep(700);await lines(v.open);
+  // fast-forward to the goodbye
+  clearInterval(tick);const from=el,to=total-(v.byeSec||60),ffMs=3800;cv.classList.add('ff');Audio_.whirr(ffMs/1000/Math.max(1,S.speed/1.3));
+  [...cap.children].forEach(n=>{n.classList.remove('on')});setTimeout(()=>cap.querySelectorAll('.cl').forEach(n=>n.remove()),350);
+  const bits=v.ff||[];const t0=performance.now();let bi=0;
+  await new Promise(res=>{const step=()=>{const k=Math.min(1,(performance.now()-t0)/(ffMs/Math.max(1,S.speed/1.3)));el=from+(to-from)*(k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2);st(fmtDur(el));
+      if(bi<bits.length&&k>(bi+.4)/(bits.length+.6)){const b=document.createElement('div');b.className='cbit';b.textContent=bits[bi];b.style.left=(14+Math.random()*44)+'%';b.style.top=(20+Math.random()*50)+'%';cap.appendChild(b);setTimeout(()=>b.remove(),1600);bi++}
+      if(k<1)requestAnimationFrame(step);else res()};requestAnimationFrame(step)});
+  cv.classList.remove('ff');cap.querySelectorAll('.cl').forEach(n=>n.remove());run1();
+  await lines(v.bye);
+  if(v.by==='me'){ctl(inCall(0).replace('class="cb end"','class="cb end go"'));await new Promise(r=>{$('#cCtl .end').onclick=e=>{e.stopPropagation();r()}})}
+  else await sleep(600);
+  clearInterval(tick);st(fmtDur(total));Audio_.hangup();
+  if(S.now!=null){let n=S.now+Math.round(total/60)+1,d=0;while(n>=1440){n-=1440;d++}const h=Math.floor(n/60),m=n%60;S.day=(S.day||0)+d;S.now=null;setTime(((h%12)||12)+':'+String(m).padStart(2,'0')+(h<12?' AM':' PM'));if(d)S.now=n}ctl(inCall(1));st('Call ended · '+fmtDur(total));await sleep(1700);
+  show('chat');push({k:'call',dir:v.dir==='in'?'in':'out',text:'Voice call · '+v.dur});await sleep(900)}
 async function glanceStep(v){
   await holdChat();renderList(liveRows(v.rows,null),null);show('list');await sleep(800);
   await banner(v.c,C[v.c].name,'posted');
@@ -1833,14 +1934,14 @@ const CH3=[
  {notify:{c:'may',text:"I can't do this",div:'Mar 2019',rows:[{c:'hnin',text:"I don't. I watch the tray",time:'Oct'},{c:'thura',text:"just don't forget us when you're famous",time:'Aug'},{c:'mom',text:'Daw Aye Aye talks.',time:'Jul'}]}},
  {in:'my dad keeps saying "for the family" like I\'m a business plan'},
  {choice:{flag:'c3_exam',opts:[
-   {label:"You'll pass.",send:"You'll pass.",then:[{in:"you don't know that"},{out:'I know you.'},{in:"…that's so annoying. ok"},{in:'call me if you can\'t sleep'},{pause:900},{inCall:'Voice call · 2:14:07'}]},
-   {label:"I'll bring tea to your gate.",send:"I'll bring tea to your gate.",then:[{typing:1400},{pause:1600},{inPhoto:'teaGate'},{in:"I'm going to cry and it's your fault"},{in:'call me. just stay on the line'},{pause:900},{inCall:'Voice call · 2:14:07'}]},
-   {label:'Call me. Read me the questions.',send:'Call me. Read me the questions.',then:[{inCall:'Voice call · 2:14:07'},{in:'you fell asleep on question 40'},{in:'I could hear you breathing. you sound like a fan'}]}]}},
+   {label:"You'll pass.",send:"You'll pass.",then:[{in:"you don't know that"},{out:'I know you.'},{in:"…that's so annoying. ok"},{in:'call me if you can\'t sleep'},{pause:900},{call:{c:'may',dir:'out',dur:'2:14:07',open:[{in:'you actually called'},{out:'You said to.'},{in:"ok. don't hang up. just read me something"},{out:'Question 1.'}],ff:['…question 12','no YOU read it','hahaha','wait, my mom is up','…question 31','the fan is so loud','say it again'],bye:[{nar:'Somewhere past two, her answers get slower.'},{in:'min'},{in:"I can't keep my eyes open"},{pick:{flag:'c3_call_bye',opts:[{label:'Go to sleep. You know this.',say:'Go to sleep. You know this.',then:[{in:'ok'},{in:'goodnight umbrella thief'}]},{label:'You hang up first.',say:'You hang up first.',then:[{in:'no you'},{out:'You.'},{in:'…together. one, two'}]},{label:'(Stay quiet and listen.)',then:[{nar:'Her breathing slows. The rain is the only other sound.'}]}]}}],by:'me'}}]},
+   {label:"I'll bring tea to your gate.",send:"I'll bring tea to your gate.",then:[{typing:1400},{pause:1600},{inPhoto:'teaGate'},{in:"I'm going to cry and it's your fault"},{in:'call me. just stay on the line'},{pause:900},{call:{c:'may',dir:'out',dur:'2:14:07',open:[{in:"I'm drinking it. it's still warm"},{out:'Good.'},{in:"stay on the line. you don't have to talk"}],ff:['…question 12','no YOU read it','hahaha','wait, my mom is up','…question 31','the fan is so loud','say it again'],bye:[{nar:'Somewhere past two, her answers get slower.'},{in:'min'},{in:"I can't keep my eyes open"},{pick:{flag:'c3_call_bye',opts:[{label:'Go to sleep. You know this.',say:'Go to sleep. You know this.',then:[{in:'ok'},{in:'goodnight umbrella thief'}]},{label:'You hang up first.',say:'You hang up first.',then:[{in:'no you'},{out:'You.'},{in:'…together. one, two'}]},{label:'(Stay quiet and listen.)',then:[{nar:'Her breathing slows. The rain is the only other sound.'}]}]}}],by:'me'}}]},
+   {label:'Call me. Read me the questions.',send:'Call me. Read me the questions.',then:[{call:{c:'may',dir:'in',flag:'c3_call',dur:'2:14:07',open:[{in:'ok. question 1'},{in:"don't laugh at my pronunciation"},{out:"I won't."},{in:"you're already laughing"}],ff:['…question 12','no YOU read it','hahaha','wait, my mom is up','…question 31','the fan is so loud','say it again'],bye:[{in:'question 40…'},{in:'min?'},{nar:'No answer. Only slow breathing.'},{in:'…you fell asleep on me'},{in:'goodnight'}],by:'them'}},{in:'you fell asleep on question 40'},{in:'I could hear you breathing. you sound like a fan'}]}]}},
  {in:"if I pass I'm buying you a new umbrella"},
  {pause:900},
  // C3.1b Exam night
  {rain:0},{time:'1:36 AM'},
- {notify:{c:'may',text:'are you awake',rows:[{c:'hnin',text:'',time:'Mar'},{c:'thura',text:'',time:'Mar'},{c:'mom',text:'',time:'Mar'}]}},
+ {notify:{c:'may',text:'are you awake',div:'Next night',rows:[{c:'hnin',text:'',time:'Mar'},{c:'thura',text:'',time:'Mar'},{c:'mom',text:'',time:'Mar'}]}},
  {in:'my brain is full. there is no more room'},
  {in:'tell me something boring so I can sleep'},
  {choice:{flag:'c3_boring',opts:[

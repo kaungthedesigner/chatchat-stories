@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Before the Rain Ends — Prologue, Chapters 1–3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
   --serif:"Fraunces","Noto Serif Myanmar",Georgia,serif; --sans:"DM Sans","Noto Sans Myanmar",system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:var(--n-ground);color:var(--n-ink);font-family:var(--sans);overflow:hidden;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;height:var(--app-h,100%);background:var(--n-ground);color:var(--n-ink);font-family:var(--sans);overflow:hidden;-webkit-tap-highlight-color:transparent}
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
 button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 @font-face{font-family:'Phosphor-Light';src:url(fonts/Phosphor-Light.woff2) format('woff2');font-weight:normal;font-style:normal;font-display:block}
@@ -84,6 +84,8 @@ body.m #bDev{display:flex}
 body.m .devbar{display:none;width:100%}
 body.m.dev .devbar{display:flex}
 body.m .stage.full{border-radius:0;box-shadow:none}
+body.m .stage.full .foot{padding-bottom:max(26px,calc(env(safe-area-inset-bottom) + 12px))}
+body.m{padding-top:env(safe-area-inset-top)}
 #bDev{display:none}
 .view{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s ease}
 .view.on{opacity:1;pointer-events:auto}
@@ -814,15 +816,20 @@ Rain($('#bgRain'),{level:()=>S.rain});
 function setRain(n){S.rain=n;Audio_.level();}
 
 /* ============ LAYOUT ============ */
-function fit(){const sc=$('#scaler'),m=innerWidth<520;document.body.classList.toggle('m',m);
+// the visible height: in-app browsers (Messenger, Facebook) and Safari's toolbars cover part of innerHeight, so take the smallest
+function viewH(){const v=window.visualViewport;return Math.round(Math.min(innerHeight,v?v.height:innerHeight,document.documentElement.clientHeight||innerHeight))}
+function viewW(){const v=window.visualViewport;return Math.round(Math.min(innerWidth,v?v.width:innerWidth,document.documentElement.clientWidth||innerWidth))}
+function fit(){const sc=$('#scaler'),W=viewW(),H=viewH(),m=W<520;document.body.classList.toggle('m',m);document.documentElement.style.setProperty('--app-h',H+'px');
   const top=$('.wrap').getBoundingClientRect().top;
-  if(m){sc.style.transform='none';sc.style.width=innerWidth+'px';sc.style.height=(innerHeight-top)+'px';stage.style.width=innerWidth+'px';stage.style.height=(innerHeight-top)+'px';stage.classList.add('full');return}
+  if(m){sc.style.transform='none';sc.style.width=W+'px';sc.style.height=(H-top)+'px';stage.style.width=W+'px';stage.style.height=(H-top)+'px';stage.classList.add('full');return}
   stage.style.width='';stage.style.height='';
-  const s=Math.min((innerHeight-top-12)/852,innerWidth/393,1.2);
+  const s=Math.min((H-top-12)/852,W/393,1.2);
   sc.style.transform=`scale(${s})`;sc.style.width=393+'px';sc.style.height=852*s+'px';stage.classList.remove('full');
   S.scale=s;}
 
-addEventListener('resize',fit);fit();
+addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,250));
+if(window.visualViewport)visualViewport.addEventListener('resize',fit);
+fit();addEventListener('load',fit);[300,1000,2500].forEach(t=>setTimeout(fit,t));
 addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey||/input|textarea/i.test((e.target.tagName||'')))return;
   if(e.key==='Escape'&&document.body.classList.contains('playing')){e.preventDefault();if($('#leave').classList.contains('on'))$('#leave').classList.remove('on');else $('#bExit').click();return}
   if($('#leave').classList.contains('on')){if(e.key==='Enter'){e.preventDefault();$('#leaveStay').click()}return}

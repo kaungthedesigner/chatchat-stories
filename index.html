@@ -847,7 +847,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
             <div class="pr" id="libPr"><div class="pbar"><i id="libBar"></i></div><span id="libWhere"></span></div></div>
         </div>
         <div class="hbtns"><button class="go" id="go">Begin</button><button class="sec" id="libCh">Chapters</button></div>
-        <div class="meta" id="libMeta">Prologue &amp; Chapters 1–3 · about 65 minutes</div>
+        <div class="meta" id="libMeta">Prologue &amp; Chapters 1–4 · about 85 minutes</div>
         <h3 class="sh">More stories</h3>
         <div class="soon"><svg class="hg" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M72 32h112M72 224h112M80 32v34a32 32 0 0 0 14 26l34 24 34-24a32 32 0 0 0 14-26V32M80 224v-34a32 32 0 0 1 14-26l34-24 34 24a32 32 0 0 1 14 26v34"/><path d="M104 200h48" opacity=".6"/></svg><div><b>More stories coming soon</b><span>We're working on something new. Stay tuned!</span></div></div>
       </div>
@@ -2549,7 +2549,7 @@ devT.onchange=()=>{const v=devT.value;try{sessionStorage.setItem('bre_jump',v)}c
   try{history.replaceState(null,'','#jump='+v)}catch(e){location.hash='jump='+v}
   location.reload()};
 /* ============ STORIES · SAVES ============ */
-const STORIES=[{id:'bre',title:'Before the Rain Ends',chapters:[
+const STORIES=[{id:'bre',title:'Before the Rain Ends',mins:85,chapters:[
   {n:'P',t:'Prologue',d:'November 2020'},
   {n:'1',t:'The First Rain',d:'June 2018'},
   {n:'2',t:'Monsoon Season',d:'July to October 2018'},
@@ -2557,6 +2557,9 @@ const STORIES=[{id:'bre',title:'Before the Rain Ends',chapters:[
   {n:'4',t:'The Station',d:'January to September 2020'},
   {n:'5',t:'Seen',d:'October 2020',soon:true}]}];
 const STORY=STORIES[0];
+/* Home card line: the chapter range comes from the list above, so it updates by itself when a chapter goes live */
+(()=>{const live=STORY.chapters.filter(c=>!c.soon&&c.n!=='P'),last=live.length?live[live.length-1].n:null,el=$('#libMeta');
+  if(el)el.textContent='Prologue'+(last?' & Chapters 1–'+last:'')+' · about '+STORY.mins+' minutes'})();
 const CH_START=(()=>{const a=[0];FLOW.forEach((st,i)=>{const m=st&&st.title&&/^<em>Chapter (\d+)<\/em>/.exec(st.title.big);if(m)a[+m[1]]=i});return a})();
 const CH_END=(()=>{const a={};FLOW.forEach((st,i)=>{const m=st&&st.title&&/^<em>End of Chapter (\d+)<\/em>/.exec(st.title.big);if(m)a[i]=+m[1]});return a})();
 const SAVE_KEY='chatchat.saves.v1';let SAVES={};

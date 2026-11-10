@@ -22,7 +22,7 @@
   --focus-ring:0 0 0 2px #F3ECDF,0 0 0 4px #2D5A56;
   /* Monsoon · Night theme, for the dark scenes and the page around the phone */
   --n-ground:#161A19; --n-50:#202524; --n-line:#323836; --n-line-strong:#747B77; --n-ink:#F1E9DC; --n-body:#D9CFC1; --n-muted:#A69C8F; --n-m700:#8DB7B0; --n-clay:#D9927A;
-  --serif:"Fraunces","Noto Serif Myanmar","Noto Sans Myanmar",Georgia,serif; --sans:"DM Sans","Noto Sans Myanmar",system-ui,-apple-system,sans-serif;
+  --serif:"Fraunces",var(--myf),"Noto Sans Myanmar",Georgia,serif; --sans:"DM Sans",var(--myf),"Noto Sans Myanmar",system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;height:var(--app-h,100%);background:var(--n-ground);color:var(--n-ink);font-family:var(--sans);overflow:hidden;-webkit-tap-highlight-color:transparent}
@@ -98,6 +98,16 @@ body.m .pill span:not(.ic){display:none}
 @font-face{font-family:"Noto Sans Myanmar";src:url(fonts/noto-sans-myanmar-myanmar-400-normal.woff2) format("woff2");font-weight:400 500;font-display:swap;unicode-range:U+1000-109F,U+A9E0-A9FF,U+AA60-AA7F,U+200C-200D,U+25CC}
 @font-face{font-family:"Noto Sans Myanmar";src:url(fonts/noto-sans-myanmar-myanmar-600-normal.woff2) format("woff2");font-weight:600 700;font-display:swap;unicode-range:U+1000-109F,U+A9E0-A9FF,U+AA60-AA7F,U+200C-200D,U+25CC}
 .pill.lg{min-width:44px;justify-content:center;font-weight:600}
+@font-face{font-family:"MM Walone";src:url(fonts/mm-walone-400.woff2) format("woff2");font-weight:100 500;font-display:swap;unicode-range:U+1000-109F,U+A9E0-A9FF,U+AA60-AA7F,U+200C-200D,U+25CC}
+@font-face{font-family:"MM Walone";src:url(fonts/mm-walone-700.woff2) format("woff2");font-weight:600 900;font-display:swap;unicode-range:U+1000-109F,U+A9E0-A9FF,U+AA60-AA7F,U+200C-200D,U+25CC}
+@font-face{font-family:"MM MyanSans";src:url(fonts/mm-myansans-400.woff2) format("woff2");font-weight:100 500;font-display:swap;unicode-range:U+1000-109F,U+A9E0-A9FF,U+AA60-AA7F,U+200C-200D,U+25CC}
+@font-face{font-family:"MM MyanSans";src:url(fonts/mm-myansans-700.woff2) format("woff2");font-weight:600 900;font-display:swap;unicode-range:U+1000-109F,U+A9E0-A9FF,U+AA60-AA7F,U+200C-200D,U+25CC}
+@font-face{font-family:"MM Modern";src:url(fonts/mm-modern-400.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+1000-109F,U+A9E0-A9FF,U+AA60-AA7F,U+200C-200D,U+25CC}
+@font-face{font-family:"MM Walone Thin";src:url(fonts/mm-walone-thin.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+1000-109F,U+A9E0-A9FF,U+AA60-AA7F,U+200C-200D,U+25CC}
+:root{--myf:"MM Walone"}
+html[data-myf=myansans]{--myf:"MM MyanSans"}html[data-myf=modern]{--myf:"MM Modern"}html[data-myf=thin]{--myf:"MM Walone Thin"}html[data-myf=noto]{--myf:"Noto Sans Myanmar"}
+#bFont{display:none}body.lang-my #bFont{display:flex}
+
 body.lang-my #tSmall,body.lang-my #tBig em,body.lang-my #dlg .tx,body.lang-my #scap,body.lang-my .cl.nar{font-style:normal}
 .pill.sp.on{background:var(--paper-50);color:var(--ink);border-color:var(--paper-50)}
 body.m #bAlbum span:not(.ic){display:inline}
@@ -788,6 +798,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
     <div class="ctl">
       <button class="pill" id="bSound" title="Rain sound"><span class="ic i-speaker-high"></span><span>Sound</span></button>
       <button class="pill sp lg" id="bLang" title="Language (preview)">EN</button>
+      <button class="pill sp lg" id="bFont" title="Burmese font (preview)">Aa</button>
       <button class="pill sp" id="bSpeed" title="Play at 2× speed" aria-pressed="false">2×</button>
       <button class="pill" id="bDev" title="Dev timeline">Dev</button>
       <button class="pill" id="bAlbum" title="Memories"><span class="ic i-images"></span><span>Memories</span></button>
@@ -1288,6 +1299,12 @@ function langSync(){document.body.classList.toggle('lang-my',S.lang==='my');docu
   uiBusy=true;try{uiWalk(document.body)}finally{uiBusy=false}}
 $('#bLang').onclick=e=>{e.stopPropagation();S.lang=S.lang==='my'?'en':'my';try{localStorage.setItem('tib-lang',S.lang)}catch(_){}
   langSync();toast(S.lang==='my'?'Burmese · Chapter 1 chats and scenes':'English')};
+
+const MYF=[['walone','Walone'],['myansans','MyanSans'],['modern','Modern'],['thin','Walone Thin'],['noto','Noto Sans Myanmar']];
+let myf=(()=>{try{return localStorage.getItem('tib-myf')||'walone'}catch(e){return 'walone'}})();
+const myfSync=()=>{document.documentElement.dataset.myf=myf};myfSync();
+$('#bFont').onclick=e=>{e.stopPropagation();const i=MYF.findIndex(x=>x[0]===myf);myf=MYF[(i+1)%MYF.length][0];try{localStorage.setItem('tib-myf',myf)}catch(_){}
+  myfSync();toast('Burmese font · <b>'+MYF.find(x=>x[0]===myf)[1]+'</b>')};
 langSync();
 
 /* ============ ENGINE ============ */

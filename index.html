@@ -982,7 +982,7 @@ const packPic=it=>C4_READY.has(it.f)?`<img src="img/${it.f}.webp" alt="">`:`<div
 ART.shoebox=()=>`<div class="walk3">${(S.flags.c4_left||[]).map(id=>{const it=PACK.find(x=>x.id===id);return `<i style="background:#efe6d8;display:flex;align-items:center;justify-content:center">${packPic(it)}</i>`}).join('')}</div>`;
 
 /* ============ STATE ============ */
-const S={flags:{},memories:[],unsent:[],threads:{},contact:null,speed:1,rain:0,sound:false,busy:false};
+const S={flags:{},memories:[],unsent:[],threads:{},contact:null,speed:1,rain:0,sound:true,busy:false};
 const C={
   may:{name:'May Thiri',ini:'MT',img:1,bg:'#F0DACB',fg:'#8F4630'},
   mom:{name:'Mom',ini:'M',img:1,bg:'#CCDAD5',fg:'#1F4643'},
@@ -998,7 +998,9 @@ function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 /* ============ AUDIO ============ */
 const Audio_={ctx:null,gain:null,
   init(){ if(this.ctx) return; try{
+    try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){} /* iPhone: play even with the silent switch on, like a video */
     const ctx=new (window.AudioContext||window.webkitAudioContext)(); this.ctx=ctx;
+    ctx.onstatechange=()=>sndSync();
     const len=ctx.sampleRate*4, buf=ctx.createBuffer(2,len,ctx.sampleRate);
     for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);let b0=0,b1=0,b2=0;for(let i=0;i<len;i++){const w=Math.random()*2-1;b0=.99765*b0+w*.099;b1=.963*b1+w*.2965;b2=.57*b2+w*1.0526;d[i]=(b0+b1+b2+w*.1848)*.11;}}
     const src=ctx.createBufferSource();src.buffer=buf;src.loop=true;
@@ -1054,7 +1056,7 @@ const Audio_={ctx:null,gain:null,
     click(t,.9,3200);click(t+.075,.7,2300);
     const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.setValueAtTime(240,t);o.frequency.exponentialRampToValueAtTime(90,t+.07);og.gain.setValueAtTime(.12,t);og.gain.exponentialRampToValueAtTime(.001,t+.09);o.connect(og).connect(c.destination);o.start(t);o.stop(t+.1)}catch(e){}},
   horn(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;[0,.42].forEach(d=>{this.tone(392,t+d,.3,.045,'square');this.tone(494,t+d,.3,.035,'square')})},
-  level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.03,.066,.12][S.rain]||0:0; /* 40% quieter (Kaung, 10 Nov) */ this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.8); },
+  level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.03,.066,.12][S.rain]||0:0; /* 40% quieter (Kaung, 10 Nov) */ this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.25); },
   blip(hi){ if(!this.ctx||!S.sound) return; try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=hi?880:660;g.gain.value=0;o.connect(g).connect(this.ctx.destination);const t=this.ctx.currentTime;g.gain.linearRampToValueAtTime(.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.start(t);o.stop(t+.2);}catch(e){} }
 };
 
@@ -1248,7 +1250,10 @@ $('#bAlbum').onclick=()=>{const a=$('#album');if(a.classList.contains('on')){a.c
   a.innerHTML=`<button class="icbtn x" id="ax" aria-label="Close">${IC.x}</button><h2>Memories</h2><div class="mgrid">${memCards(false)||'<p style="color:#7b858c;font-size:14px;grid-column:1/-1">Photos, notes and keepsakes you find will appear here.</p>'}</div>${unsentHTML()}`;
   a.classList.add('on');
   $('#ax').onclick=e=>{e.stopPropagation();a.classList.remove('on')};};
-$('#bSound').onclick=()=>{Audio_.init();const locked=!Audio_.ctx||Audio_.ctx.state!=='running';if(Audio_.ctx&&Audio_.ctx.state==='suspended')Audio_.ctx.resume();if(locked&&S.sound){startAudio();Audio_.level();return} /* first tap while sound shows On but the browser has not let it play yet: just start it */S.sound=!S.sound;if(!S.sound)Audio_.songStop(200);Audio_.amb(Audio_.ambWant);$('#bSound span:last-child').textContent=S.sound?'On':'Off';$('#bSound .ic').className='ic i-'+(S.sound?SPK_ON:SPK_OFF);Audio_.level()};
+/* The sound button shows On only while sound is really playing. Until the browser lets audio start (the first tap), it shows Off. */
+$('#bSound').onclick=()=>{Audio_.init();const c=Audio_.ctx;if(!c)return;
+  if(c.state!=='running'){S.sound=true;startAudio();return} /* locked: this tap turns it on */
+  S.sound=!S.sound;if(!S.sound)Audio_.songStop(200);sndSync()};
 $('#bSpeed').onclick=e=>{e.stopPropagation();S.speed=S.speed===2?1:2;const on=S.speed===2;$('#bSpeed').classList.toggle('on',on);$('#bSpeed').setAttribute('aria-pressed',on)};
 
 /* ============ ENGINE ============ */
@@ -2526,7 +2531,14 @@ const CH4=[
  {end:4}
 ];
 /* ============ START ============ */
-function startAudio(){Audio_.init();if(Audio_.ctx){S.sound=true;setTimeout(()=>Audio_.amb(Audio_.ambWant),0);$('#bSound span:last-child').textContent='On';$('#bSound .ic').className='ic i-'+SPK_ON;if(Audio_.ctx.state==='suspended')Audio_.ctx.resume()}}
+function startAudio(){Audio_.init();const c=Audio_.ctx;if(!c||!S.sound)return;if(c.state!=='running'){try{const p=c.resume();if(p&&p.then)p.then(sndSync,()=>{})}catch(e){}}sndSync()}
+let sndWas=null;
+function sndSync(){const c=Audio_.ctx,on=!!(S.sound&&c&&c.state==='running');
+  $('#bSound span:last-child').textContent=on?'On':'Off';$('#bSound .ic').className='ic i-'+(on?SPK_ON:SPK_OFF);
+  if(on!==sndWas){sndWas=on;Audio_.amb(Audio_.ambWant);Audio_.level()}}
+/* Make the audio context and decode every music file as the game opens, so the first tap plays sound right away */
+function audioPreload(){Audio_.init();if(!Audio_.ctx)return;['rain','daily','lights','thingyan'].forEach(n=>Audio_.ambLoad(n));Audio_.sfxLoad('shutter');sndSync()}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)startAudio()});
 const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2,...CH3,...CH4];
 const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
   if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}
@@ -2603,14 +2615,14 @@ renderLib();
 (()=>{if(!DEV_ON)return;let j=null;try{j=sessionStorage.getItem('bre_jump');sessionStorage.removeItem('bre_jump')}catch(e){}
   const m=/jump=(\d+)/.exec(location.hash);if(m){j=m[1];try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
   if(j!==null){DEVJUMP=true;document.body.classList.add('playing');$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
-$('#bSound span:last-child').textContent='Off';$('#bSound .ic').className='ic i-'+SPK_OFF;
+audioPreload();
 // While there is only one story, opening the game goes straight into it; the Stories home is still one tap away (back arrow)
 (()=>{if(DEVJUMP||STORIES.length>1)return;let home=false;try{home=sessionStorage.getItem('bre_home')==='1';sessionStorage.removeItem('bre_home')}catch(e){}
   if(home)return;const {nextK,replayK}=libState();const startK=nextK!==null?nextK:replayK;if(startK===null)return;
   $('#start').classList.remove('on');document.body.classList.add('playing');
   // Phones only allow audio after a tap ends (touchend/click), not on touch start, so listen to those and keep listening until audio is really running
   const EVS=['pointerup','touchend','click','keydown'];
-  const wake=e=>{if(e&&e.target&&e.target.closest&&e.target.closest('#bSound'))return;startAudio();setTimeout(()=>{if(Audio_.ctx&&Audio_.ctx.state==='running')EVS.forEach(n=>removeEventListener(n,wake,true))},60)};
+  const wake=e=>{if(e&&e.target&&e.target.closest&&e.target.closest('#bSound'))return;if(!S.sound){EVS.forEach(n=>removeEventListener(n,wake,true));return}startAudio();setTimeout(()=>{if(Audio_.ctx&&Audio_.ctx.state==='running')EVS.forEach(n=>removeEventListener(n,wake,true))},60)};
   EVS.forEach(n=>addEventListener(n,wake,true));
   playFrom(startK,true);})();
 </script>

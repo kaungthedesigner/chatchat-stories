@@ -753,11 +753,12 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 @keyframes tapfade{0%,100%{opacity:.7}50%{opacity:1}}
 @keyframes tapbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 .opt.cont{background:#E8B04B;border-color:#E8B04B;color:#1C1406;font-weight:600;position:relative}
-.opt.cont::after{content:"";position:absolute;inset:-4px;border-radius:inherit;border:2px solid #E8B04B;animation:ctaring 1.6s ease-out infinite;pointer-events:none}
+.opt.cont:hover,.uphint.cta:hover{background:#8F5A14;border-color:#8F5A14;color:#FBF7EF}
+.uphint.cta:hover .tip{color:var(--ink-muted)}
 /* prologue hints: amber, not green */
 .uphint.cta{background:#E8B04B;color:#1C1406}
 .uphint.cta::after{border-color:#E8B04B}
-@media (prefers-reduced-motion:reduce){.dlg .more,#viewer .vtap,#title .tap,#post .vtap2,.opt.cont{animation:none!important}.dlg .more::after,#viewer .vtap::after,#title .tap::after,#post .vtap2::after,.opt.cont::after{animation:none;opacity:.5}}
+@media (prefers-reduced-motion:reduce){.dlg .more,#viewer .vtap,#title .tap,#post .vtap2 {animation:none!important}.dlg .more::after,#viewer .vtap::after,#title .tap::after,#post .vtap2::after{animation:none;opacity:.5}}
 /* ===== time jump card ===== */
 #tj{background:rgba(20,18,16,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .35s}
 #tj .lab{font:600 15px/20px var(--sans);color:#E8B04B;text-align:center}

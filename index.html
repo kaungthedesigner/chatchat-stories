@@ -1838,9 +1838,9 @@ const CH1=[
  {pause:900},
  // C1.5b Hnin
  {time:'7:15 PM'},
- {notify:{c:'hnin',text:"you left your mom's tray at the shop again",rows:[{c:'thura',text:'joking. go eat',time:'6:54 PM'},{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}],stat:'Active now'}},
+ {notify:{c:'hnin',text:"your mom's tray is still at the shop from yesterday",rows:[{c:'thura',text:'joking. go eat',time:'6:54 PM'},{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}],stat:'Active now'}},
  {in:"I'll bring it to your house tomorrow morning"},
- {in:'also. that girl took your umbrella and you just watched her go'},
+ {in:'also. yesterday that girl took your umbrella and you just watched her go'},
  {choice:{flag:'c1_hnin',opts:[
    {label:'It was a mistake.',send:'It was a mistake.',then:[{in:'hm. some mistakes are on purpose'}]},
    {label:'She brought it back today.',send:'She brought it back today.',then:[{in:"oh. that's good"},{pause:1400},{in:"she's pretty"}]},
@@ -1855,7 +1855,7 @@ const CH1=[
  {pause:900},
  // C1.6 Mom
  {time:'8:40 PM'},
- ()=>{const k=S.flags.c1_kindness;const first=k==='samosa'?'Daw Aye Aye says a girl ate my samosas.':k==='tea'?'Daw Aye Aye says you bought a girl tea.':'Daw Aye Aye says a girl gave you seeds and you gave her nothing.';
+ ()=>{const k=S.flags.c1_kindness;const first=k==='samosa'?'Daw Aye Aye says a girl ate my samosas yesterday.':k==='tea'?'Daw Aye Aye says you bought a girl tea yesterday.':'Daw Aye Aye says a girl gave you seeds yesterday and you gave her nothing.';
    return [{notify:{c:'mom',text:first,rows:[{c:'hnin',text:"I can't lend you mine every time",time:'7:16 PM'},{c:'thura',text:'joking. go eat',time:'6:54 PM'},{c:'may',text:'goodnight umbrella thief',time:'Mon'}]}}]},
  {in:'Is she a nice girl?'},
  {choice:{flag:'c1_mom2',opts:[
@@ -1873,7 +1873,7 @@ const CH1=[
    B:[{in:'since you wanted to give away your umbrella so easily'},{in:'daw aye aye says you take photos of "strange things". show me one'}],
    C:[{in:'after you tried to return my dead umbrella today'},{in:'daw aye aye says you take photos of "strange things". show me one'}]}),
  {choice:{flag:'c1_photo_sent',hint:'Send a photo from your gallery',opts:[
-   {label:'The tea-shop table in the rain',ph:'teaTable',photo:'teaTable',v:'table',then:[{mem:'table'},{in:'whose cups'},{out:'Ours. From today.'},{in:'you took a photo of my tea??'},{in:"that's either creepy or poetic"},{out:'Which one?'},{in:'still deciding'}]},
+   {label:'The tea-shop table in the rain',ph:'teaTable',photo:'teaTable',v:'table',then:[{mem:'table'},{in:'whose cups'},{out:'Ours. From yesterday.'},{in:'you took a photo of my tea??'},{in:"that's either creepy or poetic"},{out:'Which one?'},{in:'still deciding'}]},
    {label:'Her pink umbrella against your wall',ph:'pinkUmbrella',photo:'pinkUmbrella',v:'umbrella',then:[{mem:'pink'},{in:'OH MY GOD'},{if:{test:f=>f.c1_told_kept===false&&f.c1_return!=='C',then:[{in:"you didn't tell me you kept it!!"}]}},{in:'it looks so sad'},{out:'It looks like it did its best.'}]},
    {label:'A street dog asleep under a stall',ph:'dog',photo:'dog',v:'dog',then:[{mem:'saya'},{in:'who is he'},{out:'He lives near the market. I call him Saya.'},{in:'you NAMED him. saya means teacher'},{out:"He knows how to stay dry. That's more than we know."}]}]}},
  pick('c1_photo_sent',{

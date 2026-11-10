@@ -373,6 +373,7 @@ body.m{padding-top:env(safe-area-inset-top)}
 img{display:block;user-select:none;-webkit-user-drag:none}
 .b.photo img{display:block;width:220px;height:165px;object-fit:cover;border-radius:14px}
 .b.photo{line-height:0}
+.b.photo img.tall{width:180px;height:240px;object-position:50% 20%}
 .row.in .b.photo img,.row.in .b.photo svg{border-bottom-left-radius:2px}
 .row.out .b.photo img,.row.out .b.photo svg{border-bottom-right-radius:2px}
 #lock .wall img{width:100%;height:100%;object-fit:cover}
@@ -734,6 +735,35 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #wsCard button{padding:14px;border-radius:999px;background:#1d2a2c;color:#fff;font:600 15px/20px var(--sans)}
 #wsCard button.sec{background:#e9e1d3;color:#1d2a2c}
 #wsCount{position:absolute;inset:0;z-index:310;display:none;align-items:center;justify-content:center;font:600 72px/1 var(--serif);color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.4);pointer-events:none}
+
+/* ===== tap cues: one amber pill everywhere the player must tap to go on ===== */
+.dlg .more,#viewer .vtap,#title .tap,#post .vtap2{display:inline-flex;align-items:center;gap:6px;width:auto;padding:8px 15px 8px 12px;border-radius:999px;background:#E8B04B;color:#1C1406;font:600 13px/18px var(--sans);text-align:left;box-shadow:0 8px 20px -8px rgba(0,0,0,.6);animation:none;white-space:nowrap}
+.dlg .more::before,#viewer .vtap::before,#title .tap::before,#post .vtap2::before{content:"\ec90";font-family:'Phosphor-Light';font-size:17px;line-height:1}
+.dlg .more::after,#viewer .vtap::after,#title .tap::after,#post .vtap2::after{content:"";position:absolute;inset:-4px;border-radius:999px;border:2px solid #E8B04B;animation:ctaring 1.6s ease-out infinite;pointer-events:none}
+.dlg .more{position:absolute;right:0;bottom:-26px}
+.dlg .more[style*="block"]{display:inline-flex!important;animation:tapbob 1.8s ease-in-out infinite}
+.dlg{bottom:52px}
+#viewer .vtap,#title .tap{left:50%;right:auto;translate:-50% 0}
+#viewer .vtap.on,#title .tap.on{animation:tapbob 1.8s ease-in-out infinite}
+#post .vtap2{position:relative;display:flex;width:max-content;margin:12px auto 4px;animation:tapbob 1.8s ease-in-out infinite}
+@keyframes tapbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.opt.cont{background:#E8B04B;border-color:#E8B04B;color:#1C1406;font-weight:600;position:relative}
+.opt.cont::after{content:"";position:absolute;inset:-4px;border-radius:inherit;border:2px solid #E8B04B;animation:ctaring 1.6s ease-out infinite;pointer-events:none}
+/* prologue hints: amber, not green */
+.uphint.cta{background:#E8B04B;color:#1C1406}
+.uphint.cta::after{border-color:#E8B04B}
+@media (prefers-reduced-motion:reduce){.dlg .more,#viewer .vtap,#title .tap,#post .vtap2,.opt.cont{animation:none!important}.dlg .more::after,#viewer .vtap::after,#title .tap::after,#post .vtap2::after,.opt.cont::after{animation:none;opacity:.5}}
+/* ===== time jump card ===== */
+#tj{background:rgba(20,18,16,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .35s}
+#tj .lab{font:600 15px/20px var(--sans);color:#E8B04B;text-align:center}
+#tj .cal{position:relative;width:156px;height:168px;perspective:700px}
+#tj .pg{position:absolute;inset:0;border-radius:16px;background:#FBF7EF;overflow:hidden;box-shadow:0 24px 40px -18px rgba(0,0,0,.8);transform-origin:50% 0;backface-visibility:hidden}
+#tj .pg .top{height:46px;background:#8F4630;color:#FBF7EF;font:600 15px/46px var(--sans);text-align:center}
+#tj .pg .big{font:400 52px/1 var(--serif);color:#211C17;text-align:center;margin-top:28px;font-variation-settings:'opsz' 72}
+#tj .pg .ico{font-family:'Phosphor-Light';font-size:64px;line-height:1;color:#8F4630;text-align:center;margin-top:24px}
+#tj .rings{position:absolute;left:0;right:0;top:-8px;display:flex;justify-content:center;gap:56px;z-index:5}
+#tj .rings i{width:10px;height:22px;border-radius:6px;background:#3A322A;box-shadow:inset 0 0 0 2px #665C51}
+#tj .skip{font:400 12px/16px var(--sans);color:#A39A8C}
 </style>
 </head>
 <body>
@@ -795,6 +825,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
     <div id="toast"></div>
 
     <div class="ov" id="title"><h1 id="tBig"></h1><p id="tSmall"></p><div class="tap" id="tTap">Tap to continue</div></div>
+    <div class="ov" id="tj"></div>
     <div class="ov" id="album"></div>
     <div class="ov" id="end"></div>
     <div class="ov" id="leave"><div class="card"><h3>Leave the story?</h3><p id="leaveP"></p><div class="bt"><button class="stay" id="leaveStay">Keep playing</button><button class="go2" id="leaveGo">Back to Stories</button></div></div></div>
@@ -1133,6 +1164,32 @@ async function dialog(name,text,cls){const d=$('#dlg');d.innerHTML=`${name?`<div
   for(let i=1;i<=text.length;i++){if(dlgSkip){tx.textContent=text;break}tx.textContent=text.slice(0,i);await rawSleep(Math.max(6,22/S.speed))}
   stage.removeEventListener('click',skipH);dlgTyping=false;d.querySelector('.more').style.display='block';await waitStage(150);}
 
+
+/* ============ TIME JUMP ============ */
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function ymFrom(t){t=String(t||'').replace(/<[^>]*>/g,' ');const m=t.match(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\b/);const y=t.match(/\b(19|20)\d\d\b/);if(!m||!y)return null;return +y[0]*12+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].indexOf(m[1])}
+function tjPage(top,inner){const d=document.createElement('div');d.className='pg';d.innerHTML=`<div class="top">${top}</div>${inner}`;return d}
+async function timeJump(t){
+  let label=null,pages=[];const ym=ymFrom(t);
+  if(ym!=null){const prev=S.ym;S.ym=ym;const d=prev!=null?ym-prev:null;if(d===0)return;
+    if(d!=null&&d>0)label=d===1?'A month later':d===12?'A year later':d%12===0?`${d/12} years later`:`${d} months later`;
+    const from=(d!=null&&d>0)?Math.max(prev,ym-6):ym;for(let k=from;k<=ym;k++)pages.push(tjPage(MONTHS[k%12],`<div class="big">${Math.floor(k/12)}</div>`))}
+  else if(/^next morning/i.test(t)){label='Next morning';pages=[tjPage('Night','<div class="ico"></div>'),tjPage('Morning','<div class="ico"></div>')]}
+  else if(/^next night/i.test(t)){label='Next night';pages=[tjPage('Day','<div class="ico"></div>'),tjPage('Night','<div class="ico"></div>')]}
+  else if(/later$/i.test(t)){label=t;pages=[tjPage(t,'<div class="ico"></div>')]}
+  else return;
+  const o=$('#tj');o.innerHTML=`<div class="lab">${label||''}</div><div class="cal"><div class="rings"><i></i><i></i></div></div><div class="skip">Time passes</div>`;
+  const cal=o.querySelector('.cal');let top=pages[0];cal.appendChild(top);o.classList.add('on');
+  let skipped=false;const sk=()=>{skipped=true};o.addEventListener('click',sk);
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  await rawSleep(500/S.speed);
+  for(let i=1;i<pages.length&&!skipped;i++){const nx=pages[i];cal.insertBefore(nx,top);
+    if(!reduce){const dur=Math.max(160,(i===pages.length-1?520:260))/S.speed;try{await top.animate([{transform:'rotateX(0)',opacity:1},{transform:'rotateX(-100deg)',opacity:0}],{duration:dur,easing:'cubic-bezier(.5,0,.75,0)'}).finished}catch(e){}}
+    top.remove();top=nx}
+  if(skipped){cal.querySelectorAll('.pg').forEach(p=>p!==pages[pages.length-1]&&p.remove());if(!pages[pages.length-1].isConnected)cal.appendChild(pages[pages.length-1])}
+  const t0=Date.now();while(!skipped&&Date.now()-t0<1500/S.speed)await rawSleep(50);
+  o.removeEventListener('click',sk);o.classList.remove('on');await rawSleep(350);o.innerHTML='';}
+
 /* ============ BANNER ============ */
 function banner(c,title,text,accept){const b=$('#banner');b.innerHTML=`${av(c,true)}<div class="t"><small>ChatChat · now</small><b>${esc(title)}</b><span>${esc(text)}</span></div>${accept?'<div class="acc">Accept</div>':''}`;b.classList.add('on');Audio_.blip(false);
   return new Promise(r=>{const h=e=>{e.stopPropagation();b.removeEventListener('click',h);b.classList.remove('on');r()};b.addEventListener('click',h)});}
@@ -1205,7 +1262,7 @@ async function exec(s){
   case 'list':{ renderList(v.rows,v.only);show('list');if(v.only){await waitRow(v.only)}break}
   case 'open': openChat(v.c,v.stat);await sleep(500);break;
   case 'browse':{ await holdChat();await sleep(700);renderList(liveRows(v.rows,null),null);show('list');await sleep(1700);openChat(v.c,v.stat);await sleep(600);break}
-  case 'notify':{ await holdChat();renderList(liveRows(v.rows,v.c),null);show('list');await sleep(900);if(v.div)push({k:'div',text:v.div},v.c);push(Object.assign({dir:'in'},v.m||{k:'text',text:v.text}),v.c);await banner(v.c,C[v.c].name,v.text);openChat(v.c,v.stat);await sleep(600);break}
+  case 'notify':{ await holdChat();if(v.div)await timeJump(v.div);renderList(liveRows(v.rows,v.c),null);show('list');await sleep(900);if(v.div)push({k:'div',text:v.div},v.c);push(Object.assign({dir:'in'},v.m||{k:'text',text:v.text}),v.c);await banner(v.c,C[v.c].name,v.text);openChat(v.c,v.stat);await sleep(600);break}
   case 'friend':{ await holdChat();renderList(v.rows,null);show('list');await sleep(900);await banner('may','May Thiri','sent you a friend request',true);toast('You and <b>May Thiri</b> are now connected');openChat('may','Active now');push({k:'sys',text:'You are now connected on ChatChat'});await sleep(900);break}
   case 'in': await incoming({k:'text',text:v});break;
   case 'inPhoto': await incoming({k:'photo',art:v});break;
@@ -1225,7 +1282,7 @@ async function exec(s){
   case 'out': await outgoing({k:'text',text:v});break;
   case 'typing': await typingFor(v);break;
   case 'falseStart':{ await typingFor(1400);await sleep(900);break}
-  case 'div': push({k:'div',text:v});await sleep(300);break;
+  case 'div': await timeJump(v);push({k:'div',text:v});await sleep(300);break;
   case 'sys': push({k:'sys',text:v});await sleep(500);break;
   case 'offline':{ $('#chStat').textContent=v;await sleep(400);break}
   case 'choice':{
@@ -1251,7 +1308,7 @@ async function exec(s){
   case 'say': await dialog(v[0],v[1]);break;
   case 'min': await dialog('Min',v,'min');break;
   case 'narr': await dialog('',v,'narr');break;
-  case 'title':{ S.day=(S.day||0)+1;S.now=null; await holdChat();const t=$('#title');$('#tTap').classList.remove('on');
+  case 'title':{ S.day=(S.day||0)+1;S.now=null;{const y=ymFrom((v.small||'')+' '+(v.big||''));if(y!=null)S.ym=y} await holdChat();const t=$('#title');$('#tTap').classList.remove('on');
     if(t.classList.contains('on')){t.classList.add('swap');await rawSleep(700);$('#tBig').innerHTML=v.big;$('#tSmall').textContent=v.small||'';t.classList.remove('swap');if(v.rain!==undefined)setRain(v.rain);await rawSleep(1600);}
     else{$('#tBig').innerHTML=v.big;$('#tSmall').textContent=v.small||'';t.classList.add('on');await rawSleep(1000);$('#viewer').classList.remove('on','zoom');show('');if(v.rain!==undefined)setRain(v.rain);await rawSleep(1400);}
     if(v.time)setTime(v.time);    $('#tTap').classList.add('on');await waitStage(0);$('#tTap').classList.remove('on');
@@ -2004,6 +2061,19 @@ const CH2=[
  {out:'Deal.'},
  {pause:1200},
  {in:'also my mom says it suits me. so'},
+ pick('c2_bangs',{
+   A:[{in:"ok. ONE photo. so tomorrow you don't just say okay"}],
+   B:[{in:"ok. ONE photo. so tomorrow you don't say fine"}],
+   C:[{in:'fine. ONE photo. evidence for the policeman'}]}),
+ {pause:900},
+ {inPhoto:'mayBangs'},
+ {in:"don't zoom"},
+ {in:'the scissors are still there. they know what they did'},
+ {choice:{flag:'c2_bangs_photo',opts:[
+   {label:'It really does suit you.',send:'It really does suit you.',then:[{typing:1400},{in:"you're only saying that because you owe me tea"},{in:'…but ok'}]},
+   {label:'A very cute mushroom.',send:'A very cute mushroom.',then:[{in:'MIN HTET'},{pause:1200},{in:'…the cute part can stay'}]},
+   {label:'Keep the scissors away from me tomorrow.',send:'Keep the scissors away from me tomorrow.',then:[{in:'hahahaha'},{in:"no promises. you're next"}]}]}},
+ {pause:900},
  {in:'see you in class'},
  {pause:900},
  // C2.5f Thura, 1 AM
@@ -2067,6 +2137,7 @@ SCENE.towel='<img src="img/c3-towel.webp" alt="" draggable="false">';
 SCENE.pagoda19='<img src="img/c3-pagoda19.webp" alt="" draggable="false">';
 SCENE.lamp2='<img src="img/c3-lamp2.webp" alt="" draggable="false">';
 ART.teaGate='<img src="img/c3-tea-gate.webp" alt="" draggable="false">';
+ART.mayBangs='<img class="tall" src="img/c2-may-bangs.webp" alt="May with her new bangs" draggable="false">';
 ART.lamp2='<img src="img/c3-lamp2.webp" alt="" draggable="false" style="object-fit:cover;object-position:50% 52%">';
 const CH3=[
  {title:{big:'<em>Chapter 3</em>Thingyan',small:'March to December 2019',rain:0,time:'11:20 PM'}},
@@ -2461,8 +2532,8 @@ try{SAVES=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}')||{}}catch(e){SAVES={}
 function sv(){return SAVES[STORY.id]=SAVES[STORY.id]||{cps:{},done:[],cur:null}}
 function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(SAVES))}catch(e){}}
 function snap(){let day=S.day||0,tl=S.tlabel||null;if(S.pendTime){const o={now:S.now,day:S.day,tl:S.tlabel,clk:$('#clock').textContent};setTime(S.pendTime);day=S.day||0;tl=S.tlabel;S.now=o.now;S.day=o.day;S.tlabel=o.tl;$('#clock').textContent=o.clk}
-  return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day,tl,rain:S.rain||0,walk:S.walk||null}))}
-function restore(c){S.pendTime=null;S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=`<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`})}
+  return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day,tl,rain:S.rain||0,walk:S.walk||null,ym:S.ym==null?null:S.ym}))}
+function restore(c){S.pendTime=null;S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;S.ym=c.ym==null?null:c.ym;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=`<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`})}
 const SAFE=['notify','scene','title','browse','friend','lock'];
 function chOf(i){let k=0;CH_START.forEach((x,j)=>{if(x<=i)k=j});return k}
 function markDone(k){const v=sv();if(!v.done.includes(k))v.done.push(k);persist()}

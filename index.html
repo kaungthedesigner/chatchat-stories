@@ -1848,7 +1848,7 @@ const CH1=[
    {label:'She brought it back today.',send:'She brought it back today.',then:[{in:"oh. that's good"},{pause:1400},{in:"she's pretty"}]},
    {label:'You saw that?',send:'You saw that?',then:[{in:"I see everything from behind the counter. that's my whole job"}]}]}},
  {if:{test:f=>f.c1_post_like===true,then:[{in:'also. you liked my post'},{in:"you've never liked one of my posts"},{pause:1200},{in:'so that table means something. noted'}]}},
- {if:{test:f=>f.c1_post_like==='c',then:[{in:'also. you commented on my post'},{in:'in public. where Daw Aye Aye can see'},{in:"she's already asking me questions"}]}},
+ {if:{test:f=>f.c1_post_like==='c',then:[{in:'also. you commented on my post'},{in:'in public. where Daw Aye Aye can see'},{in:"she's already asking me questions"},{in:'"it\'s the same tea every day. what was different yesterday"'},{in:'"does his mother know"'}]}},
  {if:{test:f=>f.c1_post_like===false,then:[{in:'also. Daw Aye Aye liked my post before you did'},{in:"she doesn't know how her phone works"}]}},
  pick('c1_hnin',{
    A:[{in:'anyway. take your own umbrella next time'},{in:'not everyone has a spare to lend you'}],

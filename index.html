@@ -1665,11 +1665,13 @@ async function photoActs(v){
   if(o.fx==='dark'&&pi){pi.classList.add('dark');await sleep(1400)}
   if(o.more)await showCmts(o.more,1100);
   /* Min's thoughts sit on a dark card over the post, like scene narration, so they never read as a comment */
-  let nar=$('#postNar');if(!nar){nar=document.createElement('div');nar.id='postNar';$('#post').appendChild(nar)}
-  const note=async t=>{const pb=$('#postBody');pb.style.paddingBottom='130px';pb.scrollTo({top:9999,behavior:'smooth'});if(nar.classList.contains('on')){nar.classList.remove('on');await rawSleep(350)}nar.textContent=t;nar.classList.add('on');await sleep(Math.min(3200,1400+t.length*35))};
+  let shown=false,nar=$('#postNar');if(!nar){nar=document.createElement('div');nar.id='postNar';$('#post').appendChild(nar)}
+  const note=async t=>{const pb=$('#postBody');pb.style.paddingBottom='130px';pb.scrollTo({top:9999,behavior:'smooth'});if(nar.classList.contains('on')){nar.classList.remove('on');await rawSleep(350)}nar.textContent=t;nar.classList.add('on');await rawSleep(700);
+    /* each line stays until the player taps, so nobody misses the first one */
+    $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(200);$('#postTray').innerHTML='';shown=true};
   for(const t of fv(o.notes)||[])await note(t);
   for(const t of fv(v.after)||[])await note(t);
-  $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML='';$('#post .who b').textContent='Post';nar.classList.remove('on');$('#postBody').style.paddingBottom='';
+  if(!shown){$('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML=''}$('#post .who b').textContent='Post';nar.classList.remove('on');$('#postBody').style.paddingBottom='';
 }
 /* ===== Let go: Min posts a photo of the rain, and May likes it ===== */
 async function minPost(v){

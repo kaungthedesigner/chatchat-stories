@@ -730,8 +730,20 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #post .pi img{transition:transform 1.6s cubic-bezier(.3,.1,.3,1)}
 #post .pi.zoom img{transform:scale(2.3);transform-origin:96% 38%}
 #post .pi.dark{filter:brightness(.15);transition:filter 1.2s}
-.row .b{position:relative}
-.row .rx{position:absolute;right:-6px;bottom:-12px;background:var(--paper-100);border-radius:999px;padding:1px 5px;font:400 12px/16px var(--sans);box-shadow:0 1px 3px rgba(0,0,0,.18);color:#C0392B}
+/* Reactions (Monsoon ReactionPill / ReactionBar): the pill sits on the bubble's lower outside corner */
+.row .b,.row .stk{position:relative}
+.row.hasrx{margin-bottom:14px}
+.row .rx{position:absolute;bottom:-14px;right:-6px;display:inline-flex;align-items:center;height:24px;padding:0 6px;border-radius:999px;background:var(--paper-50);border:1px solid var(--line);box-shadow:var(--shadow-paper);font-size:15px;line-height:1;color:var(--ink-body);font-family:var(--sans)}
+.row.out .rx{right:auto;left:-6px}
+.row .rx.mine{background:var(--m200);border-color:var(--m500)}
+.row.in .b{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.row.in .b.held{transform:scale(.97);transition:transform .15s}
+#rxBar{position:absolute;z-index:30;display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--paper-50);border:1px solid var(--line);box-shadow:var(--shadow-float);animation:rxpop .18s ease-out}
+#rxBar button{width:40px;height:40px;border-radius:999px;font-size:24px;line-height:40px;transition:transform .12s,background-color .12s}
+#rxBar button:hover{transform:scale(1.15)}
+#rxBar button.on{background:var(--m200)}
+#rxBar button:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+@keyframes rxpop{from{opacity:0;transform:translateY(6px) scale(.96)}to{opacity:1;transform:none}}
 .row.glow .b{box-shadow:0 0 0 3px #E8B04B;transition:box-shadow .6s}
 /* Epilogue lock screen notice */
 #lkNote{position:absolute;left:14px;right:14px;top:250px;background:rgba(40,46,50,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:16px;padding:10px 14px;text-align:left;display:none;animation:pop .35s ease-out}
@@ -1216,20 +1228,49 @@ function el(m,prev){
   if(m.k==='sticker'){d.innerHTML=ART.STK[m.art]}
   if(m.k==='link'){const L=LINKS[m.id];d.innerHTML=`<div class="b lnk"><a href="${L.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="lt"><div class="lg">${L.badge}</div><div><b>${esc(L.title)}</b><small>${esc(L.domain)}</small></div></div><ul>${L.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></a></div>`}
   if(m.k==='voice'){d.innerHTML=`<div class="b"><div class="voice"><div class="pl">${IC.play}</div><div class="wv">${Array.from({length:26},(_,i)=>`<i style="height:${20+Math.abs(Math.sin(i*1.7))*70}%"></i>`).join('')}</div><small>${m.text}</small></div>${m.tr?`<div class="vtr">${m.tr[0]==='('?esc(m.tr):'“'+esc(m.tr)+'”'}</div>`:''}</div>`}
-  if(m.rx){const b=d.querySelector('.b');if(b)b.insertAdjacentHTML('beforeend',`<span class="rx">${m.rx}</span>`)}
+  d._m=m;rxPaint(d,m);
   return d;
 }
 function renderThread(){msgs.innerHTML='';const th=S.threads[S.contact]||[];let prev=null;
   th.forEach(m=>{msgs.appendChild(el(m,prev));if(m.dir)prev=m});
   const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'&&lo.rc){const r=el({k:'rcpt',text:lo.rc});r.id='rc';msgs.appendChild(r)}
   scrollDown();}
+/* ===== Reactions. Hold a message from someone else (450 ms), double-click or right-click it to react. A reaction the story set is locked: the player can't change it. ===== */
+const REACTIONS=['❤️','😂','😮','😢','🙏','👍'];
+function rxPaint(d,m){const b=d.querySelector('.b')||d.querySelector('.stk');if(!b)return;const old=b.querySelector('.rx');if(old)old.remove();d.classList.toggle('hasrx',!!m.rx);
+  if(m.rx)b.insertAdjacentHTML('beforeend',`<span class="rx${m.rxMe?' mine':''}" aria-label="Reaction ${m.rx}">${m.rx}</span>`)}
+let rxSwallow=false,rxT=null;
+function rxClose(){const b=$('#rxBar');if(b)b.remove();document.querySelectorAll('.b.held').forEach(x=>x.classList.remove('held'))}
+function rxOpen(row){const m=row._m;if(!m||m.dir!=='in'||(m.rx&&!m.rxMe))return;rxClose();
+  const ch=$('#chat'),cr=ch.getBoundingClientRect(),k=cr.height/ch.offsetHeight||1,b=row.querySelector('.b')||row.firstElementChild,br=b.getBoundingClientRect();
+  const bar=document.createElement('div');bar.id='rxBar';bar.setAttribute('role','toolbar');bar.setAttribute('aria-label','React to message');
+  bar.innerHTML=REACTIONS.map(e=>`<button type="button" class="${m.rx===e?'on':''}" aria-pressed="${m.rx===e}" aria-label="React ${e}">${e}</button>`).join('');
+  ch.appendChild(bar);const W=bar.offsetWidth,H=bar.offsetHeight;
+  let top=(br.top-cr.top)/k-H-8;if(top<60)top=(br.bottom-cr.top)/k+8;
+  bar.style.top=top+'px';bar.style.left=Math.max(8,Math.min(ch.offsetWidth-W-8,(br.left-cr.left)/k))+'px';
+  b.classList.add('held');Audio_.blip(false);
+  bar.querySelectorAll('button').forEach((x,i)=>x.addEventListener('click',e=>{e.stopPropagation();const em=REACTIONS[i];
+    if(m.rx===em){delete m.rx;delete m.rxMe}else{m.rx=em;m.rxMe=true}rxPaint(row,m);Audio_.blip(true);rxClose();
+    try{if(!localStorage.getItem('tib-rx-hint'))localStorage.setItem('tib-rx-hint','1')}catch(_){ }}));}
+(()=>{const ms=$('#msgs');
+  const rowOf=e=>{const r=e.target.closest('.row.in');return r&&r._m&&r._m.dir==='in'&&!(r._m.rx&&!r._m.rxMe)?r:null};
+  ms.addEventListener('pointerdown',e=>{const r=rowOf(e);if(!r||!e.target.closest('.b,.stk'))return;clearTimeout(rxT);rxT=setTimeout(()=>{rxSwallow=true;rxOpen(r)},450)});
+  ['pointerup','pointercancel','pointerleave'].forEach(t=>ms.addEventListener(t,()=>clearTimeout(rxT)));
+  ms.addEventListener('scroll',()=>clearTimeout(rxT),{passive:true});
+  ms.addEventListener('dblclick',e=>{const r=rowOf(e);if(r){e.stopPropagation();rxOpen(r)}});
+  ms.addEventListener('contextmenu',e=>{const r=rowOf(e);if(r){e.preventDefault();rxSwallow=true;rxOpen(r)}});
+  // a tap that ends a hold, or one that closes the picker, never also moves the story on
+  document.addEventListener('click',e=>{if(rxSwallow){rxSwallow=false;e.stopPropagation();e.preventDefault();return}
+    const bar=$('#rxBar');if(bar&&!bar.contains(e.target)){rxClose();e.stopPropagation();e.preventDefault()}},true);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#rxBar'))rxClose()},true);})();
+function rxHint(){try{if(localStorage.getItem('tib-rx-hint'))return;localStorage.setItem('tib-rx-hint','1')}catch(_){return}setTimeout(()=>toast('Press and hold a message to react'),600)}
 function push(m,c=S.contact){if(m.dir&&!m.st){const lab=stampDiv(c);if(lab)push({k:'div',text:lab},c);m.st={d:S.day||0,n:S.now||0}}(S.threads[c]=S.threads[c]||[]).push(m);
   if(c===S.contact&&$('#chat').classList.contains('on')){const th=S.threads[c];const prev=[...th].slice(0,-1).reverse().find(x=>x.dir);
     const r=$('#rc');if(r&&m.dir)r.remove();msgs.appendChild(el(m,prev));if(m.dir==='out'){m.rc='Sent';const rc=el({k:'rcpt',text:'Sent'});rc.id='rc';msgs.appendChild(rc)}scrollDown();}}
 function markSeen(){const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'){lo.rc='Seen';const r=$('#rc');if(r)r.textContent='Seen'}}
 function openChat(c,stat){S.contact=c;$('#chAv').innerHTML=av(c,true);$('#chName').textContent=C[c].name;$('#chStat').textContent=stat||'Active now';show('chat');renderThread();}
 async function typingFor(ms){markSeen();const t=document.createElement('div');t.className='row in gap';t.innerHTML='<div class="b typing"><i></i><i></i><i></i></div>';msgs.appendChild(t);scrollDown();await sleep(ms);t.remove();}
-async function incoming(m){const len=(m.text||'').length;const dur=m.k==='text'?Math.min(2300,Math.max(650,380+len*30)):1300;
+async function incoming(m){if(!S.rxHinted){S.rxHinted=1;rxHint()}const len=(m.text||'').length;const dur=m.k==='text'?Math.min(2300,Math.max(650,380+len*30)):1300;
   await typingFor(dur);push(Object.assign({dir:'in'},m));Audio_.blip(false);await sleep(m.k==='text'?Math.min(1800,600+len*22):900);}
 const field=$('#field'),sendic=$('#sendic');
 function setField(t,cursor){field.innerHTML=t?esc(t)+(cursor?'<span class="cur"></span>':''):'<span class="ph">Message</span>';sendic.classList.toggle('on',!!t);field.classList.toggle('multi',!!t&&field.scrollHeight>44);}
@@ -1388,7 +1429,7 @@ async function exec(s){
   case 'minpost': await minPost(v);break;
   case 'lockEp': await lockEp(v);break;
   case 'scrollFirst': await scrollFirst(v);break;
-  case 'react':{const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir==='out');if(lo){lo.rx=v;lo.rc='Seen'}renderThread();Audio_.blip(false);await sleep(800);break}
+  case 'react':{const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir==='out');if(lo){lo.rx=v;lo.rxMe=false;lo.rc='Seen'}renderThread();Audio_.blip(false);await sleep(800);break}
   case 'rcpt':{const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'){lo.rc=v;const r=$('#rc');if(r)r.textContent=v}await sleep(300);break}
   case 'final': finalCard();await new Promise(()=>{});break;
   case 'post': await postStep(v);break;

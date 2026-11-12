@@ -725,7 +725,8 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 .tkBoard .bar i{display:block;height:100%;width:100%;background:#ffd36b;transform-origin:left;transform:scaleX(1)}
 .tkBoard p{font:400 15px/22px var(--sans);opacity:.9;margin-top:16px;min-height:22px}
 /* Ch5 photo and memory posts: a plain line under the picture */
-#post .pnote{padding:10px 16px 2px;font:italic 400 15px/22px var(--serif);color:var(--ink-body)}
+#postNar{position:absolute;left:12px;right:12px;bottom:92px;z-index:6;background:rgba(20,26,30,.9);color:#FBF7EF;border-radius:14px;padding:14px 18px;font:italic 400 16px/24px var(--serif);box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s;pointer-events:none}
+#postNar.on{opacity:1;transform:none}
 #post .pi img{transition:transform 1.6s cubic-bezier(.3,.1,.3,1)}
 #post .pi.zoom img{transform:scale(2.3);transform-origin:96% 38%}
 #post .pi.dark{filter:brightness(.15);transition:filter 1.2s}
@@ -1663,10 +1664,12 @@ async function photoActs(v){
   if(o.fx==='zoom'&&pi){$('#postBody').scrollTo({top:0,behavior:'smooth'});pi.classList.add('zoom');await sleep(1800)}
   if(o.fx==='dark'&&pi){pi.classList.add('dark');await sleep(1400)}
   if(o.more)await showCmts(o.more,1100);
-  const note=async t=>{$('#postCms').insertAdjacentHTML('beforeend',`<p class="pnote">${esc(t)}</p>`);$('#postBody').scrollTo({top:9999,behavior:'smooth'});await sleep(Math.min(2800,1000+t.length*30))};
+  /* Min's thoughts sit on a dark card over the post, like scene narration, so they never read as a comment */
+  let nar=$('#postNar');if(!nar){nar=document.createElement('div');nar.id='postNar';$('#post').appendChild(nar)}
+  const note=async t=>{const pb=$('#postBody');pb.style.paddingBottom='130px';pb.scrollTo({top:9999,behavior:'smooth'});if(nar.classList.contains('on')){nar.classList.remove('on');await rawSleep(350)}nar.textContent=t;nar.classList.add('on');await sleep(Math.min(3200,1400+t.length*35))};
   for(const t of fv(o.notes)||[])await note(t);
   for(const t of fv(v.after)||[])await note(t);
-  $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML='';$('#post .who b').textContent='Post';
+  $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML='';$('#post .who b').textContent='Post';nar.classList.remove('on');$('#postBody').style.paddingBottom='';
 }
 /* ===== Let go: Min posts a photo of the rain, and May likes it ===== */
 async function minPost(v){

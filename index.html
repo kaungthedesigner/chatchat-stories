@@ -1468,13 +1468,20 @@ new MutationObserver(ms=>{if(uiBusy)return;uiBusy=true;try{for(const m of ms){if
 function langSync(){document.body.classList.toggle('lang-my',S.lang==='my');document.documentElement.lang=S.lang==='my'?'my':'en';
   const b=$('#bLang');if(b){b.textContent=S.lang==='my'?'မြန်မာ':'EN';b.setAttribute('aria-label','Language: '+(S.lang==='my'?'Burmese':'English'))}
   uiBusy=true;try{uiWalk(document.body)}finally{uiBusy=false}}
-$('#bLang').onclick=e=>{e.stopPropagation();S.lang=S.lang==='my'?'en':'my';try{localStorage.setItem('tib-lang',S.lang)}catch(_){}
-  langSync();toast(S.lang==='my'?'Burmese · Chapters 1–4':'English')};
+/* Switching language also swaps story text already on screen and in saved chats, so the switch shows at once */
+let EN2MY=null,MY2EN=null;
+function storyMaps(){if(EN2MY)return;EN2MY={};MY2EN={};Object.values(MY_STORY).forEach(D=>Object.entries(D).forEach(([en,my])=>{if(typeof my!=='string'||!my||my===en)return;if(!(en in EN2MY))EN2MY[en]=my;if(!(my in MY2EN))MY2EN[my]=en}))}
+const swapT=t=>{if(typeof t!=='string')return t;const M=S.lang==='my'?EN2MY:MY2EN;return M[t]!==undefined?M[t]:(M[t.trim()]!==undefined?t.replace(t.trim(),M[t.trim()]):t)};
+function storySwap(){storyMaps();
+  Object.values(S.threads||{}).forEach(th=>th.forEach(m=>{['text','cap'].forEach(k=>{if(m[k])m[k]=swapT(m[k])});if(m.re){m.re.q=swapT(m.re.q)}}));
+  uiBusy=true;try{const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(n.parentElement&&n.parentElement.closest('.top,#bar,header'))continue;const v=swapT(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}}finally{uiBusy=false}}
+$('#bLang').onclick=e=>{e.stopPropagation();e.currentTarget.blur();S.lang=S.lang==='my'?'en':'my';try{localStorage.setItem('tib-lang',S.lang)}catch(_){}
+  langSync();storySwap();toast(S.lang==='my'?'မြန်မာ':'English')};
 
 const MYF=[['walone','Walone'],['myansans','MyanSans'],['modern','Modern'],['thin','Walone Thin'],['noto','Noto Sans Myanmar']];
 let myf=(()=>{try{return localStorage.getItem('tib-myf')||'walone'}catch(e){return 'walone'}})();
 const myfSync=()=>{document.documentElement.dataset.myf=myf};myfSync();
-$('#bFont').onclick=e=>{e.stopPropagation();const i=MYF.findIndex(x=>x[0]===myf);myf=MYF[(i+1)%MYF.length][0];try{localStorage.setItem('tib-myf',myf)}catch(_){}
+$('#bFont').onclick=e=>{e.stopPropagation();e.currentTarget.blur();const i=MYF.findIndex(x=>x[0]===myf);myf=MYF[(i+1)%MYF.length][0];try{localStorage.setItem('tib-myf',myf)}catch(_){}
   myfSync();toast('Burmese font · <b>'+MYF.find(x=>x[0]===myf)[1]+'</b>')};
 langSync();
 

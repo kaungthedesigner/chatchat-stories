@@ -764,6 +764,8 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #post .pi img{transition:transform 1.6s cubic-bezier(.3,.1,.3,1)}
 #post .pi.zoom img{transform:scale(2.3);transform-origin:var(--zo,96% 38%)}
 #post .pi.sq{aspect-ratio:1/1}
+#post .pwho{margin:0;font:400 14px/22px var(--sans);color:var(--ink-body)}
+#post .pa .pwho b{display:inline;font-weight:700}
 #post .pi.dark{filter:brightness(.15);transition:filter 1.2s}
 /* Reactions (Monsoon ReactionPill / ReactionBar): the pill sits on the bubble's lower outside corner */
 .row .b,.row .stk{position:relative}
@@ -1599,7 +1601,7 @@ const fv=(x)=>{if(typeof x!=='function')return x;const r=x(S.flags),D=S.lang==='
 const artHTML=a=>typeof ART[a]==='function'?ART[a]():ART[a];
 const cmtHTML=c=>c.del?`<div class="cm del">${esc(c.del)} deleted a comment</div>`:`<div class="cm${c.me?' me':''}"><b>${esc(c.n)}</b>${esc(c.t)}</div>`;
 function postBody(v,tag){const art=fv(v.art),text=fv(v.text);
-  return `<div class="pa">${av(v.c,true)}<div><b>${esc(C[v.c].name)}</b><span>${tag?'with Min Htet':esc(v.place||'')}</span></div></div>
+  return `<div class="pa">${av(v.c,true)}<div><p class="pwho"><b>${esc(C[v.c].name)}</b>${v.act?` ${esc(v.act)}`:''}</p><span>${tag?'with Min Htet':esc(v.place||'')}</span></div></div>
    ${art?`<div class="pi${v.sq?' sq':''}"${v.zo?` style="--zo:${v.zo}"`:''}>${artHTML(art)}</div>`:`<div class="ptx">${v.mention?`<span class="mtn">@${esc(v.mention)}</span> `:''}${esc(text)}</div>`}
    <div class="acts"><span class="hrt">${HEART}</span><span>${BUBBLE}</span></div>
    <div class="lk" id="postLk">Liked by ${esc(v.likes)}</div>
@@ -2901,7 +2903,7 @@ const CH5=[
  {gallery:true},
  // C5.4 The photo
  {title:{big:'<em>December 2020</em>The photo',small:'',rain:1,time:'10:20 PM'}},
- {pphoto:{c:'may',banner:'updated her profile picture',head:'Profile picture',art:'cropped',sq:1,place:'The city',likes:'Htoo, Su Su and 27 others',when:'December 2020',cap:'🌧️',
+ {pphoto:{c:'may',banner:'updated her profile picture',head:'Profile picture',art:'cropped',sq:1,act:'updated her profile photo.',place:'The city',likes:'Htoo, Su Su and 27 others',when:'December 2020',cap:'🌧️',
    cmts:[{n:'Htoo',t:'umbrella duty again.'}],flag:'c5_photo',
    opts:[{label:'(Zoom in.)',fx:'zoom',notes:['Her face, mid-laugh. An arm at the edge of the frame. She looks lighter than she has sounded in months.']},
      {label:'(Read the comments.)',set:{c5_truth:true},more:[{n:'Su Su',t:'thiri you look so happy 🥹'},{n:'Htoo',t:"five of us under two umbrellas and she still wouldn't open hers 😂"},{n:'May Thiri',t:'shh 🙈'}],

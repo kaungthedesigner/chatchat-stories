@@ -1089,9 +1089,12 @@ SCENE.c5BusGone=c5img('c5-bus-gone','The night bus pulls out');
 SCENE.e2Door=c5img('e2-door','The pink umbrella by the door');
 SCENE.e3Tea=c5img('e3-tea','The tea shop, June 2023');
 SCENE.e3Sit=c5img('e3-sit','Hnin sits down across from him');
+SCENE.e3Door=c5img('e3-door','Someone in the doorway with a black umbrella');
 SCENE.epTown=c5img('ep-town','The street, 2024');
 SCENE.epLastUnsaid=c5img('ep-last-unsaid','Under the awning, umbrella closed');
-SCENE.epLastSaid=c5img('ep-last-said','Out under the pink umbrella');
+SCENE.epLastOpen=c5img('ep-last-open','Under the awning, umbrella half open');
+SCENE.epLastNext=c5img('ep-last-next','Out under the pink umbrella');
+SCENE.epLastSaid=SCENE.epLastNext;
 SCENE.epLastLet=c5img('ep-last-let','Into the rain with the camera');
 const EP_WALL=PHI('Dark room, phone face up','#1b2328','#0b0f12');
 ART.lampAlone=c5ph('c5-ph-lamp','His lamp, alone on the wall');
@@ -1099,6 +1102,8 @@ ART.cityLamp=c5ph('c5-ph-citylamp','Her lamp at a city window');
 ART.cropped=c5ph('c5-ph-cropped','May in the city rain, cropped');
 ART.uncropped=c5ph('c5-ph-uncropped','Five friends under two umbrellas');
 ART.rainTable=c5ph('e-ph-rain','Rain on the tea-shop table');
+ART.mayUmb=c5ph('e-ph-mayumb','His umbrella on a city windowsill');
+ART.busTicket=c5ph('ep-ph-ticket','A bus ticket home, dated Thadingyut');
 ART.thuraWall=c5ph('ep-ph-wall','A plastic chair, a wall, sky');
 ART.ticket=()=>`<div class="tkm"><small>Night bus · to the city</small><b>Seat ${esc(S.flags.c5_seat||'7A')}</b><span>18,000 Ks · not used</span></div>`;
 
@@ -1394,6 +1399,8 @@ const MEM_INFO={
  ticket:{t:'The Unused Ticket',ty:'Object',art:'ticket'},
  uncropped:{t:'The Uncropped Photo',ty:'Photo',art:'uncropped'},
  lastReply:{t:'Her Last Reply',ty:'Message',icon:'note'},
+ seenJune:{t:'Seen, June 2023',ty:'Message',icon:'note'},
+ herReply:{t:'Her Reply',ty:'Photo',art:'mayUmb'},
  firstRain:{t:'First Rain, Again',ty:'Photo',art:'rainTable'}
 };
 function addMem(id){if(S.memories.includes(id))return;S.memories.push(id);toast(`Memory kept · <b>${MEM_INFO[id].t}</b>`)}
@@ -1799,12 +1806,13 @@ async function scrollFirst(stat){openChat('may',stat);await sleep(900);const tar
 /* ===== Which ending: sent drafts (courage) first, then whether he read Htoo's comment ===== */
 const COURAGE=['c1_told_kept','c1_wouldnt_mind','c2_friends','c4_night','c5_station'];
 const courage=f=>COURAGE.filter(k=>f[k]===true).length;
-const endOf=f=>courage(f)>=3?'said':f.c5_truth?'let':'unsaid';
+const endOf=f=>{const c=courage(f);return c>=4?'next':c>=2?'open':'unsaid'};
 const byEnd=map=>()=>map[endOf(S.flags)]||[];
-const END_NAME={unsaid:'Unsaid',said:'Said too late',let:'Let go'};
-const END_LEAD={unsaid:'He typed it one more time and let it go unsent. Some things stay in the drafts.',said:'He said it, three years late. She answered. Nothing more came, and nothing more had to.',let:'He stopped waiting. A photo of the rain was the whole conversation.'};
+const END3=['unsaid','open','next'];
+const END_NAME={unsaid:'Unsaid',open:'Open door',next:'Until the next rain',said:'Said too late',let:'Let go'};
+const END_LEAD={unsaid:'He typed it one more time and let it go unsent. Some things stay in the drafts.',open:'He said it. She saw it. What happened next is yours to decide.',next:'Not together yet. But the umbrellas are going home, and so, one day, is she.',said:'He said it, three years late. She answered.',let:'He stopped waiting.'};
 function finalCard(){const e=S.flags.ending||endOf(S.flags);const v=sv();v.ends=v.ends||[];if(!v.ends.includes(e))v.ends.push(e);v.ending=e;markDone(STORY.chapters.length-1);v.replay=false;persist();
-  const el=$('#end');el.innerHTML=`<div class="k">Ending · ${END_NAME[e]}</div><h2>Before the Rain Ends</h2><p class="lead">${END_LEAD[e]}</p><p class="mhs">${v.ends.length} of 3 endings found.${v.ends.length<3?' What Min sends, and what he reads, changes how it ends.':''}</p>
+  const el=$('#end');el.innerHTML=`<div class="k">Ending · ${END_NAME[e]}</div><h2>Before the Rain Ends</h2><p class="lead">${END_LEAD[e]}</p><p class="mhs">${v.ends.filter(x=>END3.includes(x)).length} of 3 endings found.${v.ends.filter(x=>END3.includes(x)).length<3?' What Min sends changes how it ends.':''}</p>
   <h3 class="mh">Kept <span>${S.memories.length}</span></h3><div class="mgrid">${memCards(true,'kept')||'<p class="e">None this time.</p>'}</div>${unsentHTML()}
   <div class="btns"><button class="b1" id="again">Back to Stories</button></div>`;
   el.classList.add('on');$('#again').onclick=()=>{try{sessionStorage.setItem('bre_home','1')}catch(_){ }try{history.replaceState(null,'',location.pathname+location.search)}catch(_){ }location.reload()}}
@@ -2869,13 +2877,13 @@ const CH5=[
  {title:{big:'<em>December 2020</em>The photo',small:'',rain:1,time:'10:20 PM'}},
  {pphoto:{c:'may',banner:'updated her profile photo',head:'Profile photo',art:'cropped',place:'The city',likes:'Htoo, Su Su and 27 others',when:'December 2020',cap:'🌧️',
    cmts:[{n:'Htoo',t:'umbrella duty again.'}],flag:'c5_photo',
-   opts:[{label:'(Zoom in.)',fx:'zoom',notes:['Only an arm and a black umbrella. Not his. A different one.']},
+   opts:[{label:'(Zoom in.)',fx:'zoom',notes:['Her face, mid-laugh. An arm at the edge of the frame. She looks lighter than she has sounded in months.']},
      {label:'(Read the comments.)',set:{c5_truth:true},more:[{n:'Su Su',t:'thiri you look so happy 🥹'},{n:'Htoo',t:"five of us under two umbrellas and she still wouldn't open hers 😂"},{n:'May Thiri',t:'shh 🙈'}],
-       notes:["Eleven comments. Names he doesn't know. Someone calls her Thiri.",'Min reads it twice. He half-believes it, and stops writing anyway.']},
+       notes:["Eleven comments. Names he doesn't know. Someone calls her Thiri.","Names he doesn't know. Jokes he isn't in. Min reads them twice. She sounds happy there."]},
      {label:'(Close the app.)',fx:'dark',notes:['The phone stays dark on the table for a long time.']}]}},
  {open:{c:'may',stat:'Active now'}},
  {pause:900},
- {draft:{hint:'What does Min type?',opts:['Who is he?','You look happy.','You took my umbrella and found a better one.'],flag:'c5_who',auto:true,when:'Dec 2020'}},
+ {draft:{hint:'What does Min type?',opts:["I'm glad you have people there.",'You look happy.','Do you still think about the tea shop?'],flag:'c5_who',auto:true,when:'Dec 2020'}},
  {pause:900},
  // From here Min stops writing first. May still remembers his birthday.
  {time:'12:01 AM'},
@@ -2888,7 +2896,7 @@ const CH5=[
  {notify:{c:'thura',text:"bro you've been weird for a month",div:'Jan 2021',rows:R4({})}},
  {in:'is it her'},
  {choice:{flag:'c5_thura',opts:[
-   {label:'She found someone.',send:'She found someone.',then:[{in:'did she say that'},{out:"She didn't have to."},{in:'…ok. then move on. for real this time'}]},
+   {label:'She has a life there now.',send:'She has a life there now.',then:[{in:"did she say there's no room for you in it"},{out:"She didn't have to."},{in:'…ok. then move on. for real this time'}]},
    {label:"I don't know.",send:"I don't know.",then:[{in:'then ask her'},{in:"or move on. you can't do this forever"}]},
    {label:"It's nothing.",send:"It's nothing.",then:[{in:"it's never nothing with you"},{in:"move on bro. I'm serious"}]}]}},
  {pause:900},
@@ -2952,22 +2960,26 @@ const ENDING=[
    opts:[{label:'(Zoom in on the umbrella in her hand.)',fx:'zoom',notes:['White tape on the handle. MH, faded.']},
      {label:'(Open her chat.)',notes:['The chat opens on her last message from 2021. Min scrolls up, all the way, to the first one.']},
      {label:'(Put the phone face down.)',fx:'dark',notes:['The rain on the roof is loud enough to cover it.']}],
-   after:f=>({unsaid:['Five classmates under two umbrellas. A boy holds one over May and two others. His black umbrella, the one with the tape, is in her hand, closed.','It is the first time Min has seen the whole photo.'],
-     said:['Five classmates under two umbrellas. A boy holds one over May and two others. His black umbrella, the one with the tape, is in her hand, closed.','The first time he has seen the whole photo. He looks at the closed umbrella for a long time.'],
-     let:['Five classmates under two umbrellas. His black umbrella is in her hand, closed.',"He had already guessed it from Htoo's comment. The photo only proves it.",'He was right to stop being angry. He was wrong about everything else.']})[endOf(f)]}},
+   after:f=>['Five classmates under two umbrellas. A boy holds one over May and two others. His black umbrella, the one with the tape, is in her hand, closed.',
+     f.c5_truth?"He remembers the comment about five people under two umbrellas. He thought it meant she didn't need him any more. It meant she was keeping something.":'It is the first time Min has seen the whole photo. She was carrying his umbrella the whole time.']}},
  {scrollFirst:'Active 2 years ago'},
+ {narr:'He stepped back to give her room. She was holding on the whole time.'},
  {mem:'uncropped'},
  // E.2 The last draft
  {scene:{art:'e2Door',cap:'',rain:2}},
  {narr:'The pink umbrella leans by the door, where it has leaned for three years.'},
  byEnd({
-   unsaid:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active 2 years ago'}},{pause:900},{draft:{text:'I still have your umbrella.',auto:true,when:'Jun 2023'}}],
-   said:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active 2 years ago'}},{pause:900},
-     {draft:{text:'I still have your umbrella.',only:'send',flag:'end_sent',when:'Jun 2023',onSend:[{pause:2200},{typing:1800},{pause:1600},{in:'i know'},{in:'i still have yours. the tape is still on it'},{typing:1600},{pause:2000}]}},
-     {mem:'lastReply'}],
-   let:[{narr:"Min doesn't open the message box. He opens the camera."},
-     {minpost:{c:'min',art:'rainTable',place:'',likes:'',when:'June 2023',handle:'min',cap:'first rain'}},
-     {mem:'firstRain'}]}),
+   unsaid:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active 2 years ago'}},{pause:900},{draft:{text:'I still have your umbrella.',auto:true,when:'Jun 2023'}},{pause:900},{narr:'He never tells her. She never knows he saw.'}],
+   open:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active 2 years ago'}},{pause:900},
+     {draft:{text:'I still have your umbrella.',only:'send',flag:'end_sent',when:'Jun 2023',onSend:[{pause:2200},{typing:1800},{pause:2600}]}},
+     {pause:1400},{narr:'Nothing comes. Not that night, not the next morning. The chat stays on Seen.'},{mem:'seenJune'}],
+   next:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active 2 years ago'}},{pause:900},
+     {draft:{text:'I still have your umbrella.',only:'send',flag:'end_sent',when:'Jun 2023',onSend:[{pause:2200},{typing:1800},{pause:1200},{in:'i know'},{in:'I still have yours. I never opened it. not once in three years'},{inPhoto:'mayUmb'},{in:"I'm sorry I got so far away"}]}},
+     {choice:{flag:'end_reply',opts:[
+       {label:"You didn't. I stopped writing.",send:"You didn't. I stopped writing.",then:[{in:'we both did'},{in:"let's not anymore"}]},
+       {label:"I'm glad you were okay.",send:"I'm glad you were okay.",then:[{in:'I was. mostly'},{in:'I missed the tea. and the boy who never talks'}]},
+       {label:'Come home for Thadingyut.',send:'Come home for Thadingyut.',then:[{typing:1500},{pause:1300},{typing:1200},{in:'I want to'},{in:"I'm saving for the bus"}]}]}},
+     {in:'keep the pink one dry for me'},{in:"I'll trade you back. one day"},{out:'Deal.'},{mem:'herReply'}]}),
  // E.3 The tea shop
  {scene:{art:'e3Tea',cap:'The tea shop · June 2023',rain:2}},
  {narr:'Evening. Daw Aye Aye has retired; Hnin runs the shop now. The same corner table. Rain on the shutter.'},
@@ -2976,12 +2988,12 @@ const ENDING=[
  {choice:{flag:'end_answer',opts:[{label:'Maybe.'},{label:'No.'},{label:'(Say nothing.)',act:1}]}},
  ()=>{const a=S.flags.end_answer;return ({
    unsaid:{A:[{min:'Maybe.'}],B:[{narr:'He opens his mouth to say no.'},{min:'…Maybe.'}],C:[{narr:'The silence goes on until she starts to turn away.'},{min:'Maybe.'}]},
-   said:{A:[{min:'Maybe.'},{min:'…No. She answered.'}],B:[{min:'No. She answered.'}],C:[{narr:'He turns the phone over so Hnin can see the screen.'},{min:'She answered.'}]},
-   let:{A:[{min:'Maybe.'},{narr:'He looks at the rain.'},{min:'No.'}],B:[{min:'No.'}],C:[{narr:"He shakes his head, and for once it's true."}]}})[endOf(S.flags)][a]||[]},
+   open:{A:[{min:'Maybe.'},{min:"I don't know any more."}],B:[{min:'No.'},{narr:'He checks his phone anyway.'},{min:"I don't know any more."}],C:[{narr:'He turns the phone face down on the table.'},{min:"I don't know any more."}]},
+   next:{A:[{min:'Not waiting.'},{min:"She's coming home. One day."}],B:[{min:'No.'},{min:"She's coming home. One day."}],C:[{narr:'He turns the phone over so Hnin can see the screen.'},{min:"She's coming home. One day."}]}})[endOf(S.flags)][a]||[]},
  byEnd({
    unsaid:[{narr:"She nods. She doesn't say she has been waiting too."},{say:['Hnin',"The tea's on me. It's raining."]}],
-   said:[{say:['Hnin','Good.']},{narr:"She nods. She doesn't say she has been waiting too."},{say:['Hnin',"The tea's on me."]}],
-   let:[{shot:'e3Sit'},{narr:'Hnin pulls out the other chair and sits down across from him, for the first time.'},{narr:'Neither of them says anything. They watch the rain.'}]}),
+   open:[{say:['Hnin',"The tea's on me."]},{narr:'She goes back behind the counter.'},{rain:2},{narr:'The rain gets heavier. The door opens.'},{shot:'e3Door'},{narr:'Someone stands in the doorway, shaking out a black umbrella. White tape on the handle.'},{narr:'Hnin looks up first.'}],
+   next:[{say:['Hnin','Good.']},{narr:"She smiles and takes his glass to refill it. She doesn't say she has been waiting too."},{say:['Hnin','Tell her the corner table is still hers.']}]}),
  {title:{big:'<em>a story told in messages</em>Before the Rain Ends',small:'',rain:2}},
  {rain:0},
  /* ============ EPILOGUE · 2024 ============ */
@@ -3001,8 +3013,9 @@ const ENDING=[
  {narr:"At Mom's shop, a small hand-painted sign: Min Photo."},
  byEnd({
    unsaid:[{scene:{art:'epLastUnsaid',cap:'',rain:0}},{narr:"Min stands under the shop awning with his father's old camera and the pink umbrella. He photographs the street the way it really is."},{rain:1},{narr:'The rain starts.'},{narr:'The pink umbrella stays closed in his hand, the way May never opened his.'}],
-   said:[{scene:{art:'epLastSaid',cap:'',rain:0}},{narr:"Min stands under the shop awning with his father's old camera and the pink umbrella. He photographs the street the way it really is."},{rain:1},{narr:'The rain starts.'},{narr:'He opens the pink umbrella and walks out under it.'}],
-   let:[{scene:{art:'epLastLet',cap:'',rain:0}},{narr:"Min stands under the shop awning with his father's old camera and the pink umbrella. He photographs the street the way it really is."},{rain:1},{narr:'The rain starts.'},{narr:'He leaves the umbrella by the shop door and walks out into the rain with the camera. In the studio window behind him is the rain photo May liked.'}]}),
+   open:[{scene:{art:'epLastOpen',cap:'',rain:0}},{narr:"Min stands under the shop awning with his father's old camera and the pink umbrella. He photographs the street the way it really is."},{rain:1},{narr:'The rain starts.'},{narr:'He opens the pink umbrella halfway, looks down the street, closes it again, and waits a little longer under the awning.'}],
+   next:[{scene:{art:'epLastNext',cap:'',rain:0}},{narr:"Min stands under the shop awning with his father's old camera and the pink umbrella. He photographs the street the way it really is."},{rain:1},{narr:'The rain starts.'},{narr:"He opens the pink umbrella and walks out under it. In the studio window behind him is May's photo of his umbrella on a city windowsill."},
+     {notify:{c:'may',text:'sent a photo',m:{k:'photo',art:'busTicket'},rows:R4({})}},{in:"don't tell hnin. I want to see her face"},{pause:1600}]}),
  {title:{big:'<em>Before the Rain Ends</em>The end.',small:'',rain:1}},
  {final:true}
 ];

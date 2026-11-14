@@ -82,6 +82,7 @@ body:not(.m) .devbar{width:min(620px,100vw);padding:0 16px 8px}
 .devbar{flex:none;display:flex;align-items:center;gap:8px;width:393px;max-width:100vw;padding:0 12px 6px;font:500 12px/16px var(--sans);color:var(--n-muted)}
 .devbar .dv{padding:2px 6px;border-radius:2px;background:var(--n-clay);color:#161A19;font-weight:600}
 .devbar input{flex:1;accent-color:var(--n-m700)}
+.devE{display:flex;gap:4px}.devE button{font:500 11px/14px var(--sans);padding:2px 6px;border-radius:4px;border:1px solid var(--n-muted);background:none;color:inherit;cursor:pointer}
 .devbar #devL{width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pill{height:32px;padding:0 12px;border-radius:6px;background:var(--n-50);border:1px solid var(--n-line);font:500 13px/1 var(--sans);color:var(--n-body);display:flex;align-items:center;gap:6px;white-space:nowrap}
 .pill:hover{border-color:var(--n-line-strong)}
@@ -884,7 +885,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
       <button class="pill" id="bAlbum" title="Memories"><span class="ic i-images"></span><span>Memories</span></button>
     </div>
   </div>
-  <div class="devbar" title="Temporary: drag to jump through the story"><span class="dv">Dev</span><input type="range" id="devT" min="0" max="1" value="0"><span id="devL">Start</span></div>
+  <div class="devbar" title="Temporary: drag to jump through the story"><span class="dv">Dev</span><input type="range" id="devT" min="0" max="1" value="0"><span id="devL">Start</span><span class="devE" title="Dev: jump to the ending with this many drafts sent"><button data-c="0">Unsaid</button><button data-c="2">Open</button><button data-c="5">Next rain</button></span></div>
   <div class="wrap" id="wrap"><div class="scaler" id="scaler">
   <div class="stage" id="stage">
     <div class="status" id="status"><span class="carrier">MPT</span><span id="clock">11:47</span><span class="sic">
@@ -3060,6 +3061,10 @@ devT.oninput=()=>{devL.textContent=devT.value+' · '+FLOW_LBL[devT.value]};
 devT.onchange=()=>{const v=devT.value;try{sessionStorage.setItem('bre_jump',v)}catch(e){}
   try{history.replaceState(null,'','#jump='+v)}catch(e){location.hash='jump='+v}
   location.reload()};
+/* Dev: jump straight to the ending with 0, 2 or 5 drafts sent (Unsaid / Open door / Until the next rain) */
+const DEV_CF=['c1_told_kept','c2_friends','c4_night','c1_wouldnt_mind','c5_station'];
+document.querySelectorAll('.devE button').forEach(b=>b.onclick=e=>{e.stopPropagation();const n=+b.dataset.c,fl={};DEV_CF.slice(0,n).forEach(k=>fl[k]=true);
+  const v=FLOW.indexOf(ENDING[0]);try{sessionStorage.setItem('bre_jump',v);sessionStorage.setItem('bre_flags',JSON.stringify(fl))}catch(e){}location.reload()});
 /* ============ STORIES · SAVES ============ */
 const STORIES=[{id:'bre',title:'Before the Rain Ends',mins:110,chapters:[
   {n:'P',t:'Prologue',d:'November 2020'},
@@ -3130,7 +3135,7 @@ $('#chOver').onclick=e=>{e.stopPropagation();const b=$('#chOver');if(!b.classLis
 renderLib();
 (()=>{if(!DEV_ON)return;let j=null;try{j=sessionStorage.getItem('bre_jump');sessionStorage.removeItem('bre_jump')}catch(e){}
   const m=/jump=(\d+)/.exec(location.hash);if(m){j=m[1];try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
-  if(j!==null){DEVJUMP=true;document.body.classList.add('playing');$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
+  if(j!==null){try{const f=JSON.parse(sessionStorage.getItem('bre_flags')||'null');sessionStorage.removeItem('bre_flags');if(f)Object.assign(S.flags,f)}catch(e){}DEVJUMP=true;document.body.classList.add('playing');$('#start').classList.remove('on');setTimeout(()=>runFlow(+j),300)}})();
 audioPreload();
 // While there is only one story, opening the game goes straight into it; the Stories home is still one tap away (back arrow)
 (()=>{if(DEVJUMP||STORIES.length>1)return;let home=false;try{home=sessionStorage.getItem('bre_home')==='1';sessionStorage.removeItem('bre_home')}catch(e){}

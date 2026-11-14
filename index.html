@@ -1008,7 +1008,7 @@ SCENE.classroom2='<img src="img/cl-02-returns.webp" alt="" draggable="false">';
 SCENE.classroom3='<img src="img/cl-03-note.webp" alt="" draggable="false">';
 SCENE.classroomTeacher='<img src="img/cl-04-teacher.webp" alt="" draggable="false">';
 SCENE.classroomMay='<img src="img/cl-05-may-answers.webp" alt="" draggable="false">';
-SCENE.classroom4='<img src="img/cl-06-talk.webp" alt="" draggable="false">';
+SCENE.classroom4='<img src="img/cl-06-talk.webp" alt="" draggable="false">';SCENE.classroom5='<img src="img/cl-06-whisper.webp" alt="" draggable="false">';
 SCENE.bedroom='<img src="img/rm-02-reading.webp" alt="" draggable="false">';
 SCENE.roomEmpty='<img src="img/rm-01-empty.webp" alt="" draggable="false">';
 SCENE.roomUmbrellas='<img src="img/rm-03-umbrellas.webp" alt="" draggable="false">';
@@ -2030,7 +2030,7 @@ const CH1=[
    C:[{say:['May','Returning property, Teacher. Nothing else.']},{narr:'She glances at Min and nearly laughs.'}]}),
  {choice:{flag:'c1_return',hint:'Say, quietly',opts:[
    {label:'…Thank you.',say:'…Thank you.',then:[{shot:'classroom4'},{narr:'She turns to him, grinning.'},{say:['May','You can talk!']}]},
-   {label:'You can keep it.',say:'You can keep it.',then:[{shot:'classroom4'},{say:['May','No. Then I\'d have to remember you every time it rains.']}]},
+   {label:'You can keep it.',say:'You can keep it.',then:[{shot:'classroom5'},{say:['May','No. Then I\'d have to remember you every time it rains.']}]},
    {label:'Give back her broken pink umbrella.',act:1,then:[{shot:'classroom4'},{say:['May','You brought it?? It\'s dead, Min.']},{min:'It should go home to its family.'},{narr:'She laughs so hard that Teacher Daw Nu tells her off.'},{say:['May','Keep it. It likes you more than me.']},{narr:'He takes it home again.'}]}]}},
  {mem:'note'},{pause:1000},
  // C1.5 Thura

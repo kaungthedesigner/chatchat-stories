@@ -1076,7 +1076,7 @@ const packPic=it=>C4_READY.has(it.f)?`<img src="img/${it.f}.webp" alt="">`:`<div
 ART.shoebox=()=>`<div class="walk3">${(S.flags.c4_left||[]).map(id=>{const it=PACK.find(x=>x.id===id);return `<i style="background:#efe6d8;display:flex;align-items:center;justify-content:center">${packPic(it)}</i>`}).join('')}</div>`;
 
 /* ===== Chapter 5, ending and epilogue art. Labelled placeholders until Kaung approves images (none generated yet); add a file name to C5_READY when its image is in img/. ===== */
-const C5_READY=new Set([]);
+const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-bus-gone','e2-door','e3-tea','e3-door','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
 const c5img=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:PHI(label,'#3d4a55','#1a2228');
 const c5ph=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
 SCENE.c5Lamp=c5img('c5-lamp','One lamp on the pagoda wall');

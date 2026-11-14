@@ -1283,7 +1283,7 @@ function renderThread(){msgs.innerHTML='';const th=S.threads[S.contact]||[];let 
 /* ===== Reactions. Hold a message from someone else (450 ms), double-click or right-click it to react. A reaction the story set is locked: the player can't change it. ===== */
 const REACTIONS=['❤️','😂','😮','😢','🙏','👍'];
 function rxPaint(d,m){const b=d.querySelector('.b')||d.querySelector('.stk');if(!b)return;const old=b.querySelector('.rx');if(old)old.remove();d.classList.toggle('hasrx',!!m.rx);
-  if(m.rx)b.insertAdjacentHTML('beforeend',`<span class="rx${m.rxMe?' mine':''}" aria-label="Reaction ${m.rx}">${m.rx}</span>`)}
+  if(m.rx){if(m.rx==='♥')m.rx='❤️';b.insertAdjacentHTML('beforeend',`<span class="rx${m.rxMe?' mine':''}" aria-label="Reaction ${m.rx}">${m.rx}</span>`)}}
 let rxSwallow=false,rxT=null;
 function rxClose(){const b=$('#rxBar');if(b)b.remove();document.querySelectorAll('.b.held').forEach(x=>x.classList.remove('held'))}
 function rxOpen(row){const m=row._m;if(!m||m.dir!=='in'||(m.rx&&!m.rxMe))return;rxClose();
@@ -2857,7 +2857,7 @@ const CH5=[
  {open:{c:'may',stat:'Active 1h ago'}},
  {outPhoto:'lampAlone'},
  {pause:2600},
- {react:'♥'},
+ {react:'❤️'},
  {pause:1600},
  // C5.1 Gaps
  {time:'9:12 AM'},

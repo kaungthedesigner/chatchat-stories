@@ -762,7 +762,8 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #postNar{position:absolute;left:12px;right:12px;bottom:92px;z-index:6;background:rgba(20,26,30,.9);color:#FBF7EF;border-radius:14px;padding:14px 18px;font:italic 400 16px/24px var(--serif);box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s;pointer-events:none}
 #postNar.on{opacity:1;transform:none}
 #post .pi img{transition:transform 1.6s cubic-bezier(.3,.1,.3,1)}
-#post .pi.zoom img{transform:scale(2.3);transform-origin:96% 38%}
+#post .pi.zoom img{transform:scale(2.3);transform-origin:var(--zo,96% 38%)}
+#post .pi.sq{aspect-ratio:1/1}
 #post .pi.dark{filter:brightness(.15);transition:filter 1.2s}
 /* Reactions (Monsoon ReactionPill / ReactionBar): the pill sits on the bubble's lower outside corner */
 .row .b,.row .stk{position:relative}
@@ -1252,7 +1253,9 @@ function setTime(t){$('#clock').textContent=t.replace(/ ?[AP]M/,'');const m=t.ma
 function stampDiv(c){if(S.tlabel==null)return null;const th=S.threads[c]||[];const last=th[th.length-1];if(!last||last.k==='div'||last.k==='sys')return null;
   const lm=[...th].reverse().find(x=>x.dir);if(!lm)return null;const d=S.day||0;
   if(!lm.st||lm.st.d!==d)return 'Today '+S.tlabel;if(S.now-lm.st.n>=60)return S.tlabel;return null}
-function av(c,sm,online){const x=C[c];return `<div class="av${sm?' sm':''}" style="background:${x.bg};color:${x.fg}">${x.img?`<img src="img/av-${c}.webp" alt="" draggable="false">`:x.ini}${online?'<i class="on"></i>':''}</div>`}
+/* May's avatar becomes her new profile picture from the December 2020 photo on */
+function avSrc(c){return c==='may'&&typeof MAY_AV_AT!=='undefined'&&MAY_AV_AT>=0&&S.at>=MAY_AV_AT?'img/av-may-2020.webp':`img/av-${c}.webp`}
+function av(c,sm,online){const x=C[c];return `<div class="av${sm?' sm':''}" style="background:${x.bg};color:${x.fg}">${x.img?`<img src="${avSrc(c)}" alt="" draggable="false">`:x.ini}${online?'<i class="on"></i>':''}</div>`}
 let toastT;
 function toast(html){const t=$('#toast');t.innerHTML=IC.star+html;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2800);}
 function waitClick(el){return new Promise(r=>{const h=e=>{e.stopPropagation();el.removeEventListener('click',h);r(e)};el.addEventListener('click',h)})}
@@ -1597,7 +1600,7 @@ const artHTML=a=>typeof ART[a]==='function'?ART[a]():ART[a];
 const cmtHTML=c=>c.del?`<div class="cm del">${esc(c.del)} deleted a comment</div>`:`<div class="cm${c.me?' me':''}"><b>${esc(c.n)}</b>${esc(c.t)}</div>`;
 function postBody(v,tag){const art=fv(v.art),text=fv(v.text);
   return `<div class="pa">${av(v.c,true)}<div><b>${esc(C[v.c].name)}</b><span>${tag?'with Min Htet':esc(v.place||'')}</span></div></div>
-   ${art?`<div class="pi">${artHTML(art)}</div>`:`<div class="ptx">${v.mention?`<span class="mtn">@${esc(v.mention)}</span> `:''}${esc(text)}</div>`}
+   ${art?`<div class="pi${v.sq?' sq':''}"${v.zo?` style="--zo:${v.zo}"`:''}>${artHTML(art)}</div>`:`<div class="ptx">${v.mention?`<span class="mtn">@${esc(v.mention)}</span> `:''}${esc(text)}</div>`}
    <div class="acts"><span class="hrt">${HEART}</span><span>${BUBBLE}</span></div>
    <div class="lk" id="postLk">Liked by ${esc(v.likes)}</div>
    ${art?`<div class="cap"><b>${esc(v.handle||C[v.c].name.split(' ')[0].toLowerCase())}</b>${esc(fv(v.cap))}</div>`:''}
@@ -2898,13 +2901,14 @@ const CH5=[
  {gallery:true},
  // C5.4 The photo
  {title:{big:'<em>December 2020</em>The photo',small:'',rain:1,time:'10:20 PM'}},
- {pphoto:{c:'may',banner:'updated her profile photo',head:'Profile photo',art:'cropped',place:'The city',likes:'Htoo, Su Su and 27 others',when:'December 2020',cap:'🌧️',
+ {pphoto:{c:'may',banner:'updated her profile picture',head:'Profile picture',art:'cropped',sq:1,place:'The city',likes:'Htoo, Su Su and 27 others',when:'December 2020',cap:'🌧️',
    cmts:[{n:'Htoo',t:'umbrella duty again.'}],flag:'c5_photo',
    opts:[{label:'(Zoom in.)',fx:'zoom',notes:['Her face, mid-laugh. An arm at the edge of the frame. She looks lighter than she has sounded in months.']},
      {label:'(Read the comments.)',set:{c5_truth:true},more:[{n:'Su Su',t:'thiri you look so happy 🥹'},{n:'Htoo',t:"five of us under two umbrellas and she still wouldn't open hers 😂"},{n:'May Thiri',t:'shh 🙈'}],
        notes:["Eleven comments. Names he doesn't know. Someone calls her Thiri.","Names he doesn't know. Jokes he isn't in. Min reads them twice. She sounds happy there."]},
      {label:'(Close the app.)',fx:'dark',notes:['The phone stays dark on the table for a long time.']}]}},
  {open:{c:'may',stat:'Active now'}},
+ {sys:'May Thiri updated her profile picture'},
  {pause:900},
  {draft:{hint:'What does Min type?',opts:["I'm glad you have people there.",'You look happy.','Do you still think about the tea shop?'],flag:'c5_who',auto:true,when:'Dec 2020'}},
  {pause:900},
@@ -2979,24 +2983,24 @@ const ENDING=[
  ()=>{S.flags.courage=courage(S.flags);S.flags.ending=endOf(S.flags);return []},
  // E.1 The photo (her phone surfaced the original she cropped for her 2020 profile photo; she posts it whole for the first time)
  {memshare:{c:'may',banner:'posted a photo',head:'Post',art:'uncropped',place:'The city',likes:'Htoo, Su Su and 40 others',when:'June 2023',
-   cap:"found this from 3 years ago. first rain in the city. someone else's umbrella. I never used mine",flag:'end_photo',
+   cap:"found this from 3 years ago. first rain in the city. someone else's umbrella. I never used mine",flag:'end_photo',zo:'44% 84%',
    opts:[{label:'(Zoom in on the umbrella in her hand.)',fx:'zoom',notes:['White tape on the handle. MH, faded.']},
      {label:'(Open her chat.)',notes:['The chat opens on her last message from 2021. Min scrolls up, all the way, to the first one.']},
      {label:'(Put the phone face down.)',fx:'dark',notes:['The rain on the roof is loud enough to cover it.']}],
    after:f=>['Five classmates under two umbrellas. A boy holds one over May and two others. His black umbrella, the one with the tape, is in her hand, closed.',
      f.c5_truth?"He remembers the comment about five people under two umbrellas. He thought it meant she didn't need him any more. It meant she was keeping something.":'It is the first time Min has seen the whole photo. She was carrying his umbrella the whole time.']}},
- {scrollFirst:'Active 2 years ago'},
+ {scrollFirst:'Active now'},
  {narr:'He stepped back to give her room. She was holding on the whole time.'},
  {mem:'uncropped'},
  // E.2 The last draft
  {scene:{art:'e2Door',cap:'',rain:2}},
  {narr:'The pink umbrella leans by the door, where it has leaned for three years.'},
  byEnd({
-   unsaid:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active 2 years ago'}},{pause:900},{draft:{text:'I still have your umbrella.',auto:true,when:'Jun 2023'}},{pause:900},{narr:'He never tells her. She never knows he saw.'}],
-   open:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active 2 years ago'}},{pause:900},
+   unsaid:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active now'}},{pause:900},{draft:{text:'I still have your umbrella.',auto:true,when:'Jun 2023'}},{pause:900},{narr:'He never tells her. She never knows he saw.'}],
+   open:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active now'}},{pause:900},
      {draft:{text:'I still have your umbrella.',only:'send',flag:'end_sent',when:'Jun 2023',onSend:[{pause:2200},{typing:1800},{pause:2600}]}},
      {pause:1400},{narr:'Nothing comes. Not that night, not the next morning. The chat stays on Seen.'},{mem:'seenJune'}],
-   next:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active 2 years ago'}},{pause:900},
+   next:[{narr:"Min's thumb is already in the message box."},{open:{c:'may',stat:'Active now'}},{pause:900},
      {draft:{text:'I still have your umbrella.',only:'send',flag:'end_sent',when:'Jun 2023',onSend:[{pause:2200},{typing:1800},{pause:1200},{in:'i know'},{in:'I still have yours. I never opened it. not once in three years'},{inPhoto:'mayUmb'},{in:"I'm sorry I got so far away"}]}},
      {choice:{flag:'end_reply',opts:[
        {label:"You didn't. I stopped writing.",send:"You didn't. I stopped writing.",then:[{in:'we both did'},{in:"let's not anymore"}]},
@@ -3056,6 +3060,7 @@ const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Tw
 const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
   if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}
   return cur})})();
+const MAY_AV_AT=FLOW.findIndex(st=>st&&st.pphoto&&st.pphoto.c==='may');
 const devT=$('#devT'),devL=$('#devL');devT.max=FLOW.length-1;
 devT.oninput=()=>{devL.textContent=devT.value+' · '+FLOW_LBL[devT.value]};
 devT.onchange=()=>{const v=devT.value;try{sessionStorage.setItem('bre_jump',v)}catch(e){}
@@ -3091,7 +3096,7 @@ const SAFE=['notify','scene','title','browse','friend','lock'];
 function chOf(i){let k=0;CH_START.forEach((x,j)=>{if(x<=i)k=j});return k}
 function markDone(k){const v=sv();if(!v.done.includes(k))v.done.push(k);persist()}
 let DEVJUMP=false;
-async function runFlow(i){for(;i<FLOW.length;i++){S.ch=chOf(i);devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];
+async function runFlow(i){for(;i<FLOW.length;i++){S.ch=chOf(i);S.at=i;devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];
   if(!DEVJUMP){const st=FLOW[i];const kk=st&&typeof st==='object'?Object.keys(st)[0]:null;if(kk&&SAFE.includes(kk)){const v=sv();v.pos={i,k:chOf(i),s:snap()};persist()}
     const k=CH_START.indexOf(i);if(k>=0){const v=sv();v.cps[k]=snap();v.cur=k;if(k>0)markDone(k-1);persist()}
     if(CH_END[i]!==undefined){markDone(CH_END[i]);const v=sv();v.cps[CH_END[i]+1]=snap();v.cur=CH_END[i]+1;if(CH_END[i]>=CH_START.length-1)v.replay=false;persist()}

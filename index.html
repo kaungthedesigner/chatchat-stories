@@ -477,6 +477,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #post .pgrid i.txt small{position:absolute;left:10px;bottom:8px;font:400 10px/12px var(--sans);color:var(--ink-muted)}
 #post .vtap2{text-align:center;font:400 12px/16px var(--sans);color:var(--ink-muted);padding:10px 0 4px;animation:pulse 2.2s infinite}
 #post .ptx{margin:0 16px;padding:28px 20px;border-radius:14px;background:var(--paper-200);font:400 22px/30px var(--serif);color:var(--ink)}
+#post .ptx .mtn{color:var(--m700);font-weight:600}
 #post .cms{padding:4px 16px 0;display:grid;gap:6px}
 #post .cm{font:400 14px/20px var(--sans);color:var(--ink-body);animation:rise .3s ease-out both}
 #post .cm b{font-weight:600;color:var(--ink);margin-right:6px}
@@ -648,7 +649,14 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #pwalk .done2{margin:0 20px 34px;padding:14px;border-radius:999px;background:var(--n-ink);color:#161A19;font:600 15px/20px var(--sans);display:none}
 #pwalk .done2.on{display:block}
 .mcard .walk3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;aspect-ratio:4/3;background:#000}
-.mcard .walk3 i{background-size:cover}
+.mcard .walk3 i{background-size:cover;overflow:hidden;position:relative}
+.shotc{position:relative;overflow:hidden;width:200px;border-radius:14px}
+.shotc img{position:absolute;max-width:none;display:block;border-radius:0!important;object-fit:fill!important}
+.b.photo .shotc img{width:auto;height:auto}
+.shotc.fill{position:absolute;left:50%;top:50%;width:100%;transform:translate(-50%,-50%);border-radius:0}
+#post .pi:has(.shotc){aspect-ratio:auto}
+#post .pi .shotc{width:100%;border-radius:0}
+.row.in .b.photo .shotc{border-bottom-left-radius:2px}.row.out .b.photo .shotc{border-bottom-right-radius:2px}
 #end .mh{font:600 15px/20px var(--sans);margin:22px 0 10px;display:flex;gap:8px;align-items:baseline}#end .mh span{font-weight:400;color:var(--ink-muted,#7b858c);font-size:13px}#end .mhs{font:400 13px/18px var(--sans);color:var(--ink-muted,#7b858c);margin:-4px 0 10px}#end .mh+ .mgrid{margin-top:0}
 
 /* water street side quest */
@@ -959,7 +967,11 @@ ART.candles='<img src="img/c2-candles.webp" alt="" draggable="false">';
 ART.mayCandid='<img src="img/c2-may-candid.webp" alt="" draggable="false">';
 ART.spotRiver=()=>`<img src="${SPOTS[2].src}" alt="" draggable="false" style="object-fit:cover">`;
 ART.spotTea=()=>`<img src="${SPOTS[0].src}" alt="" draggable="false" style="object-fit:cover">`;
-ART.walk3=()=>`<div class="walk3">${(S.walk||[]).map(w=>`<i style="background-image:url('${SPOTS.find(x=>x.id===w.id).src}');background-size:240%;background-position:${w.px}% ${w.py}%"></i>`).join('')}</div>`;
+// A photo-walk shot shows exactly what was inside the viewfinder frame when the shutter was pressed (w.c = frame crop in pan units).
+function shotHTML(w,cls){const sp=SPOTS.find(x=>x.id===w.id);if(!sp)return '';const c=w.c;
+  if(!c)return `<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`;
+  return `<div class="shotc${cls?' '+cls:''}" style="aspect-ratio:${c.w}/${c.h}"><img src="${sp.src}" alt="" draggable="false" style="width:${100/c.w}%;height:${100/c.h}%;left:${-c.x/c.w*100}%;top:${-c.y/c.h*100}%"></div>`}
+ART.walk3=()=>`<div class="walk3">${(S.walk||[]).map(w=>`<i>${shotHTML(w,'fill')}</i>`).join('')}</div>`;
 ART.wetShoulder='<img src="img/c2-walk-gate.webp" alt="" draggable="false" style="object-fit:cover;object-position:50% 45%">';
 ART.lamp='<img src="img/c2-lamp-wall.webp" alt="" draggable="false" style="object-fit:cover;object-position:50% 50%">';
 ART.umbrellaBed=`<svg viewBox="0 0 300 225"><defs><pattern id="pb" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(20)"><rect width="24" height="24" fill="#dccdb8"/><rect width="12" height="24" fill="#d3c2aa"/><circle cx="18" cy="6" r="2" fill="#c5ae90"/></pattern><radialGradient id="lb" cx=".3" cy=".2" r=".9"><stop offset="0" stop-color="#fff6e0" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></radialGradient></defs><rect width="300" height="225" fill="url(#pb)"/><path d="M0 180q80-20 150 6t150-4v43H0z" fill="#cbb79c" opacity=".6"/><g transform="rotate(-28 150 112)"><path d="M58 112 L205 94 Q222 112 205 130 Z" fill="#1d2328"/><path d="M80 104 L205 94 M84 120 L205 130 M120 112 L210 112" stroke="#30383e" stroke-width="2"/><rect x="205" y="109" width="40" height="5" rx="2" fill="#9aa1a5"/><path d="M58 112h-6" stroke="#9aa1a5" stroke-width="4"/><rect x="18" y="104" width="36" height="16" rx="4" fill="#3a2a22"/><rect x="26" y="103" width="20" height="18" fill="#f6f3ec"/><text x="36" y="116" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#222" text-anchor="middle">MH</text><path d="M18 112q-14 0-14 14t14 12" stroke="#3a2a22" stroke-width="7" fill="none" stroke-linecap="round"/></g><rect width="300" height="225" fill="url(#lb)"/></svg>`;
@@ -1504,7 +1516,7 @@ const artHTML=a=>typeof ART[a]==='function'?ART[a]():ART[a];
 const cmtHTML=c=>c.del?`<div class="cm del">${esc(c.del)} deleted a comment</div>`:`<div class="cm${c.me?' me':''}"><b>${esc(c.n)}</b>${esc(c.t)}</div>`;
 function postBody(v,tag){const art=fv(v.art),text=fv(v.text);
   return `<div class="pa">${av(v.c,true)}<div><b>${esc(C[v.c].name)}</b><span>${tag?'with Min Htet':esc(v.place||'')}</span></div></div>
-   ${art?`<div class="pi">${artHTML(art)}</div>`:`<div class="ptx">${esc(text)}</div>`}
+   ${art?`<div class="pi">${artHTML(art)}</div>`:`<div class="ptx">${v.mention?`<span class="mtn">@${esc(v.mention)}</span> `:''}${esc(text)}</div>`}
    <div class="acts"><span class="hrt">${HEART}</span><span>${BUBBLE}</span></div>
    <div class="lk" id="postLk">Liked by ${esc(v.likes)}</div>
    ${art?`<div class="cap"><b>${esc(v.handle||C[v.c].name.split(' ')[0].toLowerCase())}</b>${esc(fv(v.cap))}</div>`:''}
@@ -1575,7 +1587,7 @@ async function callStep(v){const c=v.c,x=C[c],cv=$('#callv'),total=parseDur(v.du
   show('chat');push({k:'call',dir:v.dir==='in'?'in':'out',text:'Voice call · '+v.dur});await sleep(900)}
 async function glanceStep(v){
   await holdChat();renderList(liveRows(v.rows,null),null);show('list');await sleep(800);
-  await banner(v.c,C[v.c].name,'posted');
+  await banner(v.c,C[v.c].name,v.mention?'mentioned you in a post':'posted');
   $('#postBody').innerHTML=postBody(v,false);$('#postBody').scrollTop=0;$('#postTray').innerHTML='';show('post');await sleep(1300);
   await showCmts(fv(v.cmts),900);await sleep(600);
   $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(200);$('#postTray').innerHTML='';
@@ -1613,7 +1625,7 @@ async function gallery(){
   setRain(3);v.classList.add('zoom');await rawSleep(2700);}
 async function photoWalk(){Audio_.sfxLoad('shutter');
   S.walk=[];const sp=$('#pwSpots'),rolls=$('#pwRolls').children,vf=$('#vf'),win=$('#vfWin'),pan=$('#vfPan'),fr=$('#vfFr');
-  [...rolls].forEach(r=>{r.className='';r.style.backgroundImage=''});$('#pwDone').classList.remove('on');
+  [...rolls].forEach(r=>{r.className='';r.style.backgroundImage='';r.innerHTML=''});$('#pwDone').classList.remove('on');
   sp.innerHTML=SPOTS.map((x,i)=>`<button class="spot" data-i="${i}"><img src="${x.src}" alt=""><span>${x.name}</span></button>`).join('');
   show('pwalk');
   await new Promise(done=>{
@@ -1635,7 +1647,8 @@ async function photoWalk(){Audio_.sfxLoad('shutter');
       const fl=$('#vfFlash');fl.classList.add('on');Audio_.shutter();setTimeout(()=>fl.classList.remove('on'),60);
       const sx=cur.sx*W+ox,sy=cur.sy*W+oy,inF=sx>fb.l&&sx<fb.l+fb.w&&sy>fb.t&&sy<fb.t+fb.h;
       const px=Math.round((-ox)/Math.max(1,W-win.clientWidth)*100),py=Math.round((-oy)/Math.max(1,W-win.clientHeight)*100);
-      S.walk.push({id:cur.id,px,py,ok:inF});const r=rolls[S.walk.length-1];r.className='f';r.style.backgroundImage=`url('${cur.src}')`;r.style.backgroundSize='240%';r.style.backgroundPosition=`${px}% ${py}%`;
+      const cr={x:+((fb.l-ox)/W).toFixed(4),y:+((fb.t-oy)/W).toFixed(4),w:+(fb.w/W).toFixed(4),h:+(fb.h/W).toFixed(4)};
+      const wk={id:cur.id,px,py,ok:inF,c:cr};S.walk.push(wk);const r=rolls[S.walk.length-1];r.className='f';r.style.backgroundImage='';r.style.position='relative';r.style.overflow='hidden';r.innerHTML=shotHTML(wk,'fill');
       sp.querySelector(`[data-i="${SPOTS.indexOf(cur)}"]`).classList.add('done');
       const res=$('#vfRes');res.innerHTML=`<small>${inF?'In the frame':'Mostly out of the frame'}</small>${inF?cur.line:'Not quite what he meant. He keeps it anyway. Some of his favourites started like this.'}`;res.classList.add('on');
       await rawSleep(2300);vf.classList.remove('on');cur=null;
@@ -2035,7 +2048,7 @@ const CH1=[
  {mem:'note'},{pause:1000},
  // C1.5 Thura
  {rain:0},{time:'6:40 PM'},
- {glance:{c:'thura',text:'football saturday. losers buy the tea.',likes:'Hnin and 3 others',when:'June 2018',
+ {glance:{c:'thura',mention:'minhtet',text:'football saturday. losers buy the tea.',likes:'Hnin and 3 others',when:'June 2018',
    cmts:[{n:'Hnin',t:'losers also wash the glasses'},{n:'Thura',t:'then I will win. obviously'}],
    rows:[{c:'may',text:'goodnight umbrella thief',time:'Mon'},{c:'mom',text:'Okay. Sleep early.',time:'Mon'}]}},
  {time:'6:52 PM'},
@@ -2194,7 +2207,7 @@ const CH2=[
  {mem:'walk'},
  {rain:0},{time:'6:20 PM'},
  {open:{c:'may'}},
- ()=>(S.walk||[]).map(w=>{const sp=SPOTS.find(x=>x.id===w.id);ART['shot_'+w.id]=`<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`;return {outPhoto:'shot_'+w.id}}),
+ ()=>(S.walk||[]).map(w=>{const sp=SPOTS.find(x=>x.id===w.id);ART['shot_'+w.id]=shotHTML(w);return {outPhoto:'shot_'+w.id}}),
  {typing:1800},
  {if:{test:f=>f.c2_walk_framed>=3,then:[{in:"ok these are actually good. I'm annoyed 😤"}],else:[{in:"some of these are crooked and I love them 😍"}]}},
  {in:'which one is your favourite'},
@@ -2980,7 +2993,7 @@ function sv(){return SAVES[STORY.id]=SAVES[STORY.id]||{cps:{},done:[],cur:null}}
 function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(SAVES))}catch(e){}}
 function snap(){let day=S.day||0,tl=S.tlabel||null;if(S.pendTime){const o={now:S.now,day:S.day,tl:S.tlabel,clk:$('#clock').textContent};setTime(S.pendTime);day=S.day||0;tl=S.tlabel;S.now=o.now;S.day=o.day;S.tlabel=o.tl;$('#clock').textContent=o.clk}
   return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day,tl,rain:S.rain||0,walk:S.walk||null,ym:S.ym==null?null:S.ym}))}
-function restore(c){S.pendTime=null;S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;S.ym=c.ym==null?null:c.ym;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=`<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`})}
+function restore(c){S.pendTime=null;S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;S.ym=c.ym==null?null:c.ym;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=shotHTML(w)})}
 const SAFE=['notify','scene','title','browse','friend','lock'];
 function chOf(i){let k=0;CH_START.forEach((x,j)=>{if(x<=i)k=j});return k}
 function markDone(k){const v=sv();if(!v.done.includes(k))v.done.push(k);persist()}

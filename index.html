@@ -1637,7 +1637,7 @@ async function photoWalk(){Audio_.sfxLoad('shutter');
     const openSpot=i=>{cur=SPOTS[i];pan.innerHTML=`<img src="${cur.src}" alt="">`;$('#vfName').textContent=cur.name;$('#vfCount').textContent=`${S.walk.length+1} of 3`;
       $('#vfRes').classList.remove('on');$('#vfHint').style.display='';vf.classList.add('on');
       requestAnimationFrame(()=>{W=Math.max(win.clientWidth,win.clientHeight)*1.45;pan.style.width=W+'px';pan.style.height=W+'px';
-        const r=win.getBoundingClientRect(),f=fr.getBoundingClientRect();fb={l:f.left-r.left,t:f.top-r.top,w:f.width,h:f.height};
+        const r=win.getBoundingClientRect(),f=fr.getBoundingClientRect(),k=(r.width/win.clientWidth)||1;fb={l:(f.left-r.left)/k,t:(f.top-r.top)/k,w:f.width/k,h:f.height/k};
         // start with the subject pushed out of the frame, so the player has to find it
         ox=cx(win.clientWidth/2-cur.sx*W+(cur.sx>.5?-1:1)*win.clientWidth*.6);oy=cy(win.clientHeight/2-cur.sy*W+(cur.sy>.5?-1:1)*win.clientHeight*.35);place();});};
     sp.querySelectorAll('.spot').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();openSpot(+b.dataset.i)}));

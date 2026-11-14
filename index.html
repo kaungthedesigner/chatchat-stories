@@ -409,6 +409,8 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #viewer img{width:100%;height:auto;transition:transform 2.6s ease-in,opacity 2.6s}
 #viewer.zoom img{transform:scale(1.5);opacity:.85}
 .opt.ph img{width:64px;height:48px;object-fit:cover;border-radius:2px;flex:none}
+.opt.ph .shotc{height:48px;width:auto;flex:none;border-radius:2px}
+.opt.ph .shotc img{width:auto;height:auto;border-radius:0}
 .mcard > img{width:100%;aspect-ratio:4/3;object-fit:cover}
 
 /* voice transcript */
@@ -2047,7 +2049,7 @@ const CH2=[
  {if:{test:f=>f.c2_walk_framed>=3,then:[{in:"ok these are actually good. I'm annoyed 😤"}],else:[{in:"some of these are crooked and I love them 😍"}]}},
  {in:'which one is your favourite'},
  ()=>{const L={tea:["The tea shop.","ha. our tea shop. you're sentimental"],monastery:["The monks.",'the little monks!! I want to adopt them'],river:["The river.","that's my favourite too. how did you know"],market:["The market.",'it looks like a painting'],shop:["Mom's shop.","your mom's shop is so cute. I'm visiting"],dog:["Saya.",'SAYA. he is famous now']};
-   const opts=(S.walk||[]).map(w=>({label:L[w.id][0],send:L[w.id][0],v:w.id,then:[{in:L[w.id][1]}]}));
+   const opts=(S.walk||[]).map(w=>({label:L[w.id][0],send:L[w.id][0],v:w.id,ph:'shot_'+w.id,then:[{in:L[w.id][1]}]}));
    opts.push({label:"(Send the one he didn't show her.)",v:'may',ph:'mayCandid',photo:'mayCandid',then:[{typing:1500},{pause:700},{typing:1300},{in:"you're not allowed to do that 😳"},{in:'send me the original'}]});
    return [{choice:{flag:'c2_fav_photo',hint:'Which one is his favourite?',opts}}]},
  {pause:900},

@@ -234,7 +234,7 @@ body.m{padding-top:env(safe-area-inset-top)}
 .opt{text-align:left;background:var(--paper-50);border:1.5px solid var(--line-strong);border-radius:6px;padding:11px 14px;font:400 15px/22px var(--sans);color:var(--ink-body);animation:rise .3s ease-out both;transition:background .15s,border-color .15s}
 .opt:hover{background:var(--paper-300)}
 .opt:nth-child(3){animation-delay:.05s}.opt:nth-child(4){animation-delay:.1s}
-.opt.act{font-style:italic;color:var(--ink-muted)}
+.opt.act{font-style:italic;color:var(--ink-muted);background:transparent;border-style:dashed}
 .opt.ph{display:flex;align-items:center;gap:12px;padding:8px 12px 8px 8px}
 .opt.ph svg{width:64px;height:48px;border-radius:2px;flex:none}
 .opt.cont{text-align:center;background:var(--m700);border-color:var(--m700);color:var(--on-primary);font:500 14px/20px var(--sans);height:44px}
@@ -411,7 +411,7 @@ img{display:block;user-select:none;-webkit-user-drag:none}
 #viewer img{width:100%;height:auto;transition:transform 2.6s ease-in,opacity 2.6s}
 #viewer.zoom img{transform:scale(1.5);opacity:.85}
 .opt.ph img{width:64px;height:48px;object-fit:cover;border-radius:2px;flex:none}
-.opt.ph .shotc{height:48px;width:auto;flex:none;border-radius:2px}
+.opt.ph .thw{width:64px;height:48px;flex:none;overflow:hidden;border-radius:2px;display:flex;align-items:center;justify-content:center}.opt.ph .thw>img,.opt.ph .thw>svg{width:64px;height:48px;object-fit:cover;flex:none}.opt.ph .shotc{flex:none;border-radius:0;aspect-ratio:auto!important}
 .opt.ph .shotc img{width:auto;height:auto;border-radius:0}
 .mcard > img{width:100%;aspect-ratio:4/3;object-fit:cover}
 
@@ -1345,8 +1345,9 @@ async function outgoing(m){if(m.re)reBar(m.re);if(m.k==='text'){await typeField(
 function tray(html){$('#tray').innerHTML=html;scrollDown();}
 function choose(opts,hint,scene){return new Promise(res=>{
   const wrap=scene?$('#dlg'):$('#tray');
-  const h=(scene?'':'')+ (hint?`<div class="${scene?'lbl':'hint'}">${hint}</div>`:'')+opts.map((o,i)=>`<button class="opt${o.act?' act':''}${o.ph?' ph':''}" data-i="${i}">${o.ph?(typeof ART[o.ph]==='function'?ART[o.ph]():ART[o.ph]):''}<span>${esc(o.label)}</span></button>`).join('');
+  const h=(scene?'':'')+ (hint?`<div class="${scene?'lbl':'hint'}">${hint}</div>`:'')+opts.map((o,i)=>`<button class="opt${(o.act||/^\s*[(（]/.test(o.label))?' act':''}${o.ph?' ph':''}" data-i="${i}">${o.ph?'<span class="thw">'+(typeof ART[o.ph]==='function'?ART[o.ph]():ART[o.ph])+'</span>':''}<span>${esc(o.label)}</span></button>`).join('');
   if(scene){const keep=[...wrap.querySelectorAll('.nm,.tx')].map(e=>e.outerHTML).join('');wrap.innerHTML=keep+`<div class="opts" style="margin-top:14px">${h}</div>`}else{wrap.innerHTML=`<div class="tray">${h}</div>`;scrollDown()}
+  wrap.querySelectorAll('.opt.ph .thw .shotc').forEach(d=>{const m=(d.style.aspectRatio||'4/3').split('/').map(Number);const r=m[0]/(m[1]||1);if(r>4/3){d.style.height='48px';d.style.width=(48*r)+'px'}else{d.style.width='64px';d.style.height=(64/r)+'px'}});
   wrap.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();wrap.innerHTML='';res(+b.dataset.i)}));});}
 
 /* ============ SCENE ============ */
@@ -1455,7 +1456,7 @@ const MY_STORY={"0":{"It's okay. Take your time. I'll be here.":"ရပါတယ
 const MY_UI={};
 S.lang=(()=>{try{return localStorage.getItem('tib-lang')||'en'}catch(e){return 'en'}})();
 S.ch=0;
-const trS=(x,D)=>typeof x==='string'?(D[x]!==undefined?D[x]:x):Array.isArray(x)?x.map(y=>trS(y,D)):(x&&typeof x==='object'&&x.constructor===Object)?(D2=>Object.fromEntries(Object.entries(x).filter(([k])=>k!=='tr').map(([k,v])=>[k,trS(v,D2)])))(x.tr?{...D,...x.tr}:D):x;
+const trS=(x,D)=>typeof x==='string'?(D[x]!==undefined?D[x]:x):Array.isArray(x)?x.map(y=>trS(y,D)):(x&&typeof x==='object'&&x.constructor===Object)?(D2=>Object.fromEntries(Object.entries(x).filter(([k])=>k!=='myTr').map(([k,v])=>[k,trS(v,D2)])))(x.myTr?{...D,...x.myTr}:D):x;
 const trStep=s=>{const D=S.lang==='my'&&MY_STORY[S.ch];return D&&s&&typeof s==='object'?trS(s,D):s};
 const UI_RX=[];
 function uiNode(n){if(!n.__en)n.__en=n.nodeValue;const en=n.__en,t=en.trim();if(!t)return;
@@ -1836,7 +1837,9 @@ async function lockEp(v){await holdChat();$('#wall').innerHTML=EP_WALL;$('#lockD
 /* Min's thoughts while a chat is open: a dark card over the chat, waits for a tap */
 async function chatNarr(t){let n=$('#chatNar');if(!n){n=document.createElement('div');n.id='chatNar';$('#chat').appendChild(n)}
   n.innerHTML=`${esc(t)}<small>Tap to continue</small>`;await rawSleep(30);n.classList.add('on');await rawSleep(500);await waitStage(200);n.classList.remove('on');await rawSleep(300)}
-async function scrollFirst(stat){openChat('may',stat);await sleep(900);const target=msgs.querySelector('.row.in');const from=msgs.scrollTop,D=4500/S.speed,t0=performance.now();
+async function scrollFirst(stat){const T=t=>S.lang==='my'&&MY_STORY[1]&&MY_STORY[1][t]||t;const th=(S.threads.may=S.threads.may||[]);
+  if(!th.some(m=>m.text==='hey 👋'||m.text===T('hey 👋')))th.unshift({k:'div',text:'Jun 2018'},{k:'text',dir:'in',text:T('hey 👋')},{k:'text',dir:'in',text:T('I think you took my umbrella 👀')});
+  openChat('may',stat);await sleep(900);const target=msgs.querySelector('.row.in');const from=msgs.scrollTop,D=4500/S.speed,t0=performance.now();
   await new Promise(r=>{(function f(){const k=Math.min(1,(performance.now()-t0)/D),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;msgs.scrollTop=from*(1-e);if(k<1)requestAnimationFrame(f);else r()})()});
   if(target)target.classList.add('glow');await sleep(2600);if(target)target.classList.remove('glow')}
 /* ===== Which ending: sent drafts (courage) first, then whether he read Htoo's comment ===== */
@@ -2157,7 +2160,7 @@ const CH1=[
    C:[{in:'who was that. you gave her a DEAD umbrella. in front of daw nu 💀'}]}),
  {choice:{flag:'c1_thura',opts:[
    {label:'She took my umbrella by mistake.',send:'She took my umbrella by mistake.',then:[{in:'"by mistake" ok ok ok 😏'}]},
-   {label:'Nobody.',send:'Nobody.',tr:{'Nobody.':'ဘယ်သူမှ မဟုတ်ပါဘူးကွာ'},then:[{in:"nobody doesn't write you notes"},{out:'It says sorry.'},{in:"that's how it starts 😏"}]},
+   {label:'Nobody.',send:'Nobody.',myTr:{'Nobody.':'ဘယ်သူမှ မဟုတ်ပါဘူးကွာ'},then:[{in:"nobody doesn't write you notes"},{out:'It says sorry.'},{in:"that's how it starts 😏"}]},
    {label:'Her name is May.',send:'Her name is May.',then:[{in:'you know her NAME'},{in:'who are you and what did you do with min 😳'}]}]}},
  pick('c1_thura',{
    A:[{in:"careful though. girls like that don't stay in this town"},{pause:1500},{in:'joking. go eat 😅'}],
@@ -2198,7 +2201,7 @@ const CH1=[
  {notify:{c:'may',text:'ok I have a question',rows:[{c:'mom',text:'Is she a nice girl?',time:'8:41 PM'},{c:'hnin',text:"I can't lend you mine every time",time:'7:16 PM'},{c:'thura',text:'joking. go eat 😅',time:'6:54 PM'}]}},
  pick('c1_return',{
    A:[{in:'daw aye aye says you take photos of "strange things"'},{in:'show me one strange thing 📸'}],
-   B:[{in:'since you wanted to give away your umbrella so easily'},{in:'daw aye aye says you take photos of "strange things". show me one 📸',tr:{'daw aye aye says you take photos of "strange things". show me one 📸':'ဒေါ်အေးအေးကပြောတာ နင်က ထူးဆန်းတာတွေ လျှောက်ရိုက်တယ်တဲ့ တစ်ခုလောက်ပြပါဦး 📸'}}],
+   B:[{in:'since you wanted to give away your umbrella so easily'},{in:'daw aye aye says you take photos of "strange things". show me one 📸',myTr:{'daw aye aye says you take photos of "strange things". show me one 📸':'ဒေါ်အေးအေးကပြောတာ နင်က ထူးဆန်းတာတွေ လျှောက်ရိုက်တယ်တဲ့ တစ်ခုလောက်ပြပါဦး 📸'}}],
    C:[{in:'after you tried to return my dead umbrella today'},{in:'daw aye aye says you take photos of "strange things". show me one 📸'}]}),
  {choice:{flag:'c1_photo_sent',hint:'Send a photo from your gallery',opts:[
    {label:'The tea-shop table in the rain',ph:'teaTable',photo:'teaTable',v:'table',then:[{mem:'table'},{in:'whose cups'},{out:'Ours. From yesterday.'},{in:'you took a photo of my tea?? 😳'},{in:"that's either creepy or poetic"},{out:'Which one?'},{in:'still deciding 🤔'}]},
@@ -2347,7 +2350,7 @@ const CH2=[
  {choice:{flag:'c2_mom_stk',opts:[
    {label:'Tap the smiley face, then the cat.',send:'Tap the smiley face, then the cat.',then:[{inSticker:'laugh'},{in:'This is not a cat.'},{in:'Why is this man laughing.'},{out:'Press the one next to it.'},{in:'Too late. I sent the laughing man to the monastery donation group.'},{in:'Sayadaw replied.'}]},
    {label:"I'll do it for you tomorrow.",send:"I'll do it for you tomorrow.",then:[{in:'Tomorrow you will be out with your camera friend.'},{in:'I know how tomorrow works.'}]},
-   {label:'(Send her the cat sticker.)',sticker:'catUmb',then:[{in:'Yes. This one.'},{in:'How do I keep it.'},{out:'Press and hold.'},{in:'I pressed. Now the cat is on my phone forever.'},{in:'Good.',tr:{'Good.':'ဂွတ်'}}]}]}},
+   {label:'(Send her the cat sticker.)',sticker:'catUmb',then:[{in:'Yes. This one.'},{in:'How do I keep it.'},{out:'Press and hold.'},{in:'I pressed. Now the cat is on my phone forever.'},{in:'Good.',myTr:{'Good.':'ဂွတ်'}}]}]}},
  {in:'Also. Daw Aye Aye says the girl with the yellow umbrella walked past the shop three times on Thursday.'},
  {in:'Three times.'},
  {choice:{flag:'c2_mom_yellow',opts:[
@@ -2709,7 +2712,7 @@ const CH4=[
  {in:'and they found me a college there'},
  {choice:{flag:'c4_news',opts:[
    {label:'When?',send:'When?',then:[{in:'july'},{in:'after the rains start'}]},
-   {label:'For how long?',send:'For how long?',then:[{in:"I don't know"},{in:'they say until business is better'},{in:"so I don't know"},{in:'we leave in july',tr:{'we leave in july':'ဇူလိုင်မှာ ထွက်ရမယ်လို့ပြောတယ်'}}]},
+   {label:'For how long?',send:'For how long?',then:[{in:"I don't know"},{in:'they say until business is better'},{in:"so I don't know"},{in:'we leave in july',myTr:{'we leave in july':'ဇူလိုင်မှာ ထွက်ရမယ်လို့ပြောတယ်'}}]},
    {label:"(Don't answer yet.)",act:1,then:[{pause:2600},{in:'min'},{in:'we leave in july'},{in:'say something, anything'}]}]}},
  {pause:900},
  {in:"I didn't choose this"},
@@ -2850,7 +2853,7 @@ const CH4=[
  {in:"I'm sorry I'm sorry I'm sorry"},
  {choice:{flag:'c4_roads',opts:[
    {label:"It's not your fault.",send:"It's not your fault.",then:[{in:'I know'},{in:'it still feels like it'}]},
-   {label:'Next year, then.',send:'Next year, then.',then:[{in:'next year'},{pause:1500},{in:'yeah',tr:{'yeah':'နောက်နှစ်ပေါ့'}}]},
+   {label:'Next year, then.',send:'Next year, then.',then:[{in:'next year'},{pause:1500},{in:'yeah',myTr:{'yeah':'နောက်နှစ်ပေါ့'}}]},
    {label:"I'll light one for both of us.",send:"I'll light one for both of us.",then:[{in:'send me a photo'},{in:"I'll light one at the window here"},{in:"it won't be the same"}]}]}},
  {if:{test:f=>f.c4_promise==='B',then:[{in:'I promised'},{in:'I hate that I promised'}]}},
  {pause:1400},
@@ -2884,7 +2887,7 @@ const CH5=[
  {in:'tell her hi'},
  {choice:{flag:'c5_gap',opts:[
    {label:'Busy week?',send:'Busy week?',then:[{in:'so busy. stocktake at the warehouse + college'},{in:"I'll call this weekend"}]},
-   {label:'I miss you.',send:'I miss you.',tr:{'I miss you.':'နင့်ကို လွမ်းနေတာ'},then:[{typing:1500},{pause:2200},{in:'me too'},{in:"sorry I'm so bad at this right now"}]},
+   {label:'I miss you.',send:'I miss you.',myTr:{'I miss you.':'နင့်ကို လွမ်းနေတာ'},then:[{typing:1500},{pause:2200},{in:'me too'},{in:"sorry I'm so bad at this right now"}]},
    {label:'(Send a photo of your table at the tea shop.)',act:1,photo:'teaTable',then:[{pause:1500},{div:'Next morning'},{in:'❤️'},{in:'our table'}]}]}},
  {pause:900},
  // C5.2 The weekend

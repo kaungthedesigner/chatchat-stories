@@ -761,6 +761,9 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 /* Ch5 photo and memory posts: a plain line under the picture */
 #postNar{position:absolute;left:12px;right:12px;bottom:92px;z-index:6;background:rgba(20,26,30,.9);color:#FBF7EF;border-radius:14px;padding:14px 18px;font:italic 400 16px/24px var(--serif);box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s;pointer-events:none}
 #postNar.on{opacity:1;transform:none}
+#chatNar{position:absolute;left:12px;right:12px;bottom:96px;z-index:8;background:rgba(20,26,30,.92);color:#FBF7EF;border-radius:14px;padding:14px 18px 10px;font:italic 400 16px/24px var(--serif);box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s;pointer-events:none}
+#chatNar.on{opacity:1;transform:none}
+#chatNar small{display:block;margin-top:6px;text-align:right;font:400 12px/16px var(--sans);font-style:normal;opacity:.6}
 #postDark{position:absolute;inset:0;z-index:5;background:#05080A;opacity:0;transition:opacity 1.4s ease;pointer-events:none}
 #postDark.on{opacity:.94}
 #post .pf{position:relative;z-index:7}
@@ -1536,7 +1539,7 @@ async function exec(s){
   case 'pphoto': case 'memshare': await photoActs(v);break;
   case 'minpost': await minPost(v);break;
   case 'lockEp': await lockEp(v);break;
-  case 'scrollFirst': await scrollFirst(v);break;
+  case 'scrollFirst': if(S._sf){S._sf=0;break}await scrollFirst(v);break;
   case 'react':{const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir==='out');if(lo){lo.rx=v;lo.rxMe=false;lo.rc='Seen'}renderThread();Audio_.blip(false);await sleep(800);break}
   case 'rcpt':{const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'){lo.rc=v;const r=$('#rc');if(r)r.textContent=v}await sleep(300);break}
   case 'final': finalCard();await new Promise(()=>{});break;
@@ -1574,7 +1577,7 @@ async function exec(s){
   case 'shot':{ const a=$('#sart');const old=[...a.children];a.insertAdjacentHTML('beforeend',SCENE[v]);const n=a.lastElementChild;S.k=(S.k||0)+1;if(S.k%2)n.classList.add('k2');n.classList.add('in');requestAnimationFrame(()=>requestAnimationFrame(()=>n.classList.remove('in')));setTimeout(()=>old.forEach(o=>o.remove()),1000);await rawSleep(450);break}
   case 'say': await dialog(v[0],v[1]);break;
   case 'min': await dialog('Min',v,'min');break;
-  case 'narr': await dialog('',v,'narr');break;
+  case 'narr': if($('#chat').classList.contains('on'))await chatNarr(v);else await dialog('',v,'narr');break;
   case 'title':{ S.day=(S.day||0)+1;S.now=null;{const y=ymFrom((v.small||'')+' '+(v.big||''));if(y!=null)S.ym=y} await holdChat();const t=$('#title');$('#tTap').classList.remove('on');
     if(t.classList.contains('on')){t.classList.add('swap');await rawSleep(700);$('#tBig').innerHTML=v.big;$('#tSmall').textContent=v.small||'';t.classList.remove('swap');if(v.rain!==undefined)setRain(v.rain);await rawSleep(1600);}
     else{$('#tBig').innerHTML=v.big;$('#tSmall').textContent=v.small||'';t.classList.add('on');await rawSleep(1000);$('#viewer').classList.remove('on','zoom');show('');if(v.rain!==undefined)setRain(v.rain);await rawSleep(1400);}
@@ -1822,6 +1825,8 @@ async function photoActs(v){
   const note=async t=>{const pb=$('#postBody');pb.style.paddingBottom='130px';pb.scrollTo({top:9999,behavior:'smooth'});if(nar.classList.contains('on')){nar.classList.remove('on');await rawSleep(350)}nar.textContent=t;nar.classList.add('on');await rawSleep(700);
     /* each line stays until the player taps, so nobody misses the first one */
     $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(200);$('#postTray').innerHTML='';shown=true};
+  if(o.chat){for(const t of fv(v.after)||[])await note(t);nar.classList.remove('on');$('#postBody').style.paddingBottom='';
+    await scrollFirst(o.chat);S._sf=1;for(const t of fv(o.notes)||[])await chatNarr(t);return}
   for(const t of fv(o.notes)||[])await note(t);
   for(const t of fv(v.after)||[])await note(t);
   if(!shown){$('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML=''}$('#post .who b').textContent='Post';nar.classList.remove('on');$('#postBody').style.paddingBottom='';
@@ -1839,6 +1844,9 @@ async function minPost(v){
 async function lockEp(v){await holdChat();$('#wall').innerHTML=EP_WALL;$('#lockDate').textContent=v.date;$('#lockTime').textContent=v.time;const n=$('#lkNote');n.classList.remove('on');n.innerHTML='';show('lock');
   await rawSleep(1800);n.innerHTML=`<small>${esc(v.from)} · now</small><b>${esc(v.text)}</b>`;n.classList.add('on');Audio_.blip(false);await rawSleep(1800);await swipeUp();n.classList.remove('on')}
 /* ===== The ending: Min scrolls May's chat all the way back to her first message ===== */
+/* Min's thoughts while a chat is open: a dark card over the chat, waits for a tap */
+async function chatNarr(t){let n=$('#chatNar');if(!n){n=document.createElement('div');n.id='chatNar';$('#chat').appendChild(n)}
+  n.innerHTML=`${esc(t)}<small>Tap to continue</small>`;await rawSleep(30);n.classList.add('on');await rawSleep(500);await waitStage(200);n.classList.remove('on');await rawSleep(300)}
 async function scrollFirst(stat){openChat('may',stat);await sleep(900);const target=msgs.querySelector('.row.in');const from=msgs.scrollTop,D=4500/S.speed,t0=performance.now();
   await new Promise(r=>{(function f(){const k=Math.min(1,(performance.now()-t0)/D),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;msgs.scrollTop=from*(1-e);if(k<1)requestAnimationFrame(f);else r()})()});
   if(target)target.classList.add('glow');await sleep(2600);if(target)target.classList.remove('glow')}
@@ -2999,7 +3007,7 @@ const ENDING=[
  {memshare:{c:'may',banner:'posted a photo',head:'Post',art:'uncropped',place:'The city',likes:'Htoo, Su Su and 40 others',when:'June 2023',
    cap:"found this from 3 years ago. first rain in the city. someone else's umbrella. I never used mine",flag:'end_photo',zo:'44% 84%',
    opts:[{label:'(Zoom in on the umbrella in her hand.)',fx:'zoom',notes:['White tape on the handle. MH, faded.']},
-     {label:'(Open her chat.)',notes:['The chat opens on her last message from 2021. Min scrolls up, all the way, to the first one.']},
+     {label:'(Open her chat.)',chat:'Active now',notes:['The chat opens on her last message from 2021. Min scrolls up, all the way, to the first one.']},
      {label:'(Put the phone face down.)',fx:'dark',notes:['The rain on the roof is loud enough to cover it.']}],
    after:f=>['Five classmates under two umbrellas. A boy holds one over May and two others. His black umbrella, the one with the tape, is in her hand, closed.',
      f.c5_truth?"He remembers the comment about five people under two umbrellas. He thought it meant she didn't need him any more. It meant she was keeping something.":'It is the first time Min has seen the whole photo. She was carrying his umbrella the whole time.']}},

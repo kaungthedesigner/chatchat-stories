@@ -665,13 +665,13 @@ body.lang-my .hx p{font-family:var(--sans);font-size:15px;line-height:24px}
 #vf{position:absolute;inset:0;background:#000;display:none;flex-direction:column;z-index:5}
 #vf.on{display:flex}
 #vf .bar{display:flex;align-items:center;justify-content:space-between;padding:56px 18px 10px;font:500 14px/20px var(--sans)}
-#vf .bar b{font-weight:600}
+#vf .bar b{font-weight:600;flex:1;min-width:0;margin:0 12px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#vf .bar span{flex:none}
 #vf .win{position:relative;flex:1;overflow:hidden;touch-action:none;cursor:grab}
 #vf .pan{position:absolute;top:0;bottom:0;height:100%;will-change:transform}
 #vf .pan{left:0;top:0;bottom:auto}
 #vf .pan img{width:100%;height:100%;display:block;pointer-events:none;user-select:none}
 #vf .mask{position:absolute;inset:0;pointer-events:none;box-shadow:0 0 0 999px rgba(0,0,0,.55);border-radius:2px}
-#vf .fr{position:absolute;left:50%;top:50%;width:78%;height:62%;transform:translate(-50%,-50%);pointer-events:none}
+#vf .fr{position:absolute;left:50%;top:50%;width:88%;height:auto;aspect-ratio:4/3;transform:translate(-50%,-50%);pointer-events:none}
 #vf .fr i{position:absolute;width:22px;height:22px;border-color:#fff;border-style:solid}
 #vf .fr i:nth-of-type(1){left:0;top:0;border-width:2px 0 0 2px}#vf .fr i:nth-of-type(2){right:0;top:0;border-width:2px 2px 0 0}
 #vf .fr i:nth-of-type(3){left:0;bottom:0;border-width:0 0 2px 2px}#vf .fr i:nth-of-type(4){right:0;bottom:0;border-width:0 2px 2px 0}

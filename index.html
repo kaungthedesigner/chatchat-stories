@@ -859,7 +859,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #wsCard li .th{flex:none;width:64px;height:64px;border-radius:14px;background:#dceef1 center/auto 74% no-repeat}
 #wsCard li .th.tr{background-size:58% auto;background-position:center}
 #wsCard li .th.lr{display:flex;align-items:center;justify-content:center}
-#wsCard li .th.lr svg{width:44px;height:44px}
+#wsCard li .th.lr svg{width:36px;height:auto}
 #wsCard li .th.ic{display:flex;align-items:center;justify-content:center;font-size:22px;color:#2f6f7a;background:#dceef1}
 #wsCard li b{color:#1d2a2c;font-weight:600}
 #wsCard .btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
@@ -1936,7 +1936,7 @@ async function waterStreet(){
     btns.forEach(b=>{$('#'+b[0]).onclick=e=>{e.stopPropagation();card.style.display='none';res(b[0])}})});
   Audio_.songLoad();
   await cardShow(`<div class="eb">Side quest · Water street</div><h2>Reach May before the song ends</h2><p>She's waiting at the far end of the street, by the pandal.</p>
-    <ul><li><span class="th lr"><svg viewBox="0 0 44 44" fill="none" stroke="#2f6f7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6 12 38M28 6l4 32" stroke-dasharray="3 3" opacity=".55"/><path d="M8 22H3m0 0 3.5-3.5M3 22l3.5 3.5M36 22h5m0 0-3.5-3.5M41 22l-3.5 3.5"/><circle cx="22" cy="15" r="3"/><path d="M22 18v9m-4-6h8m-6.5 13 2.5-7 2.5 7"/></svg></span><span><b>Tap left or right</b> of the screen to change lanes.</span></li>
+    <ul><li><span class="th lr"><svg viewBox="0 0 150 144" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5.88134 77.4128C2.65825 74.2726 2.65825 69.0929 5.88134 65.9527L50.1351 22.8372C55.2041 17.8985 63.7178 21.4902 63.7178 28.5673L63.7178 114.798C63.7178 121.875 55.2041 125.467 50.1351 120.528L5.88134 77.4128Z" fill="#8F4630"/><path d="M144.117 77.4128C147.34 74.2726 147.34 69.0929 144.117 65.9527L99.863 22.8372C94.7939 17.8985 86.2803 21.4902 86.2803 28.5673L86.2803 114.798C86.2803 121.875 94.7939 125.467 99.863 120.528L144.117 77.4128Z" fill="#8F4630"/></svg></span><span><b>Tap left or right</b> of the screen to change lanes.</span></li>
     <li><span class="th" style="background-image:url(img/ws-pal1.webp?v=2611161)"></span><span><b>Tap friends to splash them</b> before they splash you. Getting wet is fine. It's Thingyan.</span></li>
     <li><span class="th tr" style="background-image:url(img/ws-truck.webp?v=2611161)"></span><span><b>Thura's truck drives down one lane</b> and that lane turns blue. Be in another lane when it reaches you. Three hits and Min's camera is ruined.</span></li></ul>`,[['wsStart','Start']]);
   let bag=false,fails=0,res;

@@ -1303,7 +1303,7 @@ function el(m,prev){
   if(m.k==='photo'){d.innerHTML=`<div class="b photo">${ART[m.art]&&typeof ART[m.art]==='function'?ART[m.art]():ART[m.art]}</div>`}
   if(m.k==='sticker'){d.innerHTML=ART.STK[m.art]}
   if(m.k==='link'){const L=LINKS[m.id];d.innerHTML=`<div class="b lnk"><a href="${L.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="lt"><div class="lg">${L.badge}</div><div><b>${esc(L.title)}</b><small>${esc(L.domain)}</small></div></div><ul>${L.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></a></div>`}
-  if(m.k==='loc'){const my=S.lang==='my';d.innerHTML=`<div class="b loc"><div class="lm">${MAP_LOC}</div><div class="lt"><b>${esc(m.place)}</b><small>${esc(m.area)} · ${my?'တည်နေရာ မျှဝေထားတယ်':'Shared location'}</small></div></div>`}
+  if(m.k==='loc'){d.innerHTML=`<div class="b loc"><div class="lm">${MAP_LOC}</div><div class="lt"><b>${esc(m.place)}</b><small>${esc(m.area)} · Shared location</small></div></div>`}
   if(m.k==='voice'){d.innerHTML=`<div class="b"><div class="voice"><div class="pl">${IC.play}</div><div class="wv">${Array.from({length:26},(_,i)=>`<i style="height:${20+Math.abs(Math.sin(i*1.7))*70}%"></i>`).join('')}</div><small>${m.text}</small></div>${m.tr?`<div class="vtr">${m.tr[0]==='('?esc(m.tr):'“'+esc(m.tr)+'”'}</div>`:''}</div>`}
   d._m=m;rxPaint(d,m);
   return d;

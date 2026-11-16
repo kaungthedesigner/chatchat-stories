@@ -1506,7 +1506,9 @@ function storyMaps(){if(EN2MY)return;EN2MY={};MY2EN={};Object.values(MY_STORY).f
 const swapT=t=>{if(typeof t!=='string')return t;const M=S.lang==='my'?EN2MY:MY2EN;return M[t]!==undefined?M[t]:(M[t.trim()]!==undefined?t.replace(t.trim(),M[t.trim()]):t)};
 function storySwap(){storyMaps();
   Object.values(S.threads||{}).forEach(th=>th.forEach(m=>{['text','cap'].forEach(k=>{if(m[k])m[k]=swapT(m[k])});if(m.re){m.re.q=swapT(m.re.q)}}));
-  uiBusy=true;try{const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(n.parentElement&&n.parentElement.closest('.top,#bar,header'))continue;const v=swapT(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}}finally{uiBusy=false}}
+  /* title card: its text is stored as one HTML string, so swap the whole thing */
+  {const tb=$('#tBig');if(tb&&tb.innerHTML){const v=swapT(tb.innerHTML);if(v!==tb.innerHTML)tb.innerHTML=v}}
+  uiBusy=true;try{const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(n.parentElement&&n.parentElement.closest('.top,#bar,header,#tBig'))continue;const v=swapT(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}}finally{uiBusy=false}}
 $('#bLang').onclick=e=>{e.stopPropagation();e.currentTarget.blur();S.lang=S.lang==='my'?'en':'my';S.langSwitched=true;try{localStorage.setItem('tib-lang',S.lang)}catch(_){}
   langSync();storySwap();toast(S.lang==='my'?'မြန်မာ':'English')};
 

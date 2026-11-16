@@ -3235,7 +3235,7 @@ $('#hero').onclick=e=>{e.stopPropagation();$('#go').click()};
 $('#libCh').onclick=e=>{e.stopPropagation();renderLib();$('#start').classList.add('chap')};
 $('#chBack').onclick=e=>{e.stopPropagation();$('#start').classList.remove('chap')};
 $('#chOver').onclick=e=>{e.stopPropagation();const b=$('#chOver');if(!b.classList.contains('sure')){b.classList.add('sure');b.textContent='Tap again to start from the Prologue';return}
-  const v=sv();v.pos=null;v.replay=false;persist();playFrom(0,false)};
+  /* Start over is a full reset: chapters lock again, choices, memories and saves are cleared; only the endings found carry over */const ends=sv().ends;SAVES[STORY.id]={cps:{},done:[],cur:null};if(ends&&ends.length)sv().ends=ends;persist();playFrom(0,false)};
 renderLib();
 (()=>{if(!DEV_ON)return;let j=null;try{j=sessionStorage.getItem('bre_jump');sessionStorage.removeItem('bre_jump')}catch(e){}
   const m=/jump=(\d+)/.exec(location.hash);if(m){j=m[1];try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}

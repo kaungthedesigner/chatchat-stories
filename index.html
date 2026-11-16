@@ -600,6 +600,12 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #start .lib{padding:48px 20px 40px}
 #start .lhd .eb{font:600 12px/16px var(--sans);letter-spacing:.01em;color:var(--clay-500);margin:0 0 4px}
 #start .lhd h1{font:650 36px/40px var(--sans);letter-spacing:-.03em;margin:0 0 20px;color:var(--ink);font-variation-settings:normal}
+.lhd .lrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lsw{display:inline-flex;padding:3px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+.lsw button{height:30px;min-width:44px;padding:0 12px;border-radius:999px;font:500 13px/1 var(--sans);color:rgba(255,255,255,.62)}
+.lsw button[aria-pressed=true]{background:#E8B04B;color:#1C1406;font-weight:600}
+body.lang-my .hx p,body.lang-my .hx h2{font-style:normal}
+body.lang-my .hx p{font-family:var(--sans);font-size:15px;line-height:24px}
 #start .hero{border-radius:24px;box-shadow:var(--shadow-cover)}
 #start .hs{background:linear-gradient(180deg,rgba(12,10,9,0) 38%,rgba(12,10,9,.55) 62%,rgba(12,10,9,.92))}
 #start .hx{padding:24px;color:var(--on-cover)}
@@ -965,7 +971,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
     <div class="ov" id="leave"><div class="card"><h3>Leave the story?</h3><p id="leaveP"></p><div class="bt"><button class="stay" id="leaveStay">Keep playing</button><button class="go2" id="leaveGo">Back to Stories</button></div></div></div>
     <div class="ov on" id="start">
       <div class="lib" id="lib">
-        <div class="lhd"><div class="eb">Stories</div><h1>Tales in between</h1></div>
+        <div class="lhd"><div class="lrow"><div class="eb">Stories</div><div class="lsw" id="libLang" role="group" aria-label="Language"><button data-l="en" aria-pressed="true">EN</button><button data-l="my" aria-pressed="false">မြန်မာ</button></div></div><h1>Tales in between</h1></div>
         <div class="hero" id="hero" role="button" tabindex="0">
           <img src="img/dr-13-walk-open.webp?v=2611161" alt="" draggable="false">
           <div class="hs"></div>
@@ -1459,8 +1465,8 @@ const MEM_INFO={
  herReply:{t:'Her Reply',ty:'Photo',art:'mayUmb'},
  firstRain:{t:'First Rain, Again',ty:'Photo',art:'rainTable'}
 };
-function addMem(id){if(S.memories.includes(id))return;S.memories.push(id);toast(`Memory kept · <b>${MEM_INFO[id].t}</b>`)}
-function addUnsent(text,when){S.unsent.push({text,when});toast(`Not sent · kept in <b>Memories</b>`)}
+function addMem(id){if(S.memories.includes(id))return;S.memories.push(id);toast(S.lang==='my'?`အမှတ်တရ သိမ်းပြီး · <b>${SH[MEM_INFO[id].t]||MEM_INFO[id].t}</b>`:`Memory kept · <b>${MEM_INFO[id].t}</b>`)}
+function addUnsent(text,when){S.unsent.push({text,when});toast(S.lang==='my'?`မပို့ဖြစ် · <b>အမှတ်တရများ</b> ထဲ သိမ်းထားတယ်`:`Not sent · kept in <b>Memories</b>`)}
 function memCards(all,only){const ids=Object.keys(MEM_INFO);return ids.map(id=>{const m=MEM_INFO[id],has=S.memories.includes(id);if(!has&&!all)return '';if(only==='kept'&&!has||only==='other'&&has)return '';
   const pic=has?(m.art?(typeof ART[m.art]==='function'?ART[m.art]():ART[m.art]):`<div class="ph">${IC[m.icon]}</div>`):`<div class="ph"></div>`;
   return `<div class="mcard${has?'':' lock'}">${pic}<div class="c">${has?m.t:'Another path'}<span>${has?m.ty:'Not chosen'}</span></div></div>`}).join('')}
@@ -1490,8 +1496,19 @@ const trStep=s=>{if(!s||typeof s!=='object')return s;if(S.lang==='my'){const D=M
   /* English mode: a branch that was translated before the player switched language is turned back */
   if(!S.langSwitched)return s;storyMaps();return trS(s,MY2EN)};
 const UI_RX=[[/^(\d+) of 3$/,'$1 / 3'],[/^([\d,]+) Ks$/,'$1 ကျပ်'],[/^of ([\d,]+) Ks$/,'/ $1 ကျပ်'],[/^([\d,]+) Ks · not used$/,'$1 ကျပ် · မသုံးရသေးပါ'], [/^Seat (\w+)$/,'ထိုင်ခုံ $1'],[/^Seat (\w+)\. Count out the fare\.$/,'ထိုင်ခုံ $1။ ကားခ ရေတွက်ပေးပါ။'],[/^Seat (\w+)\. Change: ([\d,]+) Ks\.$/,'ထိုင်ခုံ $1။ ပြန်အမ်းငွေ $2 ကျပ်။'], [/^Night bus to the city · seat (\w+)$/,'မြို့ကြီးသွား ညကား · ထိုင်ခုံ $1'], [/^(Mostly dry|Wet|Soaked) · camera (bone dry|still working)$/,(m,a,b)=>({'Mostly dry':'သိပ်မစို','Wet':'ရေစို','Soaked':'ရွှဲနစ်'})[a]+' · '+(b==='bone dry'?'ကင်မရာ လုံးဝမစို':'ကင်မရာ အလုပ်လုပ်သေးတယ်')], [/^You splashed (\d+) friends?\. Min got splashed (\d+) times?\.$/,'သူငယ်ချင်း $1 ယောက်ကို ရေပက်ခဲ့တယ်။ မင်းထက်ကတော့ $2 ခါ ရေအပက်ခံရတယ်။']];
+/* ===== App screens around the story (home, chapter list, Memories, leave dialog, ending card, top bar) follow the language too. The chat app inside the story stays English. ===== */
+const SHELL_SEL='#lib,#chs,#leave,#album,#end,.bar,#toast';
+const SH={"Stories":"ဇာတ်လမ်းများ","A story told in messages":"ထီးနှစ်လက်ပုံပြင်","Before the Rain Ends":"မိုးမစဲမီ","For the days when you miss someone.":"တစ်စုံတစ်ယောက်ကို လွမ်းနေမိတဲ့ နေ့ရက်တွေအတွက်။","Begin":"စတင်မယ်","Continue":"ဆက်ကစားမယ်","Play again":"ပြန်ကစားမယ်","Chapters":"အခန်းများ","Prologue, Chapters 1–5, Ending & Epilogue · about 110 minutes":"နိဒါန်း၊ အခန်း ၁–၅၊ ဇာတ်သိမ်းနှင့် နိဂုံး · မိနစ် ၁၁၀ ခန့်","More stories":"နောက်ထပ် ဇာတ်လမ်းများ","More stories coming soon":"ဇာတ်လမ်းအသစ်တွေ မကြာခင် လာပါမယ်","We're working on something new. Stay tuned!":"အသစ်တစ်ခု ပြင်ဆင်နေပါတယ်။ စောင့်မျှော်ပေးပါ။","All chapters so far finished":"အခုထိ ထွက်ထားသမျှ အခန်းအားလုံး ပြီးပါပြီ","Prologue":"နိဒါန်း","Coming soon":"မကြာခင် လာမယ်","Played":"ကစားပြီး","In progress":"ကစားဆဲ","Up next":"နောက်တစ်ခန်း","Locked":"မဖွင့်ရသေး","November 2020":"၂၀၂၀ ခုနှစ်၊ နိုဝင်ဘာလ","June 2018":"၂၀၁၈ ခုနှစ်၊ ဇွန်လ","July to October 2018":"၂၀၁၈ ခုနှစ်၊ ဇူလိုင်လမှ အောက်တိုဘာလအထိ","March to December 2019":"၂၀၁၉ ခုနှစ်၊ မတ်လမှ ဒီဇင်ဘာလအထိ","January to September 2020":"၂၀၂၀ ခုနှစ်၊ ဇန်နဝါရီလမှ စက်တင်ဘာလအထိ","October 2020 to early 2021":"၂၀၂၀ ခုနှစ်၊ အောက်တိုဘာလမှ ၂၀၂၁ အစောပိုင်းအထိ","June 2023 · Epilogue 2024":"၂၀၂၃ ခုနှစ်၊ ဇွန်လ · နိဂုံး ၂၀၂၄","Start over":"အစကနေ ပြန်စမယ်","Tap again to start from the Prologue":"နိဒါန်းကနေ ပြန်စဖို့ ထပ်နှိပ်ပါ","Leave the story?":"ဇာတ်လမ်းကနေ ထွက်မလား။","Your progress is saved. Next time you'll pick up from the start of this chat or scene.":"ကစားထားသမျှ သိမ်းထားပြီးပါပြီ။ နောက်တစ်ခါ ဒီ chat ဒါမှမဟုတ် ဒီမြင်ကွင်းရဲ့ အစကနေ ပြန်ဆက်ရပါမယ်။","Keep playing":"ဆက်ကစားမယ်","Back to Stories":"ဇာတ်လမ်းများဆီ ပြန်သွားမယ်","Sound":"အသံ","Memories":"အမှတ်တရများ","Photos, notes and keepsakes you find will appear here.":"တွေ့ရှိထားတဲ့ ဓာတ်ပုံ၊ မှတ်စုနဲ့ အမှတ်တရပစ္စည်းတွေ ဒီမှာ ပေါ်လာပါမယ်။","Unsent":"မပို့ဖြစ်ခဲ့တဲ့ စာများ","Nothing yet. Every message you choose not to send will be kept here.":"ဘာမှ မရှိသေးပါ။ မပို့ဖို့ ရွေးလိုက်တဲ့ စာတိုင်းကို ဒီမှာ သိမ်းထားပေးပါမယ်။","Kept":"သိမ်းထားတာတွေ","None this time.":"ဒီတစ်ခါ မရှိပါ။","Another path":"တခြားလမ်းကြောင်း","Not chosen":"မရွေးခဲ့","Still waiting":"စောင့်မျှော်နေဆဲ","Unsaid":"မပြောဖြစ်ခဲ့","Open door":"တံခါးပွင့်","Until the next rain":"နောက်မိုးတစ်ခါအထိ","He typed it one more time and let it go unsent. Some things stay in the drafts.":"နောက်တစ်ခေါက် ရိုက်ပြီး မပို့ဘဲ ထားလိုက်တယ်။ တချို့စကားတွေက draft ထဲမှာပဲ ကျန်ခဲ့တယ်။","He said it. She saw it. What happened next is yours to decide.":"သူ ပြောလိုက်တယ်။ သူမ မြင်သွားတယ်။ နောက်ဘာဖြစ်မလဲဆိုတာ ကိုယ်တိုင် ဆုံးဖြတ်ပါ။","Not together yet. But the umbrellas are going home, and so, one day, is she.":"အတူမရှိကြသေးဘူး။ ဒါပေမဲ့ ထီးတွေ အိမ်ပြန်လာနေပြီ၊ တစ်နေ့ သူလည်း ပြန်လာမှာပါ။","Object":"ပစ္စည်း","Photo":"ဓာတ်ပုံ","Note":"မှတ်စု","Moment":"အခိုက်အတန့်","Promise":"ကတိ","Message":"စာ","Your three shots":"ရိုက်ခဲ့တဲ့ ပုံသုံးပုံ","A promise kept":"တည်ခဲ့တဲ့ ကတိ","What she left with you":"သူ ထားခဲ့တာ","The Broken Umbrella":"ကျိုးနေတဲ့ ထီး","The Wrong Umbrella":"မှားယူမိတဲ့ ထီး","The Thief's Note":"ထီးခိုးသူရဲ့ စာ","Two Cups in the Rain":"မိုးထဲက လက်ဖက်ရည်နှစ်ခွက်","It Did Its Best":"အစွမ်းကုန် ကြိုးစားခဲ့တယ်","Saya, Who Stays Dry":"မိုးမစိုတဲ့ ဆရာ","The Yellow Umbrella":"ထီးအဝါ","The Wet Shoulder":"ရေစိုနေတဲ့ ပခုံး","The Photo Walk":"ဓာတ်ပုံလျှောက်ရိုက်တာ","The Lamp":"ဆီမီးခွက်","The Mango Tree":"သရက်ပင်","The Second Lamp":"ဒုတိယ ဆီမီးခွက်","The Shoebox":"ဖိနပ်ဗူး","The Last Bus":"နောက်ဆုံးကား","Hnin's Umbrella":"နှင်းရဲ့ ထီး","The Unused Ticket":"မသုံးဖြစ်ခဲ့တဲ့ လက်မှတ်","The Uncropped Photo":"မဖြတ်ထားတဲ့ ဓာတ်ပုံ","Her Last Reply":"သူ့ရဲ့ နောက်ဆုံး စာပြန်","Seen, June 2023":"Seen, ၂၀၂၃ ဇွန်","Her Reply":"သူ့ရဲ့ စာပြန်","First Rain, Again":"ပထမဆုံးမိုး၊ နောက်တစ်ကြိမ်"},SH_CH={"The First Rain":"ပထမဆုံးမိုး","Monsoon Season":"မုတ်သုံ","Thingyan":"သင်္ကြန်","The Station":"အဝေးပြေးကားဂိတ်","Seen":"Seen"};
+const myNum=x=>String(x).replace(/\d/g,d=>'၀၁၂၃၄၅၆၇၈၉'[d]);
+const SH_RX=[[/^Chapter (\d+) · (.+?)( · replaying)?$/,(m,n,t,r)=>'အခန်း '+myNum(n)+' · '+(SH_CH[t]||t)+(r?' · ပြန်ကစားနေ':'')],
+ [/^(Prologue|Ending)( · replaying)$/,(m,a,r)=>SH[a==='Prologue'?'Prologue':'Ending']+' · ပြန်ကစားနေ'],
+ [/^Ending · (.+)$/,(m,t)=>'ဇာတ်သိမ်း · '+(SH[t]||SH_CH[t]||t)],[/^Ending$/,()=>'ဇာတ်သိမ်း'],
+ [/^(\d) of 3 endings found$/,(m,n)=>'ဇာတ်သိမ်း ၃ ခုမှာ '+myNum(n)+' ခု တွေ့ပြီ'],
+ [/^(\d) of 3 endings found\.( What Min sends changes how it ends\.)?$/,(m,n,w)=>'ဇာတ်သိမ်း ၃ ခုမှာ '+myNum(n)+' ခု တွေ့ပြီ။'+(w?' မင်းထက် ဘာပို့လဲဆိုတာက ဇာတ်သိမ်းကို ပြောင်းစေတယ်။':'')]];
+function shTr(t){let my=SH[t];if(my===undefined)for(const [rx,f] of SH_RX){if(rx.test(t)){my=t.replace(rx,f);break}}return my}
 function uiNode(n){if(!n.__en)n.__en=n.nodeValue;const en=n.__en,t=en.trim();if(!t)return;
-  let my=MY_UI[t];if(my===undefined)for(const [rx,f] of UI_RX){if(rx.test(t)){my=t.replace(rx,f);break}}
+  const inShell=n.parentElement&&n.parentElement.closest(SHELL_SEL);
+  let my=inShell?shTr(t):undefined;if(my===undefined)my=MY_UI[t];if(my===undefined)for(const [rx,f] of UI_RX){if(rx.test(t)){my=t.replace(rx,f);break}}
   if(my===undefined){n.__en=null;return}
   const v=S.lang==='my'?en.replace(t,my):en;n.__set=v;if(n.nodeValue!==v)n.nodeValue=v}
 function uiWalk(root){if(root.nodeType===3){uiNode(root);return}const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode())uiNode(n)}
@@ -1499,6 +1516,7 @@ let uiBusy=false;
 new MutationObserver(ms=>{if(uiBusy)return;uiBusy=true;try{for(const m of ms){if(m.type==='characterData'){const n=m.target;if(n.nodeValue===n.__set)continue;n.__en=null;uiNode(n)}else m.addedNodes.forEach(uiWalk)}}finally{uiBusy=false}}).observe(document.body,{childList:true,subtree:true,characterData:true});
 function langSync(){document.body.classList.toggle('lang-my',S.lang==='my');document.documentElement.lang=S.lang==='my'?'my':'en';
   const b=$('#bLang');if(b){b.textContent=S.lang==='my'?'မြန်မာ':'EN';b.setAttribute('aria-label','Language: '+(S.lang==='my'?'Burmese':'English'))}
+  document.querySelectorAll('#libLang button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.l===S.lang)));
   uiBusy=true;try{uiWalk(document.body)}finally{uiBusy=false}}
 /* Switching language also swaps story text already on screen and in saved chats, so the switch shows at once */
 let EN2MY=null,MY2EN=null;
@@ -1512,6 +1530,7 @@ function storySwap(){storyMaps();
 $('#bLang').onclick=e=>{e.stopPropagation();e.currentTarget.blur();S.lang=S.lang==='my'?'en':'my';S.langSwitched=true;try{localStorage.setItem('tib-lang',S.lang)}catch(_){}
   langSync();storySwap();toast(S.lang==='my'?'မြန်မာ':'English')};
 
+document.querySelectorAll('#libLang button').forEach(x=>x.onclick=e=>{e.stopPropagation();if(x.dataset.l!==S.lang)$('#bLang').click()});
 langSync();
 
 /* ============ ENGINE ============ */

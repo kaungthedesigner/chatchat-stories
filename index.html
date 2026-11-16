@@ -1233,7 +1233,7 @@ const Audio_={ctx:null,gain:null,
     click(t,.9,3200);click(t+.075,.7,2300);
     const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.setValueAtTime(240,t);o.frequency.exponentialRampToValueAtTime(90,t+.07);og.gain.setValueAtTime(.12,t);og.gain.exponentialRampToValueAtTime(.001,t+.09);o.connect(og).connect(c.destination);o.start(t);o.stop(t+.1)}catch(e){}},
   horn(){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime;[0,.42].forEach(d=>{this.tone(392,t+d,.3,.045,'square');this.tone(494,t+d,.3,.035,'square')})},
-  level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.03,.066,.12][S.rain]||0:0; /* 40% quieter (Kaung, 10 Nov) */ this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.25); },
+  level(){ if(!this.ctx||!this.gain) return; const v=S.sound?[0,.012,.0264,.048][S.rain]||0:0; /* 40% quieter (Kaung, 10 Nov), then 60% quieter again (17 Nov) */ this.gain.gain.setTargetAtTime(v,this.ctx.currentTime,.25); },
   blip(hi){ if(!this.ctx||!S.sound) return; try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type='sine';o.frequency.value=hi?880:660;g.gain.value=0;o.connect(g).connect(this.ctx.destination);const t=this.ctx.currentTime;g.gain.linearRampToValueAtTime(.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.start(t);o.stop(t+.2);}catch(e){} }
 };
 

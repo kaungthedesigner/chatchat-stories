@@ -3261,7 +3261,7 @@ renderLib();
 (()=>{const ua=navigator.userAgent,ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   const safari=/Safari/.test(ua)&&!/CriOS|FxiOS|EdgiOS|FBAN|FBAV|FB_IAB|Instagram|Line\/|Messenger|GSA/.test(ua);
   const installed=navigator.standalone||matchMedia('(display-mode: standalone)').matches;let seen=false;try{seen=localStorage.getItem('tib-a2hs')==='1'}catch(e){}
-  if(!ios||!safari||installed||seen||!sv().started||DEVJUMP)return;
+  const force=/[?&#]tip\b/.test(location.search+location.hash);if(!force&&(!ios||!safari||installed||seen||!libState().any||DEVJUMP))return;
   setTimeout(()=>{if(DEVJUMP)return;try{localStorage.setItem('tib-a2hs','1')}catch(e){}$('#a2hs').classList.add('on')},1800)})();
 $('#a2hsOk').onclick=e=>{e.stopPropagation();$('#a2hs').classList.remove('on')};$('#a2hs').onclick=e=>{e.stopPropagation();if(e.target.id==='a2hs')$('#a2hs').classList.remove('on')};
 (()=>{if(!DEV_ON)return;let j=null;try{j=sessionStorage.getItem('bre_jump');sessionStorage.removeItem('bre_jump')}catch(e){}

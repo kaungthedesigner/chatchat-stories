@@ -3204,13 +3204,13 @@ function libState(){const v=sv();const played=CH_START.length;
   const nextK=(()=>{for(let k=0;k<played;k++)if(!v.done.includes(k))return k;return null})();
   /* Opening the game starts the Prologue by itself, which saves a position at the first lock screen. That alone is not progress: the story counts as started only once the player gets past it. */
   const any=!!v.started||v.done.length>0||(v.cur!==null&&v.cur>0)||!!(v.pos&&v.pos.i>FIRST_SAFE);const frac=v.done.filter(k=>k<played).length/played;
-  const replayK=nextK===null&&v.replay&&v.pos?v.pos.k:null;
+  const replayK=v.replay&&v.pos?v.pos.k:null;
   return {v,nextK,any,frac,replayK,started:any}}
 const ST_IC={'Coming soon':'hourglass','Played':'check-circle','In progress':'circle-half','Up next':'play-circle','Locked':'lock'};
 function renderLib(){const {v,nextK,any,frac,replayK,started}=libState();const C_=STORY.chapters;
   $('#go').textContent=!any?'Begin':nextK===null&&replayK===null?'Play again':'Continue';
   $('#libPr').classList.toggle('on',!!any);$('#libBar').style.width=Math.round(frac*100)+'%';
-  const wk=nextK!==null?nextK:replayK;$('#libWhere').textContent=wk===null?'All chapters so far finished':(wk===0?'Prologue':C_[wk].n==='E'?'Ending':'Chapter '+wk+' · '+C_[wk].t)+(nextK===null?' · replaying':'');
+  const wk=replayK!==null?replayK:nextK;const rp=replayK!==null&&v.done.includes(replayK);$('#libWhere').textContent=wk===null?'All chapters so far finished':(wk===0?'Prologue':C_[wk].n==='E'?'Ending':'Chapter '+wk+' · '+C_[wk].t)+(rp?' · replaying':'');
   $('#chList').innerHTML=C_.map((c,k)=>{const done=v.done.includes(k),open=!c.soon&&(k===0||done||v.done.includes(k-1)||v.cps[k]);const cls=c.soon?'lock':done?'done':open?'next':'lock';
     const rep=done&&replayK===k;const st=c.soon?'Coming soon':rep?'In progress':done?'Played':open?(started&&((v.pos&&v.pos.k===k)||(v.cps[k]&&v.cur===k))?'In progress':'Up next'):'Locked';
     const tag=open?'button':'div';
@@ -3225,7 +3225,7 @@ async function playFrom(k,resume){S.pendTime=null;startAudio();const v=sv();let 
   document.body.classList.add('playing');
   $('#start').classList.remove('on');await rawSleep(600);$('#start').classList.remove('chap');
   await runFlow(at);}
-$('#go').onclick=e=>{e.stopPropagation();const {nextK,replayK}=libState();if(nextK!==null)playFrom(nextK,true);else if(replayK!==null)playFrom(replayK,true);else playFrom(0,false)};
+$('#go').onclick=e=>{e.stopPropagation();const {nextK,replayK}=libState();if(replayK!==null)playFrom(replayK,true);else if(nextK!==null)playFrom(nextK,true);else playFrom(0,false)};
 $('#bExit').onclick=e=>{e.stopPropagation();const v=sv();const p=v.pos;
   $('#leaveP').textContent=DEVJUMP?'Dev jump: progress from here is not saved.':'Your progress is saved. Next time you\'ll pick up from the start of this chat or scene.';$('#leave').classList.add('on')};
 $('#leave').onclick=e=>{e.stopPropagation();if(e.target.id==='leave')$('#leave').classList.remove('on')};
@@ -3243,7 +3243,7 @@ renderLib();
 audioPreload();
 // While there is only one story, opening the game goes straight into it; the Stories home is still one tap away (back arrow)
 (()=>{if(DEVJUMP||STORIES.length>1)return;let home=false;try{home=sessionStorage.getItem('bre_home')==='1';sessionStorage.removeItem('bre_home')}catch(e){}
-  if(home)return;const {nextK,replayK}=libState();const startK=nextK!==null?nextK:replayK;if(startK===null)return;
+  if(home)return;const {nextK,replayK}=libState();const startK=replayK!==null?replayK:nextK;if(startK===null)return;
   $('#start').classList.remove('on');document.body.classList.add('playing');
   // Phones only allow audio after a tap ends (touchend/click), not on touch start, so listen to those and keep listening until audio is really running
   const EVS=['pointerup','touchend','click','keydown'];

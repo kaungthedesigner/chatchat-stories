@@ -1087,7 +1087,7 @@ const packPic=it=>C4_READY.has(it.f)?`<img src="img/${it.f}.webp" alt="">`:`<div
 ART.shoebox=()=>`<div class="walk3">${(S.flags.c4_left||[]).map(id=>{const it=PACK.find(x=>x.id===id);return `<i style="background:#efe6d8;display:flex;align-items:center;justify-content:center">${packPic(it)}</i>`}).join('')}</div>`;
 
 /* ===== Chapter 5, ending and epilogue art. Labelled placeholders until Kaung approves images (none generated yet); add a file name to C5_READY when its image is in img/. ===== */
-const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-step-v2','c5-bus-gone','e2-door','e3-tea','e3-doorway2','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','ep-open-walk','ep-open-see-v2','ep-open-meet-v2','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
+const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-step-v2','c5-bus-gone','e2-door','e3-tea','e3-doorway2','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','ep-open-walk','ep-open-see-v3','ep-open-meet-v3','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
 const c5img=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:PHI(label,'#3d4a55','#1a2228');
 const c5ph=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
 SCENE.c5Lamp=c5img('c5-lamp','One lamp on the pagoda wall');
@@ -1106,8 +1106,8 @@ SCENE.epLastUnsaid=c5img('ep-last-unsaid','Under the awning, umbrella closed');
 SCENE.epLastOpen=c5img('ep-last-open','Under the awning, umbrella half open');
 SCENE.epLastNext=c5img('ep-last-next','Out under the pink umbrella');
 SCENE.epOpenWalk=c5img('ep-open-walk','Down the street under the pink umbrella');
-SCENE.epOpenSee=c5img('ep-open-see-v2','Min stops, amazed');
-SCENE.epOpenMeet=c5img('ep-open-meet-v2','Over her shoulder: Min, and a black umbrella');
+SCENE.epOpenSee=c5img('ep-open-see-v3','Min stops, amazed');
+SCENE.epOpenMeet=c5img('ep-open-meet-v3','Over her shoulder: Min, and a black umbrella');
 SCENE.epLastSaid=SCENE.epLastNext;
 SCENE.epLastLet=c5img('ep-last-let','Into the rain with the camera');
 const EP_WALL='<img src="img/c2-may-bangs.webp" alt="May\'s bangs selfie" draggable="false" style="object-position:center 30%">';

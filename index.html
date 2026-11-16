@@ -837,7 +837,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 #wsHud .row{display:flex;align-items:center;gap:10px}
 #wsHud .song{flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,.25);position:relative}
 #wsHud .song i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;background:#ffd36b}
-#wsHud .song b{position:absolute;right:-6px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:#f7d9de url(img/ws-may.webp) center 8%/180% auto no-repeat;border:2px solid #fff}
+#wsHud .song b{position:absolute;right:-6px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:#f7d9de url(img/ws-may.webp?v=2611161) center 8%/180% auto no-repeat;border:2px solid #fff}
 #wsHud .ic{font-size:18px;width:18px;height:18px}
 #wsHud .lives{display:flex;gap:4px;margin-top:10px;align-items:center;font:500 12px/16px var(--sans)}
 #wsHud .lives .ic.off{opacity:.28}
@@ -938,7 +938,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
 
     <div class="view" id="pack"><div id="pkBg"></div><div class="ph"><div class="eb">Side quest · One box</div><h2>Help May pack the last box</h2><p class="sub">The Thingyan print goes in first. Pick two more. Whatever doesn't fit stays with Min.</p></div><div id="pkBox"></div><div id="pkGrid"></div><button id="pkGo" disabled>Close the box</button></div>
     <div class="view" id="ticket"><div id="tkBg"></div><div class="ph"><div class="eb">Side quest · One ticket</div><h2 id="tkH">Night bus to the city</h2><p class="sub" id="tkSub"></p></div><div id="tkBody"></div><button id="tkGo" disabled>Next</button></div>
-    <div class="view" id="padauk"><img id="pdBg" src="img/c3-padauk.webp" alt="" draggable="false"><div class="ph"><div class="eb">Side moment · Padauk</div><h2>Pick one for May's hair</h2><p class="sub">Tap a sprig before the aunties' hooked poles get there.</p><div class="tb"><i id="pdT"></i></div></div>
+    <div class="view" id="padauk"><img id="pdBg" src="img/c3-padauk.webp?v=2611161" alt="" draggable="false"><div class="ph"><div class="eb">Side moment · Padauk</div><h2>Pick one for May's hair</h2><p class="sub">Tap a sprig before the aunties' hooked poles get there.</p><div class="tb"><i id="pdT"></i></div></div>
       <div id="pdPick"><div class="zoom" id="pdZoom"></div><h2 id="pdName"></h2><p id="pdLine"></p><button id="pdGo">Keep it for May</button></div></div>
     <div class="view" id="wstreet"><div id="wsField"></div>
       <div id="wsHud"><div class="row"><i class="ic i-music-notes"></i><div class="song"><i id="wsSongI"></i><b></b></div></div><div class="lives" id="wsLives"></div></div>
@@ -959,7 +959,7 @@ body.m:not(.playing) .bar:has(#bExit){display:none}
       <div class="lib" id="lib">
         <div class="lhd"><div class="eb">Stories</div><h1>Tales in between</h1></div>
         <div class="hero" id="hero" role="button" tabindex="0">
-          <img src="img/dr-13-walk-open.webp" alt="" draggable="false">
+          <img src="img/dr-13-walk-open.webp?v=2611161" alt="" draggable="false">
           <div class="hs"></div>
           <div class="hx"><div class="tag">A story told in messages</div><h2>Before the Rain Ends</h2><p>For the days when you miss someone.</p>
             <div class="pr" id="libPr"><div class="pbar"><i id="libBar"></i></div><span id="libWhere"></span></div></div>
@@ -1003,14 +1003,14 @@ function phSVG(label,c1,c2,w,h,subj){const t=label.replace(/&/g,'&amp;').replace
   return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#g)"/>${sb}<text x="${w/2}" y="${h*.12}" font-family="DM Sans,sans-serif" font-size="${Math.round(w*.034)}" fill="#fff" text-anchor="middle" opacity=".75"><tspan x="${w/2}">Image to come</tspan>${wrap(t,30).map((l,i)=>`<tspan x="${w/2}" dy="${Math.round(w*.05)}">${l}</tspan>`).join('')}</text></svg>`)}
 const PHI=(label,c1,c2)=>`<img src="${phSVG(label,c1,c2,768,1344)}" alt="" draggable="false">`;
 const SPOTS=[
- {id:'tea',name:'The tea shop in the rain',src:'img/c2-spot-tea.webp',sx:.64,sy:.5,line:'Daw Aye Aye waves at the camera. It is not the photo he meant, and it is better.'},
- {id:'monastery',name:'The monastery steps',src:'img/c2-spot-monastery.webp',sx:.35,sy:.58,line:'Two novice monks on the steps, sharing one umbrella.'},
- {id:'river',name:'The river after the storm',src:'img/c2-spot-river.webp',sx:.74,sy:.51,line:'A boat on brown water and a sky the colour of milk tea.'},
- {id:'market',name:'Market umbrellas',src:'img/c2-spot-market.webp',sx:.38,sy:.45,line:'A sea of faded umbrellas over the vegetable stalls.'},
- {id:'shop',name:"Mom's shop sign",src:'img/c2-spot-shop.webp',sx:.31,sy:.33,line:'The painted sign over Mom\'s shop, one letter peeling.'},
- {id:'dog',name:'Saya, who stays dry',src:'img/c2-spot-dog.webp',sx:.73,sy:.69,line:'Saya, asleep under the same awning as always.'}];
-ART.candles='<img src="img/c2-candles.webp" alt="" draggable="false">';
-ART.mayCandid='<img src="img/c2-may-candid.webp" alt="" draggable="false">';
+ {id:'tea',name:'The tea shop in the rain',src:'img/c2-spot-tea.webp?v=2611161',sx:.64,sy:.5,line:'Daw Aye Aye waves at the camera. It is not the photo he meant, and it is better.'},
+ {id:'monastery',name:'The monastery steps',src:'img/c2-spot-monastery.webp?v=2611161',sx:.35,sy:.58,line:'Two novice monks on the steps, sharing one umbrella.'},
+ {id:'river',name:'The river after the storm',src:'img/c2-spot-river.webp?v=2611161',sx:.74,sy:.51,line:'A boat on brown water and a sky the colour of milk tea.'},
+ {id:'market',name:'Market umbrellas',src:'img/c2-spot-market.webp?v=2611161',sx:.38,sy:.45,line:'A sea of faded umbrellas over the vegetable stalls.'},
+ {id:'shop',name:"Mom's shop sign",src:'img/c2-spot-shop.webp?v=2611161',sx:.31,sy:.33,line:'The painted sign over Mom\'s shop, one letter peeling.'},
+ {id:'dog',name:'Saya, who stays dry',src:'img/c2-spot-dog.webp?v=2611161',sx:.73,sy:.69,line:'Saya, asleep under the same awning as always.'}];
+ART.candles='<img src="img/c2-candles.webp?v=2611161" alt="" draggable="false">';
+ART.mayCandid='<img src="img/c2-may-candid.webp?v=2611161" alt="" draggable="false">';
 ART.spotRiver=()=>`<img src="${SPOTS[2].src}" alt="" draggable="false" style="object-fit:cover">`;
 ART.spotTea=()=>`<img src="${SPOTS[0].src}" alt="" draggable="false" style="object-fit:cover">`;
 // A photo-walk shot shows exactly what was inside the viewfinder frame when the shutter was pressed (w.c = frame crop in pan units).
@@ -1018,8 +1018,8 @@ function shotHTML(w,cls){const sp=SPOTS.find(x=>x.id===w.id);if(!sp)return '';co
   if(!c)return `<img src="${sp.src}" alt="" draggable="false" style="object-fit:cover;object-position:${w.px}% ${w.py}%">`;
   return `<div class="shotc${cls?' '+cls:''}" style="aspect-ratio:${c.w}/${c.h}"><img src="${sp.src}" alt="" draggable="false" style="width:${100/c.w}%;height:${100/c.h}%;left:${-c.x/c.w*100}%;top:${-c.y/c.h*100}%"></div>`}
 ART.walk3=()=>`<div class="walk3">${(S.walk||[]).map(w=>`<i>${shotHTML(w,'fill')}</i>`).join('')}</div>`;
-ART.wetShoulder='<img src="img/c2-walk-gate.webp" alt="" draggable="false" style="object-fit:cover;object-position:50% 45%">';
-ART.lamp='<img src="img/c2-lamp-wall.webp" alt="" draggable="false" style="object-fit:cover;object-position:50% 50%">';
+ART.wetShoulder='<img src="img/c2-walk-gate.webp?v=2611161" alt="" draggable="false" style="object-fit:cover;object-position:50% 45%">';
+ART.lamp='<img src="img/c2-lamp-wall.webp?v=2611161" alt="" draggable="false" style="object-fit:cover;object-position:50% 50%">';
 ART.umbrellaBed=`<svg viewBox="0 0 300 225"><defs><pattern id="pb" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(20)"><rect width="24" height="24" fill="#dccdb8"/><rect width="12" height="24" fill="#d3c2aa"/><circle cx="18" cy="6" r="2" fill="#c5ae90"/></pattern><radialGradient id="lb" cx=".3" cy=".2" r=".9"><stop offset="0" stop-color="#fff6e0" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></radialGradient></defs><rect width="300" height="225" fill="url(#pb)"/><path d="M0 180q80-20 150 6t150-4v43H0z" fill="#cbb79c" opacity=".6"/><g transform="rotate(-28 150 112)"><path d="M58 112 L205 94 Q222 112 205 130 Z" fill="#1d2328"/><path d="M80 104 L205 94 M84 120 L205 130 M120 112 L210 112" stroke="#30383e" stroke-width="2"/><rect x="205" y="109" width="40" height="5" rx="2" fill="#9aa1a5"/><path d="M58 112h-6" stroke="#9aa1a5" stroke-width="4"/><rect x="18" y="104" width="36" height="16" rx="4" fill="#3a2a22"/><rect x="26" y="103" width="20" height="18" fill="#f6f3ec"/><text x="36" y="116" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#222" text-anchor="middle">MH</text><path d="M18 112q-14 0-14 14t14 12" stroke="#3a2a22" stroke-width="7" fill="none" stroke-linecap="round"/></g><rect width="300" height="225" fill="url(#lb)"/></svg>`;
 ART.teaTable=(blur)=>`<svg viewBox="0 0 300 225" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="tw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f6672"/><stop offset="1" stop-color="#2c3d47"/></linearGradient><linearGradient id="tt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a37"/><stop offset="1" stop-color="#5a3922"/></linearGradient></defs><rect width="300" height="225" fill="url(#tw)"/><g stroke="#9fb3bd" stroke-width="1.2" opacity=".55">${Array.from({length:26},(_,i)=>`<line x1="${(i*37)%300}" y1="${(i*53)%120}" x2="${(i*37)%300-4}" y2="${(i*53)%120+22}"/>`).join('')}</g><rect x="0" y="0" width="300" height="140" fill="none" stroke="#2a1d14" stroke-width="10"/><line x1="150" y1="0" x2="150" y2="140" stroke="#2a1d14" stroke-width="6"/><circle cx="235" cy="40" r="40" fill="#f3c27a" opacity=".18"/><rect y="138" width="300" height="87" fill="url(#tt)"/><path d="M0 138h300" stroke="#a6714a" stroke-width="3"/><g><ellipse cx="110" cy="182" rx="34" ry="8" fill="#e9e2d6"/><path d="M92 136h36l-5 46h-26z" fill="#f4ede0" opacity=".55"/><path d="M93.5 150h33l-3.6 32h-25.8z" fill="#c48a55"/><ellipse cx="110" cy="150" rx="16.5" ry="3" fill="#d9a675"/></g><g><ellipse cx="190" cy="186" rx="34" ry="8" fill="#e9e2d6"/><path d="M172 140h36l-5 46h-26z" fill="#f4ede0" opacity=".55"/><path d="M173.5 160h33l-3 26h-27z" fill="#c48a55"/><ellipse cx="190" cy="160" rx="16.5" ry="3" fill="#d9a675"/></g><rect width="300" height="225" fill="#f7d39a" opacity=".08"/></svg>`;
 ART.pinkUmbrella=`<svg viewBox="0 0 300 225"><rect width="300" height="225" fill="#e9e1d4"/><rect y="170" width="300" height="55" fill="#b89b7c"/><path d="M0 170h300" stroke="#9b7f62" stroke-width="3"/><rect x="230" y="20" width="44" height="64" fill="#c9d3cf" stroke="#a89c8a" stroke-width="4"/><g transform="rotate(14 150 120)"><path d="M150 168 V60" stroke="#6f6a66" stroke-width="4"/><path d="M150 186 q0 14 -12 14" stroke="#6f6a66" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M78 92 Q110 40 150 38 Q192 40 220 86 Q200 78 186 92 Q168 70 150 92 Q130 66 116 96 Q96 78 78 92Z" fill="#e58aa0"/><path d="M150 38 L116 96 M150 38 L186 92 M150 38 L84 120 M150 38 L216 116" stroke="#8a6b74" stroke-width="2" fill="none"/><path d="M84 120 L70 140 M216 116 L232 130" stroke="#8a6b74" stroke-width="2"/><path d="M78 92 Q74 108 84 120 L116 96" fill="#d77790" opacity=".85"/></g><ellipse cx="160" cy="200" rx="60" ry="5" fill="#8c735b" opacity=".35"/></svg>`;
@@ -1039,42 +1039,42 @@ SCENE.bedroom=`<svg viewBox="0 0 393 852" preserveAspectRatio="xMidYMid slice"><
 
 
 /* webtoon images (Magnific) */
-ART.umbrellaBed='<img src="img/umbrella-bed.webp" alt="" draggable="false">';
-ART.teaTable=()=>'<img src="img/tea-table.webp" alt="" draggable="false">';
-ART.pinkUmbrella='<img src="img/pink-umbrella.webp" alt="" draggable="false">';
-ART.dog='<img src="img/dog.webp" alt="" draggable="false">';
-ART.yellowUmbrella='<img src="img/yellow-umbrella.webp" alt="" draggable="false">';
-ART.thingyan='<img src="img/thingyan.webp" alt="" draggable="false">';
-SCENE.teashop1='<img src="img/dr-01-drops-off.webp" alt="" draggable="false">';
-SCENE.teashopWait='<img src="img/dr-02-sits.webp" alt="" draggable="false">';
-SCENE.teashop2='<img src="img/dr-03-runs-in.webp" alt="" draggable="false">';
-SCENE.teashopCounter='<img src="img/dr-04-hnin.webp" alt="" draggable="false">';
-SCENE.teashopHnin='<img src="img/dr-15-hnin-closeup.webp" alt="" draggable="false">';
-SCENE.teashop3='<img src="img/dr-05-frown-wide.webp" alt="" draggable="false">';
-SCENE.teashopWhat='<img src="img/dr-06-what.webp" alt="" draggable="false">';
-SCENE.teashopLaugh='<img src="img/dr-07-laugh.webp" alt="" draggable="false">';
-SCENE.teashopSamosa='<img src="img/dr-08-samosa.webp" alt="" draggable="false">';
-SCENE.teashopTea='<img src="img/dr-09-tea.webp" alt="" draggable="false">';
-SCENE.teashopSeeds='<img src="img/dr-10-seeds.webp" alt="" draggable="false">';
-SCENE.teashopPhone='<img src="img/dr-11-phone.webp" alt="" draggable="false">';
-SCENE.teashopCall='<img src="img/dr-12-coming-ma.webp" alt="" draggable="false">';
-SCENE.teashop5='<img src="img/ap-11-runs-out.webp" alt="" draggable="false">';
-SCENE.walkHome='<img src="img/dr-13-walk-open.webp" alt="" draggable="false">';
-SCENE.walkArm='<img src="img/dr-14-walk-arm.webp" alt="" draggable="false">';
-SCENE.classroom1='<img src="img/cl-01-establish.webp" alt="" draggable="false">';
-SCENE.classroom2='<img src="img/cl-02-returns.webp" alt="" draggable="false">';
-SCENE.classroom3='<img src="img/cl-03-note.webp" alt="" draggable="false">';
-SCENE.classroomTeacher='<img src="img/cl-04-teacher.webp" alt="" draggable="false">';
-SCENE.classroomMay='<img src="img/cl-05-may-answers.webp" alt="" draggable="false">';
-SCENE.classroom4='<img src="img/cl-06-talk.webp" alt="" draggable="false">';SCENE.classroom5='<img src="img/cl-06-whisper.webp" alt="" draggable="false">';
-SCENE.bedroom='<img src="img/rm-02-reading.webp" alt="" draggable="false">';
-SCENE.roomEmpty='<img src="img/rm-01-empty.webp" alt="" draggable="false">';
-SCENE.roomUmbrellas='<img src="img/rm-03-umbrellas.webp" alt="" draggable="false">';
+ART.umbrellaBed='<img src="img/umbrella-bed.webp?v=2611161" alt="" draggable="false">';
+ART.teaTable=()=>'<img src="img/tea-table.webp?v=2611161" alt="" draggable="false">';
+ART.pinkUmbrella='<img src="img/pink-umbrella.webp?v=2611161" alt="" draggable="false">';
+ART.dog='<img src="img/dog.webp?v=2611161" alt="" draggable="false">';
+ART.yellowUmbrella='<img src="img/yellow-umbrella.webp?v=2611161" alt="" draggable="false">';
+ART.thingyan='<img src="img/thingyan.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashop1='<img src="img/dr-01-drops-off.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopWait='<img src="img/dr-02-sits.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashop2='<img src="img/dr-03-runs-in.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopCounter='<img src="img/dr-04-hnin.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopHnin='<img src="img/dr-15-hnin-closeup.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashop3='<img src="img/dr-05-frown-wide.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopWhat='<img src="img/dr-06-what.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopLaugh='<img src="img/dr-07-laugh.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopSamosa='<img src="img/dr-08-samosa.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopTea='<img src="img/dr-09-tea.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopSeeds='<img src="img/dr-10-seeds.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopPhone='<img src="img/dr-11-phone.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashopCall='<img src="img/dr-12-coming-ma.webp?v=2611161" alt="" draggable="false">';
+SCENE.teashop5='<img src="img/ap-11-runs-out.webp?v=2611161" alt="" draggable="false">';
+SCENE.walkHome='<img src="img/dr-13-walk-open.webp?v=2611161" alt="" draggable="false">';
+SCENE.walkArm='<img src="img/dr-14-walk-arm.webp?v=2611161" alt="" draggable="false">';
+SCENE.classroom1='<img src="img/cl-01-establish.webp?v=2611161" alt="" draggable="false">';
+SCENE.classroom2='<img src="img/cl-02-returns.webp?v=2611161" alt="" draggable="false">';
+SCENE.classroom3='<img src="img/cl-03-note.webp?v=2611161" alt="" draggable="false">';
+SCENE.classroomTeacher='<img src="img/cl-04-teacher.webp?v=2611161" alt="" draggable="false">';
+SCENE.classroomMay='<img src="img/cl-05-may-answers.webp?v=2611161" alt="" draggable="false">';
+SCENE.classroom4='<img src="img/cl-06-talk.webp?v=2611161" alt="" draggable="false">';SCENE.classroom5='<img src="img/cl-06-whisper.webp?v=2611161" alt="" draggable="false">';
+SCENE.bedroom='<img src="img/rm-02-reading.webp?v=2611161" alt="" draggable="false">';
+SCENE.roomEmpty='<img src="img/rm-01-empty.webp?v=2611161" alt="" draggable="false">';
+SCENE.roomUmbrellas='<img src="img/rm-03-umbrellas.webp?v=2611161" alt="" draggable="false">';
 
 /* ===== Chapter 4 art. A shot shows a labelled placeholder until Kaung approves it and the file is in img/. ===== */
 const C4_READY=new Set(['c4-station','c4-roof','c4-promise','c4-handover','c4-window','c4-room','c4-shutter','c4-hnin-umb','c4-gate','c4-empty','c4-ph-bus','c4-ph-warehouse','c4-ph-windows','c4-ph-tea','c4-item-print','c4-item-jars','c4-item-walk','c4-item-sweater','c4-item-seeds','c4-item-stickers','c4-min-look','c4-hug']);
-const c4img=(f,label,pos)=>C4_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false"${pos?` style="object-fit:cover;object-position:${pos}"`:''}>`:PHI(label,'#41525c','#1c262c');
-const c4ph=(f,label)=>C4_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
+const c4img=(f,label,pos)=>C4_READY.has(f)?`<img src="img/${f}.webp?v=2611161" alt="" draggable="false"${pos?` style="object-fit:cover;object-position:${pos}"`:''}>`:PHI(label,'#41525c','#1c262c');
+const c4ph=(f,label)=>C4_READY.has(f)?`<img src="img/${f}.webp?v=2611161" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
 SCENE.c4Station=c4img('c4-station','Bus station before dawn');
 SCENE.c4Roof=c4img('c4-roof','Under the station roof');
 SCENE.c4Promise=c4img('c4-promise','May, looking at the bus');
@@ -1100,19 +1100,19 @@ const PACK=[
  {id:'sweater',n:'Her school sweater',f:'c4-item-sweater',say:"It's cold there, they say."},
  {id:'seeds',n:'Sunflower seeds',f:'c4-item-seeds',say:'Twelve hours of bus.'},
  {id:'stickers',n:'The sticker sheet',f:'c4-item-stickers',say:'For emergencies.'}];
-const packPic=it=>C4_READY.has(it.f)?`<img src="img/${it.f}.webp" alt="">`:`<div class="pkph">${esc(it.n)}</div>`;
+const packPic=it=>C4_READY.has(it.f)?`<img src="img/${it.f}.webp?v=2611161" alt="">`:`<div class="pkph">${esc(it.n)}</div>`;
 ART.shoebox=()=>`<div class="walk3">${(S.flags.c4_left||[]).map(id=>{const it=PACK.find(x=>x.id===id);return `<i style="background:#efe6d8;display:flex;align-items:center;justify-content:center">${packPic(it)}</i>`}).join('')}</div>`;
 
 /* ===== Chapter 5, ending and epilogue art. Labelled placeholders until Kaung approves images (none generated yet); add a file name to C5_READY when its image is in img/. ===== */
-const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-step-v2','c5-bus-gone','e2-door','e3-tea','e3-doorway2','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','ep-open-walk','ep-open-see-v3','ep-open-meet-v3','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
-const c5img=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:PHI(label,'#3d4a55','#1a2228');
-const c5ph=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
+const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-wait','c5-walk','c5-step-v2','c5-bus-gone','e2-door','e3-tea','e3-doorway2','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','ep-open-walk','ep-open-see-v4','ep-open-meet-v3','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
+const c5img=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp?v=2611161" alt="" draggable="false">`:PHI(label,'#3d4a55','#1a2228');
+const c5ph=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp?v=2611161" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
 SCENE.c5Lamp=c5img('c5-lamp','One lamp on the pagoda wall');
 SCENE.c5Dinner=c5img('c5-dinner','Dinner with Mom');
 SCENE.c5Closing=c5img('c5-closing','Tea shop at closing');
 SCENE.c5HninSits=c5img('c5-hnin-sits','Hnin sits down across from him');
 SCENE.c5Counter=c5img('c5-counter','Bus station ticket counter');
-SCENE.c5Bench=c5img('c5-bench','Min on the bench, ticket in hand');SCENE.c5Step=c5img('c5-step-v2','Min on the bottom step of the bus, looking back');
+SCENE.c5Bench=c5img('c5-bench','Min on the bench, ticket in hand');SCENE.c5Wait=c5img('c5-wait','Min alone on the bench, before the bus');SCENE.c5Walk=c5img('c5-walk','Min walks toward the bus');SCENE.c5Step=c5img('c5-step-v2','Min on the bottom step of the bus, looking back');
 SCENE.c5BusGone=c5img('c5-bus-gone','The night bus pulls out');
 SCENE.e2Door=c5img('e2-door','The pink umbrella by the door');
 SCENE.e3Tea=c5img('e3-tea','The tea shop, June 2023');
@@ -1123,11 +1123,11 @@ SCENE.epLastUnsaid=c5img('ep-last-unsaid','Under the awning, umbrella closed');
 SCENE.epLastOpen=c5img('ep-last-open','Under the awning, umbrella half open');
 SCENE.epLastNext=c5img('ep-last-next','Out under the pink umbrella');
 SCENE.epOpenWalk=c5img('ep-open-walk','Down the street under the pink umbrella');
-SCENE.epOpenSee=c5img('ep-open-see-v3','Min stops, amazed');
+SCENE.epOpenSee=c5img('ep-open-see-v4','Min stops, amazed');
 SCENE.epOpenMeet=c5img('ep-open-meet-v3','Over her shoulder: Min, and a black umbrella');
 SCENE.epLastSaid=SCENE.epLastNext;
 SCENE.epLastLet=c5img('ep-last-let','Into the rain with the camera');
-const EP_WALL='<img src="img/c2-may-bangs.webp" alt="May\'s bangs selfie" draggable="false" style="object-position:center 30%">';
+const EP_WALL='<img src="img/c2-may-bangs.webp?v=2611161" alt="May\'s bangs selfie" draggable="false" style="object-position:center 30%">';
 ART.lampAlone=c5ph('c5-ph-lamp','His lamp, alone on the wall');
 ART.cityLamp=c5ph('c5-ph-citylamp','Her lamp at a city window');
 ART.cropped=c5ph('c5-ph-cropped','May in the city rain, cropped');
@@ -1274,7 +1274,7 @@ function stampDiv(c){if(S.tlabel==null)return null;const th=S.threads[c]||[];con
   const lm=[...th].reverse().find(x=>x.dir);if(!lm)return null;const d=S.day||0;
   if(!lm.st||lm.st.d!==d)return 'Today '+S.tlabel;if(S.now-lm.st.n>=60)return S.tlabel;return null}
 /* May's avatar becomes her new profile picture from the December 2020 photo on */
-function avSrc(c){return c==='may'&&typeof MAY_AV_AT!=='undefined'&&MAY_AV_AT>=0&&S.at>=MAY_AV_AT?'img/av-may-2020.webp':`img/av-${c}.webp`}
+function avSrc(c){return c==='may'&&typeof MAY_AV_AT!=='undefined'&&MAY_AV_AT>=0&&S.at>=MAY_AV_AT?'img/av-may-2020.webp?v=2611161':`img/av-${c}.webp`}
 function av(c,sm,online){const x=C[c];return `<div class="av${sm?' sm':''}" style="background:${x.bg};color:${x.fg}">${x.img?`<img src="${avSrc(c)}" alt="" draggable="false">`:x.ini}${online?'<i class="on"></i>':''}</div>`}
 let toastT;
 function toast(html){const t=$('#toast');t.innerHTML=IC.star+html;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2800);}
@@ -1616,7 +1616,7 @@ async function profileStep(v){
   $('#postTray').innerHTML='<div class="vtap2">Tap to continue</div>';await waitStage(300);$('#postTray').innerHTML='';
   $('#post .who b').textContent='Post';if(v.back)show('chat');await sleep(500);
 }
-const LINKS={sbtv:{url:'https://www.watchsbtv.com/',domain:'watchsbtv.com',title:'SBTV · Football, all in one place',badge:'<img src="img/sbtv-logo.webp" alt="SBTV">',
+const LINKS={sbtv:{url:'https://www.watchsbtv.com/',domain:'watchsbtv.com',title:'SBTV · Football, all in one place',badge:'<img src="img/sbtv-logo.webp?v=2611161" alt="SBTV">',
   points:['Watch every football match and the highlights in one place','Weekly predictions on the big matches earn SBTV Coins','Redeem your coins for lucky draws and rewards']}};
 const fv=(x)=>{if(typeof x!=='function')return x;const r=x(S.flags),D=S.lang==='my'&&MY_STORY[S.ch];return D?trS(r,D):r};
 const artHTML=a=>typeof ART[a]==='function'?ART[a]():ART[a];
@@ -1799,14 +1799,14 @@ async function ticketStep(mode){
     drawP();await wait();
     sub.textContent='The clerk tears it out of the book and slides it across.';tb.innerHTML=ART.ticket(true);go.textContent='Take the ticket';go.disabled=false;await wait();
   }else{
-    $('#tkBg').innerHTML=SCENE.c5Bench;H.textContent='Boarding';sub.textContent=`Night bus to the city · seat ${S.flags.c5_seat||'7A'}`;
+    $('#tkBg').innerHTML=SCENE.c5Wait;H.textContent='Boarding';sub.textContent=`Night bus to the city · seat ${S.flags.c5_seat||'7A'}`;
     tb.innerHTML='<div class="tkBoard"><div class="lbl"><span>Boarding closes</span><b id="tkClock">8:00 PM</b></div><div class="tkBar"><i></i></div><p id="tkLine">Min waits on the bench.</p></div>';
     go.textContent='Board';go.disabled=true;show('ticket');
     const bar=tb.querySelector('.tkBar i'),line=$('#tkLine'),clk=$('#tkClock'),sp=S.speed>1?2:1;let pressed=false,steps=null;
     const say=t=>{line.style.opacity=0;setTimeout(()=>{line.textContent=t;line.style.opacity=.9},180)};
-    await rawSleep(2200/sp);say('Boarding is called.');go.disabled=false;go.classList.add('lit');
+    await rawSleep(2200/sp);$('#tkBg').innerHTML=SCENE.c5Bench;say('Boarding is called.');go.disabled=false;go.classList.add('lit');
     go.onclick=e=>{e.stopPropagation();if(pressed)return;pressed=true;go.classList.remove('lit');go.disabled=true;Audio_.blip(true);
-      steps=(async()=>{say('Min stands up.');await rawSleep(1700/sp);
+      steps=(async()=>{$('#tkBg').innerHTML=SCENE.c5Walk;say('Min stands up.');await rawSleep(1900/sp);
         $('#tkBg').innerHTML=SCENE.c5Step;say('He gets as far as the bottom step.');await rawSleep(2600/sp);
         say('“Coming or not?”');await rawSleep(1900/sp);say('He steps back down.');})()};
     const DUR=12000/sp,t0=performance.now();
@@ -1900,22 +1900,22 @@ async function padaukPick(){
   });
   timers.forEach(clearTimeout);for(const k in el)el[k].onpointerdown=null;
   S.flags.c3_padauk=pick;Audio_.blip(true);
-  const z=$('#pdZoom'),q=xy(pick),Z=3.2;z.style.backgroundImage='url(img/c3-padauk.webp)';
+  const z=$('#pdZoom'),q=xy(pick),Z=3.2;z.style.backgroundImage='url(img/c3-padauk.webp?v=2611161)';
   z.style.backgroundSize=`${IW*sc*Z}px ${IH*sc*Z}px`;z.style.backgroundPosition=`${104-(q.x-ox)*Z}px ${104-(q.y-oy)*Z}px`;
   $('#pdName').textContent=P[pick][2];$('#pdLine').textContent=P[pick][3];$('#pdPick').style.display='flex';
   await new Promise(r=>{$('#pdGo').onclick=e=>{e.stopPropagation();r()}});
 }
 async function waterStreet(){
   const V=$('#wstreet'),f=$('#wsField'),card=$('#wsCard'),hud=$('#wsHud');
-  f.innerHTML='<img id="wsBg" src="img/ws-street.webp" alt="" draggable="false">';hud.style.display='none';
+  f.innerHTML='<img id="wsBg" src="img/ws-street.webp?v=2611161" alt="" draggable="false">';hud.style.display='none';
   show('wstreet');
   const cardShow=(html,btns)=>new Promise(res=>{card.innerHTML=html+'<div class="btns">'+btns.map((b,i)=>`<button id="${b[0]}" class="${i?'sec':''}">${b[1]}</button>`).join('')+'</div>';card.style.display='block';
     btns.forEach(b=>{$('#'+b[0]).onclick=e=>{e.stopPropagation();card.style.display='none';res(b[0])}})});
   Audio_.songLoad();
   await cardShow(`<div class="eb">Side quest · Water street</div><h2>Reach May before the song ends</h2><p>She's waiting at the far end of the street, by the pandal.</p>
     <ul><li><span class="th lr"><svg viewBox="0 0 44 44" fill="none" stroke="#2f6f7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6 12 38M28 6l4 32" stroke-dasharray="3 3" opacity=".55"/><path d="M8 22H3m0 0 3.5-3.5M3 22l3.5 3.5M36 22h5m0 0-3.5-3.5M41 22l-3.5 3.5"/><circle cx="22" cy="15" r="3"/><path d="M22 18v9m-4-6h8m-6.5 13 2.5-7 2.5 7"/></svg></span><span><b>Tap left or right</b> of the screen to change lanes.</span></li>
-    <li><span class="th" style="background-image:url(img/ws-pal1.webp)"></span><span><b>Tap friends to splash them</b> before they splash you. Getting wet is fine. It's Thingyan.</span></li>
-    <li><span class="th tr" style="background-image:url(img/ws-truck.webp)"></span><span><b>Thura's truck drives down one lane</b> and that lane turns blue. Be in another lane when it reaches you. Three hits and Min's camera is ruined.</span></li></ul>`,[['wsStart','Start']]);
+    <li><span class="th" style="background-image:url(img/ws-pal1.webp?v=2611161)"></span><span><b>Tap friends to splash them</b> before they splash you. Getting wet is fine. It's Thingyan.</span></li>
+    <li><span class="th tr" style="background-image:url(img/ws-truck.webp?v=2611161)"></span><span><b>Thura's truck drives down one lane</b> and that lane turns blue. Be in another lane when it reaches you. Three hits and Min's camera is ruined.</span></li></ul>`,[['wsStart','Start']]);
   let bag=false,fails=0,res;
   for(;;){res=await wsRun(bag);if(res.ok)break;fails++;
     const b=await cardShow(`<div class="eb">Camera soaked</div><h2>Thura got the camera</h2><p>Min needs it for a photo under the mango tree. Try that street again.</p>`,
@@ -1947,7 +1947,7 @@ function wsRun(bag){return new Promise(async done=>{
   f.appendChild(svg);
   const lv=()=>{$('#wsLives').innerHTML=Array.from({length:max},(_,i)=>`<i class="ic i-camera${i<lives?'':' off'}"></i>`).join('')+`<span style="margin-left:4px">${bag?'In a plastic bag':'Camera'}</span><span class="sc" title="Friends you splashed"><i class="ic i-smiley"></i>${spl}<i class="ic i-drop" style="margin-left:10px"></i>${got}</span>`};
   hud.style.display='block';$('#wsSongI').style.width='0';lv();
-  const me=document.createElement('div');me.id='wsMin';me.className='spr anim';me.style.backgroundImage='url(img/ws-min-run.webp)';me.style.height=(LANEW*1.05)+'px';me.style.width=(LANEW*1.05*.42)+'px';f.appendChild(me);
+  const me=document.createElement('div');me.id='wsMin';me.className='spr anim';me.style.backgroundImage='url(img/ws-min-run.webp?v=2611161)';me.style.height=(LANEW*1.05)+'px';me.style.width=(LANEW*1.05*.42)+'px';f.appendChild(me);
   const put=()=>{const p=at(1,lane);me.style.left=p.x+'px';me.style.top=(p.y+LANEW*.18)+'px'};put();
   let lastPop=0,popN=0;const pop=(x,y,t,bad)=>{const n=performance.now();popN=n-lastPop<700?popN+1:0;lastPop=n;y-=popN*22;const p=document.createElement('div');p.className='pop'+(bad?' bad':'');p.textContent=t;p.style.left=x+'px';p.style.top=y+'px';f.appendChild(p);setTimeout(()=>p.remove(),800)};
   const cnt=$('#wsCount');cnt.style.display='flex';for(const n of ['3','2','1']){cnt.textContent=n;await rawSleep(S.speed>1?120:520)}cnt.style.display='none';
@@ -1956,7 +1956,7 @@ function wsRun(bag){return new Promise(async done=>{
     lane=Math.max(0,Math.min(2,lane+(x<W/2?-1:1)));put()};
   Audio_.songStart();
   const t0=performance.now();let last=t0,nextPal=t0+700,nextTruck=t0+2400/sp;
-  const spawn=(k,l)=>{let el,ar;if(k==='truck'){el=document.createElement('img');el.src='img/ws-truck.webp';ar=254/360}else{el=document.createElement('div');const g=Math.random()<.5;el.style.backgroundImage=`url(img/ws-pal${g?1:2}-run.webp)`;el.classList.add('anim');ar=g?.38:.403}el.classList.add('spr',k);
+  const spawn=(k,l)=>{let el,ar;if(k==='truck'){el=document.createElement('img');el.src='img/ws-truck.webp?v=2611161';ar=254/360}else{el=document.createElement('div');const g=Math.random()<.5;el.style.backgroundImage=`url(img/ws-pal${g?1:2}-run.webp)`;el.classList.add('anim');ar=g?.38:.403}el.classList.add('spr',k);
     const o={k,l,z:6.2,el,ar};f.appendChild(el);ents.push(o);
     if(k==='pal')el.onpointerdown=e=>{e.stopPropagation();if(over||o.hit||o.z>4.2)return;o.hit=1;spl++;el.classList.add('hit');const p=at(1/o.z,o.l);pop(p.x,p.y-LANEW*1.1/o.z,'Splash!');Audio_.splash(false);lv();o.exit=performance.now();o.dir=o.l===0?-1:o.l===2?1:(Math.random()<.5?-1:1);const b=document.createElement('div');b.className='burst';b.style.left=p.x+'px';b.style.top=(p.y-LANEW*.45/o.z)+'px';b.style.transform=`scale(${Math.min(1,1.3/o.z)})`;f.appendChild(b);setTimeout(()=>b.remove(),600)};
     if(k==='truck'){$('#wsDz'+l).classList.add('on');Audio_.horn()}
@@ -1981,7 +1981,7 @@ function wsRun(bag){return new Promise(async done=>{
     if(lives<=0){over=true;finish(false);return}
     if(p<1)requestAnimationFrame(frame);else{over=true;finish(true)}}
   async function finish(ok){Audio_.songStop(ok?1400:500);f.onpointerdown=null;me.classList.remove('run');ents.forEach(o=>o.el.remove());ents=[];f.querySelectorAll('.dz').forEach(e=>e.classList.remove('on'));
-    if(ok){const may=document.createElement('img');may.src='img/ws-may.webp';may.className='spr may';const m=at(.42,1);may.style.left=m.x+'px';may.style.top=(m.y+LANEW*.18*.42)+'px';may.style.height=(LANEW*.95*.42)+'px';f.appendChild(may);
+    if(ok){const may=document.createElement('img');may.src='img/ws-may.webp?v=2611161';may.className='spr may';const m=at(.42,1);may.style.left=m.x+'px';may.style.top=(m.y+LANEW*.18*.42)+'px';may.style.height=(LANEW*.95*.42)+'px';f.appendChild(may);
       lane=1;put();me.style.transition='left .3s ease, top 1.3s ease, height 1.3s ease, width 1.3s ease';me.classList.add('run');await rawSleep(80);const q=at(.47,1);me.style.top=(q.y+LANEW*.18*.47)+'px';me.style.height=(LANEW*1.05*.47)+'px';me.style.width=(LANEW*1.05*.47*.42)+'px';await rawSleep(S.speed>1?300:1400)}
     else await rawSleep(S.speed>1?200:900);
     me.style.transition='';done({ok,wet,spl,got,lives,max})}
@@ -2274,13 +2274,13 @@ const CH1=[
 
 
 /* ============ CHAPTER 2 · MONSOON SEASON ============ */
-SCENE.walkShare='<img src="img/c2-walk-share.webp" alt="" draggable="false">';
-SCENE.walkDrift='<img src="img/c2-walk-drift.webp" alt="" draggable="false">';
-SCENE.walkGate='<img src="img/c2-walk-gate.webp" alt="" draggable="false">';
-SCENE.pagoda='<img src="img/c2-pagoda.webp" alt="" draggable="false">';
-SCENE.pagodaLamp='<img src="img/c2-pagoda-lamp.webp" alt="" draggable="false">';
-SCENE.pagodaHands='<img src="img/c2-pagoda-hands.webp" alt="" draggable="false">';
-SCENE.lampWall='<img src="img/c2-lamp-wall.webp" alt="" draggable="false">';
+SCENE.walkShare='<img src="img/c2-walk-share.webp?v=2611161" alt="" draggable="false">';
+SCENE.walkDrift='<img src="img/c2-walk-drift.webp?v=2611161" alt="" draggable="false">';
+SCENE.walkGate='<img src="img/c2-walk-gate.webp?v=2611161" alt="" draggable="false">';
+SCENE.pagoda='<img src="img/c2-pagoda.webp?v=2611161" alt="" draggable="false">';
+SCENE.pagodaLamp='<img src="img/c2-pagoda-lamp.webp?v=2611161" alt="" draggable="false">';
+SCENE.pagodaHands='<img src="img/c2-pagoda-hands.webp?v=2611161" alt="" draggable="false">';
+SCENE.lampWall='<img src="img/c2-lamp-wall.webp?v=2611161" alt="" draggable="false">';
 const CH2=[
  {title:{big:'<em>Chapter 2</em>Monsoon Season',small:'July to October 2018',rain:2,time:'5:18 PM'}},
  // C2.1 May
@@ -2508,19 +2508,19 @@ const CH2=[
 ];
 
 /* ============ CHAPTER 3 · THINGYAN ============ */
-SCENE.wstreet='<img src="img/c3-street.webp" alt="" draggable="false">';
-SCENE.mayEnd='<img src="img/c3-may-end.webp" alt="" draggable="false">';
-SCENE.crowd='<img src="img/c3-crowd.webp" alt="" draggable="false">';
-SCENE.crowdHold='<img src="img/c3-hold.webp" alt="" draggable="false">';
-SCENE.crowdLetGo='<img src="img/c3-letgo.webp" alt="" draggable="false">';
-SCENE.mango='<img src="img/c3-mango.webp" alt="" draggable="false">';
-SCENE.mangoPhoto='<div style="position:absolute;inset:0;background:#1a1f1e;display:flex;align-items:flex-start;justify-content:center;padding-top:22%"><div style="width:84%;background:#f6f1e7;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:rotate(-2deg)"><img src="img/thingyan.webp" alt="" draggable="false" style="position:static;width:100%;height:auto;display:block;animation:none;transform:none"></div></div>';
-SCENE.towel='<img src="img/c3-towel.webp" alt="" draggable="false">';
-SCENE.pagoda19='<img src="img/c3-pagoda19.webp" alt="" draggable="false">';
-SCENE.lamp2='<img src="img/c3-lamp2.webp" alt="" draggable="false">';
-ART.teaGate='<img src="img/c3-tea-gate.webp" alt="" draggable="false">';
-ART.mayBangs='<img class="tall" src="img/c2-may-bangs.webp" alt="May with her new bangs" draggable="false">';
-ART.lamp2='<img src="img/c3-lamp2.webp" alt="" draggable="false" style="object-fit:cover;object-position:50% 52%">';
+SCENE.wstreet='<img src="img/c3-street.webp?v=2611161" alt="" draggable="false">';
+SCENE.mayEnd='<img src="img/c3-may-end.webp?v=2611161" alt="" draggable="false">';
+SCENE.crowd='<img src="img/c3-crowd.webp?v=2611161" alt="" draggable="false">';
+SCENE.crowdHold='<img src="img/c3-hold.webp?v=2611161" alt="" draggable="false">';
+SCENE.crowdLetGo='<img src="img/c3-letgo.webp?v=2611161" alt="" draggable="false">';
+SCENE.mango='<img src="img/c3-mango.webp?v=2611161" alt="" draggable="false">';
+SCENE.mangoPhoto='<div style="position:absolute;inset:0;background:#1a1f1e;display:flex;align-items:flex-start;justify-content:center;padding-top:22%"><div style="width:84%;background:#f6f1e7;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:rotate(-2deg)"><img src="img/thingyan.webp?v=2611161" alt="" draggable="false" style="position:static;width:100%;height:auto;display:block;animation:none;transform:none"></div></div>';
+SCENE.towel='<img src="img/c3-towel.webp?v=2611161" alt="" draggable="false">';
+SCENE.pagoda19='<img src="img/c3-pagoda19.webp?v=2611161" alt="" draggable="false">';
+SCENE.lamp2='<img src="img/c3-lamp2.webp?v=2611161" alt="" draggable="false">';
+ART.teaGate='<img src="img/c3-tea-gate.webp?v=2611161" alt="" draggable="false">';
+ART.mayBangs='<img class="tall" src="img/c2-may-bangs.webp?v=2611161" alt="May with her new bangs" draggable="false">';
+ART.lamp2='<img src="img/c3-lamp2.webp?v=2611161" alt="" draggable="false" style="object-fit:cover;object-position:50% 52%">';
 const CH3=[
  {title:{big:'<em>Chapter 3</em>Thingyan',small:'March to December 2019',rain:0,time:'11:20 PM'}},
  // C3.1 Exam nights
@@ -3133,10 +3133,15 @@ function snap(){let day=S.day||0,tl=S.tlabel||null;if(S.pendTime){const o={now:S
   return JSON.parse(JSON.stringify({flags:S.flags,memories:S.memories,unsent:S.unsent,threads:S.threads,day,tl,rain:S.rain||0,walk:S.walk||null,ym:S.ym==null?null:S.ym}))}
 function restore(c){S.pendTime=null;S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;S.ym=c.ym==null?null:c.ym;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=shotHTML(w)})}
 const SAFE=['notify','scene','title','browse','friend','lock'];
+/* ===== Image preloading: when a chapter starts, its images (then the next chapter's) download quietly in the background, 3 at a time, so scenes appear at once ===== */
+const PRE={"2":["c2-candles","c2-lamp-wall","c2-may-bangs","c2-may-candid","c2-pagoda-hands","c2-pagoda-lamp","c2-pagoda","c2-spot-dog","c2-spot-market","c2-spot-monastery","c2-spot-river","c2-spot-shop","c2-spot-tea","c2-walk-drift","c2-walk-gate","c2-walk-share"],"3":["c3-crowd","c3-hold","c3-lamp2","c3-letgo","c3-mango","c3-may-end","c3-padauk","c3-pagoda19","c3-street","c3-tea-gate","c3-towel","thingyan","ws-may","ws-min-run","ws-min","ws-pal1-run","ws-pal1","ws-pal2-run","ws-pal2","ws-street","ws-truck"],"4":["c4-empty","c4-gate","c4-handover","c4-hnin-umb","c4-hug","c4-item-jars","c4-item-print","c4-item-seeds","c4-item-stickers","c4-item-sweater","c4-item-walk","c4-min-look","c4-ph-bus","c4-ph-tea","c4-ph-warehouse","c4-ph-windows","c4-promise","c4-roof","c4-room","c4-shutter","c4-station","c4-window"],"5":["c5-bench","c5-bus-gone","c5-closing","c5-counter","c5-dinner","c5-hnin-sits","c5-lamp","c5-ph-citylamp","c5-ph-cropped","c5-ph-lamp","c5-ph-uncropped","c5-step-v2","c5-wait","c5-walk"],"6":["e-ph-mayumb","e2-door","e3-doorway2","e3-tea","ep-last-next","ep-last-open","ep-last-unsaid","ep-open-meet-v3","ep-open-see-v4","ep-open-walk","ep-ph-ticket","ep-ph-wall","ep-town"],"0":["ap-11-runs-out","av-hnin","av-may-2020","av-may","av-mom","av-thura","cl-01-establish","cl-02-returns","cl-03-note","cl-04-teacher","cl-05-may-answers","cl-06-talk","cl-06-whisper","dog","dr-01-drops-off","dr-02-sits","dr-03-runs-in","dr-04-hnin","dr-05-frown-wide","dr-06-what","dr-07-laugh","dr-08-samosa","dr-09-tea","dr-10-seeds","dr-11-phone","dr-12-coming-ma","dr-13-walk-open","dr-14-walk-arm","dr-15-hnin-closeup","pink-umbrella","rm-01-empty","rm-02-reading","rm-03-umbrellas","sbtv-logo","stk-catUmb","stk-laugh","stk-sleepy","stk-teaCup","tea-table","umbrella-bed","yellow-umbrella"],"1":[]},PRE_V='2611161',PRE_DONE=new Set();let PRE_Q=[],PRE_RUN=0;
+function preCh(k){const add=[];for(const c of [k,k+1,k+2].slice(0,k===0?3:2))(PRE[c]||[]).forEach(n=>{if(!PRE_DONE.has(n)){PRE_DONE.add(n);add.push(n)}});PRE_Q=add.concat(PRE_Q);prePump()}
+function prePump(){while(PRE_RUN<3&&PRE_Q.length){const n=PRE_Q.shift();PRE_RUN++;const im=new Image();im.decoding='async';const done=()=>{PRE_RUN--;setTimeout(prePump,30)};im.onload=im.onerror=done;im.src='img/'+n+'.webp?v='+PRE_V}}
+let PRE_CH=-1;
 function chOf(i){let k=0;CH_START.forEach((x,j)=>{if(x<=i)k=j});return k}
 function markDone(k){const v=sv();if(!v.done.includes(k))v.done.push(k);persist()}
 let DEVJUMP=false;
-async function runFlow(i){for(;i<FLOW.length;i++){S.ch=chOf(i);S.at=i;devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];
+async function runFlow(i){for(;i<FLOW.length;i++){S.ch=chOf(i);if(S.ch!==PRE_CH){PRE_CH=S.ch;preCh(S.ch)}S.at=i;devT.value=i;devL.textContent=i+' · '+FLOW_LBL[i];
   if(!DEVJUMP){const st=FLOW[i];const kk=st&&typeof st==='object'?Object.keys(st)[0]:null;if(kk&&SAFE.includes(kk)){const v=sv();v.pos={i,k:chOf(i),s:snap()};persist()}
     const k=CH_START.indexOf(i);if(k>=0){const v=sv();v.cps[k]=snap();v.cur=k;if(k>0)markDone(k-1);persist()}
     if(CH_END[i]!==undefined){markDone(CH_END[i]);const v=sv();v.cps[CH_END[i]+1]=snap();v.cur=CH_END[i]+1;if(CH_END[i]>=CH_START.length-1)v.replay=false;persist()}

@@ -1104,7 +1104,7 @@ const packPic=it=>C4_READY.has(it.f)?`<img src="img/${it.f}.webp?v=2611161" alt=
 ART.shoebox=()=>`<div class="walk3">${(S.flags.c4_left||[]).map(id=>{const it=PACK.find(x=>x.id===id);return `<i style="background:#efe6d8;display:flex;align-items:center;justify-content:center">${packPic(it)}</i>`}).join('')}</div>`;
 
 /* ===== Chapter 5, ending and epilogue art. Labelled placeholders until Kaung approves images (none generated yet); add a file name to C5_READY when its image is in img/. ===== */
-const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-wait','c5-walk','c5-step-v2','c5-bus-gone','e2-door','e3-tea','e3-doorway2','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','ep-open-walk-v2','ep-open-see-v4','ep-open-meet-v4','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
+const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-wait','c5-walk','c5-step-v2','c5-bus-gone','e2-door','e3-tea','e3-doorway2','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','ep-open-walk-v3','ep-open-see-v4','ep-open-meet-v4','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
 const c5img=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp?v=2611161" alt="" draggable="false">`:PHI(label,'#3d4a55','#1a2228');
 const c5ph=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp?v=2611161" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
 SCENE.c5Lamp=c5img('c5-lamp','One lamp on the pagoda wall');
@@ -1122,7 +1122,7 @@ SCENE.epTown=c5img('ep-town','The street, 2024');
 SCENE.epLastUnsaid=c5img('ep-last-unsaid','Under the awning, umbrella closed');
 SCENE.epLastOpen=c5img('ep-last-open','Under the awning, umbrella half open');
 SCENE.epLastNext=c5img('ep-last-next','Out under the pink umbrella');
-SCENE.epOpenWalk=c5img('ep-open-walk-v2','Down the street under the pink umbrella');
+SCENE.epOpenWalk=c5img('ep-open-walk-v3','Down the street under the pink umbrella');
 SCENE.epOpenSee=c5img('ep-open-see-v4','Min stops, amazed');
 SCENE.epOpenMeet=c5img('ep-open-meet-v4','Over her shoulder: Min, and a black umbrella');
 SCENE.epLastSaid=SCENE.epLastNext;
@@ -1630,8 +1630,17 @@ function postBody(v,tag){const art=fv(v.art),text=fv(v.text);
    <div class="cms" id="postCms"></div>
    <div class="when">${esc(v.when||'')}</div>`}
 async function showCmts(list,gap){for(const c of list||[]){$('#postCms').insertAdjacentHTML('beforeend',cmtHTML(c));$('#postBody').scrollTo({top:9999,behavior:'smooth'});await sleep(gap||650)}}
-function trayPick(labels){return new Promise(res=>{$('#postTray').innerHTML=`<div class="tray">${labels.map((o,i)=>`<button class="opt" data-i="${i}"><span>${esc(o)}</span></button>`).join('')}</div>`;
+function trayPick(labels){return new Promise(res=>{$('#postTray').innerHTML=`<div class="tray">${labels.map((o,i)=>`<button class="opt" data-i="${i}"><span>${esc(o)}</span></button>`).join('')}</div>`;requestAnimationFrame(()=>{const pb=$('#postBody');pb.scrollTop=pb.scrollHeight});
   $('#postTray').querySelectorAll('.opt').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();$('#postTray').innerHTML='';res(+b.dataset.i)}))})}
+/* Before the post's option sheet opens: if the sheet would cover part of the post, scroll the post from the top down to the comments first so the player can read it, then open the sheet */
+function pbScroll(pb,to,ms){return new Promise(r=>{const from=pb.scrollTop,d=to-from;if(Math.abs(d)<4){r();return}const t0=performance.now();
+  (function st(){const k=Math.min(1,(performance.now()-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;pb.scrollTop=from+d*e;if(k<1)requestAnimationFrame(st);else r()})()})}
+async function scanPost(n){const pb=$('#postBody');const trayH=26+n*54;
+  if(pb.scrollHeight<=pb.clientHeight-trayH)return;
+  const sp=Math.max(1,S.speed||1);
+  if(pb.scrollTop>4){await pbScroll(pb,0,700/sp);await rawSleep(500/sp)}
+  const end=pb.scrollHeight-pb.clientHeight;if(end<=4){await rawSleep(2000/sp);return}
+  await pbScroll(pb,end,Math.min(4200,Math.max(1400,end*6))/sp);await rawSleep(900/sp)}
 async function postStep(v){
   await holdChat();renderList(liveRows(v.rows,null),null);show('list');await sleep(900);
   const tag=fv(v.tag);
@@ -1639,7 +1648,7 @@ async function postStep(v){
   $('#postBody').innerHTML=postBody(v,tag);$('#postBody').scrollTop=0;
   $('#postTray').innerHTML='';show('post');await sleep(1400);
   await showCmts(fv(v.cmts));await sleep(500);
-  const co=fv(v.cOpts);
+  const co=fv(v.cOpts);await scanPost(co?3:2);
   const i=await trayPick((sp=>co?['Like','Comment',sp]:['Like',sp])(S.lang==='my'?'ကျော်သွားမယ်':'Scroll past'));
   const mode=i===0?'like':(co&&i===1)?'comment':'skip';
   if(v.flag)S.flags[v.flag]=mode==='like'?true:mode==='comment'?'c':false;
@@ -3134,7 +3143,7 @@ function snap(){let day=S.day||0,tl=S.tlabel||null;if(S.pendTime){const o={now:S
 function restore(c){S.pendTime=null;S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;S.ym=c.ym==null?null:c.ym;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=shotHTML(w)})}
 const SAFE=['notify','scene','title','browse','friend','lock'];
 /* ===== Image preloading: when a chapter starts, its images (then the next chapter's) download quietly in the background, 3 at a time, so scenes appear at once ===== */
-const PRE={"2":["c2-candles","c2-lamp-wall","c2-may-bangs","c2-may-candid","c2-pagoda-hands","c2-pagoda-lamp","c2-pagoda","c2-spot-dog","c2-spot-market","c2-spot-monastery","c2-spot-river","c2-spot-shop","c2-spot-tea","c2-walk-drift","c2-walk-gate","c2-walk-share"],"3":["c3-crowd","c3-hold","c3-lamp2","c3-letgo","c3-mango","c3-may-end","c3-padauk","c3-pagoda19","c3-street","c3-tea-gate","c3-towel","thingyan","ws-may","ws-min-run","ws-min","ws-pal1-run","ws-pal1","ws-pal2-run","ws-pal2","ws-street","ws-truck"],"4":["c4-empty","c4-gate","c4-handover","c4-hnin-umb","c4-hug","c4-item-jars","c4-item-print","c4-item-seeds","c4-item-stickers","c4-item-sweater","c4-item-walk","c4-min-look","c4-ph-bus","c4-ph-tea","c4-ph-warehouse","c4-ph-windows","c4-promise","c4-roof","c4-room","c4-shutter","c4-station","c4-window"],"5":["c5-bench","c5-bus-gone","c5-closing","c5-counter","c5-dinner","c5-hnin-sits","c5-lamp","c5-ph-citylamp","c5-ph-cropped","c5-ph-lamp","c5-ph-uncropped","c5-step-v2","c5-wait","c5-walk"],"6":["e-ph-mayumb","e2-door","e3-doorway2","e3-tea","ep-last-next","ep-last-open","ep-last-unsaid","ep-open-meet-v4","ep-open-see-v4","ep-open-walk-v2","ep-ph-ticket","ep-ph-wall","ep-town"],"0":["ap-11-runs-out","av-hnin","av-may-2020","av-may","av-mom","av-thura","cl-01-establish","cl-02-returns","cl-03-note","cl-04-teacher","cl-05-may-answers","cl-06-talk","cl-06-whisper","dog","dr-01-drops-off","dr-02-sits","dr-03-runs-in","dr-04-hnin","dr-05-frown-wide","dr-06-what","dr-07-laugh","dr-08-samosa","dr-09-tea","dr-10-seeds","dr-11-phone","dr-12-coming-ma","dr-13-walk-open","dr-14-walk-arm","dr-15-hnin-closeup","pink-umbrella","rm-01-empty","rm-02-reading","rm-03-umbrellas","sbtv-logo","stk-catUmb","stk-laugh","stk-sleepy","stk-teaCup","tea-table","umbrella-bed","yellow-umbrella"],"1":[]},PRE_V='2611161',PRE_DONE=new Set();let PRE_Q=[],PRE_RUN=0;
+const PRE={"2":["c2-candles","c2-lamp-wall","c2-may-bangs","c2-may-candid","c2-pagoda-hands","c2-pagoda-lamp","c2-pagoda","c2-spot-dog","c2-spot-market","c2-spot-monastery","c2-spot-river","c2-spot-shop","c2-spot-tea","c2-walk-drift","c2-walk-gate","c2-walk-share"],"3":["c3-crowd","c3-hold","c3-lamp2","c3-letgo","c3-mango","c3-may-end","c3-padauk","c3-pagoda19","c3-street","c3-tea-gate","c3-towel","thingyan","ws-may","ws-min-run","ws-min","ws-pal1-run","ws-pal1","ws-pal2-run","ws-pal2","ws-street","ws-truck"],"4":["c4-empty","c4-gate","c4-handover","c4-hnin-umb","c4-hug","c4-item-jars","c4-item-print","c4-item-seeds","c4-item-stickers","c4-item-sweater","c4-item-walk","c4-min-look","c4-ph-bus","c4-ph-tea","c4-ph-warehouse","c4-ph-windows","c4-promise","c4-roof","c4-room","c4-shutter","c4-station","c4-window"],"5":["c5-bench","c5-bus-gone","c5-closing","c5-counter","c5-dinner","c5-hnin-sits","c5-lamp","c5-ph-citylamp","c5-ph-cropped","c5-ph-lamp","c5-ph-uncropped","c5-step-v2","c5-wait","c5-walk"],"6":["e-ph-mayumb","e2-door","e3-doorway2","e3-tea","ep-last-next","ep-last-open","ep-last-unsaid","ep-open-meet-v4","ep-open-see-v4","ep-open-walk-v3","ep-ph-ticket","ep-ph-wall","ep-town"],"0":["ap-11-runs-out","av-hnin","av-may-2020","av-may","av-mom","av-thura","cl-01-establish","cl-02-returns","cl-03-note","cl-04-teacher","cl-05-may-answers","cl-06-talk","cl-06-whisper","dog","dr-01-drops-off","dr-02-sits","dr-03-runs-in","dr-04-hnin","dr-05-frown-wide","dr-06-what","dr-07-laugh","dr-08-samosa","dr-09-tea","dr-10-seeds","dr-11-phone","dr-12-coming-ma","dr-13-walk-open","dr-14-walk-arm","dr-15-hnin-closeup","pink-umbrella","rm-01-empty","rm-02-reading","rm-03-umbrellas","sbtv-logo","stk-catUmb","stk-laugh","stk-sleepy","stk-teaCup","tea-table","umbrella-bed","yellow-umbrella"],"1":[]},PRE_V='2611161',PRE_DONE=new Set();let PRE_Q=[],PRE_RUN=0;
 function preCh(k){const add=[];for(const c of [k,k+1,k+2].slice(0,k===0?3:2))(PRE[c]||[]).forEach(n=>{if(!PRE_DONE.has(n)){PRE_DONE.add(n);add.push(n)}});PRE_Q=add.concat(PRE_Q);prePump()}
 function prePump(){while(PRE_RUN<3&&PRE_Q.length){const n=PRE_Q.shift();PRE_RUN++;const im=new Image();im.decoding='async';const done=()=>{PRE_RUN--;setTimeout(prePump,30)};im.onload=im.onerror=done;im.src='img/'+n+'.webp?v='+PRE_V}}
 let PRE_CH=-1;

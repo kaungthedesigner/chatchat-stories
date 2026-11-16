@@ -1104,7 +1104,7 @@ const packPic=it=>C4_READY.has(it.f)?`<img src="img/${it.f}.webp?v=2611161" alt=
 ART.shoebox=()=>`<div class="walk3">${(S.flags.c4_left||[]).map(id=>{const it=PACK.find(x=>x.id===id);return `<i style="background:#efe6d8;display:flex;align-items:center;justify-content:center">${packPic(it)}</i>`}).join('')}</div>`;
 
 /* ===== Chapter 5, ending and epilogue art. Labelled placeholders until Kaung approves images (none generated yet); add a file name to C5_READY when its image is in img/. ===== */
-const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-wait','c5-walk','c5-step-v2','c5-bus-gone','e2-door','e3-tea','e3-doorway2','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','ep-open-walk-v3','ep-open-see-v4','ep-open-meet-v4','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
+const C5_READY=new Set(['c5-lamp','c5-dinner','c5-closing','c5-hnin-sits','c5-counter','c5-bench','c5-wait','c5-walk','c5-step-v2','c5-bus-gone','e2-door','e3-tea','ep-town','ep-last-unsaid','ep-last-open','ep-last-next','ep-open-walk-v3','ep-open-see-v4','ep-open-meet-v4','c5-ph-lamp','c5-ph-citylamp','c5-ph-cropped','c5-ph-uncropped','e-ph-mayumb','ep-ph-ticket','ep-ph-wall']);
 const c5img=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp?v=2611161" alt="" draggable="false">`:PHI(label,'#3d4a55','#1a2228');
 const c5ph=(f,label)=>C5_READY.has(f)?`<img src="img/${f}.webp?v=2611161" alt="" draggable="false">`:`<img src="${phSVG(label,'#6a7a82','#2f3c43',1024,768)}" alt="" draggable="false">`;
 SCENE.c5Lamp=c5img('c5-lamp','One lamp on the pagoda wall');
@@ -1117,7 +1117,7 @@ SCENE.c5BusGone=c5img('c5-bus-gone','The night bus pulls out');
 SCENE.e2Door=c5img('e2-door','The pink umbrella by the door');
 SCENE.e3Tea=c5img('e3-tea','The tea shop, June 2023');
 SCENE.e3Sit=c5img('e3-sit','Hnin sits down across from him');
-SCENE.e3Door=c5img('e3-doorway2','Someone in the doorway with a black umbrella');
+
 SCENE.epTown=c5img('ep-town','The street, 2024');
 SCENE.epLastUnsaid=c5img('ep-last-unsaid','Under the awning, umbrella closed');
 SCENE.epLastOpen=c5img('ep-last-open','Under the awning, umbrella half open');
@@ -1332,7 +1332,8 @@ function rxOpen(row){const m=row._m;if(!m||m.dir!=='in'||(m.rx&&!m.rxMe))return;
     const bar=$('#rxBar');if(bar&&!bar.contains(e.target)){rxClose();e.stopPropagation();e.preventDefault()}},true);
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#rxBar'))rxClose()},true);})();
 function rxHint(){try{if(localStorage.getItem('tib-rx-hint'))return;localStorage.setItem('tib-rx-hint','1')}catch(_){return}setTimeout(()=>toast('Press and hold a message to react'),600)}
-function push(m,c=S.contact){if(m.dir&&!m.st){const lab=stampDiv(c);if(lab)push({k:'div',text:lab},c);m.st={d:S.day||0,n:S.now||0}}(S.threads[c]=S.threads[c]||[]).push(m);
+function push(m,c=S.contact){if(S.langSwitched){storyMaps();['text','cap'].forEach(k=>{if(m[k])m[k]=swapT(m[k])});if(m.re&&m.re.q)m.re.q=swapT(m.re.q)}
+  if(m.dir&&!m.st){const lab=stampDiv(c);if(lab)push({k:'div',text:lab},c);m.st={d:S.day||0,n:S.now||0}}(S.threads[c]=S.threads[c]||[]).push(m);
   if(c===S.contact&&$('#chat').classList.contains('on')){const th=S.threads[c];const prev=[...th].slice(0,-1).reverse().find(x=>x.dir);
     const r=$('#rc');if(r&&m.dir)r.remove();msgs.appendChild(el(m,prev));if(m.dir==='out'){m.rc='Sent';const rc=el({k:'rcpt',text:'Sent'});rc.id='rc';msgs.appendChild(rc)}scrollDown();}}
 function markSeen(){const th=S.threads[S.contact]||[];const lo=[...th].reverse().find(m=>m.dir);if(lo&&lo.dir==='out'){lo.rc='Seen';const r=$('#rc');if(r)r.textContent='Seen'}}
@@ -1359,7 +1360,7 @@ function reBar(re){const f=$('.foot');let b=$('#rebar');if(!re){if(b)b.remove();
   const t=[...ms.querySelectorAll('.row')].find(r=>r!==row&&r._m&&r._m.k==='text'&&r._m.text===m.re.q);
   if(t){const b=t.querySelector('.b');t.scrollIntoView({block:'center',behavior:'smooth'});b.classList.add('flashq');setTimeout(()=>b.classList.remove('flashq'),1200)}return true};
   ms.addEventListener('click',go,true);ms.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.rq'))go(e)});})();
-async function outgoing(m){if(m.re)reBar(m.re);if(m.k==='text'){await typeField(m.text);await rawSleep(220)}reBar(null);setField('');push(Object.assign({dir:'out'},m));Audio_.blip(true);await sleep(450);}
+async function outgoing(m){if(S.langSwitched&&m.text){storyMaps();m.text=swapT(m.text)}if(m.re)reBar(m.re);if(m.k==='text'){await typeField(m.text);await rawSleep(220)}reBar(null);setField('');push(Object.assign({dir:'out'},m));Audio_.blip(true);await sleep(450);}
 function tray(html){$('#tray').innerHTML=html;scrollDown();}
 function choose(opts,hint,scene){return new Promise(res=>{
   const wrap=scene?$('#dlg'):$('#tray');
@@ -1373,7 +1374,7 @@ let dlgTyping=false,dlgSkip=false;
 async function dialog(name,text,cls){const d=$('#dlg');d.innerHTML=`${name?`<div class="nm">${esc(name)}</div>`:''}<div class="tx ${cls||''}"></div><div class="more" style="display:none">Tap to continue</div>`;
   const tx=d.querySelector('.tx');dlgTyping=true;dlgSkip=false;
   const skipH=()=>{dlgSkip=true};stage.addEventListener('click',skipH,{once:true});
-  for(let i=1;i<=text.length;i++){if(dlgSkip){tx.textContent=text;break}tx.textContent=text.slice(0,i);await rawSleep(Math.max(6,22/S.speed))}
+  for(let i=1;i<=text.length;i++){if(S.langSwitched){storyMaps();const t2=swapT(text);if(t2!==text){text=t2;i=Math.min(i,text.length)}}if(dlgSkip){tx.textContent=text;break}tx.textContent=text.slice(0,i);await rawSleep(Math.max(6,22/S.speed))}
   stage.removeEventListener('click',skipH);dlgTyping=false;d.querySelector('.more').style.display='block';await waitStage(150);}
 
 
@@ -1475,7 +1476,9 @@ const MY_UI={"Sunday, after the rain":"မိုးတိတ်ပြီးန�
 S.lang=(()=>{try{return localStorage.getItem('tib-lang')||'en'}catch(e){return 'en'}})();
 S.ch=0;
 const trS=(x,D)=>typeof x==='string'?(D[x]!==undefined?D[x]:x):Array.isArray(x)?x.map(y=>trS(y,D)):(x&&typeof x==='object'&&x.constructor===Object)?(D2=>Object.fromEntries(Object.entries(x).filter(([k])=>k!=='myTr').map(([k,v])=>[k,trS(v,D2)])))(x.myTr?{...D,...x.myTr}:D):x;
-const trStep=s=>{const D=S.lang==='my'&&MY_STORY[S.ch];return D&&s&&typeof s==='object'?trS(s,D):s};
+const trStep=s=>{if(!s||typeof s!=='object')return s;if(S.lang==='my'){const D=MY_STORY[S.ch];return D?trS(s,D):s}
+  /* English mode: a branch that was translated before the player switched language is turned back */
+  if(!S.langSwitched)return s;storyMaps();return trS(s,MY2EN)};
 const UI_RX=[[/^(\d+) of 3$/,'$1 / 3'],[/^([\d,]+) Ks$/,'$1 ကျပ်'],[/^of ([\d,]+) Ks$/,'/ $1 ကျပ်'],[/^([\d,]+) Ks · not used$/,'$1 ကျပ် · မသုံးရသေးပါ'], [/^Seat (\w+)$/,'ထိုင်ခုံ $1'],[/^Seat (\w+)\. Count out the fare\.$/,'ထိုင်ခုံ $1။ ကားခ ရေတွက်ပေးပါ။'],[/^Seat (\w+)\. Change: ([\d,]+) Ks\.$/,'ထိုင်ခုံ $1။ ပြန်အမ်းငွေ $2 ကျပ်။'], [/^Night bus to the city · seat (\w+)$/,'မြို့ကြီးသွား ညကား · ထိုင်ခုံ $1'], [/^(Mostly dry|Wet|Soaked) · camera (bone dry|still working)$/,(m,a,b)=>({'Mostly dry':'သိပ်မစို','Wet':'ရေစို','Soaked':'ရွှဲနစ်'})[a]+' · '+(b==='bone dry'?'ကင်မရာ လုံးဝမစို':'ကင်မရာ အလုပ်လုပ်သေးတယ်')], [/^You splashed (\d+) friends?\. Min got splashed (\d+) times?\.$/,'သူငယ်ချင်း $1 ယောက်ကို ရေပက်ခဲ့တယ်။ မင်းထက်ကတော့ $2 ခါ ရေအပက်ခံရတယ်။']];
 function uiNode(n){if(!n.__en)n.__en=n.nodeValue;const en=n.__en,t=en.trim();if(!t)return;
   let my=MY_UI[t];if(my===undefined)for(const [rx,f] of UI_RX){if(rx.test(t)){my=t.replace(rx,f);break}}
@@ -1494,7 +1497,7 @@ const swapT=t=>{if(typeof t!=='string')return t;const M=S.lang==='my'?EN2MY:MY2E
 function storySwap(){storyMaps();
   Object.values(S.threads||{}).forEach(th=>th.forEach(m=>{['text','cap'].forEach(k=>{if(m[k])m[k]=swapT(m[k])});if(m.re){m.re.q=swapT(m.re.q)}}));
   uiBusy=true;try{const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(n.parentElement&&n.parentElement.closest('.top,#bar,header'))continue;const v=swapT(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}}finally{uiBusy=false}}
-$('#bLang').onclick=e=>{e.stopPropagation();e.currentTarget.blur();S.lang=S.lang==='my'?'en':'my';try{localStorage.setItem('tib-lang',S.lang)}catch(_){}
+$('#bLang').onclick=e=>{e.stopPropagation();e.currentTarget.blur();S.lang=S.lang==='my'?'en':'my';S.langSwitched=true;try{localStorage.setItem('tib-lang',S.lang)}catch(_){}
   langSync();storySwap();toast(S.lang==='my'?'မြန်မာ':'English')};
 
 langSync();
@@ -3143,7 +3146,7 @@ function snap(){let day=S.day||0,tl=S.tlabel||null;if(S.pendTime){const o={now:S
 function restore(c){S.pendTime=null;S.flags=c.flags||{};S.memories=c.memories||[];S.unsent=c.unsent||[];S.threads=c.threads||{};S.day=c.day||0;S.now=null;S.contact=null;if(c.tl){setTime(c.tl)}setRain(c.rain||0);S.walk=c.walk||null;S.ym=c.ym==null?null:c.ym;(S.walk||[]).forEach(w=>{const sp=SPOTS.find(x=>x.id===w.id);if(sp)ART['shot_'+w.id]=shotHTML(w)})}
 const SAFE=['notify','scene','title','browse','friend','lock'];
 /* ===== Image preloading: when a chapter starts, its images (then the next chapter's) download quietly in the background, 3 at a time, so scenes appear at once ===== */
-const PRE={"2":["c2-candles","c2-lamp-wall","c2-may-bangs","c2-may-candid","c2-pagoda-hands","c2-pagoda-lamp","c2-pagoda","c2-spot-dog","c2-spot-market","c2-spot-monastery","c2-spot-river","c2-spot-shop","c2-spot-tea","c2-walk-drift","c2-walk-gate","c2-walk-share"],"3":["c3-crowd","c3-hold","c3-lamp2","c3-letgo","c3-mango","c3-may-end","c3-padauk","c3-pagoda19","c3-street","c3-tea-gate","c3-towel","thingyan","ws-may","ws-min-run","ws-min","ws-pal1-run","ws-pal1","ws-pal2-run","ws-pal2","ws-street","ws-truck"],"4":["c4-empty","c4-gate","c4-handover","c4-hnin-umb","c4-hug","c4-item-jars","c4-item-print","c4-item-seeds","c4-item-stickers","c4-item-sweater","c4-item-walk","c4-min-look","c4-ph-bus","c4-ph-tea","c4-ph-warehouse","c4-ph-windows","c4-promise","c4-roof","c4-room","c4-shutter","c4-station","c4-window"],"5":["c5-bench","c5-bus-gone","c5-closing","c5-counter","c5-dinner","c5-hnin-sits","c5-lamp","c5-ph-citylamp","c5-ph-cropped","c5-ph-lamp","c5-ph-uncropped","c5-step-v2","c5-wait","c5-walk"],"6":["e-ph-mayumb","e2-door","e3-doorway2","e3-tea","ep-last-next","ep-last-open","ep-last-unsaid","ep-open-meet-v4","ep-open-see-v4","ep-open-walk-v3","ep-ph-ticket","ep-ph-wall","ep-town"],"0":["ap-11-runs-out","av-hnin","av-may-2020","av-may","av-mom","av-thura","cl-01-establish","cl-02-returns","cl-03-note","cl-04-teacher","cl-05-may-answers","cl-06-talk","cl-06-whisper","dog","dr-01-drops-off","dr-02-sits","dr-03-runs-in","dr-04-hnin","dr-05-frown-wide","dr-06-what","dr-07-laugh","dr-08-samosa","dr-09-tea","dr-10-seeds","dr-11-phone","dr-12-coming-ma","dr-13-walk-open","dr-14-walk-arm","dr-15-hnin-closeup","pink-umbrella","rm-01-empty","rm-02-reading","rm-03-umbrellas","sbtv-logo","stk-catUmb","stk-laugh","stk-sleepy","stk-teaCup","tea-table","umbrella-bed","yellow-umbrella"],"1":[]},PRE_V='2611161',PRE_DONE=new Set();let PRE_Q=[],PRE_RUN=0;
+const PRE={"2":["c2-candles","c2-lamp-wall","c2-may-bangs","c2-may-candid","c2-pagoda-hands","c2-pagoda-lamp","c2-pagoda","c2-spot-dog","c2-spot-market","c2-spot-monastery","c2-spot-river","c2-spot-shop","c2-spot-tea","c2-walk-drift","c2-walk-gate","c2-walk-share"],"3":["c3-crowd","c3-hold","c3-lamp2","c3-letgo","c3-mango","c3-may-end","c3-padauk","c3-pagoda19","c3-street","c3-tea-gate","c3-towel","thingyan","ws-may","ws-min-run","ws-min","ws-pal1-run","ws-pal1","ws-pal2-run","ws-pal2","ws-street","ws-truck"],"4":["c4-empty","c4-gate","c4-handover","c4-hnin-umb","c4-hug","c4-item-jars","c4-item-print","c4-item-seeds","c4-item-stickers","c4-item-sweater","c4-item-walk","c4-min-look","c4-ph-bus","c4-ph-tea","c4-ph-warehouse","c4-ph-windows","c4-promise","c4-roof","c4-room","c4-shutter","c4-station","c4-window"],"5":["c5-bench","c5-bus-gone","c5-closing","c5-counter","c5-dinner","c5-hnin-sits","c5-lamp","c5-ph-citylamp","c5-ph-cropped","c5-ph-lamp","c5-ph-uncropped","c5-step-v2","c5-wait","c5-walk"],"6":["e-ph-mayumb","e2-door","e3-tea","ep-last-next","ep-last-open","ep-last-unsaid","ep-open-meet-v4","ep-open-see-v4","ep-open-walk-v3","ep-ph-ticket","ep-ph-wall","ep-town"],"0":["ap-11-runs-out","av-hnin","av-may-2020","av-may","av-mom","av-thura","cl-01-establish","cl-02-returns","cl-03-note","cl-04-teacher","cl-05-may-answers","cl-06-talk","cl-06-whisper","dog","dr-01-drops-off","dr-02-sits","dr-03-runs-in","dr-04-hnin","dr-05-frown-wide","dr-06-what","dr-07-laugh","dr-08-samosa","dr-09-tea","dr-10-seeds","dr-11-phone","dr-12-coming-ma","dr-13-walk-open","dr-14-walk-arm","dr-15-hnin-closeup","pink-umbrella","rm-01-empty","rm-02-reading","rm-03-umbrellas","sbtv-logo","stk-catUmb","stk-laugh","stk-sleepy","stk-teaCup","tea-table","umbrella-bed","yellow-umbrella"],"1":[]},PRE_V='2611161',PRE_DONE=new Set();let PRE_Q=[],PRE_RUN=0;
 function preCh(k){const add=[];for(const c of [k,k+1,k+2].slice(0,k===0?3:2))(PRE[c]||[]).forEach(n=>{if(!PRE_DONE.has(n)){PRE_DONE.add(n);add.push(n)}});PRE_Q=add.concat(PRE_Q);prePump()}
 function prePump(){while(PRE_RUN<3&&PRE_Q.length){const n=PRE_Q.shift();PRE_RUN++;const im=new Image();im.decoding='async';const done=()=>{PRE_RUN--;setTimeout(prePump,30)};im.onload=im.onerror=done;im.src='img/'+n+'.webp?v='+PRE_V}}
 let PRE_CH=-1;

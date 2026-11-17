@@ -3321,7 +3321,8 @@ const A2_V={
   'and-inapp':['Android',[['open','Tap the menu (three dots) and choose “Open in browser”.'],['dots','In Chrome, tap the menu (three dots), then “Add to Home screen”.'],A2_AND3]]};
 function a2hsKind(){const ua=navigator.userAgent,ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),and=/Android/i.test(ua);
   const inapp=/FBAN|FBAV|FB_IAB|Instagram|Messenger|Line\/|MicroMessenger|Viber|TikTok|musical_ly|Snapchat|; wv\)/i.test(ua);
-  const msg=/MessengerForiOS|FBAN\/Messenger|FB_IAB\/MESSENGER|Orca-Android/i.test(ua);
+  /* Messenger on iPhone now reports itself as FBAN/FBIOS like Facebook; Kaung's test (17 Nov 2026): Facebook's has Safari/604.1 and IABMV, Messenger's has neither */
+  const msg=/MessengerForiOS|FBAN\/Messenger|FB_IAB\/MESSENGER|Orca-Android/i.test(ua)||(/FBAN\/FBIOS/.test(ua)&&!/Safari\//.test(ua)&&!/IABMV/.test(ua));
   if(ios)return msg?'ios-msg':inapp?'ios-inapp':/CriOS/.test(ua)?'ios-chrome':/FxiOS|EdgiOS|OPiOS|GSA|YaBrowser|DuckDuckGo/.test(ua)?'ios-other':/Safari/.test(ua)?'ios-safari':'ios-inapp';
   if(and)return msg?'and-msg':inapp?'and-inapp':/SamsungBrowser/.test(ua)?'and-samsung':'and-chrome';return null}
 function a2hsFill(kind){const [lb,st]=A2_V[kind||'ios-safari'];$('#a2hsLb').textContent=lb;const ia=/inapp|msg/.test(kind||''),ms=/msg/.test(kind||''),ob=$('#a2hsOpen');ob.hidden=!ia;ob.textContent=ms?'Copy link':kind==='and-inapp'?'Open in your browser':'Open in Safari';ob.onclick=e=>{e.stopPropagation();ms?copyOut():openOut()};

@@ -1260,7 +1260,11 @@ function setRain(n){S.rain=n;Audio_.level();}
 
 /* ============ LAYOUT ============ */
 // the visible height: in-app browsers (Messenger, Facebook) and Safari's toolbars cover part of innerHeight, so take the smallest
-function viewH(){const v=window.visualViewport;return Math.round(Math.min(innerHeight,v?v.height:innerHeight,document.documentElement.clientHeight||innerHeight))}
+const STANDALONE=!!(navigator.standalone||(window.matchMedia&&(matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches)));
+/* In a browser, take the smallest height so toolbars never cover the game. Opened from the Home Screen there are no toolbars,
+   and iOS reports some heights without the status bar, which left a dark strip at the bottom: use the largest. */
+function viewH(){const v=window.visualViewport,hs=[innerHeight,v?v.height:innerHeight,document.documentElement.clientHeight||innerHeight];
+  return Math.round(STANDALONE?Math.max(...hs,screen.height&&Math.abs(screen.width-innerWidth)<2?screen.height:0):Math.min(...hs))}
 function viewW(){const v=window.visualViewport;return Math.round(Math.min(innerWidth,v?v.width:innerWidth,document.documentElement.clientWidth||innerWidth))}
 function fit(){const sc=$('#scaler'),W=viewW(),H=viewH(),m=W<520;document.body.classList.toggle('m',m);document.documentElement.style.setProperty('--app-h',H+'px');
   const top=$('.wrap').getBoundingClientRect().top;

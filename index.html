@@ -3315,7 +3315,6 @@ const A2_V={
   'ios-other':['iPhone / iPad',[['share','Tap the browser\'s Share button (the square with an arrow pointing up).'],['plus','Scroll down and tap “Add to Home Screen”.'],A2_IOS3]],
   'ios-inapp':['iPhone / iPad',[['open','Tap the menu (···) and choose “Open in external browser” or “Open in Safari”.'],['share','In Safari, tap Share at the bottom, then “Add to Home Screen”.'],A2_IOS3]],
   'ios-msg':['iPhone / iPad · Messenger',[['copy','Tap “Copy link” below. Your progress is in the link.'],['open','Open Safari, paste the link in the address bar and go.'],['share','In Safari, tap Share, then “Add to Home Screen”.']]],
-  'and-msg':['Android · Messenger',[['copy','Tap “Copy link” below. Your progress is in the link.'],['open','Open Chrome, paste the link in the address bar and go.'],['dots','In Chrome, tap the menu (three dots), then “Add to Home screen”.']]],
   'and-chrome':['Android · Chrome',[['dots','Tap the menu button (three dots) at the top right of the browser.'],['plus','Tap “Add to Home screen” or “Install app”.'],A2_AND3]],
   'and-samsung':['Android · Samsung Internet',[['lines','Tap the menu button (three lines) at the bottom right.'],['plus','Tap “Add page to”, then “Home screen”.'],['check','Tap “Add” to confirm. Done.']]],
   'and-inapp':['Android',[['open','Tap the menu (three dots) and choose “Open in browser”.'],['dots','In Chrome, tap the menu (three dots), then “Add to Home screen”.'],A2_AND3]]};
@@ -3324,7 +3323,8 @@ function a2hsKind(){const ua=navigator.userAgent,ios=/iPhone|iPad|iPod/.test(ua)
   /* Messenger on iPhone now reports itself as FBAN/FBIOS like Facebook; Kaung's test (17 Nov 2026): Facebook's has Safari/604.1 and IABMV, Messenger's has neither */
   const msg=/MessengerForiOS|FBAN\/Messenger|FB_IAB\/MESSENGER|Orca-Android/i.test(ua)||(/FBAN\/FBIOS/.test(ua)&&!/Safari\//.test(ua)&&!/IABMV/.test(ua));
   if(ios)return msg?'ios-msg':inapp?'ios-inapp':/CriOS/.test(ua)?'ios-chrome':/FxiOS|EdgiOS|OPiOS|GSA|YaBrowser|DuckDuckGo/.test(ua)?'ios-other':/Safari/.test(ua)?'ios-safari':'ios-inapp';
-  if(and)return msg?'and-msg':inapp?'and-inapp':/SamsungBrowser/.test(ua)?'and-samsung':'and-chrome';return null}
+  /* Android Messenger opens the browser fine with the direct button (Kaung's test), so it gets the same sheet as Facebook */
+  if(and)return inapp||msg?'and-inapp':/SamsungBrowser/.test(ua)?'and-samsung':'and-chrome';return null}
 function a2hsFill(kind){const [lb,st]=A2_V[kind||'ios-safari'];$('#a2hsLb').textContent=lb;const ia=/inapp|msg/.test(kind||''),ms=/msg/.test(kind||''),ob=$('#a2hsOpen');ob.hidden=!ia;ob.textContent=ms?'Copy link':kind==='and-inapp'?'Open in your browser':'Open in Safari';ob.onclick=e=>{e.stopPropagation();ms?copyOut():openOut()};
   $('#a2hsSteps').innerHTML=st.map(([ic,t],n)=>`<div class="st"><span class="ib"><b>${n+1}</b>${A2_IC[ic]}</span><span class="tx">${t}</span></div>`).join('');uiWalk($('#a2hs'))}
 function a2hsShow(){return new Promise(done=>{a2hsFill(a2hsKind());const o=$('#a2hs');o.classList.add('on');try{localStorage.setItem('tib-a2hs','1')}catch(e){}

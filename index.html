@@ -9,7 +9,9 @@
    Links written in Safari/Chrome (h:0) are only for the Home Screen app, so a Home Screen icon shared with a friend never starts them halfway. */
 (function(){var h=location.hash,q=location.search,m=/[#&]p=([A-Za-z0-9_-]+)/.exec(h)||/[?&]p=([A-Za-z0-9_-]+)/.exec(q);if(!m)return;
   var clean=location.pathname+q.replace(/[?&]p=[^&]*/,'').replace(/^&/,'?');
-  var sa=!!(navigator.standalone||(window.matchMedia&&(matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches)));
+  /* Home Screen app: on iPhone only navigator.standalone counts, since some in-app browsers (Messenger…) also match display-mode: standalone */
+  var ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var sa=ios?navigator.standalone===true:!!(window.matchMedia&&(matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches));
   function load(){try{return JSON.parse(localStorage.getItem('chatchat.saves.v1')||'{}')||{}}catch(e){return {}}}
   var v=load().bre,own=!!(v&&(v.started||(v.done&&v.done.length)||v.cur>0));
   if(own){try{history.replaceState(null,'',clean)}catch(e){}return}
@@ -1286,7 +1288,7 @@ function setRain(n){S.rain=n;Audio_.level();}
 
 /* ============ LAYOUT ============ */
 // the visible height: in-app browsers (Messenger, Facebook) and Safari's toolbars cover part of innerHeight, so take the smallest
-const STANDALONE=!!(navigator.standalone||(window.matchMedia&&(matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches)));
+const STANDALONE=(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))?navigator.standalone===true:!!(window.matchMedia&&(matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches));
 /* In a browser, take the smallest height so toolbars never cover the game. Opened from the Home Screen there are no toolbars,
    and iOS reports some heights without the status bar, which left a dark strip at the bottom: use the largest. */
 function viewH(){const v=window.visualViewport,hs=[innerHeight,v?v.height:innerHeight,document.documentElement.clientHeight||innerHeight];
@@ -3343,7 +3345,7 @@ function a2hsFill(kind){const [lb,st]=A2_V[kind||'ios-safari'];$('#a2hsLb').text
 function a2hsShow(){return new Promise(done=>{a2hsFill(a2hsKind());const o=$('#a2hs');o.classList.add('on');try{localStorage.setItem('tib-a2hs','1')}catch(e){}
   const close=e=>{if(e){e.stopPropagation();if(e.currentTarget===o&&e.target!==o)return}o.classList.remove('on');$('#a2hsOk').onclick=null;o.onclick=null;setTimeout(done,300)};
   $('#a2hsOk').onclick=close;o.onclick=close})}
-function a2hsDue(){const installed=navigator.standalone||matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches;let seen=false;try{seen=localStorage.getItem('tib-a2hs')==='1'}catch(e){}
+function a2hsDue(){const installed=STANDALONE;let seen=false;try{seen=localStorage.getItem('tib-a2hs')==='1'}catch(e){}
   return !!a2hsKind()&&!installed&&!seen&&!DEVJUMP}
 if(/[?&#]tip\b/.test(location.search+location.hash))setTimeout(a2hsShow,1500);
 /* In an app's built-in browser (Facebook, Messenger…): before the story starts, ask the player to open the game in Safari / their browser.

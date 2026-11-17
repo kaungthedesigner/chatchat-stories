@@ -3181,7 +3181,12 @@ function sndSync(){const c=Audio_.ctx,on=!!(S.sound&&c&&c.state==='running');
   if(on!==sndWas){sndWas=on;Audio_.amb(Audio_.ambWant);Audio_.level()}}
 /* Make the audio context and decode every music file as the game opens, so the first tap plays sound right away */
 function audioPreload(){Audio_.init();if(!Audio_.ctx)return;['rain','daily','lights','thingyan'].forEach(n=>Audio_.ambLoad(n));Audio_.sfxLoad('shutter');sndSync()}
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)startAudio()});
+/* Sound stops when the player leaves (another app, another tab, phone locked) and comes back when they return.
+   On iPhone the audio is set to play like a video so the silent switch doesn't mute it, which also lets it keep playing in the background, so the game pauses it itself. */
+function audioPause(){const c=Audio_.ctx;if(c&&c.state==='running'){try{c.suspend()}catch(e){}}}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)audioPause();else startAudio()});
+addEventListener('pagehide',audioPause);addEventListener('blur',()=>{if(document.hidden)audioPause()});
+addEventListener('pageshow',()=>{if(!document.hidden)startAudio()});
 const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2,...CH3,...CH4,...CH5,...ENDING];
 const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
   if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}

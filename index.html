@@ -766,7 +766,10 @@ body.lang-my .hx p{font-family:var(--sans);font-size:15px;line-height:24px}
 #pkGrid .it .pic{width:100%;aspect-ratio:1;border-radius:8px;overflow:hidden}
 #pkGrid .it.in{opacity:.35;transform:scale(.94)}
 #pkGrid .it:focus-visible{outline:2px solid #ffd36b;outline-offset:2px}
-#pkGo{position:relative;z-index:2;display:block;margin:16px auto 0;padding:14px 28px;border-radius:999px;background:#fffaf2;color:#1d2a2c;font:600 15px/20px var(--sans);transition:opacity .2s}
+/* Short screens (in-app browsers with toolbars, Burmese text): the quest scrolls and the button stays pinned at the bottom (Kaung, 17 Nov 2026) */
+#pkScroll{position:absolute;inset:0;z-index:2;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+#pkFoot{position:sticky;bottom:0;z-index:3;margin-top:auto;padding:14px 0 calc(16px + env(safe-area-inset-bottom));background:linear-gradient(rgba(36,48,47,0),rgba(36,48,47,.85) 40%)}
+#pkGo{position:relative;z-index:2;display:block;margin:0 auto;padding:14px 28px;border-radius:999px;background:#fffaf2;color:#1d2a2c;font:600 15px/20px var(--sans);transition:opacity .2s}
 #pkGo:disabled{opacity:.4}
 .pkph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#e8ddcb;color:#6b5a48;font:600 10px/12px var(--sans);padding:4px;text-align:center}
 /* Ch5 side quest · One ticket */
@@ -989,7 +992,7 @@ body.lang-my .hx p{font-family:var(--sans);font-size:15px;line-height:24px}
       <div id="vf"><div class="bar"><span id="vfBack" role="button">Back</span><b id="vfName"></b><span id="vfCount"></span></div><div class="win" id="vfWin"><div class="pan" id="vfPan"></div><div class="fr" id="vfFr"><div class="mask"></div><i></i><i></i><i></i><i></i></div><div class="hint" id="vfHint">Drag to frame</div><div class="flashw" id="vfFlash"></div><div class="res" id="vfRes"></div></div><div class="ctl"><button class="shut" id="vfShut" aria-label="Take photo"></button></div></div>
     </div>
 
-    <div class="view" id="pack"><div id="pkBg"></div><div class="ph"><div class="eb">Side quest · One box</div><h2>Help May pack the last box</h2><p class="sub">The Thingyan print goes in first. Pick two more. Whatever doesn't fit stays with Min.</p></div><div id="pkBox"></div><div id="pkGrid"></div><button id="pkGo" disabled>Close the box</button></div>
+    <div class="view" id="pack"><div id="pkBg"></div><div id="pkScroll"><div class="ph"><div class="eb">Side quest · One box</div><h2>Help May pack the last box</h2><p class="sub">The Thingyan print goes in first. Pick two more. Whatever doesn't fit stays with Min.</p></div><div id="pkBox"></div><div id="pkGrid"></div><div id="pkFoot"><button id="pkGo" disabled>Close the box</button></div></div></div>
     <div class="view" id="ticket"><div id="tkBg"></div><div class="ph"><div class="eb">Side quest · One ticket</div><h2 id="tkH">Night bus to the city</h2><p class="sub" id="tkSub"></p></div><div id="tkBody"></div><button id="tkGo" disabled>Next</button></div>
     <div class="view" id="padauk"><img id="pdBg" src="img/c3-padauk.webp?v=2611161" alt="" draggable="false"><div class="ph"><div class="eb">Side moment · Padauk</div><h2>Pick one for May's hair</h2><p class="sub">Tap a sprig before the aunties' hooked poles get there.</p><div class="tb"><i id="pdT"></i></div></div>
       <div id="pdPick"><div class="zoom" id="pdZoom"></div><h2 id="pdName"></h2><p id="pdLine"></p><button id="pdGo">Keep it for May</button></div></div>

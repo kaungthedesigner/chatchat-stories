@@ -6,7 +6,8 @@
     "build": "node tools/build.mjs index.html",
     "build:prod": "sh build-vercel.sh",
     "record": "node tools/record.mjs",
-    "compare": "sh tools/compare.sh index.html"
+    "compare": "sh tools/compare.sh index.html",
+    "check": "node tools/check.mjs"
   },
   "devDependencies": {
     "acorn": "^8.19.0",

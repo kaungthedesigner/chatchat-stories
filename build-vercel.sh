@@ -1,7 +1,7 @@
 #!/bin/sh
-# Builds the public (Vercel) version: same game, dev timeline removed.
+# Builds the public (Vercel) version from src/ and stories/: same game, dev timeline removed.
 set -e
 rm -rf public && mkdir -p public
 cp -r img snd fonts manifest.webmanifest public/
-sed 's|const DEV_ON=true;|const DEV_ON=false;|' index.html > public/index.html
+node tools/build.mjs public/index.html --prod
 grep -q 'const DEV_ON=false;' public/index.html

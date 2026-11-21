@@ -3,7 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "record": "node tools/record.mjs"
+    "build": "node tools/build.mjs index.html",
+    "build:prod": "sh build-vercel.sh",
+    "record": "node tools/record.mjs",
+    "compare": "sh tools/compare.sh index.html"
   },
   "devDependencies": {
     "playwright": "1.63.0"

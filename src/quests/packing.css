@@ -1,0 +1,23 @@
+/* Ch4 side quest · One box */
+#pack{background:#24302f;overflow:hidden;color:#fff}
+#pkBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(.8);pointer-events:none}
+#pkBg svg,#pkBg img{width:100%;height:100%;object-fit:cover}
+#pack .ph{position:relative;z-index:2;padding:52px 20px 10px}
+#pack .eb{font:600 12px/16px var(--sans);color:#ffd36b;letter-spacing:.02em}
+#pack h2{font:600 22px/28px var(--serif);margin-top:2px}
+#pack .sub{font:400 13px/18px var(--sans);opacity:.85;margin-top:4px}
+#pkBox{position:relative;z-index:2;margin:10px 20px 0;padding:10px;border-radius:14px;background:rgba(196,160,112,.92);display:grid;grid-template-columns:repeat(3,1fr);gap:8px;box-shadow:inset 0 0 0 2px rgba(120,86,50,.5)}
+#pkBox .sl{aspect-ratio:1;border-radius:10px;background:rgba(90,62,34,.25);border:2px dashed rgba(90,62,34,.45);display:flex;align-items:center;justify-content:center;overflow:hidden}
+#pkBox .sl.f{border:0;background:#fffaf2}
+#pkBox .sl img,#pkGrid .it img{width:100%;height:100%;object-fit:contain}
+#pkGrid{position:relative;z-index:2;margin:14px 20px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#pkGrid .it{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px 8px;border-radius:12px;background:rgba(255,250,242,.94);color:#2b2522;font:500 11px/14px var(--sans);text-align:center;border:2px solid transparent;transition:transform .2s,opacity .2s,border-color .2s}
+#pkGrid .it .pic{width:100%;aspect-ratio:1;border-radius:8px;overflow:hidden}
+#pkGrid .it.in{opacity:.35;transform:scale(.94)}
+#pkGrid .it:focus-visible{outline:2px solid #ffd36b;outline-offset:2px}
+/* Short screens (in-app browsers with toolbars, Burmese text): the quest scrolls and the button stays pinned at the bottom (Kaung, 17 Nov 2026) */
+#pkScroll{position:absolute;inset:0;z-index:2;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+#pkFoot{position:sticky;bottom:0;z-index:3;margin-top:auto;padding:14px 0 calc(16px + env(safe-area-inset-bottom));background:linear-gradient(rgba(36,48,47,0),rgba(36,48,47,.85) 40%)}
+#pkGo{position:relative;z-index:2;display:block;margin:0 auto;padding:14px 28px;border-radius:999px;background:#fffaf2;color:#1d2a2c;font:600 15px/20px var(--sans);transition:opacity .2s}
+#pkGo:disabled{opacity:.4}
+.pkph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#e8ddcb;color:#6b5a48;font:600 10px/12px var(--sans);padding:4px;text-align:center}

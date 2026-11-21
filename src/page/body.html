@@ -1,0 +1,91 @@
+</style>
+</head>
+<body>
+<canvas id="bgRain"></canvas>
+<div class="page">
+  <div class="bar">
+    <div class="lt"><button class="pill xb" id="bExit" title="Back to Stories" aria-label="Back to Stories"><span class="ic i-arrow-left"></span></button><div class="ttl">Before the Rain Ends</div></div>
+    <div class="ctl">
+      <button class="pill" id="bSound" title="Rain sound"><span class="ic i-speaker-high"></span><span>Sound</span></button>
+      <button class="pill sp lg" id="bLang" title="Language (preview)">EN</button>
+      <button class="pill sp" id="bSpeed" title="Play at 2× speed" aria-pressed="false">2×</button>
+      <button class="pill" id="bDev" title="Dev timeline">Dev</button>
+      <button class="pill" id="bAlbum" title="Memories"><span class="ic i-images"></span><span>Memories</span></button>
+    </div>
+  </div>
+  <div class="devbar" title="Temporary: drag to jump through the story"><span class="dv">Dev</span><input type="range" id="devT" min="0" max="1" value="0"><span id="devL">Start</span><span class="devE" title="Dev: jump to the ending with this many drafts sent"><button data-c="0">Unsaid</button><button data-c="2">Open</button><button data-c="5">Next rain</button></span></div>
+  <div class="wrap" id="wrap"><div class="scaler" id="scaler">
+  <div class="stage" id="stage">
+    <div class="status" id="status"><span class="carrier">MPT</span><span id="clock">11:47</span><span class="sic">
+      <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity=".35"/></svg>
+      <svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.3c2.3 0 4.4.9 6 2.4l1.2-1.3A10.4 10.4 0 0 0 8 .5C5.2.5 2.6 1.6.8 3.4L2 4.7a8.6 8.6 0 0 1 6-2.4Zm0 3.6c1.3 0 2.5.5 3.4 1.3l1.2-1.3A6.7 6.7 0 0 0 8 4.1c-1.8 0-3.4.7-4.6 1.8l1.2 1.3c.9-.8 2.1-1.3 3.4-1.3Zm0 3.5a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2Z"/></svg>
+      <svg viewBox="0 0 27 12" fill="none"><rect x=".5" y=".5" width="22" height="11" rx="3" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="12" height="8" rx="1.6" fill="currentColor"/><rect x="24" y="4" width="2" height="4" rx="1" fill="currentColor" opacity=".4"/></svg>
+    </span></div>
+
+    <div class="view" id="lock"><div class="lk" id="lk"><div class="wall" id="wall"></div><div class="clock"><div class="date" id="lockDate"></div><div class="time" id="lockTime"></div></div><div class="qb l" aria-hidden="true"><span class="ic i-flashlight"></span></div><div class="qb r" aria-hidden="true"><span class="ic i-camera"></span></div><div id="lkNote"></div><div class="hint">Swipe up to open</div><div class="home"></div></div></div>
+
+    <div class="view" id="list">
+      <div class="lh"><div><div class="brand">ChatChat</div><h1>Chats</h1></div><div class="acts"><div class="icbtn" aria-label="Camera"><span class="ic i-camera"></span></div><div class="icbtn" aria-label="New chat"><span class="ic i-note-pencil"></span></div></div></div>
+      <div class="search"><span class="ic i-magnifying-glass"></span>Search</div>
+      <div class="rows" id="rows"></div>
+      <div class="homebar"></div>
+    </div>
+
+    <div class="view" id="chat">
+      <div class="ch"><div class="back"><span class="ic i-arrow-left"></span></div><div id="chAv"></div><div class="who"><b id="chName"></b><span id="chStat"></span></div><div class="tools"><span class="ic i-phone"></span><span class="ic i-video-camera"></span></div></div>
+      <div class="msgs" id="msgs"></div>
+      <div id="scroll"><div class="older" id="older">Tap to load older messages</div><div class="col" id="scol"></div><div class="flash" id="flash"></div></div>
+      <div class="foot"><div id="tray"></div><div class="comp"><div class="plus"><span class="ic i-plus-circle"></span></div><div class="field" id="field"><span class="ph">Message</span></div><div class="sendic" id="sendic"><span class="ic i-paper-plane-right"></span></div></div><div class="homebar"></div></div>
+    </div>
+
+    <div class="view" id="gallery"><div class="gh"><h2>Photos</h2><span>23 photos</span></div><div class="grid" id="ggrid"></div><div id="viewer"><div id="vimg"></div><div class="det" id="vdet"></div><div class="vtap" id="vtap">Tap to continue</div></div><div class="homebar"></div></div>
+
+    <div class="view" id="scene"><div class="art" id="sart"></div><div class="shade"></div><div class="cap" id="scap"></div><div class="dlg" id="dlg"></div></div>
+
+    <div class="view" id="pwalk"><div class="ph1"><div class="eb">Side quest · Photo walk</div><h2>Sunday, after the rain</h2><p class="sub">Pick three places. Drag in any direction to frame the shot, then press the shutter.</p></div><div class="rolls" id="pwRolls"><i></i><i></i><i></i></div><div class="spots" id="pwSpots"></div><button class="done2" id="pwDone">Show May</button>
+      <div id="vf"><div class="bar"><span id="vfBack" role="button">Back</span><b id="vfName"></b><span id="vfCount"></span></div><div class="win" id="vfWin"><div class="pan" id="vfPan"></div><div class="fr" id="vfFr"><div class="mask"></div><i></i><i></i><i></i><i></i></div><div class="hint" id="vfHint">Drag to frame</div><div class="flashw" id="vfFlash"></div><div class="res" id="vfRes"></div></div><div class="ctl"><button class="shut" id="vfShut" aria-label="Take photo"></button></div></div>
+    </div>
+
+    <div class="view" id="pack"><div id="pkBg"></div><div id="pkScroll"><div class="ph"><div class="eb">Side quest · One box</div><h2>Help May pack the last box</h2><p class="sub">The Thingyan print goes in first. Pick two more. Whatever doesn't fit stays with Min.</p></div><div id="pkBox"></div><div id="pkGrid"></div><div id="pkFoot"><button id="pkGo" disabled>Close the box</button></div></div></div>
+    <div class="view" id="ticket"><div id="tkBg"></div><div class="ph"><div class="eb">Side quest · One ticket</div><h2 id="tkH">Night bus to the city</h2><p class="sub" id="tkSub"></p></div><div id="tkBody"></div><button id="tkGo" disabled>Next</button></div>
+    <div class="view" id="padauk"><img id="pdBg" src="img/c3-padauk.webp?v=2611161" alt="" draggable="false"><div class="ph"><div class="eb">Side moment · Padauk</div><h2>Pick one for May's hair</h2><p class="sub">Tap a sprig before the aunties' hooked poles get there.</p><div class="tb"><i id="pdT"></i></div></div>
+      <div id="pdPick"><div class="zoom" id="pdZoom"></div><h2 id="pdName"></h2><p id="pdLine"></p><button id="pdGo">Keep it for May</button></div></div>
+    <div class="view" id="wstreet"><div id="wsField"></div>
+      <div id="wsHud"><div class="row"><i class="ic i-music-notes"></i><div class="song"><i id="wsSongI"></i><b></b></div></div><div class="lives" id="wsLives"></div></div>
+      <div id="wsCount"></div><div id="wsCard"></div></div>
+
+    <div class="view" id="callv"><div class="cbg" id="cBg"></div><div class="ctop"><div class="cav" id="cAv"></div><b id="cName"></b><div class="cst" id="cSt"></div><div class="cff" id="cFF"><span class="ic i-fast-forward"></span><span>2 hours later</span></div></div><div class="ccap" id="cCap"></div><div class="ctray" id="cTray"></div><div class="cctl" id="cCtl"></div></div>
+    <div class="view" id="post"><div class="ch"><div class="back"><span class="ic i-arrow-left"></span></div><div class="who"><b>Post</b></div></div><div class="pb" id="postBody"></div><div class="pf"><div id="postTray"></div><div class="homebar"></div></div></div>
+
+    <div id="banner"></div>
+    <div id="toast"></div>
+
+    <div class="ov" id="title"><h1 id="tBig"></h1><p id="tSmall"></p><div class="tap" id="tTap">Tap to continue</div></div>
+    <div class="ov" id="tj"></div>
+    <div class="ov" id="album"></div>
+    <div class="ov" id="end"></div>
+    <div class="ov" id="a2hs" role="dialog" aria-modal="true"><div class="card"><h3>Play full screen</h3><p>Add the game to your Home Screen and it opens like an app, without the browser's bars.</p><div class="lb" id="a2hsLb"></div><div class="os" id="a2hsSteps"></div><p class="nt">Your progress comes with you.</p><button id="a2hsOpen" class="pri" hidden>Open in Safari</button><button id="a2hsOk">Done</button></div></div>
+    <div class="ov" id="oib" role="dialog" aria-modal="true"><div class="card"><h3 id="oibH">Open in Safari</h3><p id="oibP"></p><button id="oibGo" class="pri">Open in Safari</button><div id="oibHelp" hidden><div class="lb" id="oibHl">If nothing happened</div><div class="os" id="oibSteps"></div></div><button id="oibStay" class="gh">Keep playing here</button></div></div>
+    <div class="ov" id="leave"><div class="card"><h3>Leave the story?</h3><p id="leaveP"></p><div class="bt"><button class="stay" id="leaveStay">Keep playing</button><button class="go2" id="leaveGo">Back to Stories</button></div></div></div>
+    <div class="ov on" id="start">
+      <div class="lib" id="lib">
+        <div class="lhd"><div class="lrow"><div class="eb">Welcome</div><div class="lsw" id="libLang" role="group" aria-label="Language"><button data-l="en" aria-pressed="true">EN</button><button data-l="my" aria-pressed="false">မြန်မာ</button></div></div><h1>Tales in between</h1></div>
+        <div class="hero" id="hero" role="button" tabindex="0">
+          <img src="img/dr-13-walk-open.webp?v=2611161" alt="" draggable="false">
+          <div class="hs"></div>
+          <div class="hx"><div class="tag">A story told in messages</div><h2>Before the Rain Ends</h2><p>For the days when you miss someone.</p>
+            <div class="pr" id="libPr"><div class="pbar"><i id="libBar"></i></div><span id="libWhere"></span></div></div>
+        </div>
+        <div class="hbtns"><button class="go" id="go">Begin</button><button class="sec" id="libCh">Chapters</button></div>
+        <div class="meta" id="libMeta">Prologue, Chapters 1–5, Ending &amp; Epilogue · about 110 minutes</div>
+        <h3 class="sh">More stories</h3>
+        <div class="soon"><svg class="hg" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M72 32h112M72 224h112M80 32v34a32 32 0 0 0 14 26l34 24 34-24a32 32 0 0 0 14-26V32M80 224v-34a32 32 0 0 1 14-26l34-24 34 24a32 32 0 0 1 14 26v34"/><path d="M104 200h48" opacity=".6"/></svg><div><b>More stories coming soon</b><span>We're working on something new. Stay tuned!</span></div></div>
+      </div>
+      <div class="chs" id="chs"><div class="chh"><button class="bk" id="chBack" aria-label="Back"><span class="ic i-arrow-left"></span></button><div><small>Before the Rain Ends</small><b>Chapters</b></div></div><div class="chl" id="chList"></div>
+        <button class="over" id="chOver">Start over</button></div>
+    </div>
+  </div>
+  </div></div>
+</div>
+
+<script>

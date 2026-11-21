@@ -1,0 +1,105 @@
+/* library */
+#start{background:var(--m900);color:var(--on-deep);display:block;padding:0;text-align:left}
+#start .lib{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:58px 20px 40px;transition:transform .45s ease,opacity .45s}
+#start .lib::-webkit-scrollbar{display:none}
+#start.chap .lib{transform:translateX(-30%);opacity:0;pointer-events:none}
+#start .lhd .eb{font:600 12px/16px var(--sans);color:var(--n-clay);margin:0}
+#start .lhd h1{font:300 40px/46px var(--serif);letter-spacing:-.02em;font-variation-settings:'opsz' 144;margin:2px 0 18px}
+#start .hero{position:relative;height:430px;border-radius:22px;overflow:hidden;cursor:pointer;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+#start .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform 1.2s ease}
+#start .hero:hover img{transform:scale(1.03)}
+#start .hs{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,26,25,0) 35%,rgba(20,26,25,.55) 62%,rgba(20,26,25,.94))}
+#start .hx{position:absolute;left:0;right:0;bottom:0;padding:20px}
+#start .hx .tag{font:600 12px/16px var(--sans);color:var(--n-clay)}
+#start .hx h2{font:300 34px/38px var(--serif);letter-spacing:-.015em;margin-top:4px;font-variation-settings:'opsz' 144}
+#start .hx p{font:300 italic 16px/22px var(--serif);color:var(--n-body);margin-top:6px}
+#start .pr{display:none;margin-top:14px;align-items:center;gap:10px;font:400 12px/16px var(--sans);color:rgba(251,247,239,.8)}
+#start .pr.on{display:flex}
+#start .pr .pbar{flex:none;width:96px;height:4px;border-radius:2px;background:rgba(251,247,239,.22);overflow:hidden}
+#start .pr .pbar i{display:block;height:100%;background:var(--paper-50);border-radius:2px}
+#start .hbtns{display:flex;gap:10px;margin-top:16px}
+#start .hbtns button{flex:1;height:46px;border-radius:6px;font:500 15px/20px var(--sans)}
+#start button.go{margin:0;background:var(--paper-50);color:var(--ink);padding:0}
+#start button.go:hover{background:var(--paper-200)}
+#start button.sec{background:transparent;color:var(--on-deep);border:1.5px solid rgba(251,247,239,.35)}
+#start button.sec:hover{background:rgba(251,247,239,.08)}
+#start .meta{font:400 13px/20px var(--sans);color:rgba(251,247,239,.6);margin-top:12px;text-align:center}
+#start .sh{font:500 18px/24px var(--serif);margin:32px 0 12px}
+#start .soon{display:flex;gap:14px;align-items:center;padding:18px;border-radius:16px;border:1.5px dashed rgba(251,247,239,.25);color:rgba(251,247,239,.75)}
+#start .soon .hg{width:28px;height:28px;flex:none;color:var(--n-clay)}
+#start .soon b{display:block;font:500 15px/20px var(--sans);color:var(--on-deep)}
+#start .soon span{font:400 13px/18px var(--sans)}
+#start .chs{position:absolute;inset:0;overscroll-behavior:contain;padding:54px 20px 40px;transform:translateX(100%);transition:transform .45s ease;background:var(--m900);display:flex;flex-direction:column;overflow-y:auto}
+#start.chap .chs{transform:none}
+#start .chh{display:flex;align-items:center;gap:8px;margin-bottom:18px}
+#start .chh .bk{width:40px;height:40px;display:grid;place-items:center;color:var(--on-deep);margin-left:-8px}
+#start .chh small{display:block;font:400 12px/16px var(--sans);color:var(--n-clay)}
+#start .chh b{font:400 26px/32px var(--serif)}
+#start .chl{display:grid;gap:10px}
+#start .cr{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:rgba(251,247,239,.06);text-align:left;color:var(--on-deep);width:100%}
+#start button.cr:hover{background:rgba(251,247,239,.11)}
+#start .cr .n{flex:none;width:36px;height:36px;border-radius:999px;display:grid;place-items:center;font:500 14px/1 var(--sans);background:rgba(251,247,239,.12)}
+#start .cr.done .n{background:var(--paper-50);color:var(--ink)}
+#start .cr.next .n{background:var(--n-clay);color:var(--m900)}
+#start .cr .t{flex:1;min-width:0}
+#start .cr .t b{display:block;font:500 17px/22px var(--serif)}
+#start .cr .t span{font:400 12px/16px var(--sans);color:rgba(251,247,239,.62)}
+#start .cr .st{flex:none;color:rgba(251,247,239,.7)}
+#start .cr .st .ic{font-size:24px;width:24px;height:24px}
+#start .cr.next .st{color:var(--n-clay)}
+#start .cr.done .st{color:var(--paper-50)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#start .cr.lock{opacity:.5}
+#start .over{margin-top:auto;align-self:center;padding:14px 20px;font:500 14px/20px var(--sans);color:rgba(251,247,239,.7)}
+#start .over.sure{color:#F2A08C}
+/* ===== Stories home: Lamplight design system (the game's shell; each story keeps its own system inside) ===== */
+#start{--ground-100:#141210;--ground-50:#1E1B18;--ground-200:#26221E;--line:#34302B;--line-strong:#6E665C;--ink:#F6EFE3;--ink-body:#D8CEBF;--ink-muted:#A39A8C;--ink-faint:#756D62;
+  --lamp-500:#E8B04B;--lamp-700:#F2C877;--lamp-200:#3A2C14;--on-lamp:#1C1406;--clay-500:#D9927A;--rust-500:#E5806E;--on-cover:#FBF7EF;
+  --shadow-cover:0 24px 48px -20px rgba(0,0,0,.75);--focus-ring:0 0 0 2px #141210,0 0 0 4px #E8B04B;
+  background:var(--ground-100);color:var(--ink)}
+#start button:focus-visible,#start .hero:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+#start .lib{padding:48px 20px 40px}
+#start .lhd .eb{font:600 12px/16px var(--sans);letter-spacing:.01em;color:var(--clay-500);margin:0 0 4px}
+#start .lhd h1{font:650 36px/40px var(--sans);letter-spacing:-.03em;margin:0 0 20px;color:var(--ink);font-variation-settings:normal}
+.lhd .lrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lsw{display:inline-flex;padding:3px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+.lsw button{height:30px;min-width:44px;padding:0 12px;border-radius:999px;font:500 13px/1 var(--sans);color:rgba(255,255,255,.62)}
+.lsw button[aria-pressed=true]{background:#E8B04B;color:#1C1406;font-weight:600}
+body.lang-my .hx p,body.lang-my .hx h2{font-style:normal}
+body.lang-my .hx p{font-family:var(--sans);font-size:15px;line-height:24px}
+#start .hero{border-radius:24px;box-shadow:var(--shadow-cover)}
+#start .hs{background:linear-gradient(180deg,rgba(12,10,9,0) 38%,rgba(12,10,9,.55) 62%,rgba(12,10,9,.92))}
+#start .hx{padding:24px;color:var(--on-cover)}
+#start .pr .pbar i{background:var(--lamp-500)}
+#start .hbtns{gap:12px;margin-top:16px}
+#start .hbtns button{height:48px;border-radius:10px;font:600 15px/20px var(--sans)}
+#start button.go{background:var(--lamp-500);color:var(--on-lamp)}
+#start button.go:hover{background:var(--lamp-700)}
+#start button.sec{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong)}
+#start button.sec:hover{background:var(--ground-50)}
+#start .meta{font:400 13px/18px var(--sans);color:var(--ink-muted);margin-top:12px}
+#start .sh{font:600 19px/24px var(--sans);letter-spacing:-.01em;margin:32px 0 12px;color:var(--ink)}
+#start .soon{padding:16px;border-radius:16px;border:1.5px dashed var(--line);background:var(--ground-50);color:var(--ink-muted)}
+#start .soon .hg{color:var(--lamp-500)}
+#start .soon b{font:600 15px/20px var(--sans);color:var(--ink)}
+#start .soon span{font:400 13px/18px var(--sans);color:var(--ink-muted)}
+#start .chs{background:var(--ground-100);padding:48px 20px 40px}
+#start .chh small{font:600 12px/16px var(--sans);letter-spacing:.01em;color:var(--clay-500)}
+#start .chh b{font:600 26px/32px var(--sans);letter-spacing:-.02em;color:var(--ink)}
+#start .chh .bk{color:var(--ink)}
+#start .chl{gap:12px}
+#start .cr{background:var(--ground-50);border-radius:16px;padding:16px;color:var(--ink);border:1px solid transparent}
+#start button.cr:hover{background:var(--ground-200)}
+#start .cr.next{background:var(--lamp-200);border-color:rgba(232,176,75,.28)}
+#start .cr .n{background:var(--ground-200);color:var(--ink-body);font:600 14px/1 var(--sans)}
+#start .cr.done .n{background:var(--ink);color:var(--ground-100)}
+#start .cr.next .n{background:var(--lamp-500);color:var(--on-lamp)}
+#start .cr .t b{font:600 16px/22px var(--sans);color:var(--ink)}
+#start .cr .t span{font:400 13px/18px var(--sans);color:var(--ink-muted)}
+#start .cr .st{color:var(--ink-muted)}
+#start .cr.next .st{color:var(--lamp-500)}
+#start .cr.done .st{color:var(--ink-body)}
+#start .cr.lock{opacity:1}
+#start .cr.lock .t b,#start .cr.lock .t span,#start .cr.lock .st,#start .cr.lock .n{color:var(--ink-faint)}
+#start .over{color:var(--ink-muted);font:600 14px/20px var(--sans)}
+#start .over.sure{color:var(--rust-500)}

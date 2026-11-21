@@ -1,0 +1,18 @@
+/* water street side quest */
+#padauk{background:#1d2a2c;overflow:hidden}
+#pdBg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+#padauk .ph{position:absolute;left:0;right:0;top:0;padding:52px 20px 40px;background:linear-gradient(rgba(20,30,32,.78),rgba(20,30,32,0));color:#fff;z-index:3}
+#padauk .eb{font:600 12px/16px var(--sans);color:#ffd36b;letter-spacing:.02em}
+#padauk h2{font:600 22px/28px var(--serif);margin-top:2px}
+#padauk .sub{font:400 13px/18px var(--sans);opacity:.85;margin-top:4px}
+#padauk .tb{height:6px;border-radius:999px;background:rgba(255,255,255,.25);margin-top:12px;overflow:hidden}
+#padauk .tb i{display:block;height:100%;width:100%;background:#ffd36b;border-radius:999px;transform-origin:left}
+#padauk .spot{position:absolute;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:3px solid #fff3c4;box-shadow:0 0 0 6px rgba(255,211,107,.35),0 0 24px rgba(255,211,107,.8);z-index:2;animation:pdPulse 1.1s ease-in-out infinite alternate;transition:opacity .4s,transform .4s}
+#padauk .spot.gone{opacity:0;transform:scale(.5);pointer-events:none}
+@keyframes pdPulse{to{box-shadow:0 0 0 12px rgba(255,211,107,.15),0 0 34px rgba(255,211,107,1)}}
+#padauk .pop{position:absolute;z-index:4;transform:translate(-50%,0);font:600 13px/17px var(--sans);color:#fff;background:rgba(20,30,32,.75);padding:5px 10px;border-radius:999px;white-space:nowrap;animation:wsUp 1.6s forwards}
+#pdPick{position:absolute;inset:0;z-index:5;background:rgba(20,30,32,.72);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;color:#fff}
+#pdPick .zoom{width:220px;height:220px;border-radius:50%;border:6px solid #fff3c4;background-repeat:no-repeat;box-shadow:0 20px 50px rgba(0,0,0,.4);animation:pop .5s ease}
+#pdPick h2{font:600 22px/28px var(--serif);margin-top:20px}
+#pdPick p{font:400 14px/20px var(--sans);opacity:.85;margin-top:6px;max-width:300px}
+#pdPick button{margin-top:22px;padding:14px 28px;border-radius:999px;background:#fffaf2;color:#1d2a2c;font:600 15px/20px var(--sans)}

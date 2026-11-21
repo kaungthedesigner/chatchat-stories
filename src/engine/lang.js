@@ -1,0 +1,7 @@
+S.lang=(()=>{try{return localStorage.getItem('tib-lang')||'my'}catch(e){return 'my'}})(); /* Burmese is the default (Kaung, 17 Nov 2026); a saved choice wins */
+S.ch=0;
+const trS=(x,D)=>typeof x==='string'?(D[x]!==undefined?D[x]:x):Array.isArray(x)?x.map(y=>trS(y,D)):(x&&typeof x==='object'&&x.constructor===Object)?(D2=>Object.fromEntries(Object.entries(x).filter(([k])=>k!=='myTr').map(([k,v])=>[k,trS(v,D2)])))(x.myTr?{...D,...x.myTr}:D):x;
+const trStep=s=>{if(!s||typeof s!=='object')return s;if(S.lang==='my'){const D=MY_STORY[S.ch];return D?trS(s,D):s}
+  /* English mode: a branch that was translated before the player switched language is turned back */
+  if(!S.langSwitched)return s;storyMaps();return trS(s,MY2EN)};
+const UI_RX=[[/^(\d+) of 3$/,'$1 / 3'],[/^([\d,]+) Ks$/,'$1 ကျပ်'],[/^of ([\d,]+) Ks$/,'/ $1 ကျပ်'],[/^([\d,]+) Ks · not used$/,'$1 ကျပ် · မသုံးရသေးပါ'], [/^Seat (\w+)$/,'ထိုင်ခုံ $1'],[/^Seat (\w+)\. Count out the fare\.$/,'ထိုင်ခုံ $1။ ကားခ ရေတွက်ပေးပါ။'],[/^Seat (\w+)\. Change: ([\d,]+) Ks\.$/,'ထိုင်ခုံ $1။ ပြန်အမ်းငွေ $2 ကျပ်။'], [/^Night bus to the city · seat (\w+)$/,'မြို့ကြီးသွား ညကား · ထိုင်ခုံ $1'], [/^(Mostly dry|Wet|Soaked) · camera (bone dry|still working)$/,(m,a,b)=>({'Mostly dry':'သိပ်မစို','Wet':'ရေစို','Soaked':'ရွှဲနစ်'})[a]+' · '+(b==='bone dry'?'ကင်မရာ လုံးဝမစို':'ကင်မရာ အလုပ်လုပ်သေးတယ်')], [/^You splashed (\d+) friends?\. Min got splashed (\d+) times?\.$/,'သူငယ်ချင်း $1 ယောက်ကို ရေပက်ခဲ့တယ်။ မင်းထက်ကတော့ $2 ခါ ရေအပက်ခံရတယ်။']];

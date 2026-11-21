@@ -1,0 +1,1054 @@
+reset undefined
+rain 2
+time "11:47 PM"
+lock {"date":"Thu 26 Nov","time":"11:47"}
+list {"only":"may","rows":[{"c":"thura","text":"bro answer me","time":"9:58 PM","unread":3},{"c":"mom","text":"Don't stay up late. There is rice in the pot.","time":"8:12 PM"},{"c":"may","text":"It's okay. Take your time. I'll be here.","you":true,"time":"3 Nov","seen":true}]}
+open {"c":"may","stat":"Active 18 days ago"}
+pause 1600
+draft {"hint":"What does Min type?","opts":["Are you awake?","It's raining here.","I miss you."],"flag":"prologue_draft","auto":true,"when":"Nov 2020"}
+pick 0
+scrollback true
+gallery true
+title {"big":"<em>a story told in messages</em>Before the Rain Ends","small":"","rain":1,"keep":true}
+title {"big":"<em>Chapter 1</em>The First Rain","small":"Two and a half years earlier · June 2018","rain":0,"time":"4:05 PM"}
+reset undefined
+rain 0
+time "4:05 PM"
+notify {"c":"mom","text":"Min, take the samosas to Daw Aye Aye at the tea shop. She ordered 30.","rows":[{"c":"thura","text":"football sat?","time":"Sun"},{"c":"mom","text":"Did you eat?","time":"Sun"}],"stat":"Active now"}
+in "Take the umbrella. The sky is dark."
+choice {"flag":"c1_mom","opts":[{"label":"Okay, Mom.","send":"Okay, Mom."},{"label":"The sky is always dark in June.","send":"The sky is always dark in June."},{"label":"I'm already going.","send":"I'm already going."}]}
+pick 0
+in "Good boy. I put two extra in the bag for you."
+scene {"art":"teashop1","cap":"Shwe Pyi Tea Shop · June 2018","rain":3}
+narr "Min drops off the samosas. Then the rain comes, all at once."
+shot "teashopWait"
+narr "He sits at the corner table by the window. His black umbrella leans on the chair: white tape on the handle, MH in his father's handwriting."
+shot "teashop2"
+narr "A girl runs in, soaked, holding a pink umbrella with bent spokes. Every table is full except his."
+shot "teashopCounter"
+say ["Daw Aye Aye","Sit, sit, girl. Share with Min. He doesn't bite. He doesn't even talk."]
+shot "teashopHnin"
+narr "Behind the counter, Hnin, Daw Aye Aye's niece and Min's neighbour since they were kids, stops wiping a glass."
+shot "teashop3"
+narr "The girl sits on the edge of the other chair. She sees him looking at her umbrella, and frowns."
+shot "teashopWhat"
+say ["The girl","What? Never seen a broken umbrella before?"]
+choice {"flag":"c1_first_words","hint":"Say","opts":[{"label":"I've seen one. Just not one that looks worse than the rain.","say":"I've seen one. Just not one that looks worse than the rain."},{"label":"…It fought well.","say":"…It fought well."},{"label":"Do you want some tea?","say":"Do you want some tea?"}]}
+pick 0
+shot "teashopLaugh"
+narr "She laughs, loud and surprised."
+say ["The girl","Wow. Okay. Rude."]
+narr "She wrings out her sleeve, still smiling, as if deciding whether to forgive him. She's shivering."
+narr "Min still has the paper bag with Mom's two extra samosas."
+choice {"flag":"c1_kindness","hint":"Do","opts":[{"label":"Push the samosas toward her.","act":1,"v":"samosa"},{"label":"Order her a sweet tea.","act":1,"v":"tea"},{"label":"Say nothing. Watch the rain.","act":1,"v":"seeds"}]}
+pick 0
+shot "teashopSamosa"
+say ["The girl","Are these yours?"]
+min "My mother's. She makes them."
+narr "She is already eating one."
+say ["The girl","Tell your mother she's my favourite person now."]
+shot "teashopPhone"
+narr "Her phone buzzes. A crack runs across the screen."
+shot "teashopCall"
+say ["The girl","Coming, Ma! … Thank your mother for me. Really."]
+rain 2
+shot "teashop5"
+narr "The rain eases. She grabs the black umbrella by the door and runs out into the street."
+narr "Her broken pink one is still on Min's table."
+shot "teashop1"
+say ["Daw Aye Aye","She ate your samosas and took your umbrella. Good day for her."]
+choice {"flag":"c1_umbrella","hint":"Say","opts":[{"label":"It's fine. It's just an umbrella.","say":"It's fine. It's just an umbrella."},{"label":"She'll bring it back.","say":"She'll bring it back."},{"label":"Pick up the pink umbrella.","act":1}]}
+pick 0
+say ["Daw Aye Aye","Your father's handwriting is on that umbrella, and it's \"just an umbrella\"?"]
+narr "Min doesn't answer."
+shot "walkArm"
+narr "Min walks home in the rain with the pink umbrella under his arm, thinking about the tape on the other one."
+mem "broken"
+pause 1200
+rain 1
+time "9:24 PM"
+post {"c":"hnin","art":"teaTable","flag":"c1_post_like","tag":false,"place":"Shwe Pyi Tea Shop","likes":"Daw Aye Aye and 4 others","when":"June 2018","cap":"rain all day. two customers. one table. three hours. two teas.","cmts":[{"n":"Daw Aye Aye","t":"Hnin, wipe the table."},{"n":"Hnin","t":"I did."}],"cflag":"c1_post_cmt","cOpts":[{"label":"The tea was good.","reply":[["Hnin","it's the same tea as always"]]},{"label":"One of them took the wrong umbrella.","reply":[["Hnin","I know. I was there"]]}],"rows":[{"c":"mom","text":"Okay. Sleep early.","time":"9:10 PM"},{"c":"thura","text":"football sat?","time":"Sun"}]}
+postpick 0
+pause 600
+rain 1
+time "10:31 PM"
+friend {"rows":[{"c":"mom","text":"Okay. Sleep early.","time":"9:10 PM"},{"c":"thura","text":"football sat?","time":"Sun"}]}
+falseStart true
+in "hey 👋"
+in "I think you took my umbrella 👀"
+choice {"flag":"c1_first_msg","opts":[{"label":"I'm pretty sure you have mine.","send":"I'm pretty sure you have mine."},{"label":"You mean the umbrella that lost to the rain?","send":"You mean the umbrella that lost to the rain?"},{"label":"How did you find me?","send":"How did you find me?"}]}
+pick 0
+in "prove it 😤"
+out "It has MH on the handle."
+inPhoto "umbrellaBed"
+in "…oh"
+in "ok you win. it has a name tag like a schoolboy"
+mem "wrong"
+in "so what's MH 🤔"
+out "Min Htet."
+in "Min Htet. sounds very serious"
+in "I'm May. May Thiri. not serious at all 😝"
+in "wait"
+in "are you the boy in teacher daw nu's class who sits at the back by the fan?? 😮"
+choice {"flag":"c1_class_q","opts":[{"label":"Yes.","send":"Yes."},{"label":"The fan is the best seat.","send":"The fan is the best seat."},{"label":"You noticed?","send":"You noticed?"}]}
+pick 0
+in "you never talk"
+out "I talk."
+in "you're talking now 😆"
+out "This is typing."
+in "ok quiet boy. I'll bring your umbrella tomorrow before class"
+in "don't tell anyone I stole it. I have a reputation 😌"
+out "What reputation?"
+in "I don't know yet. I'm building one"
+pause 2400
+draft {"text":"Your umbrella is still here. It's broken, but I kept it.","flag":"c1_told_kept","when":"Jun 2018"}
+draft send
+in "wait you KEPT it?? 😳"
+in "why"
+out "It looked like it tried hard."
+typing 1600
+pause 600
+in "that's the weirdest nice thing anyone has said to me 🥹"
+in "goodnight umbrella thief. and umbrella keeper 🌂"
+choice {"flag":"c1_goodnight","opts":[{"label":"You're the thief.","send":"You're the thief."},{"label":"Goodnight, May. 🌙","send":"Goodnight, May. 🌙"},{"label":"Send a sticker","sticker":"catUmb","act":1}]}
+pick 0
+in "details 😛"
+offline "Offline"
+sys "May Thiri is offline"
+pause 1200
+rain 0
+time "7:05 AM"
+notify {"c":"hnin","text":"your light was on until 1am","rows":[{"c":"may","text":"goodnight umbrella thief","time":"12:58 AM"},{"c":"mom","text":"Okay. Sleep early.","time":"Sun"},{"c":"thura","text":"football sat?","time":"Sun"}]}
+in "I could see it from our kitchen"
+in "were you studying? you never study"
+choice {"flag":"c1_hnin_am","opts":[{"label":"I was reading.","send":"I was reading."},{"label":"Why are you awake at 7?","send":"Why are you awake at 7?"},{"label":"Were you watching my window?","send":"Were you watching my window?"}]}
+pick 0
+in "reading what"
+out "Messages."
+in "from who"
+out "Nobody."
+in "nobody types for two hours, Min Htet"
+in "anyway. your mom says the samosas were too salty yesterday"
+in "she is blaming the new oil. it was not the oil"
+out "What was it?"
+in "she was on the phone with my aunt the whole time she was frying"
+in "don't tell her I said that"
+out "I'm telling her."
+inRe ["your light was on until 1am","then I'm telling her about your light"]
+inSticker "teaCup"
+pause 900
+a2hs 1
+scene {"art":"classroom1","cap":"Teacher Daw Nu's English class · the next evening","rain":0}
+narr "A ceiling fan. Fifteen students. The lesson is the present perfect."
+shot "classroom2"
+narr "May walks to the back of the room and puts the black umbrella on Min's desk. The whole class turns around."
+shot "classroom3"
+narr "A strip of paper is taped to the handle, under MH: “Sorry. Thank you. Your umbrella is better than mine. — the thief”"
+shot "classroomTeacher"
+say ["Teacher Daw Nu","Ma May Thiri, are you returning property or making a proposal?"]
+shot "classroomMay"
+say ["May","Returning stolen property, Teacher! He says I'm the thief."]
+choice {"flag":"c1_return","hint":"Say, quietly","opts":[{"label":"…Thank you.","say":"…Thank you."},{"label":"You can keep it.","say":"You can keep it."},{"label":"Give back her broken pink umbrella.","act":1}]}
+pick 0
+shot "classroom4"
+narr "She turns to him, grinning."
+say ["May","You can talk!"]
+mem "note"
+pause 1000
+rain 0
+time "6:40 PM"
+glance {"c":"thura","mention":"minhtet","text":"football saturday. losers buy the tea.","likes":"Hnin and 3 others","when":"June 2018","cmts":[{"n":"Hnin","t":"losers also wash the glasses"},{"n":"Thura","t":"then I will win. obviously"}],"rows":[{"c":"may","text":"goodnight umbrella thief","time":"Mon"},{"c":"mom","text":"Okay. Sleep early.","time":"Mon"}]}
+time "6:52 PM"
+notify {"c":"thura","text":"bro","rows":[{"c":"may","text":"goodnight umbrella thief","time":"Mon"},{"c":"mom","text":"Okay. Sleep early.","time":"Mon"}]}
+in "BRO"
+in "who was that. the whole class is talking. daw nu said PROPOSAL 🤣"
+choice {"flag":"c1_thura","opts":[{"label":"She took my umbrella by mistake.","send":"She took my umbrella by mistake."},{"label":"Nobody.","send":"Nobody.","myTr":{"Nobody.":"ဘယ်သူမှ မဟုတ်ပါဘူးကွာ"}},{"label":"Her name is May.","send":"Her name is May."}]}
+pick 0
+in "\"by mistake\" ok ok ok 😏"
+in "careful though. girls like that don't stay in this town"
+pause 1500
+in "joking. go eat 😅"
+pause 900
+time "7:15 PM"
+notify {"c":"hnin","text":"your mom's tray is still at the shop from yesterday","rows":[{"c":"thura","text":"joking. go eat 😅","time":"6:54 PM"},{"c":"may","text":"goodnight umbrella thief","time":"Mon"},{"c":"mom","text":"Okay. Sleep early.","time":"Mon"}],"stat":"Active now"}
+in "I'll bring it to your house tomorrow morning"
+in "also. yesterday that girl took your umbrella and you just watched her go 😑"
+choice {"flag":"c1_hnin","opts":[{"label":"It was a mistake.","send":"It was a mistake."},{"label":"She brought it back today.","send":"She brought it back today."},{"label":"You saw that?","send":"You saw that?"}]}
+pick 0
+in "hm. some mistakes are on purpose"
+in "also. you liked my post"
+in "you've never liked one of my posts"
+pause 1200
+in "so that table means something. noted"
+in "anyway. take your own umbrella next time"
+in "not everyone has a spare to lend you"
+pause 900
+time "8:40 PM"
+notify {"c":"mom","text":"Daw Aye Aye says a girl ate my samosas yesterday.","rows":[{"c":"hnin","text":"I can't lend you mine every time","time":"7:16 PM"},{"c":"thura","text":"joking. go eat 😅","time":"6:54 PM"},{"c":"may","text":"goodnight umbrella thief","time":"Mon"}]}
+in "Is she a nice girl?"
+choice {"flag":"c1_mom2","opts":[{"label":"She's just a classmate.","send":"She's just a classmate."},{"label":"She laughs a lot.","send":"She laughs a lot."},{"label":"Mom, please.","send":"Mom, please."}]}
+pick 0
+in "Okay."
+in "Take your own umbrella tomorrow."
+pause 900
+scene {"art":"roomEmpty","cap":"Min's room · 11 PM","rain":1}
+narr "Home. The rain has started again. The pink umbrella has its own corner now."
+rain 1
+time "11:02 PM"
+notify {"c":"may","text":"ok I have a question","rows":[{"c":"mom","text":"Is she a nice girl?","time":"8:41 PM"},{"c":"hnin","text":"I can't lend you mine every time","time":"7:16 PM"},{"c":"thura","text":"joking. go eat 😅","time":"6:54 PM"}]}
+in "daw aye aye says you take photos of \"strange things\""
+in "show me one strange thing 📸"
+choice {"flag":"c1_photo_sent","hint":"Send a photo from your gallery","opts":[{"label":"The tea-shop table in the rain","ph":"teaTable","photo":"teaTable","v":"table"},{"label":"Her pink umbrella against your wall","ph":"pinkUmbrella","photo":"pinkUmbrella","v":"umbrella"},{"label":"A street dog asleep under a stall","ph":"dog","photo":"dog","v":"dog"}]}
+pick 0
+mem "table"
+in "whose cups"
+out "Ours. From yesterday."
+in "you took a photo of my tea?? 😳"
+in "that's either creepy or poetic"
+out "Which one?"
+in "still deciding 🤔"
+in "ok. poetic. final answer ✅"
+in "most people only take photos of beautiful things"
+choice {"flag":"c1_why_photos","opts":[{"label":"Everything looks beautiful when it rains.","send":"Everything looks beautiful when it rains."},{"label":"Beautiful things don't need photos. Everyone already looks at them.","send":"Beautiful things don't need photos. Everyone already looks at them."},{"label":"I take photos so I remember.","send":"I take photos so I remember."}]}
+pick 0
+in "that's such a lie"
+pause 1200
+in "ok it's a little true 🙄"
+in "ok rain expert. can you teach me? the camera 📷"
+out "It's an old camera."
+in "I learn fast. tomorrow after class?? 🙏"
+choice {"flag":"c1_tomorrow","opts":[{"label":"Tomorrow.","send":"Tomorrow."},{"label":"If it doesn't rain.","send":"If it doesn't rain."},{"label":"Bring your own umbrella.","send":"Bring your own umbrella."}]}
+pick 0
+in "deal"
+inPhoto "yellowUmbrella"
+in "also. bought this today. yellow, so I can never take yours by accident again 💛"
+mem "yellow"
+pause 2000
+draft {"text":"I wouldn't mind.","flag":"c1_wouldnt_mind","when":"Jun 2018"}
+draft send
+typing 1500
+pause 1100
+typing 1700
+in "goodnight min"
+pause 1600
+scene {"art":"bedroom","cap":"","rain":1}
+narr "Min's room, late. He reads \"goodnight min\" more times than he would admit."
+shot "roomUmbrellas"
+narr "The pink umbrella leans in the corner. The black one stands beside it, dry. On the roof, the rain is softer now."
+title {"big":"<em>End of Chapter 1</em>The First Rain","small":""}
+title {"big":"<em>Chapter 2</em>Monsoon Season","small":"July to October 2018","rain":2,"time":"5:18 PM"}
+notify {"c":"may","text":"Voice message","div":"Jul 2018","m":{"k":"voice","text":"0:06","tr":"it's doing it AGAIN"},"rows":[{"c":"mom","text":"Is she a nice girl?","time":"Jun"},{"c":"hnin","text":"I can't lend you mine every time","time":"Jun"},{"c":"thura","text":"joking. go eat 😅","time":"Jun"}]}
+in "I have a problem"
+in "my mom took my yellow one to the market and it's pouring 😭"
+choice {"flag":"c2_walk","opts":[{"label":"I'll bring two umbrellas.","send":"I'll bring two umbrellas."},{"label":"We can share one.","send":"We can share one."},{"label":"Buy a new one.","send":"Buy a new one."}]}
+pick 0
+in "two?? who carries two umbrellas 😂"
+out "Someone who has met you."
+in "no. bring one"
+in "I'll hold it. I'm very helpful 😇"
+out "…One."
+pause 900
+scene {"art":"walkShare","cap":"After class · dusk","rain":1}
+narr "One black umbrella with white tape on the handle. Two people under it."
+shot "walkDrift"
+narr "May holds the handle \"to help\". The umbrella drifts toward her, a little more with every step. Min's left shoulder is soaked."
+choice {"flag":"c2_shoulder","opts":[{"label":"(Tilt the umbrella toward her anyway.)","act":1},{"label":"(Say nothing. Keep walking.)","act":1},{"label":"You're stealing it again.","say":"You're stealing it again."}]}
+pick 0
+narr "She notices. She moves closer, so it covers both of them."
+say ["May","You're so stupid."]
+narr "She says it softly."
+mem "shoulder"
+rain 1
+time "9:12 PM"
+notify {"c":"mom","text":"Why is only one side of your shirt wet?","rows":[{"c":"may","text":"ok. after class. don't be late","time":"4:02 PM"},{"c":"hnin","text":"I can't lend you mine every time","time":"Jun"},{"c":"thura","text":"joking. go eat 😅","time":"Jun"}]}
+choice {"flag":"c2_mom","opts":[{"label":"The umbrella is small.","send":"The umbrella is small."},{"label":"I walked a friend home.","send":"I walked a friend home."},{"label":"(Send a sticker.)","sticker":"catUmb"}]}
+pick 0
+in "The umbrella is the same size as last year."
+pause 900
+time "10:40 PM"
+notify {"c":"thura","text":"football saturday. you're coming. no excuses","rows":[{"c":"mom","text":"Why is only one side of your shirt wet?","time":"9:12 PM"},{"c":"may","text":"ok. after class. don't be late","time":"4:02 PM"},{"c":"hnin","text":"I can't lend you mine every time","time":"Jun"}]}
+choice {"flag":"c2_thura","opts":[{"label":"I'll come.","send":"I'll come."},{"label":"I have class.","send":"I have class."},{"label":"I'm walking someone home.","send":"I'm walking someone home."}]}
+pick 0
+in "finally. a normal friend 🙌"
+in "just don't forget us when you're famous 😅"
+pause 900
+time "8:03 PM"
+notify {"c":"may","text":"you said you take photos of how things really are","div":"Aug 2018","rows":[{"c":"thura","text":"just don't forget us when you're famous 😅","time":"Sat"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Fri"},{"c":"hnin","text":"I can't lend you mine every time","time":"Jun"}]}
+in "show me. sunday"
+in "I want to see what you see 📸"
+out "Sunday. I'll bring yours back."
+in "my DEAD umbrella?? why 😂"
+out "It should see the river once."
+in "ok that's actually sweet. don't tell anyone 🥹"
+pause 700
+title {"big":"<em>Sunday</em>","small":"The rain stops for an hour. Long enough.","rain":0}
+photowalk true
+QUEST photowalk (fixed)
+mem "walk"
+rain 0
+time "6:20 PM"
+open {"c":"may"}
+outPhoto "shot_tea"
+outPhoto "shot_monastery"
+outPhoto "shot_river"
+typing 1800
+in "ok these are actually good. I'm annoyed 😤"
+in "which one is your favourite"
+choice {"flag":"c2_fav_photo","hint":"Which one is his favourite?","opts":[{"label":"The tea shop.","send":"The tea shop.","v":"tea","ph":"shot_tea"},{"label":"The monks.","send":"The monks.","v":"monastery","ph":"shot_monastery"},{"label":"The river.","send":"The river.","v":"river","ph":"shot_river"},{"label":"(Send the one he didn't show her.)","v":"may","ph":"mayCandid","photo":"mayCandid"}]}
+pick 0
+in "ha. our tea shop. you're sentimental"
+pause 900
+time "6:41 PM"
+notify {"c":"hnin","text":"you forgot the tray again","rows":[{"c":"may","text":"ok I picked my favourite","time":"6:22 PM"},{"c":"thura","text":"just don't forget us when you're famous 😅","time":"Sat"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Fri"}]}
+in "you were at the river all morning. the whole street saw"
+choice {"flag":"c2_hnin","opts":[{"label":"Sorry. I'll come now.","send":"Sorry. I'll come now."},{"label":"We were taking photos.","send":"We were taking photos."},{"label":"Since when do you watch the river?","send":"Since when do you watch the river?"}]}
+pick 0
+in "don't run. it's raining. I'll keep it inside"
+pause 900
+time "9:12 PM"
+post {"c":"may","flag":"c2_post_like","tag":false,"place":"Sunday, after the rain","likes":"Thura, Hnin and 9 others","when":"August 2018","cflag":"c2_post_cmt","rows":[{"c":"hnin","text":"","time":"6:41 PM"},{"c":"thura","text":"","time":"Sat"},{"c":"mom","text":"","time":"Fri"}]}
+postpick 0
+notify {"c":"may","text":"you liked your own photo","rows":[{"c":"hnin","text":"","time":"6:41 PM"},{"c":"thura","text":"","time":"Sat"},{"c":"mom","text":"","time":"Fri"}]}
+in "that's the most min htet thing you've ever done 😂"
+choice {"flag":"c2_post_reply","opts":[{"label":"It's a good photo.","send":"It's a good photo."},{"label":"I liked the caption.","send":"I liked the caption."}]}
+pick 0
+in "it IS. ok you can stay humble tomorrow 😌"
+pause 900
+rain 1
+time "8:15 PM"
+notify {"c":"mom","text":"How do I send the moving cat.","div":"Sep 2018","rows":[{"c":"hnin","text":"I don't. I watch the tray","time":"Aug"},{"c":"may","text":"ok I picked my favourite","time":"Aug"},{"c":"thura","text":"just don't forget us when you're famous 😅","time":"Aug"}]}
+in "Daw Aye Aye sends me a moving cat every morning. I want to send one back."
+choice {"flag":"c2_mom_stk","opts":[{"label":"Tap the smiley face, then the cat.","send":"Tap the smiley face, then the cat."},{"label":"I'll do it for you tomorrow.","send":"I'll do it for you tomorrow."},{"label":"(Send her the cat sticker.)","sticker":"catUmb"}]}
+pick 0
+inSticker "laugh"
+in "This is not a cat."
+in "Why is this man laughing."
+out "Press the one next to it."
+in "Too late. I sent the laughing man to the monastery donation group."
+in "Sayadaw replied."
+in "Also. Daw Aye Aye says the girl with the yellow umbrella walked past the shop three times on Thursday."
+in "Three times."
+choice {"flag":"c2_mom_yellow","opts":[{"label":"Maybe she likes samosas.","send":"Maybe she likes samosas."},{"label":"Mom.","send":"Mom."},{"label":"It was four times.","send":"It was four times."}]}
+pick 0
+in "Then she can come in and buy one like a normal person."
+in "Bring her for dinner one day. Not now. One day."
+in "I will make the good curry, not the Tuesday curry."
+pause 900
+time "8:31 PM"
+glance {"c":"mom","text":"Testing. Is this posted.","likes":"Daw Aye Aye and 7 others","when":"September 2018","cmts":[{"n":"Daw Aye Aye","t":"It is posted."},{"n":"Mom","t":"Thank you Daw Aye Aye."},{"n":"Thura","t":"welcome to the internet auntie"},{"n":"Mom","t":"Thura go home."}],"rows":[{"c":"hnin","text":"","time":"Aug"},{"c":"may","text":"","time":"Aug"},{"c":"thura","text":"","time":"Aug"}]}
+time "9:47 PM"
+notify {"c":"may","text":"ok be honest","rows":[{"c":"mom","text":"","time":"8:22 PM"},{"c":"hnin","text":"I don't. I watch the tray","time":"Aug"},{"c":"thura","text":"just don't forget us when you're famous 😅","time":"Aug"}]}
+in "I cut my own bangs"
+in "with the KITCHEN scissors ✂️"
+in "my mom says I look like a mushroom. don't laugh 🍄"
+in "you will see tomorrow. prepare yourself 😬"
+pause 1200
+choice {"flag":"c2_bangs","opts":[{"label":"Okay.","send":"Okay."},{"label":"I'm sure it's fine.","send":"I'm sure it's fine."},{"label":"Send a photo.","send":"Send a photo."}]}
+pick 0
+typing 1400
+in "okay?"
+in "OKAY?? 😤"
+in "I tell you I attacked my own face with kitchen scissors and you say okay like I told you the bus is late"
+pause 900
+in "goodnight 👍"
+offline "Offline"
+sys "May Thiri is offline"
+pause 1600
+time "10:06 PM"
+browse {"c":"hnin","stat":"Active now","rows":[{"c":"may","text":"","time":"9:51 PM"},{"c":"hnin","text":"","time":"Aug"},{"c":"mom","text":"","time":"8:22 PM"},{"c":"thura","text":"","time":"Aug"}]}
+out "Hnin. Question."
+typing 900
+in "no"
+pause 900
+in "…what"
+choice {"flag":"c2_ask_hnin","opts":[{"label":"How do you know if a girl is angry?","send":"How do you know if a girl is angry?"},{"label":"If a girl says goodnight, is it fine?","send":"If a girl says goodnight, is it fine?"},{"label":"What do girls want when they are angry?","send":"What do girls want when they are angry?"}]}
+pick 0
+in "she starts sending a thumbs up"
+out "She just said \"goodnight\" with a thumbs up."
+in "oh you are dead"
+in "what did you say to her"
+out "She cut her bangs. I said okay."
+in "min htet."
+in "she told you something about her face and you said OKAY"
+in "listen. don't say sorry first. she knows you're sorry. you're always sorry"
+in "tell her one thing you actually noticed. not okay. not fine. one real thing"
+pause 1400
+in "that's all anyone wants. to be noticed"
+pause 1800
+in "that's what I read, anyway"
+choice {"flag":"c2_hnin_thanks","opts":[{"label":"Thank you, Hnin.","send":"Thank you, Hnin."},{"label":"How do you know all this?","send":"How do you know all this?"},{"label":"You cut your hair too.","send":"You cut your hair too."}]}
+pick 0
+in "don't thank me. you'll forget the tray again tomorrow"
+pause 1200
+time "7:02 AM"
+browse {"c":"may","stat":"Active 9h ago","rows":[{"c":"may","text":"","time":"Yesterday"},{"c":"hnin","text":"","time":"Yesterday"},{"c":"mom","text":"","time":"Yesterday"},{"c":"thura","text":"","time":"Aug"}]}
+div "Next morning"
+choice {"flag":"c2_fix","hint":"Tell her one real thing","opts":[{"label":"You tuck your hair behind your left ear when you're thinking. Now you can't. That's all I'll notice.","send":"You tuck your hair behind your left ear when you're thinking. Now you can't. That's all I'll notice."},{"label":"You said \"prepare yourself\". You only say that when you're nervous. You don't need to be.","send":"You said \"prepare yourself\". You only say that when you're nervous. You don't need to be.","re":"you will see tomorrow. prepare yourself 😬"},{"label":"I'm sorry. I'm bad at talking about faces.","send":"I'm sorry. I'm bad at talking about faces."}]}
+pick 0
+typing 2200
+pause 1500
+in "…"
+in "how do you know which ear"
+out "I sit behind you."
+in "ok I'm still mad but less 😤"
+in "you owe me tea. two. and you hold the umbrella for a WEEK ☔"
+out "Deal."
+pause 1200
+in "also my mom says it suits me. so"
+in "ok. ONE photo. so tomorrow you don't just say okay 📸"
+pause 900
+inPhoto "mayBangs"
+in "don't zoom 🙈"
+in "the scissors are still there. they know what they did ✂️"
+choice {"flag":"c2_bangs_photo","opts":[{"label":"It really does suit you.","send":"It really does suit you."},{"label":"A very cute mushroom.","send":"A very cute mushroom."},{"label":"Keep the scissors away from me tomorrow.","send":"Keep the scissors away from me tomorrow."}]}
+pick 0
+typing 1400
+in "you're only saying that because you owe me tea"
+in "…but ok 🥹"
+pause 900
+in "see you in class 👋"
+pause 900
+rain 1
+time "1:12 AM"
+notify {"c":"thura","text":"bro are you awake","rows":[{"c":"may","text":"","time":"Thu"},{"c":"hnin","text":"","time":"Wed"},{"c":"mom","text":"","time":"Wed"}]}
+in "I think I'm in love 😍"
+in "the girl at the phone shop gave me a free screen protector"
+in "FREE bro 🔥"
+choice {"flag":"c2_thura_love","opts":[{"label":"She gives everyone one.","send":"She gives everyone one."},{"label":"Did you talk to her?","send":"Did you talk to her?"},{"label":"Go to sleep, Thura.","send":"Go to sleep, Thura."}]}
+pick 0
+in "she gave it to me with her HANDS 😭"
+out "That's how screen protectors work."
+pause 1200
+in "seriously though. everyone's leaving this town"
+in "my cousin went to malaysia. ko zaw went to the city"
+in "it's gonna be just you, me and the phone shop girl"
+choice {"flag":"c2_thura_stay","opts":[{"label":"I'm not going anywhere.","send":"I'm not going anywhere."},{"label":"You could go too.","send":"You could go too."},{"label":"(Send the sleepy sticker.)","sticker":"sleepy"}]}
+pick 0
+in "good. promise"
+out "Go to sleep."
+in "that's not a promise but ok"
+pause 900
+rain 0
+time "7:30 PM"
+notify {"c":"may","text":"Photo","div":"Oct 2018","m":{"k":"photo","art":"candles"},"rows":[{"c":"hnin","text":"I don't. I watch the tray","time":"Aug"},{"c":"thura","text":"just don't forget us when you're famous 😅","time":"Aug"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Aug"}]}
+in "the pagoda is so pretty tonight. are you coming or are you going to send me a photo of a dog 🐶"
+out "Coming."
+scene {"art":"pagoda","cap":"Thadingyut · the festival of lights","rain":0}
+narr "The pagoda platform at night, hundreds of small clay lamps. At the foot of the steps, Hnin is at her aunt's stall, selling tea to the crowd."
+shot "pagodaLamp"
+narr "May is trying to light one in the wind. It keeps going out."
+choice {"flag":"c2_lights","opts":[{"label":"Let me.","say":"Let me."},{"label":"(Shield the flame with your hands.)","act":1},{"label":"You're bad at fire.","say":"You're bad at fire."}]}
+pick 0
+narr "He lights it first try."
+say ["May","Show-off."]
+say ["May","Next year, let's light one together. From the start. Promise?"]
+min "I promise."
+mem "lamp"
+time "11:48 PM"
+notify {"c":"may","text":"min","rows":[{"c":"hnin","text":"I don't. I watch the tray","time":"Aug"},{"c":"thura","text":"just don't forget us when you're famous 😅","time":"Aug"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Aug"}]}
+in "what are we"
+pause 1200
+draft {"text":"I don't want to be only friends.","flag":"c2_friends","when":"Oct 2018"}
+draft send
+typing 2600
+pause 2200
+typing 3200
+pause 2600
+typing 2400
+in "ok good"
+in "me neither"
+in "goodnight before I die of embarrassment 🙈"
+pause 1500
+scene {"art":"lampWall","cap":"","rain":0}
+narr "On the pagoda wall, long after everyone has gone home, one small lamp is still burning."
+title {"big":"<em>End of Chapter 2</em>Monsoon Season","small":""}
+title {"big":"<em>Chapter 3</em>Thingyan","small":"March to December 2019","rain":0,"time":"11:20 PM"}
+notify {"c":"may","text":"I can't do this","div":"Mar 2019","rows":[{"c":"hnin","text":"I don't. I watch the tray","time":"Oct"},{"c":"thura","text":"just don't forget us when you're famous 😅","time":"Aug"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Jul"}]}
+in "my dad keeps saying \"for the family\" like I'm a business plan"
+choice {"flag":"c3_exam","opts":[{"label":"You'll pass.","send":"You'll pass."},{"label":"I'll bring tea to your gate.","send":"I'll bring tea to your gate."},{"label":"Call me. Read me the questions.","send":"Call me. Read me the questions."}]}
+pick 0
+in "you don't know that"
+out "I know you."
+in "…that's so annoying. ok 😁"
+in "call me if you can't sleep"
+pause 900
+call {"c":"may","dir":"out","dur":"2:14:07","open":[{"in":"you actually called"},{"out":"You said to."},{"in":"ok. don't hang up. just read me something"},{"out":"Question 1."}],"ff":["…question 12","no YOU read it","hahaha","wait, my mom is up","…question 31","the fan is so loud","say it again"],"bye":[{"nar":"Somewhere past two, her answers get slower."},{"in":"min"},{"in":"I can't keep my eyes open"},{"pick":{"flag":"c3_call_bye","opts":[{"label":"Go to sleep. You know this.","say":"Go to sleep. You know this."},{"label":"You hang up first.","say":"You hang up first."},{"label":"(Stay quiet and listen.)"}]}}],"by":"me"}
+in "if I pass I'm buying you a new umbrella ☂️"
+pause 900
+rain 0
+time "1:36 AM"
+notify {"c":"may","text":"are you awake","div":"Next night","rows":[{"c":"hnin","text":"","time":"Mar"},{"c":"thura","text":"","time":"Mar"},{"c":"mom","text":"","time":"Mar"}]}
+in "my brain is full. there is no more room 😵"
+in "tell me something boring so I can sleep"
+choice {"flag":"c3_boring","opts":[{"label":"Mom put the spice shelf in alphabetical order. Again.","send":"Mom put the spice shelf in alphabetical order. Again."},{"label":"Saya ate a whole samosa today. Then he slept for four hours.","send":"Saya ate a whole samosa today. Then he slept for four hours."},{"label":"The fan in class turns 40 times a minute on speed one. I counted.","send":"The fan in class turns 40 times a minute on speed one. I counted."}]}
+pick 0
+in "burmese or english"
+out "Both. On different days."
+in "ok that's not boring that's insane 😂"
+in "hahaha"
+in "goodnight. thank you for being boring"
+inSticker "sleepy"
+pause 900
+rain 0
+time "6:12 AM"
+notify {"c":"may","text":"MIN","div":"13 Apr 2019","rows":[{"c":"thura","text":"truck. 2pm. bring nothing dry","time":"Fri"}]}
+in "the padauk bloomed last night 🌼"
+in "the big tree on your lane"
+in "the aunties will have it stripped by 8"
+in "I'm not asking. I'm just saying 😇"
+padauk true
+time "6:31 AM"
+open {"c":"may"}
+out "The aunties got the tree. I found one on the wall"
+in "off the WALL"
+in "…it's still the best one. bring it 🌼"
+pause 900
+rain 0
+time "2:40 PM"
+scene {"art":"wstreet","cap":"Thingyan · 13 April 2019","rain":0}
+narr "The street is a river. Music from the pandal, hoses, buckets, everyone soaked. Thura is on a pick-up truck with a hose. Hnin is under the tea shop awning with a stack of dry towels."
+narr "May is waiting at the far end of the street."
+waterstreet true
+QUEST waterstreet (fixed) dry
+scene {"art":"mayEnd","cap":"","rain":0}
+say ["May","How are you dry? That's illegal on Thingyan."]
+narr "She fixes that with one bowl of water."
+narr "The padauk is in her hair. Still there, somehow, after all that water."
+say ["May","Nobody needs to know it was on a wall."]
+shot "crowd"
+narr "A crowd pushes past the pandal. May grabs Min's hand so she doesn't lose him."
+narr "She doesn't let go. Under the tea shop awning, Hnin sees, and goes back to folding towels."
+shot "mango"
+narr "Under the mango tree, Min sets his camera on the wall and starts the self-timer."
+choice {"flag":"c3_photo","opts":[{"label":"Count to three.","say":"Count to three."},{"label":"Don't look at the camera.","say":"Don't look at the camera."},{"label":"Say \"umbrella thief\".","say":"Say \"umbrella thief\"."}]}
+pick 0
+narr "She counts to two and throws a bowl of water in his face. The shutter clicks."
+shot "mangoPhoto"
+narr "13 April 2019 · 3:26 PM. The photo that will still be on his phone two years later."
+mem "mango"
+shot "towel"
+narr "Hnin hands Min a towel, not May."
+say ["Hnin","You'll get sick."]
+narr "Then, a beat later, she hands May one too."
+time "8:47 PM"
+post {"c":"may","art":"thingyan","flag":"c3_post_like","place":"Thingyan","likes":"Thura, Hnin and 14 others","when":"13 April 2019","cflag":"c3_post_cmt","cOpts":[{"label":"Worth it.","reply":[["May Thiri","it was"]]},{"label":"Next year I'm driving the truck.","reply":[["Thura","over my dead body"]]}],"rows":[{"c":"thura","text":"","time":"2:10 PM"},{"c":"hnin","text":"","time":"Mar"},{"c":"mom","text":"","time":"Mar"}]}
+postpick 0
+pause 600
+rain 0
+time "10:48 PM"
+notify {"c":"may","text":"so. the towel","rows":[{"c":"thura","text":"","time":"2:10 PM"},{"c":"hnin","text":"","time":"Mar"},{"c":"mom","text":"","time":"Mar"}]}
+in "she gave YOU the towel first"
+in "I was standing RIGHT there. dripping. like a fish 🐟"
+choice {"flag":"c3_towel","opts":[{"label":"She's known me since we were five.","send":"She's known me since we were five."},{"label":"She gave you one too.","send":"She gave you one too."},{"label":"Are you jealous?","send":"Are you jealous?"}]}
+pick 0
+in "and I've known you since june"
+in "so she gets a thirteen year head start on towels??"
+pause 1400
+in "I like hnin. I just want to be first sometimes"
+choice {"flag":"c3_first","opts":[{"label":"You found me at the end of the street. You were first today.","send":"You found me at the end of the street. You were first today."},{"label":"Next Thingyan, I'll bring the towel.","send":"Next Thingyan, I'll bring the towel."},{"label":"Hnin gives everyone towels. You're the one who soaked me.","send":"Hnin gives everyone towels. You're the one who soaked me."}]}
+pick 0
+typing 1600
+in "…ok that was good 🥹"
+in "I'm keeping that one"
+in "also. you liked the photo in like four seconds"
+in "don't think I didn't see 👀"
+pause 900
+time "11:20 PM"
+notify {"c":"hnin","text":"the towel was clean, by the way","rows":[{"c":"may","text":"","time":"10:52 PM"},{"c":"thura","text":"","time":"2:10 PM"},{"c":"mom","text":"","time":"Mar"}]}
+in "your girlfriend looked at me like I stole her bowl"
+in "it was a towel. not a ring"
+choice {"flag":"c3_hnin_towel","opts":[{"label":"She was joking.","send":"She was joking."},{"label":"Why did you give it to me first?","send":"Why did you give it to me first?"},{"label":"Thank you for the towel.","send":"Thank you for the towel."}]}
+pick 0
+in "she was not joking"
+in "I know that look. I sell tea to aunties"
+pause 1400
+in "don't worry. I know where I stand"
+in "behind the counter. same as always"
+choice {"flag":"c3_hnin_counter","opts":[{"label":"That's not true.","send":"That's not true."},{"label":"You're my oldest friend.","send":"You're my oldest friend."},{"label":"(Leave it.)"}]}
+pick 0
+in "it is. and it's fine"
+in "goodnight"
+pause 1200
+time "11:58 PM"
+glance {"c":"hnin","text":"towels lent today: 40. towels returned: 6.","likes":"Daw Aye Aye and 12 others","when":"13 April 2019","cmts":[{"n":"Thura","t":"I have two. they're mine now"},{"n":"Daw Aye Aye","t":"Hnin come downstairs and count again."}],"rows":[{"c":"may","text":"","time":"10:52 PM"},{"c":"thura","text":"","time":"2:10 PM"},{"c":"mom","text":"","time":"Mar"}]}
+rain 0
+time "9:05 AM"
+notify {"c":"may","text":"I PASSED","div":"Jun 2019","rows":[{"c":"hnin","text":"I don't. I watch the tray","time":"Apr"},{"c":"thura","text":"sent a photo","time":"Apr"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Mar"}]}
+in "I passed I passed I passed 🎉🎉"
+inRe ["if I pass I'm buying you a new umbrella ☂️","so. I owe you an umbrella 😌"]
+in "my parents are already talking about a college in the city"
+in "a good one. far"
+choice {"flag":"c3_leave","opts":[{"label":"You should go. One day.","send":"You should go. One day."},{"label":"Stay.","send":"Stay."},{"label":"What do you want?","send":"What do you want?"}]}
+pick 0
+in "one day"
+in "you say it like it's a long time"
+in "local college this year. the city is \"maybe next year\""
+pause 900
+time "10:12 PM"
+notify {"c":"thura","text":"she talks about the city a lot huh","rows":[{"c":"may","text":"local college this year. the city is \"maybe next year\"","time":"9:20 AM"},{"c":"hnin","text":"I don't. I watch the tray","time":"Apr"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Mar"}]}
+choice {"flag":"c3_thura","opts":[{"label":"She talks about everything a lot.","send":"She talks about everything a lot."},{"label":"It's just college.","send":"It's just college."},{"label":"Mind your own business.","send":"Mind your own business."}]}
+pick 0
+in "ha. true"
+pause 900
+rain 1
+time "9:30 PM"
+notify {"c":"mom","text":"Daw Aye Aye says May's father went to the city three times this month.","div":"Aug 2019","rows":[{"c":"thura","text":"","time":"Jul"},{"c":"may","text":"","time":"Jul"},{"c":"hnin","text":"","time":"Apr"}]}
+in "Is everything okay with her family?"
+choice {"flag":"c3_mom_yangon","opts":[{"label":"It's just business.","send":"It's just business."},{"label":"I don't know.","send":"I don't know."},{"label":"Daw Aye Aye talks too much.","send":"Daw Aye Aye talks too much."}]}
+pick 0
+in "Business is never just business."
+in "Bring her for dinner. I have been asking for a year."
+choice {"flag":"c3_mom_dinner","opts":[{"label":"Next week.","send":"Next week."},{"label":"She's shy.","send":"She's shy."},{"label":"(Send the cat sticker.)","sticker":"catUmb"}]}
+pick 0
+in "You said that in October."
+in "I wrote it on the calendar. It is still there."
+pause 900
+time "7:40 PM"
+scene {"art":"pagoda19","cap":"Thadingyut · October 2019","rain":0}
+narr "The same pagoda wall. This time May brings the matches, and holds out the lamp before she lights it."
+say ["May","From the start. You promised."]
+choice {"flag":"c3_lamp","opts":[{"label":"(Light it together.)","act":1},{"label":"(Let her light it and shield the flame.)","act":1},{"label":"(Take a photo of her lighting it.)","act":1}]}
+pick 0
+narr "It lights first try. Neither of them says anything about it."
+shot "lamp2"
+mem "lamp2"
+rain 0
+time "4:12 PM"
+notify {"c":"thura","text":"bro","div":"Nov 2019","rows":[{"c":"may","text":"","time":"Oct"},{"c":"mom","text":"","time":"Aug"},{"c":"hnin","text":"","time":"Apr"}]}
+in "I fixed my first bike today. alone 🔧"
+in "it works"
+in "it works backwards 💀"
+choice {"flag":"c3_thura_bike","opts":[{"label":"How does a bike go backwards?","send":"How does a bike go backwards?"},{"label":"Did the customer notice?","send":"Did the customer notice?"},{"label":"Bring it here. I'll take a photo.","send":"Bring it here. I'll take a photo."}]}
+pick 0
+in "I don't know bro. I'm a genius 😎"
+in "also. big match saturday. come watch at mine"
+in "I don't have the channel anymore. I watch everything on this now"
+inLink "sbtv"
+in "every match. highlights the next morning if I fall asleep"
+in "and I'm 9 for 9 on the predictions this month. free. the coins go to the lucky draw"
+choice {"flag":"c3_thura_match","opts":[{"label":"I'll come. I'll bring tea.","send":"I'll come. I'll bring tea."},{"label":"What do you win?","send":"What do you win?"}]}
+pick 0
+in "from hnin's shop? she'll make me pay my tab first"
+in "anyway. how's may. you two still disgusting?"
+in "disgusting means happy. I checked 😏"
+pause 900
+time "10:03 PM"
+notify {"c":"may","text":"Voice message","div":"Dec 2019","m":{"k":"voice","text":"0:09","tr":"(Her voice, low. A man's voice through a wall, then a door.)"},"rows":[{"c":"thura","text":"sorry bro. I'm happy for you. really 🙏","time":"Jul"},{"c":"hnin","text":"I don't. I watch the tray","time":"Apr"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Mar"}]}
+in "sorry. my dad's on the phone with my uncle in the city. two hours now"
+in "orders are slow. he says it's nothing"
+choice {"flag":"c3_signs","opts":[{"label":"Are you okay?","send":"Are you okay?"},{"label":"Do you want to walk?","send":"Do you want to walk?"},{"label":"It's probably nothing.","send":"It's probably nothing."}]}
+pick 0
+in "yeah"
+pause 1400
+in "I think so"
+pause 1200
+time "11:58 PM"
+notify {"c":"hnin","text":"happy new year, neighbour","div":"31 Dec 2019","rows":[{"c":"may","text":"…","time":"Dec"},{"c":"thura","text":"sorry bro. I'm happy for you. really 🙏","time":"Jul"},{"c":"mom","text":"Daw Aye Aye talks.","time":"Mar"}]}
+in "tell May happy new year too"
+choice {"flag":"c3_hnin","opts":[{"label":"Happy new year, Hnin.","send":"Happy new year, Hnin."},{"label":"You can tell her yourself.","send":"You can tell her yourself."},{"label":"Are you working tonight?","send":"Are you working tonight?"}]}
+pick 0
+inSticker "teaCup"
+pause 1400
+scene {"art":"lamp2","cap":"","rain":0}
+narr "The camera's last photo of 2019: the two lamps, side by side."
+title {"big":"<em>End of Chapter 3</em>Thingyan","small":""}
+title {"big":"<em>Chapter 4</em>The Station","small":"January to September 2020","rain":0,"time":"11:48 PM"}
+notify {"c":"may","text":"are you awake","div":"Mar 2020","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":"Dec"},{"c":"thura","text":"","time":"Nov"},{"c":"mom","text":"","time":"Aug"}]}
+in "my dad decided"
+in "we're moving"
+in "to the city, my uncle's warehouse"
+in "and they found me a college there"
+choice {"flag":"c4_news","opts":[{"label":"When?","send":"When?"},{"label":"For how long?","send":"For how long?"},{"label":"(Don't answer yet.)","act":1}]}
+pick 0
+in "july"
+in "after the rains start"
+pause 900
+in "I didn't choose this"
+in "I need you to know I didn't choose this"
+pause 900
+time "7:10 AM"
+notify {"c":"mom","text":"Daw Aye Aye says May's family is leaving.","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":"Dec"},{"c":"thura","text":"","time":"Nov"},{"c":"mom","text":"","time":""}]}
+choice {"flag":"c4_mom","opts":[{"label":"In July.","send":"In July."},{"label":"She'll come back.","send":"She'll come back."},{"label":"I don't want to talk about it.","send":"I don't want to talk about it."}]}
+pick 0
+in "Then you have until July. Use it."
+pause 900
+time "3:20 PM"
+notify {"c":"thura","text":"bro","div":"Apr 2020","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":"Dec"},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+in "no thingyan. no football. the tea shop is takeaway only"
+in "this is the end of civilisation 💀"
+in "also I heard about may"
+choice {"flag":"c4_thura","opts":[{"label":"It's only for a while.","send":"It's only for a while."},{"label":"You were right. They don't stay.","send":"You were right. They don't stay."},{"label":"Don't.","send":"Don't."}]}
+pick 0
+in "yeah"
+in "that's what my cousin said. he's been \"a while\" in thailand for 3 years"
+in "everyone's leaving this town lol"
+in "not you though right"
+pause 900
+time "5:45 PM"
+notify {"c":"hnin","text":"tea shop is takeaway only now","div":"May 2020","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+in "tea in plastic bags. auntie hates it"
+in "your mom ordered two teas for your house. I know one is for may. I'll put extra sugar in it"
+choice {"flag":"c4_hnin_tea","opts":[{"label":"Thank you, Hnin.","send":"Thank you, Hnin."},{"label":"How do you know it's for May?","send":"How do you know it's for May?"},{"label":"Make it three. One is for you.","send":"Make it three. One is for you."}]}
+pick 0
+in "don't thank me. pay me"
+pause 900
+time "2:15 PM"
+scene {"art":"c4Room","cap":"May's room · June 2020","rain":1}
+narr "Half the room is already in boxes. One small box is left, and six things that won't fit with the rest."
+narr "May picks up the Thingyan print first."
+say ["May","This one comes with me. Obviously."]
+pack true
+scene {"art":"c4Room","cap":"","rain":1}
+say ["May","One is yours, so you have to come and light it."]
+say ["May","Proof the umbrella thief can take a good photo."]
+narr "The other three go into a shoebox. She writes nothing on it. She just hands it to him."
+mem "shoebox"
+rain 0
+time "5:10 AM"
+title {"big":"<em>July 2020</em>The station","small":"","rain":1}
+scene {"art":"c4Station","cap":"The bus station · July 2020","rain":1}
+narr "Buses idling. The tea stall's shutter half down. Everyone in masks. May's family loads the last bags."
+shot "c4Roof"
+narr "Min holds his black umbrella. The tape on the handle says MH, in his father's writing."
+say ["May","Your mom's samosas. For the bus. I'm not sharing."]
+shot "c4Promise"
+say ["May","It's only until things get better."]
+narr "She says it like she's checking whether it's true."
+say ["May","You said you didn't want to be only friends."]
+say ["May","I'm holding you to it. From far away."]
+shot "c4MinLook"
+choice {"flag":"c4_promise","opts":[{"label":"I'll wait.","say":"I'll wait."},{"label":"Come back for Thadingyut. We'll light the lamp.","say":"Come back for Thadingyut. We'll light the lamp."},{"label":"Don't look back. Just go.","say":"Don't look back. Just go."}]}
+pick 0
+say ["May","Don't say it like that. Like it's going to be long."]
+shot "c4Hug"
+narr "She hugs him so he can't see her face."
+say ["May","You still have my pink one."]
+say ["May","Keep it till I'm back. That's the deal."]
+shot "c4Handover"
+choice {"flag":"c4_umbrella","opts":[{"label":"(Give her the black umbrella.)","act":1,"say":"So you have to bring it back."},{"label":"(Keep it.)","act":1}]}
+pick 0
+say ["May","Thief."]
+narr "She takes it."
+shot "c4Window"
+narr "The bus pulls out. May has his umbrella. Min walks home in the rain without one."
+mem "lastBus"
+rain 1
+time "11:30 PM"
+open {"c":"may","stat":"Active 6h ago"}
+draft {"text":"Text me when you get there.","flag":"c4_night","when":"Jul 2020"}
+draft send
+time "3:12 AM"
+pause 2400
+inPhoto "busWindow"
+in "still raining. the whole way"
+in "I'm holding your umbrella like a baby ☂️"
+pause 1400
+div "Next morning"
+in "here. alive. it's so loud"
+pause 900
+rain 0
+time "9:40 PM"
+notify {"c":"may","text":"sent a photo","div":"Jul 2020","m":{"k":"photo","art":"warehouse"},"rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+in "this is my life now 🏙️"
+inVoice ["0:11","(Traffic, a horn, someone calling her \"Thiri\".)"]
+in "people here call me Thiri"
+in "it's so weird"
+choice {"flag":"c4_city","opts":[{"label":"Do you like it?","send":"Do you like it?"},{"label":"Thiri sounds like a stranger.","send":"Thiri sounds like a stranger."},{"label":"Send me the view from your window.","send":"Send me the view from your window."}]}
+pick 0
+in "I don't know yet"
+in "it's loud. everything is open late. I miss the tea"
+in "you asked me to text you so. texting you"
+pause 900
+time "10:15 PM"
+glance {"c":"may","text":"it rains differently here","likes":"Thura and 30 others","when":"July 2020","cmts":[{"n":"Thura","t":"it rains the same here. come back"}],"rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+time "8:05 PM"
+post {"c":"may","art":"cityTea","flag":"c4_post","place":"The city","likes":"Thura, Hnin and 22 others","when":"August 2020","cap":"found a tea shop. it's not ours but it's trying","cmts":[{"n":"Thura","t":"city girl now"},{"n":"Zaw Lin","t":"missed you at the shop today 🙂"},{"n":"May Thiri","t":"😂 see you tomorrow"}],"cflag":"c4_post_cmt","cOpts":[{"label":"Looks like ours.","reply":[["May Thiri","not even close 😭"]]},{"label":"Who's the second glass?","reply":[["May Thiri","lol a girl from my class. why"]]}],"rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+postpick 0
+open {"c":"may"}
+in "you liked it!! 🥹"
+in "I thought you'd be mad I found another tea shop"
+pause 900
+time "9:58 PM"
+notify {"c":"may","text":"Missed voice call","div":"Aug 2020","m":{"k":"call","missed":true,"text":"Missed voice call · 9:42 PM"},"rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+out "Sorry, I was closing the shop. Call again?"
+pause 2200
+in "it's ok"
+in "sleep"
+in "I'll call tomorrow"
+pause 1400
+rain 2
+time "6:20 PM"
+title {"big":"<em>September 2020</em>The second wave","small":"","rain":2}
+scene {"art":"c4Shutter","cap":"The tea shop · September 2020","rain":2}
+narr "The tea shop pulls its shutter down early. The roads are closing. Min has no umbrella."
+narr "Hnin comes out with hers and holds it over both of them without asking."
+shot "c4HninUmb"
+say ["Hnin","You always give your umbrella away."]
+say ["Hnin","Remember what I said about mistakes?"]
+say ["Hnin","This isn't one. I just have an umbrella."]
+choice {"flag":"c4_hnin","opts":[{"label":"Thank you.","say":"Thank you."},{"label":"You'll get wet.","say":"You'll get wet."},{"label":"(Say nothing.)","act":1}]}
+pick 0
+say ["Hnin","Don't thank me. Just walk faster."]
+shot "c4Gate"
+narr "At his gate she tilts the umbrella so his side stays dry, the way he used to for May."
+mem "hninUmb"
+rain 2
+time "11:05 PM"
+notify {"c":"may","text":"they closed the roads","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+in "no buses in or out"
+in "I can't come for Thadingyut"
+in "I'm sorry I'm sorry I'm sorry"
+choice {"flag":"c4_roads","opts":[{"label":"It's not your fault.","send":"It's not your fault."},{"label":"Next year, then.","send":"Next year, then."},{"label":"I'll light one for both of us.","send":"I'll light one for both of us."}]}
+pick 0
+in "I know"
+in "it still feels like it"
+pause 1400
+scene {"art":"c4Empty","cap":"","rain":2}
+narr "The bus station at night. Rain on the roof. No buses."
+title {"big":"<em>End of Chapter 4</em>The Station","small":""}
+title {"big":"<em>Chapter 5</em>Seen","small":"October 2020 onwards","rain":0,"time":"7:40 PM"}
+time "8:45 PM"
+scene {"art":"c5Lamp","cap":"The pagoda wall · Thadingyut 2020","rain":0}
+narr "Thadingyut. The roads are still closed."
+narr "Min lights one lamp on the pagoda wall. One."
+open {"c":"may","stat":"Active 1h ago"}
+outPhoto "lampAlone"
+pause 2600
+react "❤️"
+pause 1600
+time "9:12 AM"
+open {"c":"may","stat":"Active 9h ago"}
+out "Daw Aye Aye opened the shutter halfway today. First time since the roads closed."
+pause 1400
+time "4:47 PM"
+in "sorry!! group project all day"
+inRe ["Daw Aye Aye opened the shutter halfway today. First time since the roads closed.","that's good news"]
+in "tell her hi"
+choice {"flag":"c5_gap","opts":[{"label":"Busy week?","send":"Busy week?"},{"label":"I miss you.","send":"I miss you.","myTr":{"I miss you.":"နင့်ကို လွမ်းနေတာ"}},{"label":"(Send a photo of your table at the tea shop.)","act":1,"photo":"teaTable"}]}
+pick 0
+in "so busy. stocktake at the warehouse + college"
+in "I'll call this weekend"
+pause 900
+time "10:52 PM"
+notify {"c":"may","text":"sent a voice message","div":"Nov 2020","m":{"k":"voice","text":"0:41","tr":"(A busy street. Someone laughing: \"Thiri, come on.\" Then her voice: \"sorry, sorry, I'm outside. I'll call you tomorrow, I promise. tomorrow\")"},"rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+pause 1800
+time "7:01 AM"
+div "3 Nov"
+out "It's okay. Take your time. I'll be here."
+pause 1500
+rcpt "Seen 3 Nov, 7:02 AM"
+pause 1600
+title {"big":"<em>Late November 2020</em>The night it started","small":"","rain":2}
+rain 2
+time "11:47 PM"
+lock {"date":"Thu 26 Nov","time":"11:47"}
+list {"only":"may","rows":[{"c":"thura","text":"bro answer me","time":"9:58 PM","unread":3},{"c":"mom","text":"Don't stay up late. There is rice in the pot.","time":"8:12 PM"},{"c":"may","text":"It's okay. Take your time. I'll be here.","you":true,"time":"3 Nov","seen":true}]}
+open {"c":"may","stat":"Active 18 days ago"}
+pause 1400
+draft {"text":"Are you awake?","auto":true,"keep":false}
+scrollback true
+gallery true
+title {"big":"<em>December 2020</em>The photo","small":"","rain":1,"time":"10:20 PM"}
+pphoto {"c":"may","banner":"updated her profile picture","head":"Profile picture","art":"cropped","sq":1,"zo":"82% 60%","act":"updated her profile photo.","place":"The city","likes":"Htoo, Su Su and 27 others","when":"December 2020","cap":"🌧️","cmts":[{"n":"Htoo","t":"umbrella duty again."}],"flag":"c5_photo","opts":[{"label":"(Zoom in.)","fx":"zoom","notes":["Her face, mid-laugh. An arm at the edge of the frame. She looks lighter than she has sounded in months."]},{"label":"(Read the comments.)","set":{"c5_truth":true},"more":[{"n":"Su Su","t":"thiri you look so happy 🥹"},{"n":"Htoo","t":"five of us under two umbrellas and she still wouldn't open hers 😂"},{"n":"May Thiri","t":"shh 🙈"}],"notes":["Eleven comments. Names he doesn't know. Someone calls her Thiri.","Names he doesn't know. Jokes he isn't in. Min reads them twice. She sounds happy there."]},{"label":"(Close the app.)","fx":"dark","notes":["The phone stays dark on the table for a long time."]}]}
+postpick 0
+open {"c":"may","stat":"Active now"}
+sys "May Thiri updated her profile picture"
+pause 900
+draft {"hint":"What does Min type?","opts":["I'm glad you have people there.","You look happy.","Do you still think about the tea shop?"],"flag":"c5_who","auto":true,"when":"Dec 2020"}
+pick 0
+pause 900
+time "12:01 AM"
+notify {"c":"may","text":"happy birthday umbrella thief 🎂","div":"2 weeks later","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+pause 1600
+out "Thanks."
+pause 1200
+time "11:40 PM"
+notify {"c":"thura","text":"bro you've been weird for a month","div":"Jan 2021","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+in "is it her"
+choice {"flag":"c5_thura","opts":[{"label":"She has a life there now.","send":"She has a life there now."},{"label":"I don't know.","send":"I don't know."},{"label":"It's nothing.","send":"It's nothing."}]}
+pick 0
+in "did she say there's no room for you in it"
+out "She didn't have to."
+in "…ok. then move on. for real this time"
+pause 900
+time "7:30 PM"
+notify {"c":"mom","text":"You haven't eaten dinner in three days. Sit with me tonight.","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+choice {"flag":"c5_mom","opts":[{"label":"I'm waiting for something.","send":"I'm waiting for something."},{"label":"I'm fine.","send":"I'm fine."},{"label":"Okay.","send":"Okay."}]}
+pick 0
+in "I know."
+in "I waited for your father for eight years. Don't learn that from me."
+pause 900
+rain 2
+time "9:05 PM"
+scene {"art":"c5Closing","cap":"The tea shop · January 2021","rain":2}
+narr "Closing time. Rain on the shutter. Hnin wipes the last table, his table."
+shot "c5HninSits"
+narr "Then she sits down across from him. She never does that."
+say ["Hnin","Min. If someone…"]
+narr "She stops."
+say ["Hnin","Never mind. Your tea's getting cold."]
+choice {"flag":"c5_hnin","opts":[{"label":"If someone what?","say":"If someone what?"},{"label":"(Drink the tea.)","act":1},{"label":"Thank you for always being here.","say":"Thank you for always being here."}]}
+pick 0
+say ["Hnin","If someone waited for you. Like you wait for her."]
+narr "A beat."
+say ["Hnin","I'm joking. Go home, it's late."]
+rain 1
+time "6:40 PM"
+title {"big":"<em>January 2021</em>The buses run again","small":"","rain":1}
+scene {"art":"c5Counter","cap":"The bus station · January 2021","rain":1}
+narr "The buses run again. Min has been to the station four times this week. Today he goes to the counter."
+ticket "buy"
+open {"c":"may","stat":"Active 2h ago"}
+draft {"text":"I'm at the station. I bought a ticket.","flag":"c5_station","when":"Jan 2021"}
+draft send
+ticket "board"
+open {"c":"may","stat":"Active now"}
+time "8:06 PM"
+in "wait"
+inRe ["I'm at the station. I bought a ticket.","you're coming??"]
+in "min?"
+pause 1200
+scene {"art":"c5Bench","cap":"","rain":1}
+narr "He doesn't answer. The bus is already gone."
+mem "ticket"
+rain 0
+time "4:10 PM"
+notify {"c":"may","text":"sent a sticker","div":"3 weeks later","m":{"k":"sticker","art":"catUmb"},"rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+in "do you still have the shoebox"
+choice {"flag":"c5_last","opts":[{"label":"Yes.","send":"Yes."},{"label":"Why?","send":"Why?"},{"label":"(Leave it on Seen.)","act":1}]}
+pick 0
+in "good"
+in "keep it safe for me"
+pause 1800
+offline "Active 1 year ago"
+pause 1400
+list {"rows":[{"c":"may","text":"do you still have the shoebox","time":"Feb"},{"c":"thura","text":"football sat? there is football again","time":"Feb"},{"c":"mom","text":"Bring an umbrella.","time":"Feb"},{"c":"hnin","text":"your tab is 14 teas","time":"Feb"}]}
+pause 1500
+list {"rows":[{"c":"thura","text":"bro","time":"Mar"},{"c":"may","text":"do you still have the shoebox","time":"Feb"},{"c":"mom","text":"Bring an umbrella.","time":"Feb"},{"c":"hnin","text":"your tab is 14 teas","time":"Feb"}]}
+pause 1500
+list {"rows":[{"c":"hnin","text":"first tea of the day is on me","time":"Apr"},{"c":"thura","text":"bro","time":"Mar"},{"c":"may","text":"do you still have the shoebox","time":"Feb"},{"c":"mom","text":"Bring an umbrella.","time":"Feb"}]}
+pause 1800
+title {"big":"<em>End of Chapter 5</em>Seen","small":""}
+title {"big":"<em>Ending</em>Still waiting","small":"June 2023","rain":2,"time":"6:12 PM"}
+memshare {"c":"may","banner":"posted a photo","head":"Post","art":"uncropped","place":"The city","likes":"Htoo, Su Su and 40 others","when":"June 2023","cap":"found this from 3 years ago. first rain in the city. someone else's umbrella. I never used mine","flag":"end_photo","zo":"44% 84%","opts":[{"label":"(Zoom in on the umbrella in her hand.)","fx":"zoom","notes":["White tape on the handle. MH, faded."]},{"label":"(Open her chat.)","chat":"Active now","notes":["The chat opens on her last message from 2021. Min scrolls up, all the way, to the first one."]},{"label":"(Put the phone face down.)","fx":"dark","notes":["The rain on the roof is loud enough to cover it."]}]}
+postpick 0
+scrollFirst "Active now"
+narr "He stepped back to give her room. She was holding on the whole time."
+mem "uncropped"
+scene {"art":"e2Door","cap":"","rain":2}
+narr "The pink umbrella leans by the door, where it has leaned for three years."
+narr "Min's thumb is already in the message box."
+open {"c":"may","stat":"Active now"}
+pause 900
+draft {"text":"I still have your umbrella.","only":"send","flag":"end_sent","when":"Jun 2023"}
+draft send
+pause 2200
+typing 1800
+pause 1200
+in "i know"
+in "I still have yours. I never opened it. not once in three years"
+inPhoto "mayUmb"
+in "I'm sorry I got so far away"
+choice {"flag":"end_reply","opts":[{"label":"You didn't. I stopped writing.","send":"You didn't. I stopped writing."},{"label":"I'm glad you were okay.","send":"I'm glad you were okay."},{"label":"Come home for Thadingyut.","send":"Come home for Thadingyut."}]}
+pick 0
+in "we both did"
+in "let's not anymore"
+in "keep the pink one dry for me"
+in "I'll trade you back. one day"
+out "Deal."
+mem "herReply"
+scene {"art":"e3Tea","cap":"The tea shop · June 2023","rain":2}
+narr "Evening. Daw Aye Aye has retired; Hnin runs the shop now. The same corner table. Rain on the shutter."
+narr "Hnin sets down a glass of tea Min didn't order."
+say ["Hnin","Still waiting for someone?"]
+choice {"flag":"end_answer","opts":[{"label":"Maybe."},{"label":"No."},{"label":"(Say nothing.)","act":1}]}
+pick 0
+min "Not waiting."
+min "She's coming home. One day."
+say ["Hnin","Good."]
+narr "She smiles and takes his glass to refill it. She doesn't say she has been waiting too."
+say ["Hnin","Tell her the corner table is still hers."]
+title {"big":"<em>a story told in messages</em>Before the Rain Ends","small":"","rain":2}
+rain 0
+title {"big":"<em>Epilogue</em>2024","small":"Rainy season, 2024","rain":0,"time":"9:40 PM"}
+lockEp {"date":"Sat 13 Jul","time":"9:40","from":"Ward 4 electricity","text":"Tomorrow: power 6 PM – 10 PM."}
+notify {"c":"thura","text":"bro I made it. call when your power's back","stat":"Mae Sot","rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+inLoc {"place":"Mae Sot","area":"Tak, Thailand"}
+choice {"flag":"ep_thura","opts":[{"label":"I'm glad you're safe.","send":"I'm glad you're safe."},{"label":"Send me a photo.","send":"Send me a photo."},{"label":"When are you coming back?","send":"When are you coming back?"}]}
+pick 0
+in "you too. stay safe there"
+pause 1200
+rain 0
+time "5:40 PM"
+scene {"art":"epTown","cap":"","rain":0}
+narr "Late afternoon. A generator hums by the tea shop door."
+narr "Hnin stacks the new plastic chairs at six, before dark. The sign above the shop is new, and it has her name on it."
+narr "Teacher Daw Nu's building has a faded For Rent sign."
+narr "At Mom's shop, a small hand-painted sign: Min Photo."
+scene {"art":"epLastNext","cap":"","rain":0}
+narr "Min stands under the shop awning with his father's old camera and the pink umbrella. He photographs the street the way it really is."
+rain 1
+narr "The rain starts."
+narr "He opens the pink umbrella and walks out under it. In the studio window behind him is May's photo of his umbrella on a city windowsill."
+notify {"c":"may","text":"sent a photo","m":{"k":"photo","art":"busTicket"},"rows":[{"c":"may","text":"","time":""},{"c":"hnin","text":"","time":""},{"c":"thura","text":"","time":""},{"c":"mom","text":"","time":""}]}
+in "don't tell hnin. I want to see her face"
+pause 1600
+title {"big":"<em>Before the Rain Ends</em>The end.","small":"","rain":1}
+final true
+FINAL Ending · Until the next rain
+Before the Rain Ends
+
+Not together yet. But the umbrellas are going home, and so, one day, is she.
+
+1 of 3 endings found. What Min sends changes how it ends.
+
+Kept
+16
+The Broken Umbrella
+Object
+The Wrong Umbrella
+Photo
+The Thief's Note
+Note
+Two Cups in the Rain
+Photo
+The Yellow Umbrella
+Photo
+The Wet Shoulder
+Moment
+The Photo Walk
+Your three shots
+The Lamp
+Promise
+The Mango Tree
+Photo
+The Second Lamp
+A promise kept
+The Shoebox
+What she left with you
+The Last Bus
+Moment
+Hnin's Umbrella
+Moment
+NIGHT BUS · TO THE CITY
+
+DEPARTS
+8:00 PM
+
+18,000 Ks · not used
+PAID
+SEAT
+2A
+No. 0418
+The Unused Ticket
+Object
+The Uncropped Photo
+Photo
+Her Reply
+Photo
+Unsent
+“Are you awake?”
+#1 · Nov 2020
+“I'm glad you have people there.”
+#2 · Dec 2020
+Back to Stories

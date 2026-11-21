@@ -8,7 +8,18 @@ const prod = args.includes('--prod');
 const out = args.find(a => !a.startsWith('--')) || 'dist/index.html';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const parts = JSON.parse(fs.readFileSync(path.join(root, 'src/parts.json'), 'utf8'));
-let html = parts.map(p => fs.readFileSync(path.join(root, p), 'utf8')).join('');
+// gen:text:<story>/ emits that story's line text (text/en.json, text/my.json) as TEXT_EN / TEXT_MY
+const gen = p => {
+  const [, kind, dir] = p.split(':');
+  if (kind === 'text') {
+    const en = fs.readFileSync(path.join(root, dir, 'text/en.json'), 'utf8').trim();
+    const my = fs.readFileSync(path.join(root, dir, 'text/my.json'), 'utf8').trim();
+    const one = j => JSON.stringify(JSON.parse(j));
+    return `const TEXT_EN=${one(en)};\nconst TEXT_MY=${one(my)};\n`;
+  }
+  throw new Error('unknown generated part ' + p);
+};
+let html = parts.map(p => p.startsWith('gen:') ? gen(p) : fs.readFileSync(path.join(root, p), 'utf8')).join('');
 if (prod) {
   const a = 'const DEV_ON=true;';
   if (!html.includes(a)) throw new Error('DEV_ON line not found');

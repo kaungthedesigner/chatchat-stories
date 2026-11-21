@@ -160,7 +160,7 @@ time "6:52 PM"
 notify {"c":"thura","text":"bro","rows":[{"c":"may","text":"goodnight umbrella thief","time":"Mon"},{"c":"mom","text":"Okay. Sleep early.","time":"Mon"}]}
 in "BRO"
 in "who was that. you gave her a DEAD umbrella. in front of daw nu 💀"
-choice {"flag":"c1_thura","opts":[{"label":"She took my umbrella by mistake.","send":"She took my umbrella by mistake."},{"label":"Nobody.","send":"Nobody.","myTr":{"Nobody.":"ဘယ်သူမှ မဟုတ်ပါဘူးကွာ"}},{"label":"Her name is May.","send":"Her name is May."}]}
+choice {"flag":"c1_thura","opts":[{"label":"She took my umbrella by mistake.","send":"She took my umbrella by mistake."},{"label":"Nobody.","send":"Nobody."},{"label":"Her name is May.","send":"Her name is May."}]}
 pick 2
 in "you know her NAME"
 in "who are you and what did you do with min 😳"
@@ -819,7 +819,7 @@ time "4:47 PM"
 in "sorry!! group project all day"
 inRe ["Daw Aye Aye opened the shutter halfway today. First time since the roads closed.","that's good news"]
 in "tell her hi"
-choice {"flag":"c5_gap","opts":[{"label":"Busy week?","send":"Busy week?"},{"label":"I miss you.","send":"I miss you.","myTr":{"I miss you.":"နင့်ကို လွမ်းနေတာ"}},{"label":"(Send a photo of your table at the tea shop.)","act":1,"photo":"teaTable"}]}
+choice {"flag":"c5_gap","opts":[{"label":"Busy week?","send":"Busy week?"},{"label":"I miss you.","send":"I miss you."},{"label":"(Send a photo of your table at the tea shop.)","act":1,"photo":"teaTable"}]}
 pick 2
 pause 1500
 div "Next morning"

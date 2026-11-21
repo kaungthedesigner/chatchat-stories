@@ -9,6 +9,8 @@
     "compare": "sh tools/compare.sh index.html"
   },
   "devDependencies": {
+    "acorn": "^8.19.0",
+    "acorn-walk": "^8.3.5",
     "playwright": "1.63.0"
   }
 }

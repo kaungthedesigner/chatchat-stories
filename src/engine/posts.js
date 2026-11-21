@@ -16,7 +16,7 @@ async function profileStep(v){
 }
 const LINKS={sbtv:{url:'https://www.watchsbtv.com/',domain:'watchsbtv.com',title:'SBTV · Football, all in one place',badge:'<img src="img/sbtv-logo.webp?v=2611161" alt="SBTV">',
   points:['Watch every football match and the highlights in one place','Weekly predictions on the big matches earn SBTV Coins','Redeem your coins for lucky draws and rewards']}};
-const fv=(x)=>{if(typeof x!=='function')return x;const r=x(S.flags),D=S.lang==='my'&&MY_STORY[S.ch];return D?trS(r,D):r};
+const fv=(x)=>{if(typeof x!=='function')return x;const r=x(S.flags),D=S.lang==='my'&&MY_STORY[S.ch];return trS(r,D||{})};
 const artHTML=a=>typeof ART[a]==='function'?ART[a]():ART[a];
 const cmtHTML=c=>c.del?`<div class="cm del">${esc(c.del)} deleted a comment</div>`:`<div class="cm${c.me?' me':''}"><b>${esc(c.n)}</b>${esc(c.t)}</div>`;
 function postBody(v,tag){const art=fv(v.art),text=fv(v.text);

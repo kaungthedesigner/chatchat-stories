@@ -1,0 +1,30 @@
+{
+ "lines": 1517,
+ "myFromStory": 1499,
+ "myFromMyTr": 9,
+ "noMy": [
+  "c2.may.19  wow",
+  "c2.may.97  Next morning",
+  "c3.call-may.12  min",
+  "c3.call-may.38  min",
+  "c3.may.27  min",
+  "c3.hnin.29  …",
+  "c5.may.15  Next morning",
+  "c5.may.42  bro",
+  "c5.may.47  bro"
+ ],
+ "extras": 182,
+ "myTrRemoved": 7,
+ "ownIds": [
+  "c1.thura.11",
+  "c1.thura.12",
+  "c1.may.88",
+  "c2.mom.35",
+  "c4.may.15",
+  "c4.may.64",
+  "c5.may.10",
+  "c5.may.11",
+  "e.thura.2"
+ ],
+ "rebuildDiffs": []
+}

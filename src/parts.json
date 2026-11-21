@@ -31,6 +31,7 @@
  "src/engine/chat-list.js",
  "stories/before-the-rain-ends/memories.js",
  "src/engine/memories.js",
+ "gen:text:stories/before-the-rain-ends/",
  "stories/before-the-rain-ends/text/my.js",
  "src/engine/lang.js",
  "src/ui/shell-lang.js",

@@ -87,12 +87,15 @@ await pg.evaluate(({ pick, send, COURAGE }) => {
 }, { pick, send, COURAGE });
 
 await pg.evaluate(() => { window.__CARRY = 0; playFrom(0, false) });
+// SWITCH=200,600 switches language (the top-bar button) when the log reaches those lines, to test switching mid-story
+const SW = (process.env.SWITCH || '').split(',').filter(Boolean).map(Number);
 let last = 0, lastT = Date.now();
 const t0 = Date.now();
 while (true) {
   await pg.waitForTimeout(500);
   const [n, done, at] = await pg.evaluate(() => [window.__LOG.length, !!window.__DONE, S.at]);
   if (done) break;
+  while (SW.length && n >= SW[0]) { SW.shift(); await pg.evaluate(() => { window.__LOG.push('SWITCH LANGUAGE'); document.querySelector('#bLang').click() }) }
   if (n !== last) { last = n; lastT = Date.now() }
   if (Date.now() - lastT > 25000) { await pg.screenshot({ path: out + '.stall.png' }); errs.push('STALL at step ' + at); break }
   if (Date.now() - t0 > 20 * 60000) { errs.push('TIMEOUT'); break }

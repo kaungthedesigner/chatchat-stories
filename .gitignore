@@ -5,3 +5,4 @@ admin/node_modules/
 admin/dist/
 admin/.astro/
 admin/.vercel/
+.astro/

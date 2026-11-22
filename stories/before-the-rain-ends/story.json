@@ -64,6 +64,9 @@
   "art": [
    "art.js"
   ],
+  "cast": [
+   "cast.js"
+  ],
   "memories": [
    "memories.js"
   ],

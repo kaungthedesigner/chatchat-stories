@@ -1,0 +1,11 @@
+title {"big":"မိုးရွာတဲ့ညနေ","small":"A short test story","rain":2,"time":"5:10 PM"}
+notify {"c":"mom","text":"အိမ်ရောက်ပြီလား","stat":"Active now"}
+in "မိုးသည်းနေတယ် ထီးယူသွားလား"
+choice {"flag":"d1_reply","opts":[{"label":"ယူသွားတယ် အမေ","send":"ယူသွားတယ် အမေ"},{"label":"မေ့ခဲ့တယ်","send":"မေ့ခဲ့တယ်"}]}
+pick 0
+in "ကောင်းတယ် မမှောင်ခင် ပြန်လာခဲ့"
+scene {"art":"window","cap":"Home · the same evening","rain":3}
+narr "မိုးရေတွေ ပြတင်းပေါက်မှန်ပေါ် စီးကျနေတယ်။ လက်ဖက်ရည်က အေးသွားပြီ။"
+say ["Mom","အေးလည်း သောက်လိုက်တော့။"]
+final 1
+FINAL 

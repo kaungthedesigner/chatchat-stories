@@ -1,0 +1,1 @@
+const MEM_INFO={};

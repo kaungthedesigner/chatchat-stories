@@ -21,6 +21,7 @@
  "src/ui/icons.js",
  "slot:art",
  "src/engine/state.js",
+ "slot:cast",
  "src/engine/audio.js",
  "src/engine/rain.js",
  "src/engine/layout.js",
@@ -55,6 +56,7 @@
  "src/engine/saves.js",
  "src/engine/preload.js",
  "src/engine/run.js",
+ "src/ui/story-list.js",
  "src/ui/a2hs.js",
  "src/engine/boot.js",
  "src/page/end.html"

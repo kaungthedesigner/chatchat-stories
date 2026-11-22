@@ -1,0 +1,11 @@
+title {"big":"One Rainy Afternoon","small":"A short test story","rain":2,"time":"5:10 PM"}
+notify {"c":"mom","text":"Are you home?","stat":"Active now"}
+in "It's raining hard. Did you take an umbrella?"
+choice {"flag":"d1_reply","opts":[{"label":"Yes, I'm fine.","send":"Yes, I'm fine."},{"label":"I forgot it.","send":"I forgot it."}]}
+pick 1
+in "Again?"
+scene {"art":"window","cap":"Home · the same evening","rain":3}
+narr "The rain runs down the window. The tea has gone cold."
+say ["Mom","Drink it anyway."]
+final 1
+FINAL 

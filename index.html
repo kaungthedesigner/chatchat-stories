@@ -681,6 +681,7 @@ body.lang-my .hx p{font-family:var(--sans);font-size:15px;line-height:24px}
 #start .cr.lock .t b,#start .cr.lock .t span,#start .cr.lock .st,#start .cr.lock .n{color:var(--ink-faint)}
 #start .over{color:var(--ink-muted);font:600 14px/20px var(--sans)}
 #start .over.sure{color:var(--rust-500)}
+.lib .hero.alt{margin-top:22px}
 /* photo walk side quest */
 #pwalk{background:#0f1312;color:var(--n-ink);display:flex;flex-direction:column}
 #pwalk .ph1{padding:58px 20px 10px}
@@ -1197,6 +1198,13 @@ ART.ticket=fresh=>{const st=esc(S.flags.c5_seat||'7A');return `<div class="tkm">
 
 /* ============ STATE ============ */
 const S={flags:{},memories:[],unsent:[],threads:{},contact:null,speed:1,rain:0,sound:true,busy:false};
+const $=s=>document.querySelector(s);
+const stage=$('#stage');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms/S.speed));
+const rawSleep=ms=>new Promise(r=>setTimeout(r,ms));
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+
+/* The people Min chats with: name, initials, whether there is a profile picture (img/av-<key>.webp), colours */
 const C={
   may:{name:'May Thiri',ini:'MT',img:1,bg:'#F0DACB',fg:'#8F4630'},
   mom:{name:'Mom',ini:'M',img:1,bg:'#CCDAD5',fg:'#1F4643'},
@@ -1204,12 +1212,6 @@ const C={
   hnin:{name:'Hnin',ini:'H',img:1,bg:'#CCDAD5',fg:'#1F4643'},
   min:{name:'Min Htet',ini:'MH',img:0,bg:'#D9E0E8',fg:'#2C3E50'}
 };
-const $=s=>document.querySelector(s);
-const stage=$('#stage');
-const sleep=ms=>new Promise(r=>setTimeout(r,ms/S.speed));
-const rawSleep=ms=>new Promise(r=>setTimeout(r,ms));
-function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-
 /* ============ AUDIO ============ */
 const Audio_={ctx:null,gain:null,
   init(){ if(this.ctx) return; try{
@@ -3244,6 +3246,7 @@ const STORY=STORIES.find(s=>s.id===STORY_ID);
 /* Home card line: the chapter range comes from the list above, so it updates by itself when a chapter goes live */
 (()=>{const live=STORY.chapters.filter(c=>!c.soon&&/^\d+$/.test(c.n)),last=live.length?live[live.length-1].n:null,el=$('#libMeta');
   const fin=STORY.chapters.some(c=>c.n==='E'&&!c.soon);
+  if(el&&STORY.chapters[0].n!=='P'){const n=STORY.chapters.filter(c=>!c.soon).length;el.textContent=n+(n===1?' chapter':' chapters')+' · about '+STORY.mins+' minutes';return}
   if(el)el.textContent='Prologue'+(last?(fin?', Chapters 1–':' & Chapters 1–')+last:'')+(fin?', Ending & Epilogue':'')+' · about '+STORY.mins+' minutes'})();
 const CH_START=(()=>{const a=[0];FLOW.forEach((st,i)=>{const t=st&&st.title&&st.title.big;if(!t)return;const m=/^<em>Chapter (\d+)<\/em>/.exec(t);if(m)a[+m[1]]=i;else if(/^<em>Ending<\/em>/.test(t))a[STORY.chapters.length-1]=i});return a})();
 const CH_END=(()=>{const a={};FLOW.forEach((st,i)=>{const m=st&&st.title&&/^<em>End of Chapter (\d+)<\/em>/.exec(st.title.big);if(m)a[i]=+m[1]});return a})();
@@ -3334,6 +3337,11 @@ $('#chBack').onclick=e=>{e.stopPropagation();$('#start').classList.remove('chap'
 $('#chOver').onclick=e=>{e.stopPropagation();const b=$('#chOver');if(!b.classList.contains('sure')){b.classList.add('sure');b.textContent='Tap again to start from the Prologue';return}
   /* Start over is a full reset: chapters lock again, choices, memories and saves are cleared; only the endings found carry over */const ends=sv().ends;SAVES[STORY.id]={cps:{},done:[],cur:null};if(ends&&ends.length)sv().ends=ends;persist();playFrom(0,false)};
 renderLib();
+/* The other stories on the home page (from STORIES, built from each story's story.json): a card each, opening that story's own page */
+(()=>{const others=STORIES.filter(s=>s.id!==STORY.id),h=$('#lib h3.sh');if(!others.length||!h)return;
+  others.forEach(s=>{const d=document.createElement('div');d.className='hero alt';d.setAttribute('role','button');d.tabIndex=0;d.dataset.story=s.id;
+    d.innerHTML=`<img src="${s.cover}" alt="" draggable="false"><div class="hs"></div><div class="hx"><div class="tag">${esc(s.tag||'')}</div><h2>${esc(s.title)}</h2><p>${esc(s.tagline||'')}</p></div>`;
+    const go=()=>{location.href=s.page};d.onclick=e=>{e.stopPropagation();go()};d.onkeydown=e=>{if(e.key==='Enter')go()};h.before(d)})})();
 /* Add to Home Screen tip: shown once, in Chapter 1 (step {a2hs:1}, after Hnin's first chat), on phones and tablets in any browser.
    The steps follow the device and browser: iPhone Safari / Chrome / other browsers / in-app browsers (Facebook, Messenger…), Android Chrome / Samsung Internet / in-app. ?tip shows it on load for testing. */
 const A2_IC={share:'<svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"/></svg>',

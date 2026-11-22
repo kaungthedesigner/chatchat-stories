@@ -1,0 +1,75 @@
+{
+ "chapter": "d1",
+ "title": "Chapter 1",
+ "lines": [
+  {
+   "id": "d1.title.1",
+   "who": "",
+   "where": "title card",
+   "en": "One Rainy Afternoon",
+   "my": "မိုးရွာတဲ့ညနေ"
+  },
+  {
+   "id": "d1.title.2",
+   "who": "",
+   "where": "title card",
+   "en": "A short test story"
+  },
+  {
+   "id": "d1.mom.1",
+   "who": "Mom",
+   "where": "chat preview · Mom",
+   "en": "Are you home?",
+   "my": "အိမ်ရောက်ပြီလား"
+  },
+  {
+   "id": "d1.mom.2",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "It's raining hard. Did you take an umbrella?",
+   "my": "မိုးသည်းနေတယ် ထီးယူသွားလား"
+  },
+  {
+   "id": "d1.mom.3",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "Yes, I'm fine.",
+   "my": "ယူသွားတယ် အမေ"
+  },
+  {
+   "id": "d1.mom.4",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Good. Come home before dark.",
+   "my": "ကောင်းတယ် မမှောင်ခင် ပြန်လာခဲ့"
+  },
+  {
+   "id": "d1.mom.5",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "I forgot it.",
+   "my": "မေ့ခဲ့တယ်"
+  },
+  {
+   "id": "d1.mom.6",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Again?",
+   "my": "ထပ်မေ့ပြန်ပြီလား"
+  },
+  {
+   "id": "d1.window.1",
+   "who": "narration",
+   "where": "scene · window",
+   "en": "The rain runs down the window. The tea has gone cold.",
+   "my": "မိုးရေတွေ ပြတင်းပေါက်မှန်ပေါ် စီးကျနေတယ်။ လက်ဖက်ရည်က အေးသွားပြီ။"
+  },
+  {
+   "id": "d1.window.2",
+   "who": "Mom",
+   "where": "scene · window",
+   "en": "Drink it anyway.",
+   "my": "အေးလည်း သောက်လိုက်တော့။"
+  }
+ ]
+}

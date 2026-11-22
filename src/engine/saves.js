@@ -4,6 +4,7 @@ const STORY=STORIES.find(s=>s.id===STORY_ID);
 /* Home card line: the chapter range comes from the list above, so it updates by itself when a chapter goes live */
 (()=>{const live=STORY.chapters.filter(c=>!c.soon&&/^\d+$/.test(c.n)),last=live.length?live[live.length-1].n:null,el=$('#libMeta');
   const fin=STORY.chapters.some(c=>c.n==='E'&&!c.soon);
+  if(el&&STORY.chapters[0].n!=='P'){const n=STORY.chapters.filter(c=>!c.soon).length;el.textContent=n+(n===1?' chapter':' chapters')+' · about '+STORY.mins+' minutes';return}
   if(el)el.textContent='Prologue'+(last?(fin?', Chapters 1–':' & Chapters 1–')+last:'')+(fin?', Ending & Epilogue':'')+' · about '+STORY.mins+' minutes'})();
 const CH_START=(()=>{const a=[0];FLOW.forEach((st,i)=>{const t=st&&st.title&&st.title.big;if(!t)return;const m=/^<em>Chapter (\d+)<\/em>/.exec(t);if(m)a[+m[1]]=i;else if(/^<em>Ending<\/em>/.test(t))a[STORY.chapters.length-1]=i});return a})();
 const CH_END=(()=>{const a={};FLOW.forEach((st,i)=>{const m=st&&st.title&&/^<em>End of Chapter (\d+)<\/em>/.exec(st.title.big);if(m)a[i]=+m[1]});return a})();

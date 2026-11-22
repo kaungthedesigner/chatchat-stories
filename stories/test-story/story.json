@@ -1,0 +1,42 @@
+{
+ "id": "test",
+ "title": "A Rainy Test",
+ "page": "test-story.html",
+ "hidden": true,
+ "mins": 2,
+ "tag": "Test story",
+ "tagline": "Only here to check the engine runs more than one story.",
+ "cover": "img/tea-table.webp",
+ "chapters": [
+  {
+   "n": "1",
+   "t": "One rainy afternoon",
+   "d": "Today",
+   "text": "d1"
+  }
+ ],
+ "text": [
+  "d1"
+ ],
+ "slots": {
+  "art": [
+   "art.js"
+  ],
+  "cast": [
+   "cast.js"
+  ],
+  "memories": [
+   "memories.js"
+  ],
+  "sequences": [],
+  "endings": [
+   "endings.js"
+  ],
+  "flow": [
+   "flow/ch1.js"
+  ]
+ },
+ "flow": [
+  "DEMO1"
+ ]
+}

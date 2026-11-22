@@ -1,7 +1,8 @@
 // Builds one self-contained page per story from the shared engine parts and the story's own files.
 // Usage: node tools/build.mjs [--prod] [--out <dir>] [--only <storyId>]
 //   default: every story, pages written next to the repo root (index.html for the main story, <page> for others)
-//   --prod: the public build: dev timeline off, stories marked "hidden" left out (tools/build-vercel.sh uses it)
+//   --prod: the public build, dev timeline off (build-vercel.sh uses it)
+//   --hidden: also build stories marked "hidden" (test stories) and list them on the home page; left out otherwise
 // src/parts.json lists the engine parts in order. Entries starting with slot: take the story's files for that
 // slot (story.json "slots"); gen: entries are written here: gen:text (the story's lines), gen:flow (the story's
 // step arrays joined into STORY_FLOW), gen:stories (the story list for the home page). {{key}} in a part is
@@ -19,7 +20,7 @@ const only = opt('--only');
 const parts = JSON.parse(fs.readFileSync(path.join(root, 'src/parts.json'), 'utf8'));
 const storyDirs = fs.readdirSync(path.join(root, 'stories')).filter(d => fs.existsSync(path.join(root, 'stories', d, 'story.json'))).sort();
 const stories = storyDirs.map(d => ({ dir: 'stories/' + d + '/', ...JSON.parse(fs.readFileSync(path.join(root, 'stories', d, 'story.json'), 'utf8')) }))
-  .filter(s => !(prod && s.hidden))
+  .filter(s => !s.hidden || args.includes('--hidden'))
   .sort((a, b) => (a.page === 'index.html' ? -1 : b.page === 'index.html' ? 1 : a.id.localeCompare(b.id)));
 
 // what the home page needs to know about every story

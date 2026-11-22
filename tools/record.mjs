@@ -34,6 +34,8 @@ await pg.waitForFunction(() => typeof runFlow === 'function' && typeof FLOW !== 
 
 await pg.evaluate(({ pick, send, COURAGE }) => {
   const LOG = (window.__LOG = []);
+  // a story that ends by leaving the page (going back home) keeps its log for the reader below
+  addEventListener('pagehide', () => { try { sessionStorage.setItem('__LOG', JSON.stringify(LOG)) } catch (e) {} });
   const strip = (k, v) => (typeof v === 'function' ? undefined : k === 'then' || k === 'onSend' || k === 'onDelete' || k === 'else' ? undefined : v);
   const E = exec;
   exec = async function (s) {
@@ -93,14 +95,14 @@ let last = 0, lastT = Date.now();
 const t0 = Date.now();
 while (true) {
   await pg.waitForTimeout(500);
-  const [n, done, at] = await pg.evaluate(() => [window.__LOG.length, !!window.__DONE, S.at]);
+  const [n, done, at] = await pg.evaluate(() => window.__LOG ? [window.__LOG.length, !!window.__DONE, S.at] : [-1, true, -1]);
   if (done) break;
   while (SW.length && n >= SW[0]) { SW.shift(); await pg.evaluate(() => { window.__LOG.push('SWITCH LANGUAGE'); document.querySelector('#bLang').click() }) }
   if (n !== last) { last = n; lastT = Date.now() }
   if (Date.now() - lastT > 25000) { await pg.screenshot({ path: out + '.stall.png' }); errs.push('STALL at step ' + at); break }
   if (Date.now() - t0 > 20 * 60000) { errs.push('TIMEOUT'); break }
 }
-const log = await pg.evaluate(() => window.__LOG);
+const log = await pg.evaluate(() => window.__LOG || JSON.parse(sessionStorage.getItem('__LOG') || '[]'));
 fs.writeFileSync(out, log.join('\n') + '\n');
 fs.writeFileSync(out + '.meta.json', JSON.stringify({ lang, pick, send, errs, lines: log.length, secs: Math.round((Date.now() - t0) / 1000) }, null, 1));
 console.log(path.basename(out), lang, 'pick', pick, 'lines', log.length, 'secs', Math.round((Date.now() - t0) / 1000), errs.length ? 'ERRS ' + errs.slice(0, 3).join(' | ') : 'ok');

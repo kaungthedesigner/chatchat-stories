@@ -103,3 +103,4 @@ body.lang-my .hx p{font-family:var(--sans);font-size:15px;line-height:24px}
 #start .cr.lock .t b,#start .cr.lock .t span,#start .cr.lock .st,#start .cr.lock .n{color:var(--ink-faint)}
 #start .over{color:var(--ink-muted);font:600 14px/20px var(--sans)}
 #start .over.sure{color:var(--rust-500)}
+.lib .hero.alt{margin-top:22px}

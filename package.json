@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node tools/build.mjs index.html",
+    "build": "node tools/build.mjs",
     "build:prod": "sh build-vercel.sh",
     "record": "node tools/record.mjs",
     "compare": "sh tools/compare.sh index.html",

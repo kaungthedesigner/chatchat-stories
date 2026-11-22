@@ -1,0 +1,1331 @@
+{
+ "chapter": "c4",
+ "title": "Chapter 4",
+ "lines": [
+  {
+   "id": "c4.title.1",
+   "who": "",
+   "where": "title card",
+   "en": "<em>Chapter 4</em>The Station",
+   "my": "<em>အခန်း ၄</em>အဝေးပြေးကားဂိတ်"
+  },
+  {
+   "id": "c4.title.2",
+   "who": "",
+   "where": "title card",
+   "en": "January to September 2020",
+   "my": "၂၀၂၀ ခုနှစ်၊ ဇန်နဝါရီလမှ စက်တင်ဘာလအထိ"
+  },
+  {
+   "id": "c4.may.1",
+   "who": "May",
+   "where": "chat preview · May",
+   "en": "are you awake",
+   "my": "အိပ်ပြီလား"
+  },
+  {
+   "id": "c4.may.2",
+   "who": "May",
+   "where": "chat · May",
+   "en": "my dad decided",
+   "my": "ငါ့အဖေ ဆုံးဖြတ်လိုက်ပြီ"
+  },
+  {
+   "id": "c4.may.3",
+   "who": "May",
+   "where": "chat · May",
+   "en": "we're moving",
+   "my": "ငါတို့ အိမ်ပြောင်းရတော့မယ်"
+  },
+  {
+   "id": "c4.may.4",
+   "who": "May",
+   "where": "chat · May",
+   "en": "to the city, my uncle's warehouse",
+   "my": "မြို့ကြီးကိုလေ ဦးလေးရဲ့ ဂိုဒေါင်ရှိတဲ့ဆီကို"
+  },
+  {
+   "id": "c4.may.5",
+   "who": "May",
+   "where": "chat · May",
+   "en": "and they found me a college there",
+   "my": "ငါ့အတွက် ကျောင်းတစ်ကျောင်းလည်း ရှာထားပြီးပြီတဲ့"
+  },
+  {
+   "id": "c4.may.6",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "When?",
+   "my": "ဘယ်တော့လဲ"
+  },
+  {
+   "id": "c4.may.7",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "When?",
+   "my": "ဘယ်တော့လဲ"
+  },
+  {
+   "id": "c4.may.8",
+   "who": "May",
+   "where": "chat · May",
+   "en": "july",
+   "my": "ဇူလိုင်လောက်မှပေါ့"
+  },
+  {
+   "id": "c4.may.9",
+   "who": "May",
+   "where": "chat · May",
+   "en": "after the rains start",
+   "my": "မိုးစကျတဲ့အချိန်လောက်"
+  },
+  {
+   "id": "c4.may.10",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "For how long?",
+   "my": "ဘယ်လောက်ကြာမှာလဲ"
+  },
+  {
+   "id": "c4.may.11",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "For how long?",
+   "my": "ဘယ်လောက်ကြာမှာလဲ"
+  },
+  {
+   "id": "c4.may.12",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I don't know",
+   "my": "မသိသေးဘူး"
+  },
+  {
+   "id": "c4.may.13",
+   "who": "May",
+   "where": "chat · May",
+   "en": "they say until business is better",
+   "my": "လုပ်ငန်း ပြန်ကောင်းလာတဲ့အထိတဲ့"
+  },
+  {
+   "id": "c4.may.14",
+   "who": "May",
+   "where": "chat · May",
+   "en": "so I don't know",
+   "my": "ဆိုတော့ ငါလည်း မသိဘူး"
+  },
+  {
+   "id": "c4.may.15",
+   "who": "May",
+   "where": "chat · May",
+   "en": "we leave in july",
+   "my": "ဇူလိုင်မှာ ထွက်ရမယ်လို့ပြောတယ်",
+   "own": true
+  },
+  {
+   "id": "c4.may.16",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "(Don't answer yet.)",
+   "my": "(ချက်ချင်း ပြန်မဖြေသေးဘူး။)"
+  },
+  {
+   "id": "c4.may.17",
+   "who": "May",
+   "where": "chat · May",
+   "en": "min",
+   "my": "မင်းထက်"
+  },
+  {
+   "id": "c4.may.18",
+   "who": "May",
+   "where": "chat · May",
+   "en": "we leave in july",
+   "my": "ငါဇူလိုင်မှာ သွားရတော့မယ်"
+  },
+  {
+   "id": "c4.may.19",
+   "who": "May",
+   "where": "chat · May",
+   "en": "say something, anything",
+   "my": "တခုခုတော့ ပြောပါဦး"
+  },
+  {
+   "id": "c4.may.20",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I didn't choose this",
+   "my": "ဒါက ငါ့ဆန္ဒနဲ့ ဆုံးဖြတ်ခဲ့တာ မဟုတ်ဘူး"
+  },
+  {
+   "id": "c4.may.21",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I need you to know I didn't choose this",
+   "my": "ငါ့သဘောနဲ့ ရွေးချယ်ခဲ့တာ မဟုတ်ဘူးဆိုတာ နင်သိစေချင်တယ်"
+  },
+  {
+   "id": "c4.mom.1",
+   "who": "Mom",
+   "where": "chat preview · Mom",
+   "en": "Daw Aye Aye says May's family is leaving.",
+   "my": "ဒေါ်အေးအေးပြောတာ မေတို့မိသားစု ပြောင်းတော့မယ်ဆို"
+  },
+  {
+   "id": "c4.mom.2",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "In July.",
+   "my": "ဇူလိုင်လောက်လို့ပြောတယ်"
+  },
+  {
+   "id": "c4.mom.3",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "In July.",
+   "my": "ဇူလိုင်လောက်လို့ပြောတယ်"
+  },
+  {
+   "id": "c4.mom.4",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Then you have until July. Use it.",
+   "my": "ဒါဆို ဇူလိုင်လအထိ အချိန်ရှိသေးတာပေါ့ ရှိတဲ့အချိန်လေးကို အကျိုးရှိရှိ အသုံးချ"
+  },
+  {
+   "id": "c4.mom.5",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "She'll come back.",
+   "my": "သူပြန်လာမှာပါ"
+  },
+  {
+   "id": "c4.mom.6",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "She'll come back.",
+   "my": "သူပြန်လာမှာပါ"
+  },
+  {
+   "id": "c4.mom.7",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "People who leave always say that.",
+   "my": "ထွက်သွားတဲ့သူတွေက အမြဲအဲ့လိုပဲပြောကြတာပဲ"
+  },
+  {
+   "id": "c4.mom.8",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "I'm sorry. That was about your father, not her.",
+   "my": "အမေ မှားသွားတယ် အဲ့ဒါ သားအဖေကိုရည်ရွယ်ပြီးပြောမိတာပါ မေ့ကို မဟုတ်ဘူး"
+  },
+  {
+   "id": "c4.mom.9",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "I don't want to talk about it.",
+   "my": "အဲ့အကြောင်း မပြောချင်ဘူးအမေရယ်"
+  },
+  {
+   "id": "c4.mom.10",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "I don't want to talk about it.",
+   "my": "အဲ့အကြောင်း မပြောချင်ဘူးအမေရယ်"
+  },
+  {
+   "id": "c4.mom.11",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Okay. I made mohinga. Come eat when you're ready.",
+   "my": "အေးပါ အမေ မုန့်ဟင်းခါး ချက်ထားတယ် စားချင်စိတ်ရှိတော့မှ လာစား"
+  },
+  {
+   "id": "c4.thura.1",
+   "who": "Thura",
+   "where": "chat preview · Thura",
+   "en": "bro",
+   "my": "bro"
+  },
+  {
+   "id": "c4.thura.2",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "no thingyan. no football. the tea shop is takeaway only",
+   "my": "သင်္ကြန်လည်းမရှိ ဘောလုံးလည်းမကန်ရ လက်ဖက်ရည်ဆိုင်ကလည်း ပါဆယ်ပဲ ရတယ်"
+  },
+  {
+   "id": "c4.thura.3",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "this is the end of civilisation 💀",
+   "my": "ကမ္ဘာပျက်တော့မယ်ကွ 💀"
+  },
+  {
+   "id": "c4.thura.4",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "also I heard about may",
+   "my": "ဒါနဲ့ မေ့အကြောင်း ကြားတယ်"
+  },
+  {
+   "id": "c4.thura.5",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "It's only for a while.",
+   "my": "ခဏပါပဲ"
+  },
+  {
+   "id": "c4.thura.6",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "It's only for a while.",
+   "my": "ခဏပါပဲ"
+  },
+  {
+   "id": "c4.thura.7",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "yeah",
+   "my": "အင်း"
+  },
+  {
+   "id": "c4.thura.8",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "that's what my cousin said. he's been \"a while\" in thailand for 3 years",
+   "my": "ငါ့ဝမ်းကွဲလည်း အဲ့လိုပဲပြောပြီး ထိုင်းကိုထွက်သွားတာ သုံးနှစ်တောင်ရှိပြီ"
+  },
+  {
+   "id": "c4.thura.9",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "You were right. They don't stay.",
+   "my": "မင်းပြောတာ မှန်တယ် လူတွေက ဒီမှာကြာကြာမနေကြဘူး"
+  },
+  {
+   "id": "c4.thura.10",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "You were right. They don't stay.",
+   "my": "မင်းပြောတာ မှန်တယ် လူတွေက ဒီမှာကြာကြာမနေကြဘူး"
+  },
+  {
+   "id": "c4.thura.11",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "bro I didn't want to be right",
+   "my": "ဘရို ငါ အဲဒီလို မှန်မနေချင်ပါဘူးကွာ"
+  },
+  {
+   "id": "c4.thura.12",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "I never want to be right about that",
+   "my": "အဲဒီကိစ္စနဲ့ပတ်သက်လာရင်တော့ ငါ ဘယ်တော့မှ မမှန်ချင်ခဲ့ဘူး"
+  },
+  {
+   "id": "c4.thura.13",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "Don't.",
+   "my": "မပြောပါနဲ့ကွာ"
+  },
+  {
+   "id": "c4.thura.14",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "Don't.",
+   "my": "မပြောပါနဲ့ကွာ"
+  },
+  {
+   "id": "c4.thura.15",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "ok ok",
+   "my": "အိုကေ အိုကေ"
+  },
+  {
+   "id": "c4.thura.16",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "sending you a meme instead 😅",
+   "my": "ဒါဆို ရယ်စရာပုံလေးတွေပဲ ပို့ပေးမယ် 😅"
+  },
+  {
+   "id": "c4.thura.17",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "everyone's leaving this town lol",
+   "my": "ဒီမြို့က လူတွေ အကုန်ထွက်သွားကြတာပဲ lol"
+  },
+  {
+   "id": "c4.thura.18",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "everyone's leaving this town",
+   "my": "ဒီမြို့က လူတွေ အကုန်ထွက်သွားကြတာပဲ"
+  },
+  {
+   "id": "c4.thura.19",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "everyone's leaving this town",
+   "my": "ဒီမြို့က လူတွေ အကုန်ထွက်သွားကြတာပဲ"
+  },
+  {
+   "id": "c4.thura.20",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "not you though right",
+   "my": "မင်းတော့ ထွက်မသွားဘူးမလား"
+  },
+  {
+   "id": "c4.hnin.1",
+   "who": "Hnin",
+   "where": "chat preview · Hnin",
+   "en": "tea shop is takeaway only now",
+   "my": "အခုတော့ ဆိုင်ကပါဆယ်ပဲရောင်းရတော့တယ်"
+  },
+  {
+   "id": "c4.hnin.2",
+   "who": "",
+   "where": "div · hnin",
+   "en": "May 2020",
+   "my": "၂၀၂၀ မေလ။"
+  },
+  {
+   "id": "c4.hnin.3",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "tea in plastic bags. auntie hates it",
+   "my": "လက်ဖက်ရည်ကို ပလတ်စတစ်အိတ်နဲ့ထည့်ရောင်းရတာကို ငါ့အန်တီကတော့မကြိုက်ဘူး"
+  },
+  {
+   "id": "c4.hnin.4",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "your mom ordered two teas for your house. I know one is for may. I'll put extra sugar in it",
+   "my": "ဒါနဲ့ နင့်အမေ နင်တို့အိမ်အတွက် လက်ဖက်ရည်နှစ်ခွက်မှာထားတယ် တထုပ်ကမေ့အတွက်ထင်တယ် နို့ဆီပိုထည့်ပေးလိုက်မယ်"
+  },
+  {
+   "id": "c4.hnin.5",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "Thank you, Hnin.",
+   "my": "ကျေးဇူးပဲ နှင်း"
+  },
+  {
+   "id": "c4.hnin.6",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "Thank you, Hnin.",
+   "my": "ကျေးဇူးပဲ နှင်း"
+  },
+  {
+   "id": "c4.hnin.7",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "don't thank me. pay me",
+   "my": "ကျေးဇူးမတင်နဲ့ ပိုက်ဆံပေး"
+  },
+  {
+   "id": "c4.hnin.8",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "How do you know it's for May?",
+   "my": "မေ့အတွက်မှန်း နင် ဘယ်လိုသိလဲ"
+  },
+  {
+   "id": "c4.hnin.9",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "How do you know it's for May?",
+   "my": "မေ့အတွက်မှန်း နင် ဘယ်လိုသိလဲ"
+  },
+  {
+   "id": "c4.hnin.10",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "behind the counter. I see everything. same as always",
+   "my": "ငါကအကုန်သိနေတာပဲ"
+  },
+  {
+   "id": "c4.hnin.11",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "Make it three. One is for you.",
+   "my": "သုံးခွက်လုပ်လိုက် တခွက်က နင့်အတွက်"
+  },
+  {
+   "id": "c4.hnin.12",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "Make it three. One is for you.",
+   "my": "သုံးခွက်လုပ်လိုက် တခွက်က နင့်အတွက်"
+  },
+  {
+   "id": "c4.hnin.13",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "I'm working. but ok",
+   "my": "အိုကေ"
+  },
+  {
+   "id": "c4.c-4room.1",
+   "who": "narration",
+   "where": "scene · c-4room",
+   "en": "Half the room is already in boxes. One small box is left, and six things that won't fit with the rest.",
+   "my": "အခန်းထဲက ပစ္စည်းတစ်ဝက်လောက်က သေတ္တာတွေထဲ ရောက်နှင့်နေပြီ။ သေတ္တာသေးသေးလေး တလုံးပဲ ကျန်တော့တယ်၊ ကျန်တဲ့ပစ္စည်းတွေနဲ့ အတူ ထည့်လို့မဆံ့တဲ့ ပစ္စည်း ခြောက်ခုလည်း ရှိနေတယ်။"
+  },
+  {
+   "id": "c4.c-4room.2",
+   "who": "narration",
+   "where": "scene · c-4room",
+   "en": "May picks up the Thingyan print first.",
+   "my": "မေက သင်္ကြန်တုန်းက ရိုက်ထားတဲ့ ဓာတ်ပုံကို အရင်ဆုံး ကောက်ယူလိုက်တယ်။"
+  },
+  {
+   "id": "c4.c-4room.3",
+   "who": "May",
+   "where": "scene · c-4room",
+   "en": "This one comes with me. Obviously.",
+   "my": "ဒါကတော့ ငါယူသွားမှာ။ အသိသာကြီး။"
+  },
+  {
+   "id": "c4.c-4room.4",
+   "who": "narration",
+   "where": "scene · c-4room",
+   "en": "The other three go into a shoebox. She writes nothing on it. She just hands it to him.",
+   "my": "ကျန်တဲ့ သုံးခုကိုတော့ မေက ဖိနပ်ဘူးထဲ အသာထည့်လိုက်ပြီး မင်းထက်လက်ထဲထည့်ပေးလိုက်တယ်။ ဘူးပေါ်မှာ ဘာမှတော့မရေးထားပါဘူး။"
+  },
+  {
+   "id": "c4.title.3",
+   "who": "",
+   "where": "title card",
+   "en": "<em>July 2020</em>The station",
+   "my": "<em>၂၀၂၀ ခုနှစ်၊ ဇူလိုင်လ</em>အဝေးပြေးကားဂိတ်"
+  },
+  {
+   "id": "c4.c-4station.1",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "Buses idling. The tea stall's shutter half down. Everyone in masks. May's family loads the last bags.",
+   "my": "ကားစက်သံတွေတဝီဝီကြားနေရပြီ။ လက်ဖက်ရည်ဆိုင်လေးက တံခါးတဝက်ပဲဖွင့်ထားတယ်။ လူတိုင်းကလည်း နှားခေါင်းစည်းကိုယ်စီတပ်ထားကြတယ်။ မေ့မိသားစုက တင်ဖို့ကျန်နေသေးတဲ့ အိတ်တွေကို ကားပေါ် တင်နေကြတယ်။"
+  },
+  {
+   "id": "c4.c-4station.2",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "Min holds his black umbrella. The tape on the handle says MH, in his father's writing.",
+   "my": "မင်းထက်လက်ထဲမှာတော့ သူ့ရဲ့တိပ်အဖြူရောင်ပတ်ထားတဲ့ ထီးအနက်ရောင်လေးကိုင်ရက်သား။ လက်ကိုင်က တိပ်ပေါ်မှာ သူ့အဖေ လက်ရေးနဲ့ MH လို့ ရေးထားတယ်။"
+  },
+  {
+   "id": "c4.c-4station.3",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "Your mom's samosas. For the bus. I'm not sharing.",
+   "my": "နင့်အမေရဲ့ စမူဆာလေးတွေ။ ကားပေါ်မှာ စားဖို့ယူသွားပြီ။ ဘယ်သူ့မှမကျွေးဘူးနော်။"
+  },
+  {
+   "id": "c4.c-4station.4",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "Two teas from Hnin's, in plastic bags. One is yours. Drink it.",
+   "my": "နှင်းဆိုင်က လက်ဖက်ရည်နှစ်ထုပ်မှာထားတာ။ ဒီတထုပ်ကနင့်ဖို့။ ကောင်းကောင်းသောက်နော်။"
+  },
+  {
+   "id": "c4.c-4station.5",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "Sunflower seeds. Twelve hours of bus. You know me.",
+   "my": "နေကြာစေ့ယူလာတယ်။ ကားကဆယ့်နှစ်နာရီတောင် စီးရမှာ။ ငါ့အကြောင်းလည်း နင်သိသားနဲ့။"
+  },
+  {
+   "id": "c4.c-4station.6",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "It's only until things get better.",
+   "my": "အခြေအနေတွေ ပြန်ကောင်းလာတဲ့အထိပါပဲ။"
+  },
+  {
+   "id": "c4.c-4station.7",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "She says it like she's checking whether it's true.",
+   "my": "တကယ်ရောဟုတ်ရဲ့လားလို့ ကိုယ့်ကိုယ်ကို ပြန်မေးနေသလိုမျိုး မေ ပြောလိုက်တယ်။"
+  },
+  {
+   "id": "c4.c-4station.8",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "You said you didn't want to be only friends.",
+   "my": "နင် သူငယ်ချင်းသက်သက်ပဲ မဖြစ်ချင်ဘူးလို့ ပြောခဲ့တယ်နော်။"
+  },
+  {
+   "id": "c4.c-4station.9",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "I'm holding you to it. From far away.",
+   "my": "အဲ့စကားကို ငါ စွဲစွဲမြဲမြဲ မှတ်ထားမယ်။ အဝေးကနေပေါ့။"
+  },
+  {
+   "id": "c4.c-4station.10",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "We were never anything, right?",
+   "my": "ငါတို့က ဘယ်တုန်းကမှ ဘာမှ မဖြစ်ခဲ့ကြဘူး၊ ဟုတ်တယ် မဟုတ်လား။"
+  },
+  {
+   "id": "c4.c-4station.11",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "She laughs like it was a joke. It wasn't.",
+   "my": "မေက စသလိုနောက်သလိုပြောနေပေမယ့် တကယ်ကဟာသတခုတော့မဟုတ်နေပါဘူး။"
+  },
+  {
+   "id": "c4.c-4station.12",
+   "who": "Min",
+   "where": "scene option · c-4station",
+   "en": "I'll wait.",
+   "my": "ငါ စောင့်နေမယ်နော်။"
+  },
+  {
+   "id": "c4.c-4station.13",
+   "who": "",
+   "where": "scene · c-4station",
+   "en": "I'll wait.",
+   "my": "ငါ စောင့်နေမယ်နော်။"
+  },
+  {
+   "id": "c4.c-4station.14",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "Don't say it like that. Like it's going to be long.",
+   "my": "အဲ့လို မပြောပါနဲ့။ အကြာကြီး ခွဲရတော့မယ့် ပုံစံမျိုးနဲ့။"
+  },
+  {
+   "id": "c4.c-4station.15",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "She hugs him so he can't see her face.",
+   "my": "မေက သူ့မျက်နှာကို မင်းထက် မမြင်ရအောင် ဖက်ထားလိုက်တယ်။"
+  },
+  {
+   "id": "c4.c-4station.16",
+   "who": "Min",
+   "where": "scene option · c-4station",
+   "en": "Come back for Thadingyut. We'll light the lamp.",
+   "my": "သီတင်းကျွတ်ကျရင် ပြန်လာခဲ့နော်။ ဆီမီးအတူထွန်းကြမယ်လေ။"
+  },
+  {
+   "id": "c4.c-4station.17",
+   "who": "",
+   "where": "scene · c-4station",
+   "en": "Come back for Thadingyut. We'll light the lamp.",
+   "my": "သီတင်းကျွတ်ကျရင် ပြန်လာခဲ့နော်။ ဆီမီးအတူထွန်းကြမယ်လေ။"
+  },
+  {
+   "id": "c4.c-4station.18",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "Thadingyut. I promise.",
+   "my": "သီတင်းကျွတ်ကျ ပြန်လာခဲ့မယ်နော်။ ကတိ။"
+  },
+  {
+   "id": "c4.c-4station.19",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "Too fast. She looks at the bus while she says it.",
+   "my": "မေစကားပြောတာမြန်လွန်းတယ်။ ပြောနေတုန်းမှာလည်း ကားဘက်ကိုပဲငေးကြည့်နေတာ။"
+  },
+  {
+   "id": "c4.c-4station.20",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "Then she hugs him so he can't see her face.",
+   "my": "ပြီးတော့ မေက သူ့မျက်နှာကို မင်းထက် မမြင်ရအောင် ဖက်ထားလိုက်တယ်။"
+  },
+  {
+   "id": "c4.c-4station.21",
+   "who": "Min",
+   "where": "scene option · c-4station",
+   "en": "Don't look back. Just go.",
+   "my": "နောက်ဆံမတင်းနဲ့နော်။ သွားစရာရှိတာသာသွားပါ။"
+  },
+  {
+   "id": "c4.c-4station.22",
+   "who": "",
+   "where": "scene · c-4station",
+   "en": "Don't look back. Just go.",
+   "my": "နောက်ဆံမတင်းနဲ့နော်။ သွားစရာရှိတာသာသွားပါ။"
+  },
+  {
+   "id": "c4.c-4station.23",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "That's the worst thing you've ever said to me.",
+   "my": "အဲ့ဒါ နင် ငါ့ကို ပြောခဲ့ဖူးသမျှထဲမှာ အဆိုးဆုံး စကားပဲ။"
+  },
+  {
+   "id": "c4.c-4station.24",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "She hugs him anyway.",
+   "my": "ဒါတောင် မေက မင်းထက်ကို ဖက်ထားလိုက်သေးတယ်။"
+  },
+  {
+   "id": "c4.c-4station.25",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "You still have my pink one.",
+   "my": "ငါ့ထီးပန်းရောင်လေး နင့်ဆီမှာ ရှိသေးတယ်မလား။"
+  },
+  {
+   "id": "c4.c-4station.26",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "Keep it till I'm back. That's the deal.",
+   "my": "ငါ ပြန်လာတဲ့အထိ သိမ်းထားပေးနော်။ ကတိပေး။"
+  },
+  {
+   "id": "c4.c-4station.27",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "Her broken pink umbrella is rolled up in Min's bag. He doesn't take it out.",
+   "my": "မင်းထက်က မေ့ထီးစုတ်လေးကို ခေါက်ပြီး အိတ်ထဲထည့်လာတယ်။ မေ့ကိုတော့ ထုတ်မပြဖြစ်လိုက်ပါဘူး။"
+  },
+  {
+   "id": "c4.c-4station.28",
+   "who": "Min",
+   "where": "scene option · c-4station",
+   "en": "(Give her the black umbrella.)",
+   "my": "(ထီးအနက်ရောင်လေးကို မေ့ကို ပေးလိုက်မယ်။)"
+  },
+  {
+   "id": "c4.c-4station.29",
+   "who": "",
+   "where": "scene · c-4station",
+   "en": "So you have to bring it back.",
+   "my": "နင်ပြန်ယူပေးလာရမယ်နော်။"
+  },
+  {
+   "id": "c4.c-4station.30",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "Thief.",
+   "my": "သူခိုးကောင်။"
+  },
+  {
+   "id": "c4.c-4station.31",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "She takes it.",
+   "my": "မေက ထီးကို ယူလိုက်တယ်။"
+  },
+  {
+   "id": "c4.c-4station.32",
+   "who": "Min",
+   "where": "reply option · c-4station",
+   "en": "(Keep it.)",
+   "my": "(ကိုယ့်ဆီမှာပဲ သိမ်းထားမယ်။)"
+  },
+  {
+   "id": "c4.c-4station.33",
+   "who": "May",
+   "where": "scene · c-4station",
+   "en": "Look after it.",
+   "my": "ဂရုစိုက်နော်။"
+  },
+  {
+   "id": "c4.c-4station.34",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "At the last second she takes it out of his hand anyway and gets on the bus. A thief to the end.",
+   "my": "နောက်ဆုံးစက္ကန့်လေးမှာပဲ မေက မင်းထက်လက်ထဲက ထီးအနက်ရောင်လေးကို ဆွဲယူပြီး ကားပေါ် တက်ပြေးသွားတယ်။ နောက်ဆုံးချိန်အထိတောင် မေက ထီးသူခိုးမလေးပဲ။"
+  },
+  {
+   "id": "c4.c-4station.35",
+   "who": "narration",
+   "where": "scene · c-4station",
+   "en": "The bus pulls out. May has his umbrella. Min walks home in the rain without one.",
+   "my": "ကားထွက်သွားတယ်။ မေ့လက်ထဲမှာ မင်းထက်ရဲ့ ထီးအနက်ရောင်လေး ပါသွားတယ်။ မင်းထက်ကတော့ ထီးမပါဘဲ မိုးရေထဲ အိမ်ပြန်လျှောက်လာခဲ့တယ်။"
+  },
+  {
+   "id": "c4.may.22",
+   "who": "May",
+   "where": "may text",
+   "en": "Text me when you get there.",
+   "my": "ရောက်ရင် စာပို့နော်"
+  },
+  {
+   "id": "c4.may.23",
+   "who": "May",
+   "where": "chat · May",
+   "en": "still raining. the whole way",
+   "my": "တလမ်းလုံးမိုးရွာနေတာ"
+  },
+  {
+   "id": "c4.may.24",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'm holding your umbrella like a baby ☂️",
+   "my": "နင့်ထီးကို ကလေးလေးလိုပဲပိုက်ထားတာ"
+  },
+  {
+   "id": "c4.may.25",
+   "who": "",
+   "where": "div · may",
+   "en": "Next morning",
+   "my": "နောက်တနေ့မနက်။"
+  },
+  {
+   "id": "c4.may.26",
+   "who": "May",
+   "where": "chat · May",
+   "en": "here. alive. it's so loud",
+   "my": "ဘေးမသီရန်မခ ရောက်ရှိ ဒီမှာဆူညံနေတာပဲ"
+  },
+  {
+   "id": "c4.may.27",
+   "who": "",
+   "where": "div · may",
+   "en": "2 days later",
+   "my": "နှစ်ရက်ကြာတော့"
+  },
+  {
+   "id": "c4.may.28",
+   "who": "May",
+   "where": "chat · May",
+   "en": "sorry",
+   "my": "sorry"
+  },
+  {
+   "id": "c4.may.29",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it's been crazy",
+   "my": "အရမ်းအလုပ်ရှုပ်နေလို့ပါ"
+  },
+  {
+   "id": "c4.may.30",
+   "who": "May",
+   "where": "chat · May",
+   "en": "we're here",
+   "my": "ငါတို့ ရောက်ပြီနော်"
+  },
+  {
+   "id": "c4.may.31",
+   "who": "May",
+   "where": "chat · May",
+   "en": "this is my life now 🏙️",
+   "my": "အခုလက်ရှိဘဝ"
+  },
+  {
+   "id": "c4.may.32",
+   "who": "May",
+   "where": "chat · May (voice message)",
+   "en": "(Traffic, a horn, someone calling her \"Thiri\".)",
+   "my": "(ကားသံတွေ၊ ဟွန်းသံ၊ တစုံတစ်ယောက်က မေ့ကို \"သီရိ\" လို့ ခေါ်သံ။)"
+  },
+  {
+   "id": "c4.may.33",
+   "who": "May",
+   "where": "chat · May",
+   "en": "people here call me Thiri",
+   "my": "ဒီကလူတွေက ငါ့ကိုသီရိလို့ ခေါ်ကြတယ်"
+  },
+  {
+   "id": "c4.may.34",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it's so weird",
+   "my": "တမျိုးကြီးပဲ"
+  },
+  {
+   "id": "c4.may.35",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Do you like it?",
+   "my": "နင် ကြိုက်လား"
+  },
+  {
+   "id": "c4.may.36",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Do you like it?",
+   "my": "နင် ကြိုက်လား"
+  },
+  {
+   "id": "c4.may.37",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I don't know yet",
+   "my": "မသိပါဘူး"
+  },
+  {
+   "id": "c4.may.38",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it's loud. everything is open late. I miss the tea",
+   "my": "ဒီမှာ တော်တော်နားငြီးတယ် ဆိုင်တွေက ညနက်တဲ့အထိ ဖွင့်ကြတာ ဒေါ်အေးအေးဆိုင်က လဖက်ရည်ကိုပဲ လွမ်းတယ်"
+  },
+  {
+   "id": "c4.may.39",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Thiri sounds like a stranger.",
+   "my": "သီရိလို့ခေါ်ရင် သူစိမ်းတယောက်လိုခံစားရတယ်"
+  },
+  {
+   "id": "c4.may.40",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Thiri sounds like a stranger.",
+   "my": "သီရိလို့ခေါ်ရင် သူစိမ်းတယောက်လိုခံစားရတယ်"
+  },
+  {
+   "id": "c4.may.41",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'm still May to you",
+   "my": "နင့်အတွက်တော့ မေပါပဲ"
+  },
+  {
+   "id": "c4.may.42",
+   "who": "May",
+   "where": "chat · May",
+   "en": "only to you",
+   "my": "နင့်အတွက်သီးသန့်ပဲ"
+  },
+  {
+   "id": "c4.may.43",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Send me the view from your window.",
+   "my": "နင့်ပြတင်းပေါက်ကviewလေးပြပါလား"
+  },
+  {
+   "id": "c4.may.44",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Send me the view from your window.",
+   "my": "နင့်ပြတင်းပေါက်ကviewလေးပြပါလား"
+  },
+  {
+   "id": "c4.may.45",
+   "who": "May",
+   "where": "chat · May",
+   "en": "inspiring right 🙃",
+   "my": "စိတ်ကူးယဉ်ချင်စရာနော် 🙃"
+  },
+  {
+   "id": "c4.may.46",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you asked me to text you so. texting you",
+   "my": "စာပို့ခိုင်းထားလို့လေ ပို့လိုက်ပြီ"
+  },
+  {
+   "id": "c4.glance.1",
+   "who": "",
+   "where": "chat preview · May",
+   "en": "it rains differently here",
+   "my": "ဒီမှာ မိုးရွာတာကအစ မတူနေဘူး"
+  },
+  {
+   "id": "c4.glance.2",
+   "who": "Thura",
+   "where": "comment · glance",
+   "en": "it rains the same here. come back",
+   "my": "ဒီမှာတော့ မိုးက အရင်အတိုင်းပဲ ပြန်လာခဲ့"
+  },
+  {
+   "id": "c4.post.1",
+   "who": "",
+   "where": "post caption",
+   "en": "found a tea shop. it's not ours but it's trying",
+   "my": "လက်ဖက်ရည်ဆိုင်တဆိုင် တွေ့ထားတယ် ငါတို့ထိုင်နေကျဆိုင် မဟုတ်ပေမဲ့ သူလည်း မဆိုးပါဘူး"
+  },
+  {
+   "id": "c4.post.2",
+   "who": "Thura",
+   "where": "comment · post",
+   "en": "city girl now",
+   "my": "မြို့သူလေး ဖြစ်သွားပြီပေါ့"
+  },
+  {
+   "id": "c4.post.3",
+   "who": "Zaw Lin",
+   "where": "comment · post",
+   "en": "missed you at the shop today 🙂",
+   "my": "ဒီနေ့ ဆိုင်မှာနင့်ကိုသတိရနေတာ 🙂"
+  },
+  {
+   "id": "c4.post.4",
+   "who": "May Thiri",
+   "where": "comment · post",
+   "en": "😂 see you tomorrow",
+   "my": "😂 မနက်ဖြန်တွေ့မယ်"
+  },
+  {
+   "id": "c4.post.5",
+   "who": "Min",
+   "where": "reply option · post",
+   "en": "Looks like ours.",
+   "my": "ငါတို့ဆိုင်နဲ့ တူတယ်"
+  },
+  {
+   "id": "c4.post.6",
+   "who": "",
+   "where": "reply · post",
+   "en": "not even close 😭",
+   "my": "နည်းနည်းလေးမှ မတူဘူး 😭"
+  },
+  {
+   "id": "c4.post.7",
+   "who": "Min",
+   "where": "reply option · post",
+   "en": "Who's the second glass?",
+   "my": "ဘေးကခွက်က ဘယ်သူ့ဟာလဲ"
+  },
+  {
+   "id": "c4.post.8",
+   "who": "",
+   "where": "reply · post",
+   "en": "lol a girl from my class. why",
+   "my": "lol အတန်းထဲက ကောင်မလေးတစ်ယောက်ခွက်ပါ ဘာလို့လဲ"
+  },
+  {
+   "id": "c4.may.47",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you liked it!! 🥹",
+   "my": "နင် like ပေးထားတယ်နော်!! 🥹"
+  },
+  {
+   "id": "c4.may.48",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I thought you'd be mad I found another tea shop",
+   "my": "တခြားလက်ဖက်ရည်ဆိုင် တွေ့သွားလို့ နင် စိတ်ဆိုးမယ် ထင်နေတာ"
+  },
+  {
+   "id": "c4.may.49",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Sorry, I was closing the shop. Call again?",
+   "my": "sorry ငါဆိုင်ပိတ်နေလို့ ပြန်ဆက်လို့ရလား"
+  },
+  {
+   "id": "c4.may.50",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it's ok",
+   "my": "ရပါတယ်"
+  },
+  {
+   "id": "c4.may.51",
+   "who": "May",
+   "where": "chat · May",
+   "en": "sleep",
+   "my": "အိပ်တော့"
+  },
+  {
+   "id": "c4.may.52",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'll call tomorrow",
+   "my": "မနက်ဖြန်မှဆက်လိုက်မယ်"
+  },
+  {
+   "id": "c4.title.4",
+   "who": "",
+   "where": "title card",
+   "en": "<em>September 2020</em>The second wave",
+   "my": "<em>၂၀၂၀ ခုနှစ်၊ စက်တင်ဘာလ</em>ကိုဗစ်ဒုတိယလှိုင်း"
+  },
+  {
+   "id": "c4.c-4shutter.1",
+   "who": "narration",
+   "where": "scene · c-4shutter",
+   "en": "The tea shop pulls its shutter down early. The roads are closing. Min has no umbrella.",
+   "my": "လက်ဖက်ရည်ဆိုင်က ညနေစောင်းအချိန်လောက်မှာတည်းကပိတ်နေပြီ။ အပြင်မှာ မိုးကသည်းသည်းမည်းမည်း ရွာနေတယ်။ မင်းထက်မှာထီးမပါလာဘူး။"
+  },
+  {
+   "id": "c4.c-4shutter.2",
+   "who": "narration",
+   "where": "scene · c-4shutter",
+   "en": "Hnin comes out with hers and holds it over both of them without asking.",
+   "my": "နှင်းက သူ့ထီးလေးဆောင်းပြီး အပြင်ထွက်လာတယ်။ ဘာမှပြောမနေတော့ဘဲ သူတို့နှစ်ယောက်လုံးမိုးမစိုအောင် ထီးမိုးပေးလိုက်တယ်။"
+  },
+  {
+   "id": "c4.c-4shutter.3",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "You always give your umbrella away.",
+   "my": "နင်က ကိုယ့်ထီးကို သူများကို အမြဲ ပေးပစ်လိုက်တာပဲ။"
+  },
+  {
+   "id": "c4.c-4shutter.4",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "Remember what I said about mistakes?",
+   "my": "ရည်ရွယ်ချက်ရှိတဲ့ အမှားတွေအကြောင်း ငါပြောခဲ့တာ မှတ်မိလား။"
+  },
+  {
+   "id": "c4.c-4shutter.5",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "This isn't one. I just have an umbrella.",
+   "my": "ဒါကတော့ ဘာရည်ရွယ်ချက်မှ မရှိဘူးနော်။ ငါ့မှာ ထီးပါလာလို့ဆောင်းပေးတာ။"
+  },
+  {
+   "id": "c4.c-4shutter.6",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "I said she was pretty. She is.",
+   "my": "သူ လှတယ်လို့ ငါပြောခဲ့ဖူးတယ်နော်။ တကယ်လည်း သူကလှပါတယ်။"
+  },
+  {
+   "id": "c4.c-4shutter.7",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "I'm sorry she left.",
+   "my": "သူ ထွက်သွားရတာ ငါ စိတ်မကောင်းပါဘူး။"
+  },
+  {
+   "id": "c4.c-4shutter.8",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "I saw you at the station that morning. From the tea stall.",
+   "my": "အဲ့နေ့မနက်က ကားဂိတ်မှာ နင့်ကိုငါမြင်လိုက်တယ်။"
+  },
+  {
+   "id": "c4.c-4shutter.9",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "I didn't say hi.",
+   "my": "နှုတ်တော့ မဆက်လိုက်ရဘူး။"
+  },
+  {
+   "id": "c4.c-4shutter.10",
+   "who": "Min",
+   "where": "scene option · c-4shutter",
+   "en": "Thank you.",
+   "my": "ကျေးဇူးပဲ။"
+  },
+  {
+   "id": "c4.c-4shutter.11",
+   "who": "",
+   "where": "scene · c-4shutter",
+   "en": "Thank you.",
+   "my": "ကျေးဇူးပဲ။"
+  },
+  {
+   "id": "c4.c-4shutter.12",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "Don't thank me. Just walk faster.",
+   "my": "ကျေးဇူးတင်မနဲ့။ မြန်မြန်သာလျှောက်။"
+  },
+  {
+   "id": "c4.c-4shutter.13",
+   "who": "Min",
+   "where": "scene option · c-4shutter",
+   "en": "You'll get wet.",
+   "my": "နင် စိုကုန်လိမ့်မယ်။"
+  },
+  {
+   "id": "c4.c-4shutter.14",
+   "who": "",
+   "where": "scene · c-4shutter",
+   "en": "You'll get wet.",
+   "my": "နင် စိုကုန်လိမ့်မယ်။"
+  },
+  {
+   "id": "c4.c-4shutter.15",
+   "who": "Hnin",
+   "where": "scene · c-4shutter",
+   "en": "I'm already wet. I've been wet since July.",
+   "my": "ငါက စိုနေတာကြာလှပါပြီ။ ဇူလိုင်တည်းကပဲ။"
+  },
+  {
+   "id": "c4.c-4shutter.16",
+   "who": "narration",
+   "where": "scene · c-4shutter",
+   "en": "She doesn't explain.",
+   "my": "ဘာကြောင့်လဲဆိုတာတော့ နှင်းလည်း ရှင်းမပြဖြစ်လိုက်ပါဘူး။"
+  },
+  {
+   "id": "c4.c-4shutter.17",
+   "who": "Min",
+   "where": "reply option · c-4shutter",
+   "en": "(Say nothing.)",
+   "my": "(ဘာမှ မပြောဘဲ နေမယ်။)"
+  },
+  {
+   "id": "c4.c-4shutter.18",
+   "who": "narration",
+   "where": "scene · c-4shutter",
+   "en": "They walk.",
+   "my": "သူတို့နှစ်ယောက် အတူလမ်းလျှောက်လာကြတယ်။"
+  },
+  {
+   "id": "c4.c-4shutter.19",
+   "who": "narration",
+   "where": "scene · c-4shutter",
+   "en": "At his gate she tilts the umbrella so his side stays dry, the way he used to for May.",
+   "my": "သူတို့နှစ်ယောက် အတူလမ်းလျှောက်လာကြတယ်။ မင်းထက်အိမ်ရှေ့ကို ရောက်တော့ နှင်းက သူ့ဘက် မိုးမစိုအောင် ထီးကို နည်းနည်းစောင်းမိုးပေးလိုက်တယ်။ အရင်တုန်းက မင်းထက်က မေ့ကို ထီးမိုးပေးခဲ့သလိုမျိုးပေါ့။"
+  },
+  {
+   "id": "c4.may.53",
+   "who": "May",
+   "where": "chat preview · May",
+   "en": "they closed the roads",
+   "my": "လမ်းတွေ ပိတ်လိုက်ပြီ"
+  },
+  {
+   "id": "c4.may.54",
+   "who": "May",
+   "where": "chat · May",
+   "en": "no buses in or out",
+   "my": "ကားတွေထွက်လို့ မရတော့ဘူး"
+  },
+  {
+   "id": "c4.may.55",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I can't come for Thadingyut",
+   "my": "ငါသီတင်းကျွတ် ပြန်လာလို့ မရတော့ဘူး"
+  },
+  {
+   "id": "c4.may.56",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'm sorry I'm sorry I'm sorry",
+   "my": "ငါ တကယ်တောင်းပန်ပါတယ် တောင်းပန်ပါတယ် မင်းထက်ရယ်"
+  },
+  {
+   "id": "c4.may.57",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "It's not your fault.",
+   "my": "နင့်အပြစ် မဟုတ်ပါဘူး"
+  },
+  {
+   "id": "c4.may.58",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "It's not your fault.",
+   "my": "နင့်အပြစ် မဟုတ်ပါဘူး"
+  },
+  {
+   "id": "c4.may.59",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I know",
+   "my": "သိပါတယ်"
+  },
+  {
+   "id": "c4.may.60",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it still feels like it",
+   "my": "ဒါပေမဲ့ ငါ့အပြစ်လိုပဲ ခံစားနေရတယ်"
+  },
+  {
+   "id": "c4.may.61",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Next year, then.",
+   "my": "အဲ့ဒါဆိုလည်း နောက်နှစ်ပေါ့ မေရယ်"
+  },
+  {
+   "id": "c4.may.62",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Next year, then.",
+   "my": "အဲ့ဒါဆိုလည်း နောက်နှစ်ပေါ့ မေရယ်"
+  },
+  {
+   "id": "c4.may.63",
+   "who": "May",
+   "where": "chat · May",
+   "en": "next year",
+   "my": "အင်း"
+  },
+  {
+   "id": "c4.may.64",
+   "who": "May",
+   "where": "chat · May",
+   "en": "yeah",
+   "my": "နောက်နှစ်ပေါ့",
+   "own": true
+  },
+  {
+   "id": "c4.may.65",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "I'll light one for both of us.",
+   "my": "ငါတို့နှစ်ယောက်အတွက် ငါမီးထွန်းပေးမယ်နော်"
+  },
+  {
+   "id": "c4.may.66",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "I'll light one for both of us.",
+   "my": "ငါတို့နှစ်ယောက်အတွက် ငါမီးထွန်းပေးမယ်နော်"
+  },
+  {
+   "id": "c4.may.67",
+   "who": "May",
+   "where": "chat · May",
+   "en": "send me a photo",
+   "my": "ဓာတ်ပုံ ပို့ပေးနော်"
+  },
+  {
+   "id": "c4.may.68",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'll light one at the window here",
+   "my": "ငါလည်း ဒီက ပြတင်းပေါက်မှာထွန်းမယ်"
+  },
+  {
+   "id": "c4.may.69",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it won't be the same",
+   "my": "အတူတူထွန်းသလိုတော့ ဘယ်ဖြစ်ပါ့မလဲ"
+  },
+  {
+   "id": "c4.may.70",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I promised",
+   "my": "ငါ ကတိပေးခဲ့မိတာ"
+  },
+  {
+   "id": "c4.may.71",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I hate that I promised",
+   "my": "ငါကတိပေးမိခဲ့တာကိုမုန်းတယ်"
+  },
+  {
+   "id": "c4.c-4empty.1",
+   "who": "narration",
+   "where": "scene · c-4empty",
+   "en": "The bus station at night. Rain on the roof. No buses.",
+   "my": "ညဘက် ကားဂိတ်လေး။ ခေါင်မိုးပေါ်မှာ မိုးသံတွေ တဖြောက်ဖြောက်။ ကားတစ်စီးမှ မရှိတော့ဘူး။"
+  },
+  {
+   "id": "c4.title.5",
+   "who": "",
+   "where": "title card",
+   "en": "<em>End of Chapter 4</em>The Station",
+   "my": "<em>အခန်း ၄ ပြီးပါပြီ။</em>အဝေးပြေးကားဂိတ်"
+  }
+ ]
+}

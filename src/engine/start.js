@@ -12,8 +12,8 @@ function audioPause(){const c=Audio_.ctx;if(c&&c.state==='running'){try{c.suspen
 document.addEventListener('visibilitychange',()=>{if(document.hidden)audioPause();else startAudio()});
 addEventListener('pagehide',audioPause);addEventListener('blur',()=>{if(document.hidden)audioPause()});
 addEventListener('pageshow',()=>{if(!document.hidden)startAudio()});
-[PROLOGUE,CH1,CH2,CH3,CH4,CH5,ENDING].forEach(idStatic); /* the steps get their English back, IDs remembered (see trS) */
-const FLOW=[...PROLOGUE,{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},...CH1,...CH2,...CH3,...CH4,...CH5,...ENDING];
+idStatic(STORY_FLOW); /* the steps get their English back, IDs remembered (see trS) */
+const FLOW=STORY_FLOW;
 const FLOW_LBL=(()=>{let cur='Prologue';const who={may:'May',mom:'Mom',thura:'Thura',hnin:'Hnin'};return FLOW.map(st=>{
   if(st&&typeof st==='object'){if(st.title)cur=st.title.big.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();else if(st.scene)cur='Scene: '+(st.scene.cap||st.scene.art||'');else if(st.notify)cur='Chat: '+(who[st.notify.c]||st.notify.c);else if(st.open){const c=st.open.c||st.open;cur='Chat: '+(who[c]||c)}else if(st.friend)cur='Chat: May';else if(st.gallery)cur='Photos';else if(st.lock)cur='Lock screen';}
   return cur})})();

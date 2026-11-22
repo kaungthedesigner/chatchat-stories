@@ -1,7 +1,6 @@
 /* ============ ART ============ */
 const ART={};
 /* placeholder art until the approved images arrive: a soft gradient with the shot name */
-function wrap(t,n){const o=[];let l='';t.split(' ').forEach(x=>{if((l+' '+x).trim().length>n){o.push(l);l=x}else l=(l+' '+x).trim()});if(l)o.push(l);return o}
 function phSVG(label,c1,c2,w,h,subj){const t=label.replace(/&/g,'&amp;').replace(/</g,'&lt;');
   const sb=subj?`<circle cx="${subj[0]*w}" cy="${subj[1]*h}" r="${h*.11}" fill="#fff" opacity=".22"/><text x="${subj[0]*w}" y="${subj[1]*h+h*.02}" font-family="DM Sans,sans-serif" font-size="${h*.045}" fill="#fff" text-anchor="middle" opacity=".8">${subj[2]}</text>`:'';
   return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#g)"/>${sb}<text x="${w/2}" y="${h*.12}" font-family="DM Sans,sans-serif" font-size="${Math.round(w*.034)}" fill="#fff" text-anchor="middle" opacity=".75"><tspan x="${w/2}">Image to come</tspan>${wrap(t,30).map((l,i)=>`<tspan x="${w/2}" dy="${Math.round(w*.05)}">${l}</tspan>`).join('')}</text></svg>`)}

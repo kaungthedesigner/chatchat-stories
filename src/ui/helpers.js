@@ -22,3 +22,5 @@ function toast(html){const t=$('#toast');t.innerHTML=IC.star+html;t.classList.ad
 function waitClick(el){return new Promise(r=>{const h=e=>{e.stopPropagation();el.removeEventListener('click',h);r(e)};el.addEventListener('click',h)})}
 function waitStage(delay=120){return new Promise(r=>{setTimeout(()=>{const h=e=>{if(e.target.closest('.opt,.dbtns,#banner'))return;stage.removeEventListener('click',h);r()};stage.addEventListener('click',h)},delay)})}
 
+/* splits text into lines of at most n characters (placeholder art labels) */
+function wrap(t,n){const o=[];let l='';t.split(' ').forEach(x=>{if((l+' '+x).trim().length>n){o.push(l);l=x}else l=(l+' '+x).trim()});if(l)o.push(l);return o}

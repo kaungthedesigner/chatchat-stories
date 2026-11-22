@@ -1,0 +1,76 @@
+{
+ "chapter": "p",
+ "title": "Prologue",
+ "lines": [
+  {
+   "id": "p.start.1",
+   "who": "",
+   "where": "start text",
+   "en": "It's okay. Take your time. I'll be here.",
+   "my": "ရပါတယ် ကိစ္စမရှိပါဘူး"
+  },
+  {
+   "id": "p.start.2",
+   "who": "",
+   "where": "start text",
+   "en": "Don't stay up late. There is rice in the pot.",
+   "my": "ညဉ့်နက်အောင် မနေနဲ့နော် အိုးထဲမှာ ထမင်းရှိတယ်"
+  },
+  {
+   "id": "p.start.3",
+   "who": "",
+   "where": "start text",
+   "en": "bro answer me",
+   "my": "bro စာပြန်ဦး"
+  },
+  {
+   "id": "p.lock.1",
+   "who": "",
+   "where": "chat preview · Thura",
+   "en": "bro answer me",
+   "my": "bro စာပြန်ဦး"
+  },
+  {
+   "id": "p.lock.2",
+   "who": "",
+   "where": "chat preview · Mom",
+   "en": "Don't stay up late. There is rice in the pot.",
+   "my": "ညဉ့်နက်အောင် မနေနဲ့နော် အိုးထဲမှာ ထမင်းရှိတယ်"
+  },
+  {
+   "id": "p.lock.3",
+   "who": "",
+   "where": "chat preview · May",
+   "en": "It's okay. Take your time. I'll be here.",
+   "my": "ရပါတယ် ကိစ္စမရှိပါဘူး"
+  },
+  {
+   "id": "p.may.1",
+   "who": "Min",
+   "where": "draft · May",
+   "en": "Are you awake?",
+   "my": "အိပ်ပြီလား"
+  },
+  {
+   "id": "p.may.2",
+   "who": "Min",
+   "where": "draft · May",
+   "en": "It's raining here.",
+   "my": "ဒီမှာ မိုးရွာနေတယ်"
+  },
+  {
+   "id": "p.may.3",
+   "who": "Min",
+   "where": "draft · May",
+   "en": "I miss you.",
+   "my": "နင့်ကို သတိရတယ်"
+  },
+  {
+   "id": "p.title.1",
+   "who": "",
+   "where": "title card",
+   "en": "<em>a story told in messages</em>Before the Rain Ends",
+   "my": "<em>ထီးနှစ်လက်ပုံပြင်</em>မိုးမစဲမီ"
+  }
+ ]
+}

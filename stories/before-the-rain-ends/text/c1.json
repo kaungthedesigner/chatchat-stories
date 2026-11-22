@@ -1,0 +1,2627 @@
+{
+ "chapter": "c1",
+ "title": "Chapter 1",
+ "lines": [
+  {
+   "id": "c1.start.1",
+   "who": "",
+   "where": "chat preview · Thura",
+   "en": "football sat?",
+   "my": "စနေ ဘောလုံးကန်မလား"
+  },
+  {
+   "id": "c1.start.2",
+   "who": "",
+   "where": "chat preview · Mom",
+   "en": "Did you eat?",
+   "my": "သား ထမင်းစားပြီးပြီလား"
+  },
+  {
+   "id": "c1.start.3",
+   "who": "",
+   "where": "start text",
+   "en": "Did you eat?",
+   "my": "သား ထမင်းစားပြီးပြီလား"
+  },
+  {
+   "id": "c1.start.4",
+   "who": "",
+   "where": "start text",
+   "en": "Yes, Mom.",
+   "my": "စားပြီးပြီ အမေ"
+  },
+  {
+   "id": "c1.start.5",
+   "who": "",
+   "where": "start text",
+   "en": "football sat?",
+   "my": "စနေ ဘောလုံးကန်မလား"
+  },
+  {
+   "id": "c1.mom.1",
+   "who": "Mom",
+   "where": "chat preview · Mom",
+   "en": "Min, take the samosas to Daw Aye Aye at the tea shop. She ordered 30.",
+   "my": "သား မင်းထက် စမူဆာတွေ လက်ဖက်ရည်ဆိုင်က ဒေါ်အေးအေးဆီ သွားပို့ပေးလိုက်ပါဦး သူ အခု ၃၀ မှာထားတယ်"
+  },
+  {
+   "id": "c1.mom.2",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Take the umbrella. The sky is dark.",
+   "my": "ထီးယူသွားဦးနော် မိုးရိပ်တွေ တက်လာပြီ"
+  },
+  {
+   "id": "c1.mom.3",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "Okay, Mom.",
+   "my": "ဟုတ် အမေ"
+  },
+  {
+   "id": "c1.mom.4",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "Okay, Mom.",
+   "my": "ဟုတ် အမေ"
+  },
+  {
+   "id": "c1.mom.5",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Good boy. I put two extra in the bag for you.",
+   "my": "သားလိမ္မာလေး အိတ်ထဲမှာ သားအတွက် နှစ်ခု ပိုထည့်ထားတယ်"
+  },
+  {
+   "id": "c1.mom.6",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "The sky is always dark in June.",
+   "my": "ဇွန်လဆို မိုးက အမြဲအုံ့နေတာပဲကို"
+  },
+  {
+   "id": "c1.mom.7",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "The sky is always dark in June.",
+   "my": "ဇွန်လဆို မိုးက အမြဲအုံ့နေတာပဲကို"
+  },
+  {
+   "id": "c1.mom.8",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Then you should always take it.",
+   "my": "အဲ့ဒါဆိုလည်း အမြဲယူသွားပေါ့"
+  },
+  {
+   "id": "c1.mom.9",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "There are two extra samosas. Those are yours, not Daw Aye Aye's.",
+   "my": "စမူဆာ နှစ်ခု ပိုထည့်ပေးထားတယ် သားစားဖို့နော် ဒေါ်အေးအေးအတွက် မဟုတ်ဘူး"
+  },
+  {
+   "id": "c1.mom.10",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "I'm already going.",
+   "my": "အခု သွားနေပြီ"
+  },
+  {
+   "id": "c1.mom.11",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "I'm already going.",
+   "my": "အခု သွားနေပြီ"
+  },
+  {
+   "id": "c1.mom.12",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "You are not. Daw Aye Aye just called me.",
+   "my": "မင်းထက်ရေ မသွားရသေးတာသိတယ်ဟေ့ ဒေါ်အေးအေး အခုပဲ ဖုန်းဆက်လာတယ်"
+  },
+  {
+   "id": "c1.mom.13",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Go now. And eat the two extra ones I packed.",
+   "my": "အခုချက်ချင်း သွားနော် ပိုထည့်ပေးလိုက်တဲ့ စမူဆာ နှစ်ခုလည်း စားလိုက်ဦး"
+  },
+  {
+   "id": "c1.teashop-1.1",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Min drops off the samosas. Then the rain comes, all at once.",
+   "my": "စမူဆာပို့ပြီးတာနဲ့ မိုးက တစ်ခါတည်း သည်းကြီးမည်းကြီး ရွာချလာတော့တာပဲ။"
+  },
+  {
+   "id": "c1.teashop-1.2",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "He sits at the corner table by the window. His black umbrella leans on the chair: white tape on the handle, MH in his father's handwriting.",
+   "my": "မင်းထက်လည်း ပြတင်းပေါက်နားက ထောင့်ဝိုင်းလေးမှာ ဝင်ထိုင်ရင်း ယူလာတဲ့ ထီးအနက်ရောင်လေးကို ထိုင်ခုံဘေးမှာ မှီထားလိုက်တယ်။ ထီးလက်ကိုင်မှာ ပတ်ထားတဲ့ တိပ်အဖြူလေးပေါ်မှာတော့ “MH” ဆိုတဲ့ စာလုံးနှစ်လုံးက အထင်းသား။"
+  },
+  {
+   "id": "c1.teashop-1.3",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "A girl runs in, soaked, holding a pink umbrella with bent spokes. Every table is full except his.",
+   "my": "တစ်ကိုယ်လုံး မိုးရေတွေ ရွှဲရွှဲစိုနေတဲ့ ကောင်မလေးတစ်ယောက် ပန်းရောင်ထီးလေးကိုင်ပြီး ဆိုင်ထဲ ပြေးဝင်လာတယ်။ သူ့ထီးက ကိုင်းတွေအကုန်နီးပါး ကျိုးနေပြီ။ ဆိုင်ထဲမှာလည်း ဝိုင်းတွေအကုန် ပြည့်နေတော့ မင်းထက်ထိုင်နေတဲ့ ဝိုင်းတစ်ခုပဲ ခုံအလွတ်ရှိတော့တာ။"
+  },
+  {
+   "id": "c1.teashop-1.4",
+   "who": "Daw Aye Aye",
+   "where": "scene · teashop-1",
+   "en": "Sit, sit, girl. Share with Min. He doesn't bite. He doesn't even talk.",
+   "my": "ထိုင်၊ ထိုင် သမီး။ မင်းထက်ဝိုင်းမှာ ဝင်ထိုင်လိုက်။ မကိုက်ပါဘူးအေ။ သူက စကားတောင်သိပ်ပြောတာမဟုတ်ဘူး။"
+  },
+  {
+   "id": "c1.teashop-1.5",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Behind the counter, Hnin, Daw Aye Aye's niece and Min's neighbour since they were kids, stops wiping a glass.",
+   "my": "ကောင်တာနောက်မှာ ဖန်ခွက်သုတ်နေတဲ့ နှင်းရဲ့ လက်တွေ ခဏရပ်သွားတယ်။ လက်ဖက်ရည်ဆိုင်ပိုင်ရှင် ဒေါ်အေးအေးရဲ့ တူမ နှင်းက မင်းထက်ရဲ့ ငယ်သူငယ်ချင်းလည်းဖြစ်၊ အိမ်နီးချင်းဆိုလည်းဟုတ်တယ်။"
+  },
+  {
+   "id": "c1.teashop-1.6",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "The girl sits on the edge of the other chair. She sees him looking at her umbrella, and frowns.",
+   "my": "ကောင်မလေးက မျက်နှာချင်းဆိုင် ထိုင်ခုံအစွန်းလေးမှာ ဝင်ထိုင်လိုက်ရင်း သူ့ထီးကို စိုက်ကြည့်နေတဲ့ မင်းထက်ကို မျက်မှောင်ကြုတ်ပြီးကြည့်လိုက်တယ်။"
+  },
+  {
+   "id": "c1.teashop-1.7",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "What? Never seen a broken umbrella before?",
+   "my": "ဘာလဲ။ ကျိုးနေတဲ့ထီး တစ်ခါမှ မမြင်ဖူးဘူးလား။"
+  },
+  {
+   "id": "c1.teashop-1.8",
+   "who": "Min",
+   "where": "scene option · teashop-1",
+   "en": "I've seen one. Just not one that looks worse than the rain.",
+   "my": "မြင်ဖူးပါတယ်။ မိုးထက်တောင် အခြေအနေဆိုးတဲ့ထီးမျိုးတော့ မမြင်ဖူးသေးဘူး။"
+  },
+  {
+   "id": "c1.teashop-1.9",
+   "who": "",
+   "where": "scene · teashop-1",
+   "en": "I've seen one. Just not one that looks worse than the rain.",
+   "my": "မြင်ဖူးပါတယ်။ မိုးထက်တောင် အခြေအနေဆိုးတဲ့ထီးမျိုးတော့ မမြင်ဖူးသေးဘူး။"
+  },
+  {
+   "id": "c1.teashop-1.10",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "She laughs, loud and surprised.",
+   "my": "ကောင်မလေးက အံ့သြသွားပြီးမှ အသံကျယ်ကျယ်နဲ့ တဟားဟား ရယ်ချလိုက်တယ်။"
+  },
+  {
+   "id": "c1.teashop-1.11",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "Wow. Okay. Rude.",
+   "my": "ဝိုး… အဲဒါတော့ ရိုင်းတယ်နော်။"
+  },
+  {
+   "id": "c1.teashop-1.12",
+   "who": "Min",
+   "where": "scene option · teashop-1",
+   "en": "…It fought well.",
+   "my": "…အစွမ်းကုန်တော့ တိုက်ပွဲဝင်ခဲ့ရှာတာပဲ။"
+  },
+  {
+   "id": "c1.teashop-1.13",
+   "who": "",
+   "where": "scene · teashop-1",
+   "en": "…It fought well.",
+   "my": "…အစွမ်းကုန်တော့ တိုက်ပွဲဝင်ခဲ့ရှာတာပဲ။"
+  },
+  {
+   "id": "c1.teashop-1.14",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "She stares at him. Then she laughs.",
+   "my": "ကောင်မလေးက သူ့ကို ခဏကြောင်ကြည့်နေပြီးမှ သဘောပေါက်သွားဟန်နဲ့ ခပ်ဖွဖွရယ်လိုက်တယ်။"
+  },
+  {
+   "id": "c1.teashop-1.15",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "It did. It died for me.",
+   "my": "ဟုတ်ပ ငါ့အတွက် အသက်ပါ ပေးသွားရှာတာ။"
+  },
+  {
+   "id": "c1.teashop-1.16",
+   "who": "Min",
+   "where": "scene option · teashop-1",
+   "en": "Do you want some tea?",
+   "my": "လက်ဖက်ရည် သောက်မလား။"
+  },
+  {
+   "id": "c1.teashop-1.17",
+   "who": "",
+   "where": "scene · teashop-1",
+   "en": "Do you want some tea?",
+   "my": "လက်ဖက်ရည် သောက်မလား။"
+  },
+  {
+   "id": "c1.teashop-1.18",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "Is that a real question or are you being polite?",
+   "my": "အတည်မေးတာလား၊ လောကွတ်ချော်တာလား။"
+  },
+  {
+   "id": "c1.teashop-1.19",
+   "who": "Min (thinking)",
+   "where": "scene · teashop-1",
+   "en": "Both.",
+   "my": "နှစ်ခုလုံးပဲ။"
+  },
+  {
+   "id": "c1.teashop-1.20",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "She wrings out her sleeve, still smiling, as if deciding whether to forgive him. She's shivering.",
+   "my": "ကောင်မလေးက အင်္ကျီလက်မှာစိုနေတဲ့ရေတွေကို ညှစ်ထုတ်လိုက်တယ်။ လူကတော့ ချမ်းလို့တုန်နေပေမယ့် အပြုံးတော့မပျက်ရှာဘူး။"
+  },
+  {
+   "id": "c1.teashop-1.21",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "She props the dead umbrella against his chair like it deserves a rest. She's shivering.",
+   "my": "ကောင်မလေးက ထီးစုတ်လေးကို ထိုင်ခုံပေါ်အသာတင်ထားလိုက်တယ်။ သူ့တကိုယ်လုံးလည်း ချမ်းပြီးတုန်နေတာပဲ။"
+  },
+  {
+   "id": "c1.teashop-1.22",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "She pulls her wet bag onto her lap and looks out at the rain instead of at him. She's shivering.",
+   "my": "ကောင်မလေးက ရေစိုနေတဲ့အိတ်ကို ပေါင်ပေါ်တင်ပြီး မင်းထက်ကို မကြည့်ဘဲ အပြင်မှာ မိုးရွာနေတာကိုပဲ ငေးနေတယ်။ တကိုယ်လုံးလည်း ချမ်းပြီး တုန်နေတာပဲ။"
+  },
+  {
+   "id": "c1.teashop-1.23",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Min still has the paper bag with Mom's two extra samosas.",
+   "my": "မင်းထက်ဆီမှာတော့ သူ့အမေ ပိုထည့်ပေးလိုက်တဲ့ စမူဆာနှစ်ခုကျန်နေသေးတယ်။"
+  },
+  {
+   "id": "c1.teashop-1.24",
+   "who": "Min",
+   "where": "reply option · teashop-1",
+   "en": "Push the samosas toward her.",
+   "my": "စမူဆာပန်းကန်ကို သူ့ဘက်ကို တွန်းပေးမယ်။"
+  },
+  {
+   "id": "c1.teashop-1.25",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "Are these yours?",
+   "my": "ဒါ နင့်ဟာလား။"
+  },
+  {
+   "id": "c1.teashop-1.26",
+   "who": "Min (thinking)",
+   "where": "scene · teashop-1",
+   "en": "My mother's. She makes them.",
+   "my": "အမေ့ဟာပါ။ ငါ့အမေ ကိုယ်တိုင်လုပ်ထားတာ။"
+  },
+  {
+   "id": "c1.teashop-1.27",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "She is already eating one.",
+   "my": "စမူဆာတခုက ကောင်မလေးပါးစပ်ထဲရောက်နှင့်နေပြီ။"
+  },
+  {
+   "id": "c1.teashop-1.28",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "Tell your mother she's my favourite person now.",
+   "my": "နင့်အမေကို ပြောပေးဦး။ အခုကစပြီး ငါ့ Favorite person ဖြစ်သွားပြီလို့။"
+  },
+  {
+   "id": "c1.teashop-1.29",
+   "who": "Min",
+   "where": "reply option · teashop-1",
+   "en": "Order her a sweet tea.",
+   "my": "သူ့အတွက် ချိုစိမ့် တစ်ခွက် မှာပေးမယ်။"
+  },
+  {
+   "id": "c1.teashop-1.30",
+   "who": "Min (thinking)",
+   "where": "scene · teashop-1",
+   "en": "One more cho seint, please.",
+   "my": "ချိုစိမ့် တစ်ခွက် ထပ်ပေးပါဦး။"
+  },
+  {
+   "id": "c1.teashop-1.31",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "I can pay.",
+   "my": "ငါ့ဟာငါ ရှင်းနိုင်ပါတယ်။"
+  },
+  {
+   "id": "c1.teashop-1.32",
+   "who": "Min (thinking)",
+   "where": "scene · teashop-1",
+   "en": "It's raining. Nobody pays when it's raining.",
+   "my": "မိုးရွာနေတယ်လေ။ မိုးရွာရင် ဘယ်သူမှ ပိုက်ဆံမရှင်းရဘူး။"
+  },
+  {
+   "id": "c1.teashop-1.33",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "That's not a rule.",
+   "my": "အဲ့လိုမကြားဖူးပါဘူး။"
+  },
+  {
+   "id": "c1.teashop-1.34",
+   "who": "Min (thinking)",
+   "where": "scene · teashop-1",
+   "en": "It is here.",
+   "my": "ဒီမှာတော့ အဲ့လိုရှိတယ်။"
+  },
+  {
+   "id": "c1.teashop-1.35",
+   "who": "Min",
+   "where": "reply option · teashop-1",
+   "en": "Say nothing. Watch the rain.",
+   "my": "ဘာမှမပြောဘဲ မိုးရွာနေတာကိုပဲ ထိုင်ကြည့်နေမယ်။"
+  },
+  {
+   "id": "c1.teashop-1.36",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Rain. A long quiet.",
+   "my": "မိုးကရွာမြဲရွာဆဲပဲ။ အချိန်တော်တော်ကြာ တိတ်ဆိတ်နေပြီးမှ…"
+  },
+  {
+   "id": "c1.teashop-1.37",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Then she slides a packet of sunflower seeds across the table.",
+   "my": "ကောင်မလေးက နေကြာစေ့ထုပ်လေးတထုပ်ကို သူ့ဘက်ခြမ်းကိုအသာလေးတွန်းပေးတယ်။"
+  },
+  {
+   "id": "c1.teashop-1.38",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "You looked lonely. Don't tell anyone I'm nice.",
+   "my": "ကြည့်ရတာ သနားစရာလေးမို့လို့ ကျွေးတာ။ ငါသဘောကောင်းတဲ့အကြောင်း ဘယ်သူ့မှလျှောက်မပြောနဲ့နော်။"
+  },
+  {
+   "id": "c1.teashop-1.39",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Her phone buzzes. A crack runs across the screen.",
+   "my": "ကောင်မလေးဆီ ဖုန်းကောတခုဝင်လာတယ်။ ဖုန်းစခရင်ပေါ်မှာ အက်ကြောင်းရာကြီးတစ်ခုက ထင်းလို့။"
+  },
+  {
+   "id": "c1.teashop-1.40",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "Coming, Ma! … Thank your mother for me. Really.",
+   "my": "လာပြီ မေမေ! … နင့်အမေကို ငါ့ကိုယ်စား ကျေးဇူးတင်ကြောင်း ပြောပေးနော်။ အတည်ပြောတာ။"
+  },
+  {
+   "id": "c1.teashop-1.41",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "Coming, Ma! … Next tea is mine. That's a rule too.",
+   "my": "လာပြီ မေမေ! … နောက်တစ်ခါ ငါလက်ဖက်ရည်တိုက်မယ်။ ပြောပြီးစလစ်။"
+  },
+  {
+   "id": "c1.teashop-1.42",
+   "who": "The girl",
+   "where": "scene · teashop-1",
+   "en": "Coming, Ma! … Keep the seeds. You need them more.",
+   "my": "လာပြီ မေမေ! … နေကြာစေ့ ယူထားလိုက်တော့။ ပျင်းရင်စားလို့ရတယ်။"
+  },
+  {
+   "id": "c1.teashop-1.43",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "The rain eases. She grabs the black umbrella by the door and runs out into the street.",
+   "my": "မိုးက အနည်းငယ် စဲစပြုလာပြီ။ ကောင်မလေးက ဝင်ပေါက်နားက ထီးအနက်ရောင်လေးကို ကောက်ကိုင်ပြီး ပြေးထွက်သွားတယ်။"
+  },
+  {
+   "id": "c1.teashop-1.44",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Her broken pink one is still on Min's table.",
+   "my": "ထိုင်ခုံဘေးမှာတော့ ကိုင်းကျိုးနေတဲ့ ပန်းရောင်ထီးစုတ်လေးတချောင်း ကျန်ခဲ့လေရဲ့။"
+  },
+  {
+   "id": "c1.teashop-1.45",
+   "who": "Daw Aye Aye",
+   "where": "scene · teashop-1",
+   "en": "She ate your samosas and took your umbrella. Good day for her.",
+   "my": "နင့်စမူဆာလည်း စားသွားတယ်၊ နင့်ထီးလည်း ယူသွားသေးတယ်။ ကောင်မလေး ကံကောင်းတဲ့နေ့ပဲဟေ့။"
+  },
+  {
+   "id": "c1.teashop-1.46",
+   "who": "Daw Aye Aye",
+   "where": "scene · teashop-1",
+   "en": "You buy a girl tea, she takes your umbrella. That's how it goes.",
+   "my": "ကောင်မလေးတယောက်ကို လက်ဖက်ရည်တိုက်လိုက်တာနဲ့ နင့်ထီးပါ ယူပြေးသွားရော။ ဒါ သဘာဝပဲ မင်းထက်ရေ။"
+  },
+  {
+   "id": "c1.teashop-1.47",
+   "who": "Daw Aye Aye",
+   "where": "scene · teashop-1",
+   "en": "Seeds for an umbrella. Fair trade, Min?",
+   "my": "ထီးတစ်လက်ကို နေကြာစေ့တစ်ထုပ်နဲ့ လဲသွားတာပေါ့။ တန်တယ် မဟုတ်လား မင်းထက်။"
+  },
+  {
+   "id": "c1.teashop-1.48",
+   "who": "Min",
+   "where": "scene option · teashop-1",
+   "en": "It's fine. It's just an umbrella.",
+   "my": "ရပါတယ်။ ထီးတစ်လက်တည်းပဲဟာ။"
+  },
+  {
+   "id": "c1.teashop-1.49",
+   "who": "",
+   "where": "scene · teashop-1",
+   "en": "It's fine. It's just an umbrella.",
+   "my": "ရပါတယ်။ ထီးတစ်လက်တည်းပဲဟာ။"
+  },
+  {
+   "id": "c1.teashop-1.50",
+   "who": "Daw Aye Aye",
+   "where": "scene · teashop-1",
+   "en": "Your father's handwriting is on that umbrella, and it's \"just an umbrella\"?",
+   "my": "နင့်အဖေလက်ရေးနဲ့ နာမည်ရေးထားတဲ့ထီးကိုများ \"ထီးတစ်လက်တည်း\" တဲ့လားအေ။"
+  },
+  {
+   "id": "c1.teashop-1.51",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Min doesn't answer.",
+   "my": "မင်းထက် ဘာမှ ပြန်မပြောလိုက်ပါ။"
+  },
+  {
+   "id": "c1.teashop-1.52",
+   "who": "Min",
+   "where": "scene option · teashop-1",
+   "en": "She'll bring it back.",
+   "my": "သူပြန်လာပေးမှာပါ။"
+  },
+  {
+   "id": "c1.teashop-1.53",
+   "who": "",
+   "where": "scene · teashop-1",
+   "en": "She'll bring it back.",
+   "my": "သူပြန်လာပေးမှာပါ။"
+  },
+  {
+   "id": "c1.teashop-1.54",
+   "who": "Daw Aye Aye",
+   "where": "scene · teashop-1",
+   "en": "You don't even know her name.",
+   "my": "ဟဲ့ နင်သူ့နာမည်တောင် သိလို့လား။"
+  },
+  {
+   "id": "c1.teashop-1.55",
+   "who": "Min (thinking)",
+   "where": "scene · teashop-1",
+   "en": "Then she'll have to tell me.",
+   "my": "အဲ့ဆိုလည်း သူပြောပြရမှာပေါ့။"
+  },
+  {
+   "id": "c1.teashop-1.56",
+   "who": "Min",
+   "where": "reply option · teashop-1",
+   "en": "Pick up the pink umbrella.",
+   "my": "ထီးပန်းရောင်လေးကို ကောက်ကိုင်မယ်။"
+  },
+  {
+   "id": "c1.teashop-1.57",
+   "who": "Daw Aye Aye",
+   "where": "scene · teashop-1",
+   "en": "You want that? It's rubbish.",
+   "my": "အဲ့ထီးကို ယူမလို့လား။ အမှိုက်ပုံ ပစ်ရမှာအေ။"
+  },
+  {
+   "id": "c1.teashop-1.58",
+   "who": "Min (thinking)",
+   "where": "scene · teashop-1",
+   "en": "It's still good for a photo.",
+   "my": "ဓာတ်ပုံရိုက်ရင် လှပါသေးတယ်။"
+  },
+  {
+   "id": "c1.teashop-1.59",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Min walks home in the rain with the pink umbrella under his arm, thinking about the tape on the other one.",
+   "my": "မင်းထက်တယောက် ပန်းရောင်ထီးစုတ်လေးကို ချိုင်းကြားညှပ်ပြီး မိုးထဲလေထဲမှာပဲ အိမ်ပြန်လာခဲ့တယ်။ သူ့ထီးလက်ကိုင်ပေါ်က တိပ်ပတ်ထားတဲ့စာလေးအကြောင်းကို တွေးနေမိရင်းပေါ့။"
+  },
+  {
+   "id": "c1.teashop-1.60",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Min walks home in the rain holding the pink umbrella. It keeps none of the rain off. He doesn't mind.",
+   "my": "မင်းထက် ပန်းရောင်ထီးအကျိုးလေးကိုပဲ ဆောင်းပြီး အိမ်ပြန်လာခဲ့တယ်။ မိုးက နည်းနည်းမှ မလုံပေမယ့် အေးဆေးပါပဲ။"
+  },
+  {
+   "id": "c1.teashop-1.61",
+   "who": "narration",
+   "where": "scene · teashop-1",
+   "en": "Min walks home holding the pink umbrella open over his head, out of stubbornness. It keeps none of the rain off.",
+   "my": "မင်းထက်တယောက် ခေါင်းမာမာနဲ့ ပန်းရောင်ထီးအကျိုးလေးကိုပဲ ဖွင့်ဆောင်းပြီး ပြန်လာခဲ့တယ်။ ဆောင်းသာဆောင်းရတယ် မိုးက တစ်စက်မှလည်းမလုံပါဘူး။"
+  },
+  {
+   "id": "c1.post.1",
+   "who": "",
+   "where": "post caption",
+   "en": "rain all day. two customers. one table. three hours. two teas.",
+   "my": "တနေကုန် မိုးရွာ ဧည့်သည် နှစ်ယောက် စားပွဲ တစ်လုံး သုံးနာရီ လက်ဖက်ရည် နှစ်ခွက်"
+  },
+  {
+   "id": "c1.post.2",
+   "who": "Daw Aye Aye",
+   "where": "comment · post",
+   "en": "Hnin, wipe the table.",
+   "my": "နှင်း စားပွဲ သုတ်လိုက်ဦး"
+  },
+  {
+   "id": "c1.post.3",
+   "who": "Hnin",
+   "where": "comment · post",
+   "en": "I did.",
+   "my": "သုတ်ပြီးပြီ"
+  },
+  {
+   "id": "c1.post.4",
+   "who": "Min",
+   "where": "reply option · post",
+   "en": "The tea was good.",
+   "my": "ဒီနေ့ လက်ဖက်ရည် သောက်လို့ကောင်းတယ်"
+  },
+  {
+   "id": "c1.post.5",
+   "who": "",
+   "where": "reply · post",
+   "en": "it's the same tea as always",
+   "my": "နင်နေ့တိုင်း သောက်နေကျ လက်ဖက်ရည်ပါပဲ"
+  },
+  {
+   "id": "c1.post.6",
+   "who": "Min",
+   "where": "reply option · post",
+   "en": "One of them took the wrong umbrella.",
+   "my": "ထီးမှားယူသွားတဲ့တယောက်ရှိ"
+  },
+  {
+   "id": "c1.post.7",
+   "who": "",
+   "where": "reply · post",
+   "en": "I know. I was there",
+   "my": "ငါမြင်သားပဲ"
+  },
+  {
+   "id": "c1.post.8",
+   "who": "",
+   "where": "chat preview · Mom",
+   "en": "Okay. Sleep early.",
+   "my": "အေးပါ စောစောအိပ်နော်"
+  },
+  {
+   "id": "c1.may.1",
+   "who": "May",
+   "where": "chat preview · Mom",
+   "en": "Okay. Sleep early.",
+   "my": "အေးပါ စောစောအိပ်နော်"
+  },
+  {
+   "id": "c1.may.2",
+   "who": "May",
+   "where": "chat · May",
+   "en": "hey 👋",
+   "my": "ဟေး 👋"
+  },
+  {
+   "id": "c1.may.3",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I think you took my umbrella 👀",
+   "my": "နင် ငါ့ထီး ယူသွားတယ် ထင်တယ် 👀"
+  },
+  {
+   "id": "c1.may.4",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "I'm pretty sure you have mine.",
+   "my": "နင်လည်းငါ့ထီးယူသွားတယ်နော်"
+  },
+  {
+   "id": "c1.may.5",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "I'm pretty sure you have mine.",
+   "my": "နင်လည်းငါ့ထီးယူသွားတယ်နော်"
+  },
+  {
+   "id": "c1.may.6",
+   "who": "May",
+   "where": "chat · May",
+   "en": "prove it 😤",
+   "my": "သက်သေပြလေ 😤"
+  },
+  {
+   "id": "c1.may.7",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "It has MH on the handle.",
+   "my": "လက်ကိုင်မှာ MH လို့ ရေးထားတယ်"
+  },
+  {
+   "id": "c1.may.8",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "You mean the umbrella that lost to the rain?",
+   "my": "မိုးဒဏ်မခံနိုင်ဘဲ ကျိုးသွားတဲ့ထီးကို ပြောတာလား"
+  },
+  {
+   "id": "c1.may.9",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "You mean the umbrella that lost to the rain?",
+   "my": "မိုးဒဏ်မခံနိုင်ဘဲ ကျိုးသွားတဲ့ထီးကို ပြောတာလား"
+  },
+  {
+   "id": "c1.may.10",
+   "who": "May",
+   "where": "chat · May",
+   "en": "excuse me it was a GOOD umbrella 😤",
+   "my": "အမလေး အဲဒါ ထီးအကောင်းစားနော်!! 😤"
+  },
+  {
+   "id": "c1.may.11",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it had a hard life 🥲",
+   "my": "သုံးတာများလို့ မခံတော့တာဟ 🥲"
+  },
+  {
+   "id": "c1.may.12",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "You have mine.",
+   "my": "ငါ့ထီးလည်း နင့်ဆီပါသွားတယ်နော်"
+  },
+  {
+   "id": "c1.may.13",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "How did you find me?",
+   "my": "ငါ့အကောင့်ကို ဘယ်လိုရှာတွေ့တာလဲ"
+  },
+  {
+   "id": "c1.may.14",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "How did you find me?",
+   "my": "ငါ့အကောင့်ကို ဘယ်လိုရှာတွေ့တာလဲ"
+  },
+  {
+   "id": "c1.may.15",
+   "who": "May",
+   "where": "chat · May",
+   "en": "daw aye aye",
+   "my": "ဒေါ်အေးအေးပြောပြတာ"
+  },
+  {
+   "id": "c1.may.16",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I went back for my umbrella and she told me your name, your mom's name, your mom's shop and that you have \"a good heart but no mouth\"",
+   "my": "ထီးသွားပြန်ယူတော့ ဒေါ်အေးအေးက နင့်နာမည်ရော နင့်အမေနာမည်ရော ဆိုင်နာမည်ရော အကုန်ပြောပြလိုက်တာ နင်က \"စိတ်ထားကောင်းပြီး ပါးစပ်မပါတဲ့ကောင်\" တဲ့"
+  },
+  {
+   "id": "c1.may.17",
+   "who": "May",
+   "where": "chat · May",
+   "en": "so. hi 👋",
+   "my": "So. hi 👋"
+  },
+  {
+   "id": "c1.may.18",
+   "who": "May",
+   "where": "chat · May",
+   "en": "…oh",
+   "my": "…အော်"
+  },
+  {
+   "id": "c1.may.19",
+   "who": "May",
+   "where": "chat · May",
+   "en": "ok you win. it has a name tag like a schoolboy",
+   "my": "အေးပါ နင်နိုင်ပါတယ် မူလတန်းကလေးလိုလည်း နာမည်ကပ်ထားသေးတာ"
+  },
+  {
+   "id": "c1.may.20",
+   "who": "May",
+   "where": "chat · May",
+   "en": "ok fine. it IS yours",
+   "my": "အေးပါ ဟုတ်ပါတယ် နင့်ထီးပါပဲ"
+  },
+  {
+   "id": "c1.may.21",
+   "who": "May",
+   "where": "chat · May",
+   "en": "but mine was braver. yours has a name tag like a schoolboy",
+   "my": "ဒါပေမဲ့ ငါ့ထီးက ပိုမိုက်တယ် နင့်ဟာက မူလတန်းကလေးလို နာမည်တပ်ထားတာကြီး"
+  },
+  {
+   "id": "c1.may.22",
+   "who": "May",
+   "where": "chat · May",
+   "en": "anyway. I have this. and it has a name tag like a schoolboy",
+   "my": "ဘာပဲဖြစ်ဖြစ် နင့်ထီးငါ့ဆီမှာ မူလတန်းကလေးလို နာမည်ကကပ်ထားသေးတယ်"
+  },
+  {
+   "id": "c1.may.23",
+   "who": "May",
+   "where": "chat · May",
+   "en": "so what's MH 🤔",
+   "my": "ဒါနဲ့ MH က ဘာလဲ 🤔"
+  },
+  {
+   "id": "c1.may.24",
+   "who": "May",
+   "where": "chat · May",
+   "en": "what's MH. mister helpful? 😏",
+   "my": "MH ဆိုတာ ဘာလဲ mister helpful လား 😏"
+  },
+  {
+   "id": "c1.may.25",
+   "who": "May",
+   "where": "chat · May",
+   "en": "MH. let me guess",
+   "my": "MH တဲ့ ခနလေး ငါ ခန့်မှန်းကြည့်မယ်"
+  },
+  {
+   "id": "c1.may.26",
+   "who": "May",
+   "where": "chat · May",
+   "en": "no I can't guess 😅",
+   "my": "မမှန်းတတ်တော့ဘူး 😅"
+  },
+  {
+   "id": "c1.may.27",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Min Htet.",
+   "my": "မင်းထက်"
+  },
+  {
+   "id": "c1.may.28",
+   "who": "May",
+   "where": "chat · May",
+   "en": "Min Htet. sounds very serious",
+   "my": "မင်းထက် တဲ့ တည်တည်တံ့တံ့ကြီးပဲ"
+  },
+  {
+   "id": "c1.may.29",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'm May. May Thiri. not serious at all 😝",
+   "my": "ငါက မေ ပါ မေသီရိ နည်းနည်းမှ မတည်ကြည်ဘူး ဟိဟိ 😝"
+  },
+  {
+   "id": "c1.may.30",
+   "who": "May",
+   "where": "chat · May",
+   "en": "Min Htet. ok that suits you",
+   "my": "မင်းထက် အိုကေ လူနဲ့နာမည်နဲ့လိုက်တယ်"
+  },
+  {
+   "id": "c1.may.31",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'm May Thiri. friends say May 😊",
+   "my": "ငါက မေသီရိ သူငယ်ချင်းတွေက မေ လို့ ခေါ်တယ် 😊"
+  },
+  {
+   "id": "c1.may.32",
+   "who": "May",
+   "where": "chat · May",
+   "en": "Min Htet. I knew the first part already. daw aye aye",
+   "my": "မင်းထက် ဟုတ်သားပဲ ဒေါ်အေးအေး ပြောပြလိုက်တယ်"
+  },
+  {
+   "id": "c1.may.33",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'm May, by the way. May Thiri ✌️",
+   "my": "ငါက မေ နော် မေသီရိ ✌️"
+  },
+  {
+   "id": "c1.may.34",
+   "who": "May",
+   "where": "chat · May",
+   "en": "wait",
+   "my": "နေပါဦး"
+  },
+  {
+   "id": "c1.may.35",
+   "who": "May",
+   "where": "chat · May",
+   "en": "are you the boy in teacher daw nu's class who sits at the back by the fan?? 😮",
+   "my": "နင် ဆရာမ ဒေါ်နု အင်္ဂလိပ်စာသင်တန်းမှာ ပန်ကာနားက အနောက်ဆုံးတန်းမှာ ထိုင်တဲ့ကောင်လေး မဟုတ်လား?? 😮"
+  },
+  {
+   "id": "c1.may.36",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Yes.",
+   "my": "အင်း"
+  },
+  {
+   "id": "c1.may.37",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Yes.",
+   "my": "အင်း"
+  },
+  {
+   "id": "c1.may.38",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you never talk",
+   "my": "နင် တစ်ခါမှ စကားမပြောဘူးနော်"
+  },
+  {
+   "id": "c1.may.39",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "I talk.",
+   "my": "ပြောပါတယ်"
+  },
+  {
+   "id": "c1.may.40",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you're talking now 😆",
+   "my": "အခုမှ စကားပြောတာတွေ့ဖူးတယ် 😆"
+  },
+  {
+   "id": "c1.may.41",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "This is typing.",
+   "my": "ဒါကစာရိုက်တာ"
+  },
+  {
+   "id": "c1.may.42",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "The fan is the best seat.",
+   "my": "ပန်ကာအောက်က နေရာကောင်းလို့"
+  },
+  {
+   "id": "c1.may.43",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "The fan is the best seat.",
+   "my": "ပန်ကာအောက်က နေရာကောင်းလို့"
+  },
+  {
+   "id": "c1.may.44",
+   "who": "May",
+   "where": "chat · May",
+   "en": "hahaha it is. best place to sleep",
+   "my": "ဟားဟား  ဟုတ်တယ် အိပ်လို့အကောင်းဆုံးနေရာ"
+  },
+  {
+   "id": "c1.may.45",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "I don't sleep in class.",
+   "my": "ငါအတန်းထဲမှာ မအိပ်ပါဘူး"
+  },
+  {
+   "id": "c1.may.46",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you slept on tuesday. I saw 😴",
+   "my": "အင်္ဂါနေ့က နင်အိပ်နေတာ ငါမြင်တယ် 😴"
+  },
+  {
+   "id": "c1.may.47",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "You noticed?",
+   "my": "နင် သတိထားမိတာလား"
+  },
+  {
+   "id": "c1.may.48",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "You noticed?",
+   "my": "နင် သတိထားမိတာလား"
+  },
+  {
+   "id": "c1.may.49",
+   "who": "May",
+   "where": "chat · May",
+   "en": "everyone noticed. you're the only one who brings a camera to english class",
+   "my": "အကုန်သတိထားမိတယ် အင်္ဂလိပ်စာသင်တန်းကို ကင်မရာကြီးလွယ်ပြီး လာတာ နင်တစ်ယောက်တည်း ရှိတာ"
+  },
+  {
+   "id": "c1.may.50",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "It's on the way.",
+   "my": "လမ်းကြုံလို့ပါ"
+  },
+  {
+   "id": "c1.may.51",
+   "who": "May",
+   "where": "chat · May",
+   "en": "on the way to what 🙄",
+   "my": "ဘယ်ကိုလမ်းကြုံ? 🙄"
+  },
+  {
+   "id": "c1.may.52",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Everything.",
+   "my": "အရာရာတိုင်းဆီကိုပေါ့"
+  },
+  {
+   "id": "c1.may.53",
+   "who": "May",
+   "where": "chat · May",
+   "en": "ok quiet boy. I'll bring your umbrella tomorrow before class",
+   "my": "ok ကိုလူအေး မနက်ဖြန် အတန်းမစခင် နင့်ထီး ယူလာခဲ့မယ်"
+  },
+  {
+   "id": "c1.may.54",
+   "who": "May",
+   "where": "chat · May",
+   "en": "don't tell anyone I stole it. I have a reputation 😌",
+   "my": "ငါ ခိုးသွားတယ်လို့တော့ ဘယ်သူ့မှလျောက် မပြောနဲ့နော် ငါ့ image ရှိသေးတယ် 😌"
+  },
+  {
+   "id": "c1.may.55",
+   "who": "May",
+   "where": "chat · May",
+   "en": "anyway sleepy boy. umbrella tomorrow, before class",
+   "my": "ကဲကဲ အိပ်ငိုက်ကောင် မနက်ဖြန် အတန်းမစခင် နင့်ထီး လာပေးမယ်"
+  },
+  {
+   "id": "c1.may.56",
+   "who": "May",
+   "where": "chat · May",
+   "en": "and don't tell anyone I stole it. I have a reputation 😌",
+   "my": "ငါ ခိုးသွားတယ်လို့တော့ ဘယ်သူ့မှလျောက် မပြောနဲ့နော် ငါ့ image ရှိသေးတယ် 😌"
+  },
+  {
+   "id": "c1.may.57",
+   "who": "May",
+   "where": "chat · May",
+   "en": "…ok that was a good answer. I'll bring your umbrella tomorrow",
+   "my": "…ok အဖြေကောင်းတယ် မနက်ဖြန် နင့်ထီး ယူလာခဲ့မယ်"
+  },
+  {
+   "id": "c1.may.58",
+   "who": "May",
+   "where": "chat · May",
+   "en": "please don't tell anyone I stole it. I have a reputation 😌",
+   "my": "ငါ ခိုးသွားတယ်လို့တော့ ဘယ်သူ့မှလျောက် မပြောနဲ့နော် ငါ့ image ရှိသေးတယ် 😌"
+  },
+  {
+   "id": "c1.may.59",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "What reputation?",
+   "my": "ဘာ image လဲ"
+  },
+  {
+   "id": "c1.may.60",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I don't know yet. I'm building one",
+   "my": "သိသေးဘူး အခုမှ စဆောက်နေတုန်း"
+  },
+  {
+   "id": "c1.may.61",
+   "who": "May",
+   "where": "chat · May",
+   "en": "don't know yet. still building it",
+   "my": "မသိသေးဘူးဟဲ့ တည်ဆောက်ဆဲ"
+  },
+  {
+   "id": "c1.may.62",
+   "who": "May",
+   "where": "chat · May",
+   "en": "working on it. it's going to be a good one ✨",
+   "my": "ကြိုးစားဆဲပဲ နာမည်ကောင်းရအောင်လေ ✨"
+  },
+  {
+   "id": "c1.may.63",
+   "who": "May",
+   "where": "may text",
+   "en": "Your umbrella is still here. It's broken, but I kept it.",
+   "my": "နင့်ထီး ငါ့ဆီမှာရှိသေးတယ် ကျိုးနေပေမဲ့ သိမ်းထားလိုက်တယ်"
+  },
+  {
+   "id": "c1.may.64",
+   "who": "May",
+   "where": "chat · May",
+   "en": "wait you KEPT it?? 😳",
+   "my": "ဟင် နင် အဲ့ဒါကြီးကို သိမ်းထားတယ် ဟုတ်လား?? 😳"
+  },
+  {
+   "id": "c1.may.65",
+   "who": "May",
+   "where": "chat · May",
+   "en": "why",
+   "my": "ဘာလို့လဲ"
+  },
+  {
+   "id": "c1.may.66",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "It looked like it tried hard.",
+   "my": "သူခမျာ အစွမ်းကုန် ကြိုးစားခဲ့ရှာတာကိုး"
+  },
+  {
+   "id": "c1.may.67",
+   "who": "May",
+   "where": "chat · May",
+   "en": "that's the weirdest nice thing anyone has said to me 🥹",
+   "my": "အဲဒါ ငါကြားဖူးတဲ့ထဲမှာ အထူးဆန်းဆုံးနဲ့ အချိုသာဆုံးစကားပဲ 🥹"
+  },
+  {
+   "id": "c1.may.68",
+   "who": "May",
+   "where": "chat · May",
+   "en": "goodnight umbrella thief. and umbrella keeper 🌂",
+   "my": "goodnight ထီးသူခိုး 🤣"
+  },
+  {
+   "id": "c1.may.69",
+   "who": "May",
+   "where": "chat · May",
+   "en": "ok I should sleep 😴",
+   "my": "ok ငါ အိပ်တော့မယ် 😴"
+  },
+  {
+   "id": "c1.may.70",
+   "who": "May",
+   "where": "chat · May",
+   "en": "goodnight umbrella thief",
+   "my": "goodnight ထီးသူခိုး"
+  },
+  {
+   "id": "c1.may.71",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "You're the thief.",
+   "my": "သူခိုးက မေလေ"
+  },
+  {
+   "id": "c1.may.72",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "You're the thief.",
+   "my": "သူခိုးက မေလေ"
+  },
+  {
+   "id": "c1.may.73",
+   "who": "May",
+   "where": "chat · May",
+   "en": "details 😛",
+   "my": "မဆိုင်တာတွေ 😛"
+  },
+  {
+   "id": "c1.may.74",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Goodnight, May. 🌙",
+   "my": "ဂွတ်နိုက် မေ 🌙"
+  },
+  {
+   "id": "c1.may.75",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Goodnight, May. 🌙",
+   "my": "ဂွတ်နိုက် မေ 🌙"
+  },
+  {
+   "id": "c1.may.76",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Send a sticker",
+   "my": "စတစ်ကာ ပို့မယ်"
+  },
+  {
+   "id": "c1.may.77",
+   "who": "May",
+   "where": "chat · May",
+   "en": "STOP that's so cute 😭💕",
+   "my": "သေပါပြီ ချစ်စရာလေး 😭💕"
+  },
+  {
+   "id": "c1.may.78",
+   "who": "May",
+   "where": "chat · May",
+   "en": "where did you get that",
+   "my": "ဘယ်ကရတာလဲ"
+  },
+  {
+   "id": "c1.may.79",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "It came free with the app. 🙂",
+   "my": "appထဲမှာ ပါလာတာ 🙂"
+  },
+  {
+   "id": "c1.may.80",
+   "who": "May",
+   "where": "chat · May",
+   "en": "liar 😒",
+   "my": "လူလိမ်ကောင် 😒"
+  },
+  {
+   "id": "c1.hnin.1",
+   "who": "Hnin",
+   "where": "chat preview · Hnin",
+   "en": "your light was on until 1am",
+   "my": "နင့်အခန်းမီး ညတစ်နာရီလောက်ထိ လင်းနေတာ"
+  },
+  {
+   "id": "c1.hnin.2",
+   "who": "Hnin",
+   "where": "chat preview · May",
+   "en": "goodnight umbrella thief",
+   "my": "goodnight ထီးသူခိုး"
+  },
+  {
+   "id": "c1.hnin.3",
+   "who": "Hnin",
+   "where": "chat preview · Mom",
+   "en": "Okay. Sleep early.",
+   "my": "အေးပါ စောစောအိပ်နော်"
+  },
+  {
+   "id": "c1.hnin.4",
+   "who": "Hnin",
+   "where": "chat preview · Thura",
+   "en": "football sat?",
+   "my": "စနေ ဘောလုံးကန်မလား"
+  },
+  {
+   "id": "c1.hnin.5",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "I could see it from our kitchen",
+   "my": "ငါတို့မီးဖိုချောင်ကနေ မြင်နေရတယ်"
+  },
+  {
+   "id": "c1.hnin.6",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "were you studying? you never study",
+   "my": "စာလုပ်နေတာလား နင်ဘယ်တုန်းက စာလုပ်ဖူးလို့လဲ"
+  },
+  {
+   "id": "c1.hnin.7",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "I was reading.",
+   "my": "စာဖတ်နေတာ"
+  },
+  {
+   "id": "c1.hnin.8",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "I was reading.",
+   "my": "စာဖတ်နေတာ"
+  },
+  {
+   "id": "c1.hnin.9",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "reading what",
+   "my": "ဘာဖတ်တာလဲ"
+  },
+  {
+   "id": "c1.hnin.10",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "Messages.",
+   "my": "message တွေ"
+  },
+  {
+   "id": "c1.hnin.11",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "from who",
+   "my": "ဘယ်သူ့ဆီက"
+  },
+  {
+   "id": "c1.hnin.12",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "Nobody.",
+   "my": "ဘယ်သူမှ မဟုတ်ပါဘူး"
+  },
+  {
+   "id": "c1.hnin.13",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "nobody types for two hours, Min Htet",
+   "my": "ဘယ်သူမှမဟုတ်တဲ့လူနဲ့တော့ နှစ်နာရီကြာ စာမပို့ဘူး မင်းထက်"
+  },
+  {
+   "id": "c1.hnin.14",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "Why are you awake at 7?",
+   "my": "နင်ကရော မနက် ၇ နာရီကြီး ဘာလို့နိုးနေတာလဲ"
+  },
+  {
+   "id": "c1.hnin.15",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "Why are you awake at 7?",
+   "my": "နင်ကရော မနက် ၇ နာရီကြီး ဘာလို့နိုးနေတာလဲ"
+  },
+  {
+   "id": "c1.hnin.16",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "the shop opens at 6",
+   "my": "ဆိုင်က ၆ နာရီ ဖွင့်တာလေ"
+  },
+  {
+   "id": "c1.hnin.17",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "some of us have jobs. you have a camera and a seat by the fan",
+   "my": "ငါတို့က အလုပ်လုပ်ရတာ နင့်လို ကင်မရာလွယ်ပြီး ပန်ကာနား ထိုင်နေတာ မဟုတ်ဘူး"
+  },
+  {
+   "id": "c1.hnin.18",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "Were you watching my window?",
+   "my": "ငါ့ကို လိုက်ချောင်းကြည့်နေတာလား"
+  },
+  {
+   "id": "c1.hnin.19",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "Were you watching my window?",
+   "my": "ငါ့ကို လိုက်ချောင်းကြည့်နေတာလား"
+  },
+  {
+   "id": "c1.hnin.20",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "I was boiling water",
+   "my": "ရေနွေးအိုးတည်နေတာ"
+  },
+  {
+   "id": "c1.hnin.21",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "your window is in the way. move your house",
+   "my": "နင့်ပြတင်းပေါက်က မျက်စိအောက်မှာရှိနေတာလေ မကျေနပ်ရင် နင့်အိမ် နင်ရွှေ့လိုက်"
+  },
+  {
+   "id": "c1.hnin.22",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "anyway. your mom says the samosas were too salty yesterday",
+   "my": "မနေ့က စမူဆာတွေ ငန်သွားတယ်လို့ နင့်အမေ ပြောနေတယ်"
+  },
+  {
+   "id": "c1.hnin.23",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "she is blaming the new oil. it was not the oil",
+   "my": "ဆီအသစ်ကြောင့်ဆိုပြီးအပြစ်ပုံချနေတာ တကယ်ဆီကြောင့် မဟုတ်ဘူး"
+  },
+  {
+   "id": "c1.hnin.24",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "What was it?",
+   "my": "ဟုတ်လား ဘာကြောင့်လဲ"
+  },
+  {
+   "id": "c1.hnin.25",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "she was on the phone with my aunt the whole time she was frying",
+   "my": "ကြော်နေတုန်းကို ငါ့အန်တီနဲ့ ဖုန်းထဲမှာအာလူးဖုတ်နေလို့ ငန်သွားတာ"
+  },
+  {
+   "id": "c1.hnin.26",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "don't tell her I said that",
+   "my": "ငါပြောတယ်လို့ သွားမပြောနဲ့နော်"
+  },
+  {
+   "id": "c1.hnin.27",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "I'm telling her.",
+   "my": "ပြောမှာ"
+  },
+  {
+   "id": "c1.hnin.28",
+   "who": "Hnin",
+   "where": "chat · Hnin (quoted)",
+   "en": "your light was on until 1am",
+   "my": "နင့်အခန်းမီး ညတစ်နာရီလောက်ထိ လင်းနေတာ"
+  },
+  {
+   "id": "c1.hnin.29",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "then I'm telling her about your light",
+   "my": "ဒါဆို နင့်မနေ့ညက အိပ်တာနောက်ကျတဲ့အကြောင်း သွားတိုင်မယ်"
+  },
+  {
+   "id": "c1.classroom-1.1",
+   "who": "narration",
+   "where": "scene · classroom-1",
+   "en": "A ceiling fan. Fifteen students. The lesson is the present perfect.",
+   "my": "ညနေခင်း အင်္ဂလိပ်စာ သင်တန်းချိန်၊ မင်းထက် ခေါင်းပေါ်က ပန်ကာတဝီဝီ လည်သံရယ်၊ ကျောက်သင်ပုန်းပေါ်က present perfect သင်ခန်းစာကို ငေးနေတဲ့ ကျောင်းသား ဆယ့်ငါးယောက်လောက်ရဲ့ တိတ်ဆိတ်မှုရယ်ကြားထဲ…"
+  },
+  {
+   "id": "c1.classroom-1.2",
+   "who": "narration",
+   "where": "scene · classroom-1",
+   "en": "May walks to the back of the room and puts the black umbrella on Min's desk. The whole class turns around.",
+   "my": "မေက အတန်းနောက်ဆုံးခုံဆီ တန်းတန်းမတ်မတ် လျှောက်လာပြီး မင်းထက် စားပွဲပေါ် ထီးအနက်ရောင်လေး လာတင်ပေးလိုက်တယ်။ အတန်းထဲက လူတွေအကုန် သူတို့ဆီ လှည့်ကြည့်ကုန်ကြရော။"
+  },
+  {
+   "id": "c1.classroom-1.3",
+   "who": "narration",
+   "where": "scene · classroom-1",
+   "en": "A strip of paper is taped to the handle, under MH: “Sorry. Thank you. Your umbrella is better than mine. — the thief”",
+   "my": "ထီးလက်ကိုင်ပေါ်မှာရေးထားတဲ့ \"MH\" ဆိုတဲ့ စာလုံးလေး အောက်နားမှာတော့ စာရွက်ပိုင်းလေးတစ်ခုကို တိပ်နဲ့ အသေအချာ ကပ်ထားတယ်– “ဆောရီးနော်။ ကျေးဇူးတင်ပါတယ်။ နင့်ထီးက ငါ့ထီးထက် ပိုကောင်းတယ်။ — ထီးသူခိုးမ”"
+  },
+  {
+   "id": "c1.classroom-1.4",
+   "who": "Teacher Daw Nu",
+   "where": "scene · classroom-1",
+   "en": "Ma May Thiri, are you returning property or making a proposal?",
+   "my": "မေသီရိ၊ ပစ္စည်း ပြန်အပ်တာလား၊ ရည်းစားစာပေးနေတာလား။"
+  },
+  {
+   "id": "c1.classroom-1.5",
+   "who": "May",
+   "where": "scene · classroom-1",
+   "en": "Returning stolen property, Teacher! He says I'm the thief.",
+   "my": "ခိုးရာပါပစ္စည်း ပြန်အပ်တာပါ ဆရာမရယ်! သူက သမီးကို သူခိုးမတဲ့။"
+  },
+  {
+   "id": "c1.classroom-1.6",
+   "who": "May",
+   "where": "scene · classroom-1",
+   "en": "Returning property, Teacher!",
+   "my": "ပစ္စည်း ပြန်အပ်တာပါ ဆရာမ!"
+  },
+  {
+   "id": "c1.classroom-1.7",
+   "who": "May",
+   "where": "scene · classroom-1",
+   "en": "Returning property, Teacher. Nothing else.",
+   "my": "ပစ္စည်း ပြန်အပ်တာပါ ဆရာမ။ တခြား ဘာမှ မဟုတ်ပါဘူး။"
+  },
+  {
+   "id": "c1.classroom-1.8",
+   "who": "narration",
+   "where": "scene · classroom-1",
+   "en": "She glances at Min and nearly laughs.",
+   "my": "မေတယောက် မင်းထက်ကို ကြည့်ပြီး ရယ်ချင်စိတ်ကိုမနည်းအောင့်ထားရတယ်။"
+  },
+  {
+   "id": "c1.classroom-1.9",
+   "who": "Min",
+   "where": "scene option · classroom-1",
+   "en": "…Thank you.",
+   "my": "…ကျေးဇူး။"
+  },
+  {
+   "id": "c1.classroom-1.10",
+   "who": "",
+   "where": "scene · classroom-1",
+   "en": "…Thank you.",
+   "my": "…ကျေးဇူး။"
+  },
+  {
+   "id": "c1.classroom-1.11",
+   "who": "narration",
+   "where": "scene · classroom-1",
+   "en": "She turns to him, grinning.",
+   "my": "မေက သူ့ဘက်လှည့်ပြီး ပြုံးဖြီးဖြီးနဲ့ ခပ်တိုးတိုးလေးပြောလိုက်တယ်။"
+  },
+  {
+   "id": "c1.classroom-1.12",
+   "who": "May",
+   "where": "scene · classroom-1",
+   "en": "You can talk!",
+   "my": "စကားပြောတတ်သားပဲ!"
+  },
+  {
+   "id": "c1.classroom-1.13",
+   "who": "Min",
+   "where": "scene option · classroom-1",
+   "en": "You can keep it.",
+   "my": "ယူထားလိုက်ပါ။"
+  },
+  {
+   "id": "c1.classroom-1.14",
+   "who": "",
+   "where": "scene · classroom-1",
+   "en": "You can keep it.",
+   "my": "ယူထားလိုက်ပါ။"
+  },
+  {
+   "id": "c1.classroom-1.15",
+   "who": "May",
+   "where": "scene · classroom-1",
+   "en": "No. Then I'd have to remember you every time it rains.",
+   "my": "မယူချင်ပါဘူး။ မဟုတ်ရင် မိုးရွာတိုင်း နင့်ကို သတိရနေရဦးမယ်။"
+  },
+  {
+   "id": "c1.classroom-1.16",
+   "who": "Min",
+   "where": "reply option · classroom-1",
+   "en": "Give back her broken pink umbrella.",
+   "my": "သူမရဲ့ ပန်းရောင်ထီးအကျိုးလေးကို ပြန်ပေးမယ်။"
+  },
+  {
+   "id": "c1.classroom-1.17",
+   "who": "May",
+   "where": "scene · classroom-1",
+   "en": "You brought it?? It's dead, Min.",
+   "my": "နင် ဒါကြီး ယူလာတယ် ဟုတ်လား။ အဲ့ထီးကသုံးမရတော့ဘူး မင်းထက်ရဲ့။"
+  },
+  {
+   "id": "c1.classroom-1.18",
+   "who": "Min (thinking)",
+   "where": "scene · classroom-1",
+   "en": "It should go home to its family.",
+   "my": "ပိုင်ရှင်ဆီ ပြန်ပေးသင့်တယ်လေ။"
+  },
+  {
+   "id": "c1.classroom-1.19",
+   "who": "narration",
+   "where": "scene · classroom-1",
+   "en": "She laughs so hard that Teacher Daw Nu tells her off.",
+   "my": "မေ မအောင့်နိုင်ဘဲ တခစ်ခစ် ထရယ်မိလို့ ဆရာမ ဒေါ်နု မျက်စောင်းထိုးပြီး လှမ်းဟန့်ရတဲ့အထိပဲ။"
+  },
+  {
+   "id": "c1.classroom-1.20",
+   "who": "May",
+   "where": "scene · classroom-1",
+   "en": "Keep it. It likes you more than me.",
+   "my": "နင်ပဲယူထားလိုက်တော့။ ငါ့ထက် နင့်ကို ပိုချစ်ပုံရတယ်။"
+  },
+  {
+   "id": "c1.classroom-1.21",
+   "who": "narration",
+   "where": "scene · classroom-1",
+   "en": "He takes it home again.",
+   "my": "မင်းထက် ထီးကို အိမ်ပြန်သယ်လာခဲ့ရပြန်တယ်။"
+  },
+  {
+   "id": "c1.glance.1",
+   "who": "",
+   "where": "chat preview · Thura",
+   "en": "football saturday. losers buy the tea.",
+   "my": "စနေနေ့ ဘောလုံးကန်မယ် ရှုံးတဲ့ကောင် လက်ဖက်ရည်တိုက်ကြေး ⚽"
+  },
+  {
+   "id": "c1.glance.2",
+   "who": "Hnin",
+   "where": "comment · glance",
+   "en": "losers also wash the glasses",
+   "my": "ရှုံးတဲ့သူ ခွက်ပါဆေးရမယ်နော်"
+  },
+  {
+   "id": "c1.glance.3",
+   "who": "Thura",
+   "where": "comment · glance",
+   "en": "then I will win. obviously",
+   "my": "ငါနိုင်မှာပဲကို အေးဆေး 😎"
+  },
+  {
+   "id": "c1.glance.4",
+   "who": "",
+   "where": "chat preview · May",
+   "en": "goodnight umbrella thief",
+   "my": "goodnight ထီးသူခိုး"
+  },
+  {
+   "id": "c1.glance.5",
+   "who": "",
+   "where": "chat preview · Mom",
+   "en": "Okay. Sleep early.",
+   "my": "အေးပါ စောစောအိပ်နော်"
+  },
+  {
+   "id": "c1.thura.1",
+   "who": "Thura",
+   "where": "chat preview · Thura",
+   "en": "bro",
+   "my": "bro"
+  },
+  {
+   "id": "c1.thura.2",
+   "who": "Thura",
+   "where": "chat preview · May",
+   "en": "goodnight umbrella thief",
+   "my": "goodnight ထီးသူခိုး"
+  },
+  {
+   "id": "c1.thura.3",
+   "who": "Thura",
+   "where": "chat preview · Mom",
+   "en": "Okay. Sleep early.",
+   "my": "အေးပါ စောစောအိပ်နော်"
+  },
+  {
+   "id": "c1.thura.4",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "BRO",
+   "my": "ဘရို.............."
+  },
+  {
+   "id": "c1.thura.5",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "who was that. the whole class is talking. daw nu said PROPOSAL 🤣",
+   "my": "အဲဒါ ဘယ်သူလဲ အတန်းလုံး ပြောနေကြတယ် ဆရာမဒေါ်နုကလည်း ရည်းစားစာပေးနေတာလားတဲ့ 🤣"
+  },
+  {
+   "id": "c1.thura.6",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "who was that. daw nu said PROPOSAL and you said keep it?? 😂",
+   "my": "အဲဒါ ဘယ်သူလဲ ဆရာမဒေါ်နုက ရည်းစားစာပေးနေတာလားတဲ့ မင်းကလည်းယူထားလိုက်ဆိုတော့??"
+  },
+  {
+   "id": "c1.thura.7",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "who was that. you gave her a DEAD umbrella. in front of daw nu 💀",
+   "my": "အဲ့ဒါ ဘယ်ကကောင်မလေးလဲဟေ့ကောင် ဒေါ်နုရှေ့တင် ထီးစုတ်ကြီးလာပေးနေတာ 💀"
+  },
+  {
+   "id": "c1.thura.8",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "She took my umbrella by mistake.",
+   "my": "ငါ့ထီး မှားယူသွားတဲ့တယောက်လေ"
+  },
+  {
+   "id": "c1.thura.9",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "She took my umbrella by mistake.",
+   "my": "ငါ့ထီး မှားယူသွားတဲ့တယောက်လေ"
+  },
+  {
+   "id": "c1.thura.10",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "\"by mistake\" ok ok ok 😏",
+   "my": "မှားယူသွားတာတဲ့ ok ok ok 😏"
+  },
+  {
+   "id": "c1.thura.11",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "Nobody.",
+   "my": "ဘယ်သူမှ မဟုတ်ပါဘူးကွာ",
+   "own": true
+  },
+  {
+   "id": "c1.thura.12",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "Nobody.",
+   "my": "ဘယ်သူမှ မဟုတ်ပါဘူးကွာ",
+   "own": true
+  },
+  {
+   "id": "c1.thura.13",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "nobody doesn't write you notes",
+   "my": "ဘယ်သူမှမဟုတ်ရင် မင်းကို စာပေးမလားကွ"
+  },
+  {
+   "id": "c1.thura.14",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "It says sorry.",
+   "my": "sorry လို့ပဲရေးထားတာပါဟ"
+  },
+  {
+   "id": "c1.thura.15",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "that's how it starts 😏",
+   "my": "အဲ့လိုကနေ စတာချည်းပဲကွ 😏"
+  },
+  {
+   "id": "c1.thura.16",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "Her name is May.",
+   "my": "မေ တဲ့"
+  },
+  {
+   "id": "c1.thura.17",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "Her name is May.",
+   "my": "မေ တဲ့"
+  },
+  {
+   "id": "c1.thura.18",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "you know her NAME",
+   "my": "နာမည်တောင် သိနေပြီလားဟ ထူးထူးဆန်းဆန်း"
+  },
+  {
+   "id": "c1.thura.19",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "who are you and what did you do with min 😳",
+   "my": "မင်း ဘယ်သူလဲ မင်းထက်ကို ဘာလုပ်လိုက်ပြီလဲ ဟေ့ကောင် 😳"
+  },
+  {
+   "id": "c1.thura.20",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "careful though. girls like that don't stay in this town",
+   "my": "ဒါပေမဲ့ သတိတော့ထားနော် bro အဲလိုကောင်မလေးမျိုးက ဒီမြို့မှာ သိပ်ကြာကြာမနေကြဘူး"
+  },
+  {
+   "id": "c1.thura.21",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "joking. go eat 😅",
+   "my": "ဟဲ... စတာပါ ထမင်းသွားစားတော့"
+  },
+  {
+   "id": "c1.thura.22",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "just saying. girls like that don't stay in this town",
+   "my": "ပြောပြတာပါ အဲ့လို ကောင်မလေးတွေက ဒီလိုမြို့သေးသေးလေးမှာ ကြာကြာမနေကြဘူး"
+  },
+  {
+   "id": "c1.thura.23",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "joking. mostly. go eat 😅",
+   "my": "စတာပါ… နည်းနည်းတော့အတည် ထမင်းသွားစားတော့ 😅"
+  },
+  {
+   "id": "c1.thura.24",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "be careful bro. girls like that don't stay in this town",
+   "my": "သတိထားနော် bro အဲလိုကောင်မလေးမျိုးက ဒီမြို့မှာ ကြာကြာ မနေဘူး"
+  },
+  {
+   "id": "c1.thura.25",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "…joking. I'm happy for you. go eat 😅",
+   "my": "…စတာပါ မင်းအတွက် ဝမ်းသာပါတယ် သွား ထမင်းစားတော့"
+  },
+  {
+   "id": "c1.hnin.30",
+   "who": "Hnin",
+   "where": "chat preview · Hnin",
+   "en": "your mom's tray is still at the shop from yesterday",
+   "my": "နင့်အမေရဲ့ စမူဆာဗန်း မနေ့ကဆိုင်မှာကျန်ခဲ့တယ်"
+  },
+  {
+   "id": "c1.hnin.31",
+   "who": "Hnin",
+   "where": "chat preview · Thura",
+   "en": "joking. go eat 😅",
+   "my": "ဟဲ... စတာပါ ထမင်းသွားစားတော့"
+  },
+  {
+   "id": "c1.hnin.32",
+   "who": "Hnin",
+   "where": "chat preview · May",
+   "en": "goodnight umbrella thief",
+   "my": "goodnight ထီးသူခိုး"
+  },
+  {
+   "id": "c1.hnin.33",
+   "who": "Hnin",
+   "where": "chat preview · Mom",
+   "en": "Okay. Sleep early.",
+   "my": "အေးပါ စောစောအိပ်နော်"
+  },
+  {
+   "id": "c1.hnin.34",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "I'll bring it to your house tomorrow morning",
+   "my": "မနက်ဖြန်မနက်ကျမှ ငါအိမ်လာပို့ပေးမယ်"
+  },
+  {
+   "id": "c1.hnin.35",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "also. yesterday that girl took your umbrella and you just watched her go 😑",
+   "my": "ဒါနဲ့ မနေ့က ဟိုကောင်မလေး နင့်ထီးယူသွားတာကို ငေးကြည့်နေတာ အူကြောင်ကြောင်နဲ့ 😑"
+  },
+  {
+   "id": "c1.hnin.36",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "It was a mistake.",
+   "my": "သူမှားယူသွားတာပါ"
+  },
+  {
+   "id": "c1.hnin.37",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "It was a mistake.",
+   "my": "သူမှားယူသွားတာပါ"
+  },
+  {
+   "id": "c1.hnin.38",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "hm. some mistakes are on purpose",
+   "my": "အင်း.... တချို့ အမှားတွေက ရည်ရွယ်ချက်ရှိရှိရယ်"
+  },
+  {
+   "id": "c1.hnin.39",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "She brought it back today.",
+   "my": "ဒီနေ့ သူပြန်လာပေးသွားတယ်"
+  },
+  {
+   "id": "c1.hnin.40",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "She brought it back today.",
+   "my": "ဒီနေ့ သူပြန်လာပေးသွားတယ်"
+  },
+  {
+   "id": "c1.hnin.41",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "oh. that's good",
+   "my": "အော် ကောင်းတာပေါ့"
+  },
+  {
+   "id": "c1.hnin.42",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "she's pretty",
+   "my": "ချောသားပဲ"
+  },
+  {
+   "id": "c1.hnin.43",
+   "who": "Min",
+   "where": "reply option · Hnin",
+   "en": "You saw that?",
+   "my": "နင်မြင်လိုက်တာလား"
+  },
+  {
+   "id": "c1.hnin.44",
+   "who": "Min",
+   "where": "chat · Hnin",
+   "en": "You saw that?",
+   "my": "နင်မြင်လိုက်တာလား"
+  },
+  {
+   "id": "c1.hnin.45",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "I see everything from behind the counter. that's my whole job",
+   "my": "ကောင်တာနောက်ကနေ ငါ အကုန်မြင်နေရတယ် ငါ့အလုပ်ကိုကအဲ့လိုပဲကို"
+  },
+  {
+   "id": "c1.hnin.46",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "also. you liked my post",
+   "my": "ဒါနဲ့ နင်ငါ့postကို likeပေးထားတယ်"
+  },
+  {
+   "id": "c1.hnin.47",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "you've never liked one of my posts",
+   "my": "အရင်က တစ်ခါမှ likeမပေးဖူးဘဲနဲ့"
+  },
+  {
+   "id": "c1.hnin.48",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "so that table means something. noted",
+   "my": "ဆိုတော့ အဲ့စားပွဲဝိုင်းက နင့်အတွက် တစ်ခုခု ထူးခြားနေတယ်ပေါ့လေ မှတ်ထားလိုက်မယ်"
+  },
+  {
+   "id": "c1.hnin.49",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "also. you commented on my post",
+   "my": "ဒါနဲ့ နင် ငါ့postမှာ comment ဝင်ရေးထားတာ"
+  },
+  {
+   "id": "c1.hnin.50",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "in public. where Daw Aye Aye can see",
+   "my": "ငါ့အန်တီတွေ့သွားတယ်"
+  },
+  {
+   "id": "c1.hnin.51",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "she's already asking me questions",
+   "my": "ငါ့ကိုနင့်အကြောင်းတွေလာစပ်စုနေတာ"
+  },
+  {
+   "id": "c1.hnin.52",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "\"it's the same tea every day. what was different yesterday\"",
+   "my": "လက်ဖက်ရည်က နေ့တိုင်း ဒီအတိုင်းပဲဟာ မနေ့က ဘာထူးလို့လဲတဲ့"
+  },
+  {
+   "id": "c1.hnin.53",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "\"does his mother know\"",
+   "my": "သူ့အမေသိပြီးပြီလားတဲ့"
+  },
+  {
+   "id": "c1.hnin.54",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "also. Daw Aye Aye liked my post before you did",
+   "my": "ဒါနဲ့ ငါ့အန်တီတောင် နင့်ထက်အရင် ငါ့postကို like ပေးသွားသေးတယ်"
+  },
+  {
+   "id": "c1.hnin.55",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "she doesn't know how her phone works",
+   "my": "ဖုန်းတောင် သေချာမသုံးတတ်တဲ့သူကပေးတာနော်"
+  },
+  {
+   "id": "c1.hnin.56",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "anyway. take your own umbrella next time",
+   "my": "ဘာပဲဖြစ်ဖြစ် နောက်တစ်ခါ ကိုယ့်ထီးကိုယ်ယူခဲ့"
+  },
+  {
+   "id": "c1.hnin.57",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "not everyone has a spare to lend you",
+   "my": "လူတိုင်းမှာ နင့်ကိုငှားဖို့ ထီးအပိုမရှိဘူး"
+  },
+  {
+   "id": "c1.hnin.58",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "anyway",
+   "my": "ထားပါတော့"
+  },
+  {
+   "id": "c1.hnin.59",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "next time it rains, not everyone will have a spare to lend you",
+   "my": "နောက်တစ်ခါ မိုးရွာရင် နင့်ကိုထီးငှားဖို့ အပိုမရှိတော့ဘူးနော်"
+  },
+  {
+   "id": "c1.hnin.60",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "so take your own umbrella next time, Min Htet",
+   "my": "နောက်တခါ ကိုယ့်ထီးကိုယ်ယူခဲ့ မင်းထက်"
+  },
+  {
+   "id": "c1.hnin.61",
+   "who": "Hnin",
+   "where": "chat · Hnin",
+   "en": "I can't lend you mine every time",
+   "my": "ငါလည်း နင့်ကိုအမြဲထီးငှားပေးမနေနိုင်ဘူး"
+  },
+  {
+   "id": "c1.hnin.62",
+   "who": "",
+   "where": "? · hnin",
+   "en": "Daw Aye Aye says a girl ate my samosas yesterday.",
+   "my": "ဒေါ်အေးအေးပြောတာ မနေ့က ကောင်မလေးတစ်ယောက်က အမေ့စမူဆာတွေ စားသွားတယ်တဲ့"
+  },
+  {
+   "id": "c1.hnin.63",
+   "who": "",
+   "where": "? · hnin",
+   "en": "Daw Aye Aye says you bought a girl tea yesterday.",
+   "my": "ဒေါ်အေးအေးပြောတာ မနေ့က သားကောင်မလေးတစ်ယောက်ကို လက်ဖက်ရည်တိုက်လိုက်တယ်ဆို"
+  },
+  {
+   "id": "c1.hnin.64",
+   "who": "",
+   "where": "? · hnin",
+   "en": "Daw Aye Aye says a girl gave you seeds yesterday and you gave her nothing.",
+   "my": "ဒေါ်အေးအေးပြောတာ မနေ့က ကောင်မလေးတစ်ယောက် သားကို နေကြာစေ့ပေးသွားတယ် သားက ဘာမှ ပြန်မပေးလိုက်ဘူးတဲ့"
+  },
+  {
+   "id": "c1.mom.14",
+   "who": "Mom",
+   "where": "chat preview · Hnin",
+   "en": "I can't lend you mine every time",
+   "my": "ငါလည်း နင့်ကိုအမြဲထီးငှားပေးမနေနိုင်ဘူး"
+  },
+  {
+   "id": "c1.mom.15",
+   "who": "Mom",
+   "where": "chat preview · Thura",
+   "en": "joking. go eat 😅",
+   "my": "ဟဲ... စတာပါ ထမင်းသွားစားတော့"
+  },
+  {
+   "id": "c1.mom.16",
+   "who": "Mom",
+   "where": "chat preview · May",
+   "en": "goodnight umbrella thief",
+   "my": "goodnight ထီးသူခိုး"
+  },
+  {
+   "id": "c1.mom.17",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Is she a nice girl?",
+   "my": "ကောင်မလေးက သဘောကောင်းလား"
+  },
+  {
+   "id": "c1.mom.18",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "She's just a classmate.",
+   "my": "သင်တန်းက ကျောင်းသူပါ အမေရယ်"
+  },
+  {
+   "id": "c1.mom.19",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "She's just a classmate.",
+   "my": "သင်တန်းက ကျောင်းသူပါ အမေရယ်"
+  },
+  {
+   "id": "c1.mom.20",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Okay.",
+   "my": "အေးပါ"
+  },
+  {
+   "id": "c1.mom.21",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Take your own umbrella tomorrow.",
+   "my": "မနက်ဖြန် ကိုယ့်ထီးကိုယ်ယူသွားနော်"
+  },
+  {
+   "id": "c1.mom.22",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "She laughs a lot.",
+   "my": "တော်တော်တော့အရယ်သန်တယ်"
+  },
+  {
+   "id": "c1.mom.23",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "She laughs a lot.",
+   "my": "တော်တော်တော့အရယ်သန်တယ်"
+  },
+  {
+   "id": "c1.mom.24",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "Good. This house is too quiet.",
+   "my": "ကောင်းတာပေါ့ တို့အိမ်ကတိတ်ဆိတ်နေတာနဲ့ အတော်ပဲ"
+  },
+  {
+   "id": "c1.mom.25",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "Mom, please.",
+   "my": "အမေကလည်း"
+  },
+  {
+   "id": "c1.mom.26",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "Mom, please.",
+   "my": "အမေကလည်း"
+  },
+  {
+   "id": "c1.mom.27",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "I am only asking.",
+   "my": "မေးကြည့်တာပါ"
+  },
+  {
+   "id": "c1.room-empty.1",
+   "who": "narration",
+   "where": "scene · room-empty",
+   "en": "Home. The rain has started again. The pink umbrella has its own corner now.",
+   "my": "အိမ်ပြန်ရောက်တော့ မိုးက ပြန်ရွာနေပြန်ပြီ။ ထီးပန်းရောင်လေးကတော့ အခန်းထဲမှာ နေရာတကျဖြစ်နေပြီ။"
+  },
+  {
+   "id": "c1.may.81",
+   "who": "May",
+   "where": "chat preview · May",
+   "en": "ok I have a question",
+   "my": "ok မေးစရာရှိတယ် 🙋‍♀️"
+  },
+  {
+   "id": "c1.may.82",
+   "who": "May",
+   "where": "chat preview · Mom",
+   "en": "Is she a nice girl?",
+   "my": "ကောင်မလေးက သဘောကောင်းလား"
+  },
+  {
+   "id": "c1.may.83",
+   "who": "May",
+   "where": "chat preview · Hnin",
+   "en": "I can't lend you mine every time",
+   "my": "ငါလည်း နင့်ကိုအမြဲထီးငှားပေးမနေနိုင်ဘူး"
+  },
+  {
+   "id": "c1.may.84",
+   "who": "May",
+   "where": "chat preview · Thura",
+   "en": "joking. go eat 😅",
+   "my": "ဟဲ... စတာပါ ထမင်းသွားစားတော့"
+  },
+  {
+   "id": "c1.may.85",
+   "who": "May",
+   "where": "chat · May",
+   "en": "daw aye aye says you take photos of \"strange things\"",
+   "my": "ဒေါ်အေးအေးက ပြောတယ် နင်က \"ထူးထူးဆန်းဆန်းတွေ\" ဓာတ်ပုံရိုက်တတ်တယ်ဆို"
+  },
+  {
+   "id": "c1.may.86",
+   "who": "May",
+   "where": "chat · May",
+   "en": "show me one strange thing 📸",
+   "my": "ထူးဆန်းတာ တစ်ခုလောက် ပြစမ်းပါ"
+  },
+  {
+   "id": "c1.may.87",
+   "who": "May",
+   "where": "chat · May",
+   "en": "since you wanted to give away your umbrella so easily",
+   "my": "နင့်ထီးကိုလွယ်လွယ်ပေးပစ်တဲ့အကြောင်းပြောရင်းနဲ့"
+  },
+  {
+   "id": "c1.may.88",
+   "who": "May",
+   "where": "chat · May",
+   "en": "daw aye aye says you take photos of \"strange things\". show me one 📸",
+   "my": "ဒေါ်အေးအေးကပြောတာ နင်က ထူးဆန်းတာတွေ လျှောက်ရိုက်တယ်တဲ့ တစ်ခုလောက်ပြပါဦး 📸",
+   "own": true
+  },
+  {
+   "id": "c1.may.89",
+   "who": "May",
+   "where": "chat · May",
+   "en": "after you tried to return my dead umbrella today",
+   "my": "ဒီနေ့ ငါ့ထီးစုတ်ကြီးကို ပြန်ပေးဖို့လုပ်တဲ့အကြောင်းပြောဖြစ်တော့"
+  },
+  {
+   "id": "c1.may.90",
+   "who": "May",
+   "where": "chat · May",
+   "en": "daw aye aye says you take photos of \"strange things\". show me one 📸",
+   "my": "ဒေါ်အေးအေးကပြောတာ နင်က \"ထူးဆန်းတဲ့အရာတွေ\" ရိုက်တယ်တဲ့ ငါ့ကိုပြပါလား 📸"
+  },
+  {
+   "id": "c1.may.91",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "The tea-shop table in the rain",
+   "my": "မိုးထဲက လက်ဖက်ရည်ဆိုင်စားပွဲ ခွက်လွတ် နှစ်ခွက်"
+  },
+  {
+   "id": "c1.may.92",
+   "who": "May",
+   "where": "chat · May",
+   "en": "whose cups",
+   "my": "ဘယ်သူ့ခွက်တွေလဲ"
+  },
+  {
+   "id": "c1.may.93",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Ours. From yesterday.",
+   "my": "ငါတို့ခွက်တွေလေ မနေ့က"
+  },
+  {
+   "id": "c1.may.94",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you took a photo of my tea?? 😳",
+   "my": "ငါ့ခွက်ကို ဓာတ်ပုံရိုက်ထားတာလား?? 😳"
+  },
+  {
+   "id": "c1.may.95",
+   "who": "May",
+   "where": "chat · May",
+   "en": "that's either creepy or poetic",
+   "my": "ကြက်သီးထစရာလား ကဗျာဆန်တာလား တစ်ခုခုပဲ"
+  },
+  {
+   "id": "c1.may.96",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Which one?",
+   "my": "ဘယ်တခုလဲ"
+  },
+  {
+   "id": "c1.may.97",
+   "who": "May",
+   "where": "chat · May",
+   "en": "still deciding 🤔",
+   "my": "စဉ်းစားဦးမယ် 🤔"
+  },
+  {
+   "id": "c1.may.98",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Her pink umbrella against your wall",
+   "my": "အိပ်ခန်းနံရံမှာ မှီထားတဲ့ သူမရဲ့ထီးပန်းရောင်"
+  },
+  {
+   "id": "c1.may.99",
+   "who": "May",
+   "where": "chat · May",
+   "en": "OH MY GOD 😱",
+   "my": "ဟယ် တကယ်ကြီးလား 😱"
+  },
+  {
+   "id": "c1.may.100",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you didn't tell me you kept it!!",
+   "my": "နင် သိမ်းထားတာ ငါ့ကိုတောင်မပြောဘူး!!"
+  },
+  {
+   "id": "c1.may.101",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it looks so sad 🥺",
+   "my": "မြင်ရတာဝမ်းနည်းစရာလေး 🥺"
+  },
+  {
+   "id": "c1.may.102",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "It looks like it did its best.",
+   "my": "သူစွမ်းသလောက်တော့ ကြိုးစားခဲ့ရှာပါတယ်"
+  },
+  {
+   "id": "c1.may.103",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "A street dog asleep under a stall",
+   "my": "ဈေးဆိုင်အမိုးအောက်မှာ အိပ်နေတဲ့ လမ်းဘေးခွေး"
+  },
+  {
+   "id": "c1.may.104",
+   "who": "May",
+   "where": "chat · May",
+   "en": "who is he",
+   "my": "အဲ့ဒါဘယ်သူလဲ"
+  },
+  {
+   "id": "c1.may.105",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "He lives near the market. I call him Saya.",
+   "my": "ဈေးနားမှာ နေတာ ငါကတော့ ဆရာလို့ ခေါ်တယ်"
+  },
+  {
+   "id": "c1.may.106",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you NAMED him. saya means teacher 😂",
+   "my": "နာမည်တောင် ပေးထားတာလား!! နာမည်ကလည်း ဆရာ တဲ့ 😂"
+  },
+  {
+   "id": "c1.may.107",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "He knows how to stay dry. That's more than we know.",
+   "my": "သူမိုးမမိအောင်နေတတ်တယ် ငါတို့ထက်တောင်ကျွမ်းသေးတယ်"
+  },
+  {
+   "id": "c1.may.108",
+   "who": "May",
+   "where": "chat · May",
+   "en": "ok. poetic. final answer ✅",
+   "my": "အိုကေ ကဗျာဆန်တယ်ပဲထားလိုက်တော့ final answer"
+  },
+  {
+   "id": "c1.may.109",
+   "who": "May",
+   "where": "chat · May",
+   "en": "most people only take photos of beautiful things",
+   "my": "လူတိုင်းက လှတာလေးတွေပဲ ရွေးရိုက်တတ်ကြတာလေ"
+  },
+  {
+   "id": "c1.may.110",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you're officially strange",
+   "my": "နင် တကယ့်ကို လူထူးဆန်းပဲ"
+  },
+  {
+   "id": "c1.may.111",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I like it 😆",
+   "my": "ကြိုက်ပြီလေ 😆"
+  },
+  {
+   "id": "c1.may.112",
+   "who": "May",
+   "where": "chat · May",
+   "en": "who takes photos of broken things",
+   "my": "ဒါနဲ့ ပျက်နေတဲ့ပစ္စည်းတွေကို ဘယ်သူက ဓာတ်ပုံရိုက်လို့လဲ"
+  },
+  {
+   "id": "c1.may.113",
+   "who": "May",
+   "where": "chat · May",
+   "en": "ok you're officially strange. and saya is perfect 🐶",
+   "my": "ok နင်က တကယ့်ထူးထူးဆန်းဆန်းပဲ ဆရာကတော့ ဆရာကျပါတယ် 🐶"
+  },
+  {
+   "id": "c1.may.114",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I've never seen anyone take photos of things that aren't beautiful",
+   "my": "မလှတာတွေကို ဓာတ်ပုံရိုက်တဲ့သူ တစ်ခါမှ မမြင်ဖူးဘူး"
+  },
+  {
+   "id": "c1.may.115",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Everything looks beautiful when it rains.",
+   "my": "မိုးရွာရင် အရာအားလုံးက လှနေတာပဲ"
+  },
+  {
+   "id": "c1.may.116",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Everything looks beautiful when it rains.",
+   "my": "မိုးရွာရင် အရာအားလုံးက လှနေတာပဲ"
+  },
+  {
+   "id": "c1.may.117",
+   "who": "May",
+   "where": "chat · May",
+   "en": "that's such a lie",
+   "my": "လိမ်တာ"
+  },
+  {
+   "id": "c1.may.118",
+   "who": "May",
+   "where": "chat · May",
+   "en": "ok it's a little true 🙄",
+   "my": "ok နည်းနည်းတော့ ဟုတ်သလိုလိုရှိတယ် 🙄"
+  },
+  {
+   "id": "c1.may.119",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Beautiful things don't need photos. Everyone already looks at them.",
+   "my": "လှတဲ့အရာတွေက ဓာတ်ပုံရိုက်ဖို့တောင်မလိုဘူး လူတိုင်းကကြည့်ကြတာ"
+  },
+  {
+   "id": "c1.may.120",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Beautiful things don't need photos. Everyone already looks at them.",
+   "my": "လှတဲ့အရာတွေက ဓာတ်ပုံရိုက်ဖို့တောင်မလိုဘူး လူတိုင်းကကြည့်ကြတာ"
+  },
+  {
+   "id": "c1.may.121",
+   "who": "May",
+   "where": "chat · May",
+   "en": "wow",
+   "my": "ဝိုး"
+  },
+  {
+   "id": "c1.may.122",
+   "who": "May",
+   "where": "chat · May",
+   "en": "min htet, back-of-the-class philosopher 🧐",
+   "my": "မင်းထက် နင်က ဆရာကြီးပဲ 🧐"
+  },
+  {
+   "id": "c1.may.123",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "I take photos so I remember.",
+   "my": "ဓာတ်ပုံရိုက်ထားတော့ မှတ်မိတာပေါ့"
+  },
+  {
+   "id": "c1.may.124",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "I take photos so I remember.",
+   "my": "ဓာတ်ပုံရိုက်ထားတော့ မှတ်မိတာပေါ့"
+  },
+  {
+   "id": "c1.may.125",
+   "who": "May",
+   "where": "chat · May",
+   "en": "remember what",
+   "my": "ဘာကို မှတ်မိချင်လို့လဲ"
+  },
+  {
+   "id": "c1.may.126",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "How things were. Before they change.",
+   "my": "အရာရာပြောင်းလဲမသွားခင် ဘယ်လိုရှိခဲ့တယ်ဆိုတာလေ"
+  },
+  {
+   "id": "c1.may.127",
+   "who": "May",
+   "where": "chat · May",
+   "en": "things don't change that fast here",
+   "my": "ဒီမြို့မှာက အရာရာက အဲ့လောက်မြန်မြန် မပြောင်းလဲပါဘူး"
+  },
+  {
+   "id": "c1.may.128",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "They do. Just quietly.",
+   "my": "ပြောင်းလဲပါတယ် တိတ်တိတ်လေးမို့လို့ပါ"
+  },
+  {
+   "id": "c1.may.129",
+   "who": "May",
+   "where": "chat · May",
+   "en": "ok rain expert. can you teach me? the camera 📷",
+   "my": "ok ငါ့ကို သင်ပေးလို့ရလား ကင်မရာရိုက်နည်းလေ 📷"
+  },
+  {
+   "id": "c1.may.130",
+   "who": "May",
+   "where": "chat · May",
+   "en": "philosopher. teach me? the camera",
+   "my": "ဆရာကြီး ငါ့ကို သင်ပေးမလား ကင်မရာရိုက်နည်း"
+  },
+  {
+   "id": "c1.may.131",
+   "who": "May",
+   "where": "chat · May",
+   "en": "then teach me",
+   "my": "ဒါဆို ငါ့ကို သင်ပေး"
+  },
+  {
+   "id": "c1.may.132",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I want to remember things too 🥹",
+   "my": "ငါလည်း မှတ်မိနေချင်တယ် 🥹"
+  },
+  {
+   "id": "c1.may.133",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "It's an old camera.",
+   "my": "ကင်မရာကဟောင်းနေပြီ"
+  },
+  {
+   "id": "c1.may.134",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I learn fast. tomorrow after class?? 🙏",
+   "my": "ငါကတတ်တာမြန်ပါတယ် မနက်ဖြန် အတန်းပြီးရင်စမလား?? 🙏"
+  },
+  {
+   "id": "c1.may.135",
+   "who": "May",
+   "where": "chat · May",
+   "en": "old is fine. I learn fast. tomorrow after class?? 🙏",
+   "my": "ဟောင်းလည်း ကိစ္စမရှိဘူး ငါက သင်လွယ်တတ်လွယ် မနက်ဖြန် အတန်းပြီးရင် ဟုတ်ပြီလား?? 🙏"
+  },
+  {
+   "id": "c1.may.136",
+   "who": "May",
+   "where": "chat · May",
+   "en": "old is good. it remembers more. tomorrow after class? 😊",
+   "my": "ဟောင်းတော့ပိုကောင်းတာပေါ့ အမှတ်တရတွေ ပိုများများရှိတဲ့သဘောပေါ့ မနက်ဖြန် အတန်းပြီးရင် ရတယ်မလား? 😊"
+  },
+  {
+   "id": "c1.may.137",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Tomorrow.",
+   "my": "အင်း မနက်ဖြန်"
+  },
+  {
+   "id": "c1.may.138",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Tomorrow.",
+   "my": "အင်း မနက်ဖြန်"
+  },
+  {
+   "id": "c1.may.139",
+   "who": "May",
+   "where": "chat · May",
+   "en": "deal",
+   "my": "deal"
+  },
+  {
+   "id": "c1.may.140",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "If it doesn't rain.",
+   "my": "မိုးမရွာရင်ပေါ့"
+  },
+  {
+   "id": "c1.may.141",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "If it doesn't rain.",
+   "my": "မိုးမရွာရင်ပေါ့"
+  },
+  {
+   "id": "c1.may.142",
+   "who": "May",
+   "where": "chat · May",
+   "en": "it's june min. it will rain 🌧️",
+   "my": "ဇွန်လကြီး မင်းထက်ရယ် မိုးလည်းလူပဲ ရွာမှာပေါ့ 🌧️"
+  },
+  {
+   "id": "c1.may.143",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Then yes.",
+   "my": "ဒါဆို ရတယ်"
+  },
+  {
+   "id": "c1.may.144",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Bring your own umbrella.",
+   "my": "ကိုယ့်ထီးကိုယ်ယူခဲ့"
+  },
+  {
+   "id": "c1.may.145",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Bring your own umbrella.",
+   "my": "ကိုယ့်ထီးကိုယ်ယူခဲ့"
+  },
+  {
+   "id": "c1.may.146",
+   "who": "May",
+   "where": "chat · May",
+   "en": "rude 😤",
+   "my": "ရိုင်းတာ 😤"
+  },
+  {
+   "id": "c1.may.147",
+   "who": "May",
+   "where": "chat · May",
+   "en": "also. bought this today. yellow, so I can never take yours by accident again 💛",
+   "my": "ဒါနဲ့ ဒီနေ့ ဒါလေး ဝယ်လိုက်တယ် အဝါရောင်လေး နင့်ထီးကို နောက်တစ်ခါ မှားမယူမိအောင်လို့ 💛"
+  },
+  {
+   "id": "c1.may.148",
+   "who": "May",
+   "where": "chat · May",
+   "en": "see? ready for rain. bright yellow, so I never take yours by accident again 💛",
+   "my": "တွေ့လား မိုးရွာလည်းအေးဆေးပဲ အဝါတောက်တောက်လေးမို့ နင့်ထီးနဲ့ နောက်တစ်ခါ မှားစရာ အကြောင်းကို မရှိတော့ဘူး 💛"
+  },
+  {
+   "id": "c1.may.149",
+   "who": "May",
+   "where": "chat · May",
+   "en": "already done. yellow. impossible to mix up with a serious black umbrella 😎",
+   "my": "အဆင်သင့်ပဲနော် အဝါရောင်ဆိုတော့ နင့်ရဲ့ တည်ကြည်လှချည်ရဲ့ဆိုတဲ့ ထီးအနက်ကြီးနဲ့ ဘယ်လိုမှ မမှားနိုင်တော့ဘူး 😎"
+  },
+  {
+   "id": "c1.may.150",
+   "who": "May",
+   "where": "may text",
+   "en": "I wouldn't mind.",
+   "my": "ငါကတော့ စိတ်ထဲမထားပါဘူး"
+  },
+  {
+   "id": "c1.may.151",
+   "who": "May",
+   "where": "chat · May",
+   "en": "goodnight min",
+   "my": "goodnight မင်းထက်"
+  },
+  {
+   "id": "c1.may.152",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Goodnight.",
+   "my": "ဂွတ်နိုက်"
+  },
+  {
+   "id": "c1.may.153",
+   "who": "May",
+   "where": "chat · May",
+   "en": "night! see you tomorrow, camera boy 👋",
+   "my": "night! မနက်ဖြန်တွေ့မယ် 👋"
+  },
+  {
+   "id": "c1.bedroom.1",
+   "who": "narration",
+   "where": "scene · bedroom",
+   "en": "Min's room, late. He reads \"goodnight min\" more times than he would admit.",
+   "my": "ညဘက် မင်းထက်ရဲ့ အခန်းလေး။ မေပို့ထားတဲ့ \"goodnight မင်းထက်\" ဆိုတဲ့ စာလေးကို သူအကြိမ်ကြိမ် ပြန်ဖတ်နေမိတယ်။"
+  },
+  {
+   "id": "c1.bedroom.2",
+   "who": "narration",
+   "where": "scene · bedroom",
+   "en": "Min's room, late. The draft he didn't send is still somewhere in his head.",
+   "my": "ညဘက် မင်းထက်ရဲ့ အခန်းလေး။ မပို့ဖြစ်ဘဲ ဖျက်ပစ်လိုက်မိတဲ့ စာလေးကတော့ သူ့ခေါင်းထဲမှာ ဆက်ပြီး တွဲခိုကျန်ရစ်နေတုန်း။"
+  },
+  {
+   "id": "c1.bedroom.3",
+   "who": "narration",
+   "where": "scene · bedroom",
+   "en": "The pink umbrella leans in the corner. The black one stands beside it, dry. On the roof, the rain is softer now.",
+   "my": "အခန်းထောင့်မှာ ထီးပန်းရောင်လေးကဖွင့်လျက်သား၊ ဘေးမှာတော့ ထီးအနက်ရောင်လေး။ သွပ်မိုးပေါ်ကိုကျနေတဲ့ မိုးသံက ခပ်ဖွဲဖွဲလေးပဲကြားရတော့တယ်။"
+  },
+  {
+   "id": "c1.title.1",
+   "who": "",
+   "where": "title card",
+   "en": "<em>End of Chapter 1</em>The First Rain",
+   "my": "<em>အခန်း ၁ ပြီးပါပြီ။</em>ပထမဆုံးမိုး"
+  }
+ ]
+}

@@ -3,6 +3,7 @@ const ch1Rows=()=>[{c:'thura',text:'c1.start.1',time:'Sun'},{c:'mom',text:'c1.st
 const pick=(flag,map)=>()=>map[S.flags[flag]]||map.A||Object.values(map)[0]||[];
 
 const CH1=[
+{title:{big:'<em>Chapter 1</em>The First Rain',small:'Two and a half years earlier · June 2018',rain:0,time:'4:05 PM'}},
  {reset:()=>({may:[],mom:[{k:'div',text:'Sunday'},{k:'text',dir:'in',text:'c1.start.3'},{k:'text',dir:'out',text:'c1.start.4'}],thura:[{k:'div',text:'Sunday'},{k:'text',dir:'in',text:'c1.start.5'}],hnin:[]})},
  {rain:0},{time:'4:05 PM'},
  // C1.1 Mom

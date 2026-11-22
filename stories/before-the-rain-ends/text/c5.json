@@ -1,0 +1,852 @@
+{
+ "chapter": "c5",
+ "title": "Chapter 5",
+ "lines": [
+  {
+   "id": "c5.start.1",
+   "who": "",
+   "where": "A · start",
+   "en": "Are you awake?",
+   "my": "အိပ်ပြီလား"
+  },
+  {
+   "id": "c5.start.2",
+   "who": "",
+   "where": "B · start",
+   "en": "It's raining here.",
+   "my": "ဒီမှာ မိုးရွာနေတယ်"
+  },
+  {
+   "id": "c5.start.3",
+   "who": "",
+   "where": "C · start",
+   "en": "I miss you.",
+   "my": "နင့်ကို သတိရတယ်"
+  },
+  {
+   "id": "c5.title.1",
+   "who": "",
+   "where": "title card",
+   "en": "<em>Chapter 5</em>Seen",
+   "my": "<em>အခန်း ၅</em>Seen"
+  },
+  {
+   "id": "c5.title.2",
+   "who": "",
+   "where": "title card",
+   "en": "October 2020 onwards",
+   "my": "၂၀၂၀ ခုနှစ်၊ အောက်တိုဘာလမှစ၍"
+  },
+  {
+   "id": "c5.c-5lamp.1",
+   "who": "narration",
+   "where": "scene · c-5lamp",
+   "en": "Thadingyut. The roads are still closed.",
+   "my": "သီတင်းကျွတ်လပြည့်ည။ ခရီးသွားခွင့်ပိတ်ထားတုန်းပါပဲ။"
+  },
+  {
+   "id": "c5.c-5lamp.2",
+   "who": "narration",
+   "where": "scene · c-5lamp",
+   "en": "Min lights one lamp on the pagoda wall. One.",
+   "my": "မင်းထက် ဘုရားရင်ပြင်ပေါ်မှာ ဆီမီးခွက်လေး ထွန်းလိုက်တယ်။ တစ်ခွက်တည်းပါပဲ။"
+  },
+  {
+   "id": "c5.may.1",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Daw Aye Aye opened the shutter halfway today. First time since the roads closed.",
+   "my": "ဒေါ်အေးအေး ဒီနေ့ ဆိုင်တံခါး တစ်ဝက်လောက် ပြန်ဟထားပြီ lockdownကျသွားပြီးကတည်းက ဒါ ပထမဆုံး ပြန်ဖွင့်တာပဲ"
+  },
+  {
+   "id": "c5.may.2",
+   "who": "May",
+   "where": "chat · May",
+   "en": "sorry!! group project all day",
+   "my": "sorry ဟာ တစ်နေကုန် group project ကိစ္စတွေနဲ့ ခေါင်းမဖော်နိုင်ဖြစ်နေလို့"
+  },
+  {
+   "id": "c5.may.3",
+   "who": "May",
+   "where": "chat · May (quoted)",
+   "en": "Daw Aye Aye opened the shutter halfway today. First time since the roads closed.",
+   "my": "ဒေါ်အေးအေး ဒီနေ့ ဆိုင်တံခါး တစ်ဝက်လောက် ပြန်ဟထားပြီ lockdownကျသွားပြီးကတည်းက ဒါ ပထမဆုံး ပြန်ဖွင့်တာပဲ"
+  },
+  {
+   "id": "c5.may.4",
+   "who": "May",
+   "where": "chat · May",
+   "en": "that's good news",
+   "my": "ဟယ် ဝမ်းသာစရာပဲ"
+  },
+  {
+   "id": "c5.may.5",
+   "who": "May",
+   "where": "chat · May",
+   "en": "tell her hi",
+   "my": "အန်တီ့ကို ငါမေးတယ်လို့ ပြောပေးနော်"
+  },
+  {
+   "id": "c5.may.6",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Busy week?",
+   "my": "ဒီတစ်ပတ် အလုပ်များနေလား"
+  },
+  {
+   "id": "c5.may.7",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Busy week?",
+   "my": "ဒီတစ်ပတ် အလုပ်များနေလား"
+  },
+  {
+   "id": "c5.may.8",
+   "who": "May",
+   "where": "chat · May",
+   "en": "so busy. stocktake at the warehouse + college",
+   "my": "အရမ်းအလုပ်များနေတာ ဂိုဒေါင်မှာ ပစ္စည်းစာရင်းစစ်ရတာရယ် ကျောင်းရယ်နဲ့"
+  },
+  {
+   "id": "c5.may.9",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I'll call this weekend",
+   "my": "ဒီစနေ တနင်္ဂနွေကျ ဖုန်းဆက်မယ်နော်"
+  },
+  {
+   "id": "c5.may.10",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "I miss you.",
+   "my": "နင့်ကို လွမ်းနေတာ",
+   "own": true
+  },
+  {
+   "id": "c5.may.11",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "I miss you.",
+   "my": "နင့်ကို လွမ်းနေတာ",
+   "own": true
+  },
+  {
+   "id": "c5.may.12",
+   "who": "May",
+   "where": "chat · May",
+   "en": "me too",
+   "my": "ငါလည်း လွမ်းတယ်"
+  },
+  {
+   "id": "c5.may.13",
+   "who": "May",
+   "where": "chat · May",
+   "en": "sorry I'm so bad at this right now",
+   "my": "sorry ဟာ အခုတလော ငါ အဆက်အသွယ်လုပ်ဖို့ တော်တော်လေး ပျက်ကွက်နေမိတယ်"
+  },
+  {
+   "id": "c5.may.14",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "(Send a photo of your table at the tea shop.)",
+   "my": "(လက်ဖက်ရည်ဆိုင်မှာ အတူတူထိုင်နေကျ စားပွဲပုံလေး ပို့မယ်)"
+  },
+  {
+   "id": "c5.may.15",
+   "who": "",
+   "where": "div · may",
+   "en": "Next morning"
+  },
+  {
+   "id": "c5.may.16",
+   "who": "May",
+   "where": "chat · May",
+   "en": "our table",
+   "my": "ငါတို့စားပွဲလေး"
+  },
+  {
+   "id": "c5.may.17",
+   "who": "",
+   "where": "tr · may",
+   "en": "(A busy street. Someone laughing: \"Thiri, come on.\" Then her voice: \"sorry, sorry, I'm outside. I'll call you tomorrow, I promise. tomorrow\")",
+   "my": "(ကားသံ လူသံ ဆူညံနေတဲ့ လမ်းမပေါ်က နောက်ခံအသံ၊ တစုံတစ်ယောက်ရဲ့ ရယ်မောသံ– \"သီရိ မြန်မြန်လာလေ\"။ ပြီးမှ မေ့အသံ– \"sorry sorry ဟာ ငါ အပြင်ရောက်နေလို့ မနက်ဖြန်ကျ ဖုန်းဆက်မယ်နော် တကယ်ကတိပေးတယ် မနက်ဖြန် သေချာဆက်မယ်\")"
+  },
+  {
+   "id": "c5.may.18",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "It's okay. Take your time. I'll be here.",
+   "my": "ရပါတယ် ကိစ္စမရှိပါဘူး"
+  },
+  {
+   "id": "c5.title.3",
+   "who": "",
+   "where": "title card",
+   "en": "<em>Late November 2020</em>The night it started",
+   "my": "<em>၂၀၂၀ ခုနှစ်၊ နိုဝင်ဘာလနှောင်းပိုင်း</em>အရာရာ စတင်ခဲ့သည့်ည"
+  },
+  {
+   "id": "c5.lock.1",
+   "who": "",
+   "where": "chat preview · Thura",
+   "en": "bro answer me",
+   "my": "bro စာပြန်ဦး"
+  },
+  {
+   "id": "c5.lock.2",
+   "who": "",
+   "where": "chat preview · Mom",
+   "en": "Don't stay up late. There is rice in the pot.",
+   "my": "ညဉ့်နက်အောင် မနေနဲ့နော် အိုးထဲမှာ ထမင်းရှိတယ်"
+  },
+  {
+   "id": "c5.lock.3",
+   "who": "",
+   "where": "chat preview · May",
+   "en": "It's okay. Take your time. I'll be here.",
+   "my": "ရပါတယ် ကိစ္စမရှိပါဘူး"
+  },
+  {
+   "id": "c5.title.4",
+   "who": "",
+   "where": "title card",
+   "en": "<em>December 2020</em>The photo",
+   "my": "<em>၂၀၂၀ ခုနှစ်၊ ဒီဇင်ဘာလ</em>ဓာတ်ပုံတစ်ပုံ"
+  },
+  {
+   "id": "c5.photo.1",
+   "who": "Htoo",
+   "where": "comment · photo",
+   "en": "umbrella duty again.",
+   "my": "ဒီတစ်ခါလည်း ငါပဲ ထီးတော်မိုး လုပ်ရပြန်ပြီ"
+  },
+  {
+   "id": "c5.photo.2",
+   "who": "Min",
+   "where": "reply option · photo",
+   "en": "(Zoom in.)",
+   "my": "(ပုံကို ဆွဲချဲ့ကြည့်မယ်။)"
+  },
+  {
+   "id": "c5.photo.3",
+   "who": "",
+   "where": "notes · photo",
+   "en": "Her face, mid-laugh. An arm at the edge of the frame. She looks lighter than she has sounded in months.",
+   "my": "ရယ်မောပျော်ရွှင်နေတဲ့ မေ့မျက်နှာ။ ပုံအစွန်းနားက ကောင်လေးတစ်ယောက်ရဲ့ လက်တစ်ဖက်။ လပေါင်းများစွာ ဖုန်းထဲကတစ်ဆင့် ကြားနေခဲ့ရတဲ့ နွမ်းနယ်အားလျောနေတဲ့အသံတွေနဲ့ မတူဘဲ ဒီပုံထဲမှာ မေ က အများကြီး ပိုလွတ်လပ်ပေါ့ပါးနေတယ်။"
+  },
+  {
+   "id": "c5.photo.4",
+   "who": "Min",
+   "where": "reply option · photo",
+   "en": "(Read the comments.)",
+   "my": "(အောက်က comment တွေ ဝင်ဖတ်ကြည့်မယ်။)"
+  },
+  {
+   "id": "c5.photo.5",
+   "who": "Su Su",
+   "where": "comment · photo",
+   "en": "thiri you look so happy 🥹",
+   "my": "သီရိ နင် အရမ်းပျော်နေတဲ့ပုံပဲ 🥹"
+  },
+  {
+   "id": "c5.photo.6",
+   "who": "Htoo",
+   "where": "comment · photo",
+   "en": "five of us under two umbrellas and she still wouldn't open hers 😂",
+   "my": "လူက ငါးယောက် ထီးက နှစ်ချောင်း ရှိတာတောင် သူ့ထီးကျ လုံးဝထုတ်မဆောင်းဘူးကွာ 😂"
+  },
+  {
+   "id": "c5.photo.7",
+   "who": "May Thiri",
+   "where": "comment · photo",
+   "en": "shh 🙈",
+   "my": "ဟဲ့ တိတ်စမ်း 🙈"
+  },
+  {
+   "id": "c5.photo.8",
+   "who": "",
+   "where": "notes · photo",
+   "en": "Eleven comments. Names he doesn't know. Someone calls her Thiri.",
+   "my": "အောက်မှာ comment ဆယ့်တစ်ခု ရှိနေတယ်။ သူ လုံးဝမသိတဲ့ လူစိမ်းနာမည်တွေချည်းပဲ။ တစ်ယောက်ကတော့ မေ့ကို သီရိ လို့ ခေါ်ထားလေရဲ့။"
+  },
+  {
+   "id": "c5.photo.9",
+   "who": "",
+   "where": "notes · photo",
+   "en": "Names he doesn't know. Jokes he isn't in. Min reads them twice. She sounds happy there.",
+   "my": "သူ မသိတဲ့ နာမည်တွေ။ သူ မပါဝင်တော့တဲ့ ရယ်စရာဟာသတွေ။ မင်းထက် အဲ့ဒီစာသားတွေကို နှစ်ခါပြန် ဖတ်မိတယ်။ အဲ့ဒီအရပ်မှာ မေ တကယ်ပဲ လွတ်လပ်ပျော်ရွှင်နေပုံရတယ်။"
+  },
+  {
+   "id": "c5.photo.10",
+   "who": "Min",
+   "where": "reply option · photo",
+   "en": "(Close the app.)",
+   "my": "(app ကို ပိတ်လိုက်မယ်)"
+  },
+  {
+   "id": "c5.photo.11",
+   "who": "",
+   "where": "notes · photo",
+   "en": "The phone stays dark on the table for a long time.",
+   "my": "မင်းထက်ဖုန်းလေးက စားပွဲပေါ်မှာ Screenပိတ်လျက်သား အကြာကြီး ငြိမ်သက်နေတယ်။"
+  },
+  {
+   "id": "c5.may.19",
+   "who": "Min",
+   "where": "draft · May",
+   "en": "I'm glad you have people there.",
+   "my": "အဲ့ဒီမှာ နင့်ကို ဂရုစိုက်ပေးမယ့် လူတွေ ရှိနေလို့ တော်သေးတာပေါ့"
+  },
+  {
+   "id": "c5.may.20",
+   "who": "Min",
+   "where": "draft · May",
+   "en": "You look happy.",
+   "my": "နင် တကယ်ပျော်နေတဲ့ပုံပဲ"
+  },
+  {
+   "id": "c5.may.21",
+   "who": "Min",
+   "where": "draft · May",
+   "en": "Do you still think about the tea shop?",
+   "my": "ငါတို့လက်ဖက်ရည်ဆိုင်လေးကို သတိရသေးရဲ့လား"
+  },
+  {
+   "id": "c5.may.22",
+   "who": "May",
+   "where": "chat preview · May",
+   "en": "happy birthday umbrella thief 🎂",
+   "my": "happy birthday ထီးသူခိုး 🎂"
+  },
+  {
+   "id": "c5.may.23",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Thanks.",
+   "my": "ကျေးဇူးပါ"
+  },
+  {
+   "id": "c5.thura.1",
+   "who": "Thura",
+   "where": "chat preview · Thura",
+   "en": "bro you've been weird for a month",
+   "my": "မင်း တစ်လလောက် ရှိပြီနော် မှိုင်တွေတွေ ဖြစ်နေတာ"
+  },
+  {
+   "id": "c5.thura.2",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "is it her",
+   "my": "မေ့ကိစ္စကြောင့်လား"
+  },
+  {
+   "id": "c5.thura.3",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "She has a life there now.",
+   "my": "မေက သူ့ဘဝသစ်နဲ့သူ ဖြစ်နေပြီ"
+  },
+  {
+   "id": "c5.thura.4",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "She has a life there now.",
+   "my": "မေက သူ့ဘဝသစ်နဲ့သူ ဖြစ်နေပြီ"
+  },
+  {
+   "id": "c5.thura.5",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "did she say there's no room for you in it",
+   "my": "အဲ့ဒီဘဝထဲမှာ မင်းအတွက် နေရာမရှိတော့ဘူးလို့ သူ ကိုယ်တိုင် ပြောလို့လား"
+  },
+  {
+   "id": "c5.thura.6",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "She didn't have to.",
+   "my": "ပါးစပ်က ထုတ်ပြောနေစရာမှ မလိုတော့တာကွာ"
+  },
+  {
+   "id": "c5.thura.7",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "…ok. then move on. for real this time",
+   "my": "…အေး ဒါဆိုလည်း move onလိုက်တော့ ဒီတခါတော့ အတည်ပြောတာ"
+  },
+  {
+   "id": "c5.thura.8",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "I don't know.",
+   "my": "ငါလည်း မသိတော့ဘူးကွာ"
+  },
+  {
+   "id": "c5.thura.9",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "I don't know.",
+   "my": "ငါလည်း မသိတော့ဘူးကွာ"
+  },
+  {
+   "id": "c5.thura.10",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "then ask her",
+   "my": "ဒါဆို သူ့ကို ပွင့်ပွင့်လင်းလင်း မေးကြည့်လိုက်လေ"
+  },
+  {
+   "id": "c5.thura.11",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "or move on. you can't do this forever",
+   "my": "မဟုတ်ရင်လည်း move onလိုက်တော့ ဒီပုံစံအတိုင်း တစ်သက်လုံး နေသွားလို့ မရဘူးကွ"
+  },
+  {
+   "id": "c5.thura.12",
+   "who": "Min",
+   "where": "reply option · Thura",
+   "en": "It's nothing.",
+   "my": "ဘာမှမဖြစ်ပါဘူး"
+  },
+  {
+   "id": "c5.thura.13",
+   "who": "Min",
+   "where": "chat · Thura",
+   "en": "It's nothing.",
+   "my": "ဘာမှမဖြစ်ပါဘူး"
+  },
+  {
+   "id": "c5.thura.14",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "it's never nothing with you",
+   "my": "မင်းဘယ်တုန်းကများ ဘာမှမဖြစ်ဘူးဆိုတာမျိုးရှိဖူးလို့လဲ"
+  },
+  {
+   "id": "c5.thura.15",
+   "who": "Thura",
+   "where": "chat · Thura",
+   "en": "move on bro. I'm serious",
+   "my": "move onတော့ bro ငါ အတည်ပြောနေတာ"
+  },
+  {
+   "id": "c5.mom.1",
+   "who": "Mom",
+   "where": "chat preview · Mom",
+   "en": "You haven't eaten dinner in three days. Sit with me tonight.",
+   "my": "သား ညစာမစားဘဲ နေနေတာ သုံးရက်တောင် ရှိပြီ ဒီညတော့ အမေနဲ့ အတူတူ ထမင်း လာစားပါ သားရယ်"
+  },
+  {
+   "id": "c5.mom.2",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "I'm waiting for something.",
+   "my": "သားစောင့်နေမိတာ"
+  },
+  {
+   "id": "c5.mom.3",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "I'm waiting for something.",
+   "my": "သားစောင့်နေမိတာ"
+  },
+  {
+   "id": "c5.mom.4",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "I know.",
+   "my": "အမေ ရိပ်မိပါတယ်"
+  },
+  {
+   "id": "c5.mom.5",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "I waited for your father for eight years. Don't learn that from me.",
+   "my": "အမေကိုယ်တိုင်လည်း သားအဖေကို ရှစ်နှစ်လုံးလုံး ထိုင်စောင့်ခဲ့ဖူးတာပဲ အဲ့ဒီစိတ်မျိုးတော့ အမေ့ဆီက အမွေမယူပါနဲ့ သားရယ်"
+  },
+  {
+   "id": "c5.mom.6",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "I'm fine.",
+   "my": "သား ဘာမှမဖြစ်ပါဘူး အမေ"
+  },
+  {
+   "id": "c5.mom.7",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "I'm fine.",
+   "my": "သား ဘာမှမဖြစ်ပါဘူး အမေ"
+  },
+  {
+   "id": "c5.mom.8",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "You say it like him.",
+   "my": "လေသံကအစ သားအဖေနဲ့ တစ်ထပ်တည်းပါလား"
+  },
+  {
+   "id": "c5.mom.9",
+   "who": "Mom",
+   "where": "chat · Mom",
+   "en": "I waited for your father for eight years. Don't learn that from me.",
+   "my": "အမေကိုယ်တိုင်လည်း သားအဖေကို ရှစ်နှစ်လုံးလုံး ထိုင်စောင့်ခဲ့ဖူးတာပဲ အဲ့ဒီစိတ်မျိုးတော့ အမေ့ဆီက အမွေမယူပါနဲ့ သားရယ်"
+  },
+  {
+   "id": "c5.mom.10",
+   "who": "Min",
+   "where": "reply option · Mom",
+   "en": "Okay.",
+   "my": "ဟုတ်"
+  },
+  {
+   "id": "c5.mom.11",
+   "who": "Min",
+   "where": "chat · Mom",
+   "en": "Okay.",
+   "my": "ဟုတ်"
+  },
+  {
+   "id": "c5.c-5dinner.1",
+   "who": "narration",
+   "where": "scene · c-5dinner",
+   "en": "At dinner, Mom puts the last piece of fish on his plate.",
+   "my": "ညစာစားတော့ အမေက ပန်းကန်ထဲ နောက်ဆုံးကျန်နေတဲ့ ငါးဟင်းတစ်တုံးကို သူ့ပန်းကန်ထဲ ခပ်ထည့်ပေးလိုက်တယ်။"
+  },
+  {
+   "id": "c5.c-5dinner.2",
+   "who": "Mom",
+   "where": "scene · c-5dinner",
+   "en": "I waited for your father for eight years. Don't learn that from me.",
+   "my": "အမေကိုယ်တိုင်လည်း သားအဖေကို ရှစ်နှစ်လုံးလုံး ထိုင်စောင့်ခဲ့ဖူးတာပဲ အဲ့ဒီစိတ်မျိုးတော့ အမေ့ဆီက အမွေမယူပါနဲ့ သားရယ်"
+  },
+  {
+   "id": "c5.c-5closing.1",
+   "who": "narration",
+   "where": "scene · c-5closing",
+   "en": "Closing time. Rain on the shutter. Hnin wipes the last table, his table.",
+   "my": "ဆိုင်ပိတ်ခါနီး လက်ဖက်ရည်ဆိုင်ထဲမှာ ခေါင်မိုးပေါ် မိုးပေါက်ကျသံတွေပဲ ကြားနေရတယ်။ နှင်း က မင်းထက် ထိုင်နေတဲ့ စားပွဲကို သုတ်ပေးနေတယ်။"
+  },
+  {
+   "id": "c5.c-5closing.2",
+   "who": "narration",
+   "where": "scene · c-5closing",
+   "en": "Then she sits down across from him. She never does that.",
+   "my": "ပြီးတော့ သူ့ရှေ့တည့်တည့်မှာ ဝင်ထိုင်လိုက်တယ်။ နှင်း အရင်က အခုလို တစ်ခါမှ မထိုင်ခဲ့ဖူးပါဘူး။"
+  },
+  {
+   "id": "c5.c-5closing.3",
+   "who": "Hnin",
+   "where": "scene · c-5closing",
+   "en": "Min. If someone…",
+   "my": "မင်းထက်။ တကယ်လို့ တယောက်ယောက်ကများ…"
+  },
+  {
+   "id": "c5.c-5closing.4",
+   "who": "narration",
+   "where": "scene · c-5closing",
+   "en": "She stops.",
+   "my": "စကားကို ရပ်လိုက်တယ်။"
+  },
+  {
+   "id": "c5.c-5closing.5",
+   "who": "Hnin",
+   "where": "scene · c-5closing",
+   "en": "Never mind. Your tea's getting cold.",
+   "my": "ထားလိုက်ပါတော့။ နင့်လက်ဖက်ရည်တွေ အေးကုန်တော့မယ်။"
+  },
+  {
+   "id": "c5.c-5closing.6",
+   "who": "Min",
+   "where": "scene option · c-5closing",
+   "en": "If someone what?",
+   "my": "တယောက်ယောက်က ဘာဖြစ်လဲ ဆက်ပြောလေ။"
+  },
+  {
+   "id": "c5.c-5closing.7",
+   "who": "",
+   "where": "scene · c-5closing",
+   "en": "If someone what?",
+   "my": "တယောက်ယောက်က ဘာဖြစ်လဲ ဆက်ပြောလေ။"
+  },
+  {
+   "id": "c5.c-5closing.8",
+   "who": "Hnin",
+   "where": "scene · c-5closing",
+   "en": "If someone waited for you. Like you wait for her.",
+   "my": "တကယ်လို့များ တယောက်ယောက်က နင့်ကို စောင့်နေခဲ့ရင်ပေါ့။ နင် သူ့ကို စောင့်နေသလိုမျိုးလေ။"
+  },
+  {
+   "id": "c5.c-5closing.9",
+   "who": "narration",
+   "where": "scene · c-5closing",
+   "en": "A beat.",
+   "my": "ခဏ ငြိမ်သွားတယ်။"
+  },
+  {
+   "id": "c5.c-5closing.10",
+   "who": "Hnin",
+   "where": "scene · c-5closing",
+   "en": "I'm joking. Go home, it's late.",
+   "my": "စတာပါ။ အိမ်ပြန်တော့၊ မိုးချုပ်နေပြီ။"
+  },
+  {
+   "id": "c5.c-5closing.11",
+   "who": "Min",
+   "where": "reply option · c-5closing",
+   "en": "(Drink the tea.)",
+   "my": "(လက်ဖက်ခွက်ကိုယူ သောက်လိုက်မယ်။)"
+  },
+  {
+   "id": "c5.c-5closing.12",
+   "who": "narration",
+   "where": "scene · c-5closing",
+   "en": "She watches him drink it. She doesn't finish the sentence. She never does.",
+   "my": "သူ လက်ဖက်ရည်သောက်နေတာကို နှင်း ငေးကြည့်နေခဲ့တယ်။ စကားကိုတော့ ဆုံးတဲ့ထိ မပြောဖြစ်လိုက်ပါဘူး။ ဘယ်တော့မှလည်း ပြောဖြစ်မယ်မထင်ဘူး။"
+  },
+  {
+   "id": "c5.c-5closing.13",
+   "who": "Min",
+   "where": "scene option · c-5closing",
+   "en": "Thank you for always being here.",
+   "my": "အမြဲတမ်း အနားမှာ ရှိနေပေးလို့ ကျေးဇူးပါ နှင်း။"
+  },
+  {
+   "id": "c5.c-5closing.14",
+   "who": "",
+   "where": "scene · c-5closing",
+   "en": "Thank you for always being here.",
+   "my": "အမြဲတမ်း အနားမှာ ရှိနေပေးလို့ ကျေးဇူးပါ နှင်း။"
+  },
+  {
+   "id": "c5.c-5closing.15",
+   "who": "Hnin",
+   "where": "scene · c-5closing",
+   "en": "…Someone has to be.",
+   "my": "…တယောက်ယောက်တော့ ရှိနေပေးမှ ဖြစ်မှာပေါ့။"
+  },
+  {
+   "id": "c5.c-5closing.16",
+   "who": "narration",
+   "where": "scene · c-5closing",
+   "en": "She takes the cup before it's empty.",
+   "my": "လက်ဖက်ရည် မကုန်သေးခင်မှာပဲ ခွက်ကို ကောက်သိမ်းသွားတယ်။"
+  },
+  {
+   "id": "c5.title.5",
+   "who": "",
+   "where": "title card",
+   "en": "<em>January 2021</em>The buses run again",
+   "my": "<em>၂၀၂၁ ခုနှစ်၊ ဇန်နဝါရီလ</em>ကားဂိတ်များ ပြန်ဖွင့်ချိန်"
+  },
+  {
+   "id": "c5.c-5counter.1",
+   "who": "narration",
+   "where": "scene · c-5counter",
+   "en": "The buses run again. Min has been to the station four times this week. Today he goes to the counter.",
+   "my": "အဝေးပြေးကားတွေ ပြန်ဆွဲနေပြီ။ ဒီတစ်ပတ်ထဲမှာတင် မင်းထက် ကားဂိတ်ကို လေးခေါက်တိတိ ရောက်ခဲ့ပြီးပြီ။ ဒီနေ့တော့ တွေဝေမနေတော့ဘဲ လက်မှတ်ကောင်တာဆီ တည့်တည့်လျှောက်သွားလိုက်တယ်။"
+  },
+  {
+   "id": "c5.may.24",
+   "who": "May",
+   "where": "may text",
+   "en": "I'm at the station. I bought a ticket.",
+   "my": "ငါအခု ကားဂိတ်မှာ ကားလက်မှတ်လည်း ဖြတ်ပြီးပြီ"
+  },
+  {
+   "id": "c5.may.25",
+   "who": "May",
+   "where": "chat · May",
+   "en": "wait",
+   "my": "ဟင် နေဦး"
+  },
+  {
+   "id": "c5.may.26",
+   "who": "May",
+   "where": "chat · May (quoted)",
+   "en": "I'm at the station. I bought a ticket.",
+   "my": "ငါအခု ကားဂိတ်မှာ ကားလက်မှတ်လည်း ဖြတ်ပြီးပြီ"
+  },
+  {
+   "id": "c5.may.27",
+   "who": "May",
+   "where": "chat · May",
+   "en": "you're coming??",
+   "my": "နင် တကယ် လာမလို့လား??"
+  },
+  {
+   "id": "c5.may.28",
+   "who": "May",
+   "where": "chat · May",
+   "en": "min?",
+   "my": "မင်းထက်?"
+  },
+  {
+   "id": "c5.c-5bench.1",
+   "who": "narration",
+   "where": "scene · c-5bench",
+   "en": "He doesn't answer. The bus is already gone.",
+   "my": "မင်းထက် ဘာမှ ပြန်မဖြေဖြစ်တော့ဘူး။ စီးရမယ့် ကားကတော့ ထွက်သွားနှင့်ပြီ။"
+  },
+  {
+   "id": "c5.c-5bench.2",
+   "who": "narration",
+   "where": "scene · c-5bench",
+   "en": "The bus is gone. Nobody knows he was here.",
+   "my": "ကားက ထွက်သွားပြီ။ သူ ဒီကားဂိတ်ကို ရောက်လာခဲ့တယ်ဆိုတာ ဘယ်သူမှမသိလိုက်ကြဘူး။"
+  },
+  {
+   "id": "c5.may.29",
+   "who": "May",
+   "where": "chat · May",
+   "en": "do you still have the shoebox",
+   "my": "ငါ့ဖိနပ်ဘူးလေး နင့်ဆီမှာ ရှိသေးလား"
+  },
+  {
+   "id": "c5.may.30",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Yes.",
+   "my": "အင်း ရှိသေးတယ်"
+  },
+  {
+   "id": "c5.may.31",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Yes.",
+   "my": "အင်း ရှိသေးတယ်"
+  },
+  {
+   "id": "c5.may.32",
+   "who": "May",
+   "where": "chat · May",
+   "en": "good",
+   "my": "တော်သေးတာပေါ့"
+  },
+  {
+   "id": "c5.may.33",
+   "who": "May",
+   "where": "chat · May",
+   "en": "keep it safe for me",
+   "my": "ငါ့ကိုယ်စား သေချာလေး သိမ်းထားပေးနော်"
+  },
+  {
+   "id": "c5.may.34",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "Why?",
+   "my": "ဘာလို့လဲ"
+  },
+  {
+   "id": "c5.may.35",
+   "who": "Min",
+   "where": "chat · May",
+   "en": "Why?",
+   "my": "ဘာလို့လဲ"
+  },
+  {
+   "id": "c5.may.36",
+   "who": "May",
+   "where": "chat · May",
+   "en": "I don't know. I just wanted to know something was still there",
+   "my": "ဘာရယ်မဟုတ်ပါဘူး အရင်တုန်းကအမှတ်တရတွေထဲက တစ်ခုခု အဲ့မှာရှိနေသေးလားသိချင်လို့ပါ"
+  },
+  {
+   "id": "c5.may.37",
+   "who": "Min",
+   "where": "reply option · May",
+   "en": "(Leave it on Seen.)",
+   "my": "(Seen ပဲပြထားလိုက်မယ်)"
+  },
+  {
+   "id": "c5.may.38",
+   "who": "May",
+   "where": "chat preview · May",
+   "en": "do you still have the shoebox",
+   "my": "ငါ့ဖိနပ်ဘူးလေး နင့်ဆီမှာ ရှိသေးလား"
+  },
+  {
+   "id": "c5.may.39",
+   "who": "May",
+   "where": "chat preview · Thura",
+   "en": "football sat? there is football again",
+   "my": "စနေ ဘောလုံးကန်မလား ဘောပွဲတွေလည်းပြန်စနေပြီ"
+  },
+  {
+   "id": "c5.may.40",
+   "who": "May",
+   "where": "chat preview · Mom",
+   "en": "Bring an umbrella.",
+   "my": "ထီးယူသွားနော်"
+  },
+  {
+   "id": "c5.may.41",
+   "who": "May",
+   "where": "chat preview · Hnin",
+   "en": "your tab is 14 teas",
+   "my": "နင့်လက်ဖက်ရည်ဖိုးအကြွေး ၁၄ ခွက်စာ ရှိပြီနော်"
+  },
+  {
+   "id": "c5.may.42",
+   "who": "May",
+   "where": "chat preview · Thura",
+   "en": "bro"
+  },
+  {
+   "id": "c5.may.43",
+   "who": "May",
+   "where": "chat preview · May",
+   "en": "do you still have the shoebox",
+   "my": "ငါ့ဖိနပ်ဘူးလေး နင့်ဆီမှာ ရှိသေးလား"
+  },
+  {
+   "id": "c5.may.44",
+   "who": "May",
+   "where": "chat preview · Mom",
+   "en": "Bring an umbrella.",
+   "my": "ထီးယူသွားနော်"
+  },
+  {
+   "id": "c5.may.45",
+   "who": "May",
+   "where": "chat preview · Hnin",
+   "en": "your tab is 14 teas",
+   "my": "နင့်လက်ဖက်ရည်ဖိုးအကြွေး ၁၄ ခွက်စာ ရှိပြီနော်"
+  },
+  {
+   "id": "c5.may.46",
+   "who": "May",
+   "where": "chat preview · Hnin",
+   "en": "first tea of the day is on me",
+   "my": "ဒီနေ့ ငါလဖက်ရည်တခွက်တိုက်မယ်"
+  },
+  {
+   "id": "c5.may.47",
+   "who": "May",
+   "where": "chat preview · Thura",
+   "en": "bro"
+  },
+  {
+   "id": "c5.may.48",
+   "who": "May",
+   "where": "chat preview · May",
+   "en": "do you still have the shoebox",
+   "my": "ငါ့ဖိနပ်ဘူးလေး နင့်ဆီမှာ ရှိသေးလား"
+  },
+  {
+   "id": "c5.may.49",
+   "who": "May",
+   "where": "chat preview · Mom",
+   "en": "Bring an umbrella.",
+   "my": "ထီးယူသွားနော်"
+  },
+  {
+   "id": "c5.title.6",
+   "who": "",
+   "where": "title card",
+   "en": "<em>End of Chapter 5</em>Seen",
+   "my": "<em>အခန်း ၅ ပြီးပါပြီ။</em>Seen"
+  }
+ ]
+}

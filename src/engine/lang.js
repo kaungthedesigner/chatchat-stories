@@ -4,7 +4,7 @@ S.ch=0;
    its place (IDMAP), so a step still reads as English everywhere the engine looks at FLOW. trS translates a
    step just before it runs: a remembered place shows its ID's Burmese, a bare ID (steps built later, inside
    functions) is looked up directly, and any other string goes through D, the English-keyed map, as before. */
-const ID_RX=/^(?:p|c[1-5]|e)\.[a-z0-9-]+\.\d+$/;
+const ID_RX=new RegExp('^(?:'+Object.keys(ID_CH).join('|')+')\\.[a-z0-9-]+\\.\\d+$');
 const IDMAP=new WeakMap(),IDSEEN=new WeakSet();
 const idTxt=(id,my)=>my&&TEXT_MY[id]!==undefined?TEXT_MY[id]:TEXT_EN[id]!==undefined?TEXT_EN[id]:id;
 function idStatic(x){if(!x||typeof x!=='object'||IDSEEN.has(x)||!(Array.isArray(x)||x.constructor===Object))return;IDSEEN.add(x);

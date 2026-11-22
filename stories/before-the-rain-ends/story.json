@@ -1,0 +1,95 @@
+{
+ "id": "bre",
+ "title": "Before the Rain Ends",
+ "page": "index.html",
+ "mins": 110,
+ "tag": "A story told in messages",
+ "tagline": "For the days when you miss someone.",
+ "cover": "img/dr-13-walk-open.webp?v=2611161",
+ "chapters": [
+  {
+   "n": "P",
+   "t": "Prologue",
+   "d": "November 2020",
+   "text": "p"
+  },
+  {
+   "n": "1",
+   "t": "The First Rain",
+   "d": "June 2018",
+   "text": "c1"
+  },
+  {
+   "n": "2",
+   "t": "Monsoon Season",
+   "d": "July to October 2018",
+   "text": "c2"
+  },
+  {
+   "n": "3",
+   "t": "Thingyan",
+   "d": "March to December 2019",
+   "text": "c3"
+  },
+  {
+   "n": "4",
+   "t": "The Station",
+   "d": "January to September 2020",
+   "text": "c4"
+  },
+  {
+   "n": "5",
+   "t": "Seen",
+   "d": "October 2020 to early 2021",
+   "text": "c5"
+  },
+  {
+   "n": "E",
+   "t": "Still waiting",
+   "d": "June 2023 · Epilogue 2024",
+   "text": "e"
+  }
+ ],
+ "text": [
+  "p",
+  "c1",
+  "c2",
+  "c3",
+  "c4",
+  "c5",
+  "e",
+  "extra"
+ ],
+ "slots": {
+  "art": [
+   "art.js"
+  ],
+  "memories": [
+   "memories.js"
+  ],
+  "sequences": [
+   "sequences.js"
+  ],
+  "endings": [
+   "endings.js"
+  ],
+  "flow": [
+   "flow/prologue.js",
+   "flow/ch1.js",
+   "flow/ch2.js",
+   "flow/ch3.js",
+   "flow/ch4.js",
+   "flow/ch5.js",
+   "flow/ending.js"
+  ]
+ },
+ "flow": [
+  "PROLOGUE",
+  "CH1",
+  "CH2",
+  "CH3",
+  "CH4",
+  "CH5",
+  "ENDING"
+ ]
+}

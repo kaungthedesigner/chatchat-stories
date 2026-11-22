@@ -1,13 +1,6 @@
 /* ============ STORIES · SAVES ============ */
-const STORIES=[{id:'bre',title:'Before the Rain Ends',mins:110,chapters:[
-  {n:'P',t:'Prologue',d:'November 2020'},
-  {n:'1',t:'The First Rain',d:'June 2018'},
-  {n:'2',t:'Monsoon Season',d:'July to October 2018'},
-  {n:'3',t:'Thingyan',d:'March to December 2019'},
-  {n:'4',t:'The Station',d:'January to September 2020'},
-  {n:'5',t:'Seen',d:'October 2020 to early 2021'},
-  {n:'E',t:'Still waiting',d:'June 2023 · Epilogue 2024'}]}];
-const STORY=STORIES[0];
+/* STORIES and STORY_ID come from the stories' story.json files (tools/build.mjs); this page plays STORY */
+const STORY=STORIES.find(s=>s.id===STORY_ID);
 /* Home card line: the chapter range comes from the list above, so it updates by itself when a chapter goes live */
 (()=>{const live=STORY.chapters.filter(c=>!c.soon&&/^\d+$/.test(c.n)),last=live.length?live[live.length-1].n:null,el=$('#libMeta');
   const fin=STORY.chapters.some(c=>c.n==='E'&&!c.soon);

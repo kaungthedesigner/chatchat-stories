@@ -23,26 +23,39 @@ const err = (rule, msg) => errors.push(`[${rule}] ${msg}`), warn = (rule, msg) =
 const args = process.argv.slice(2);
 
 const parts = JSON.parse(fs.readFileSync('src/parts.json', 'utf8'));
-const files = parts.filter(p => !p.startsWith('gen:'));
-const stories = [...new Set(parts.filter(p => p.startsWith('gen:text:')).map(p => p.split(':')[2]))];
+const storyList = fs.readdirSync('stories').filter(d => fs.existsSync(`stories/${d}/story.json`)).map(d => ({ dir: `stories/${d}/`, ...JSON.parse(fs.readFileSync(`stories/${d}/story.json`, 'utf8')) }));
+const engineFiles = parts.filter(p => !p.startsWith('gen:') && !p.startsWith('slot:'));
+const storyFiles = s => Object.values(s.slots).flat().map(f => s.dir + f);
+const files = [...engineFiles, ...storyList.flatMap(storyFiles)];
+const stories = storyList.map(s => s.dir);
 
-// 1. index.html is the current build
+// 1. the pages are the current build
 {
-  const tmp = path.join(fs.mkdtempSync('/tmp/chk-'), 'index.html');
-  execSync(`node tools/build.mjs ${tmp}`, { stdio: 'ignore' });
-  if (fs.readFileSync(tmp, 'utf8') !== fs.readFileSync('index.html', 'utf8')) err('build', 'index.html is not the current build: run npm run build');
+  const tmp = fs.mkdtempSync('/tmp/chk-');
+  execSync(`node tools/build.mjs --out ${tmp}`, { stdio: 'ignore' });
+  for (const f of fs.readdirSync(tmp)) if (!fs.existsSync(f) || fs.readFileSync(path.join(tmp, f), 'utf8') !== fs.readFileSync(f, 'utf8')) err('build', `${f} is not the current build: run npm run build`);
 }
 
-const ID_RX = /^(?:p|c[1-5]|e)\.[a-z0-9-]+\.\d+$/;
 const EMO = /\p{Extended_Pictographic}/gu;
 // inVoice is a voice message's sound caption, not typed text, so it may use ။
 const PHONE_KEYS = new Set(['in', 'out', 'send', 'text', 't', 'cap', 'inRe', 'opts', 'inCall']);
 const SCENE_KEYS = new Set(['say', 'narr', 'min']);
 
 for (const dir of stories) {
-  const EN = JSON.parse(fs.readFileSync(path.join(dir, 'text/en.json'), 'utf8'));
-  const MY = JSON.parse(fs.readFileSync(path.join(dir, 'text/my.json'), 'utf8'));
-  const flowFiles = files.filter(f => f.startsWith(dir + 'flow/'));
+  const st = storyList.find(s => s.dir === dir);
+  const EN = {}, MY = {}, LINE_FILE = {};
+  for (const ch of st.text) {
+    const fn = `${dir}text/${ch}.json`;
+    let j; try { j = JSON.parse(fs.readFileSync(fn, 'utf8')) } catch (e) { err('text', `${fn}: ${e.message}`); continue }
+    for (const l of j.lines || []) {
+      if (!l.id || typeof l.en !== 'string') { err('text', `${fn}: a line without id or English`); continue }
+      if (EN[l.id] !== undefined) err('ids', `${l.id} is in more than one place`);
+      EN[l.id] = l.en; LINE_FILE[l.id] = fn; if (l.my !== undefined && l.my !== '') MY[l.id] = l.my;
+    }
+  }
+  const prefixes = st.chapters.map(c => c.text).filter(Boolean);
+  const ID_RX = new RegExp('^(?:' + prefixes.join('|') + ')\\.[a-z0-9-]+\\.\\d+$');
+  const flowFiles = (st.slots.flow || []).map(f => dir + f);
   const used = new Map(); // id -> context
   for (const f of flowFiles) {
     const src = fs.readFileSync(f, 'utf8');
@@ -71,8 +84,7 @@ for (const dir of stories) {
       if (EN[id] !== undefined) seenText.push(EN[id]);
     });
   }
-  for (const id of Object.keys(EN)) if (!used.has(id) && !/\.extra\.\d+$/.test(id)) err('ids', `${dir}text/en.json: ${id} is never used`);
-  for (const id of Object.keys(MY)) if (EN[id] === undefined) err('ids', `${dir}text/my.json: ${id} is not in en.json`);
+  for (const id of Object.keys(EN)) if (!used.has(id) && !/\.extra\.\d+$/.test(id)) err('ids', `${LINE_FILE[id]}: ${id} is never used`);
   const noMy = [...used.keys()].filter(id => MY[id] === undefined);
   if (noMy.length) warn('burmese', `${noMy.length} lines have no Burmese: ${noMy.slice(0, 12).join(', ')}${noMy.length > 12 ? ' …' : ''}`);
   for (const [id, c] of used) {
@@ -86,8 +98,14 @@ for (const dir of stories) {
   const ti = args.indexOf('--text-only');
   if (ti >= 0) {
     const ref = args[ti + 1];
-    let old = null; try { old = JSON.parse(execSync(`git show ${ref}:${dir}text/en.json`, { encoding: 'utf8' })) } catch (e) {}
-    if (old && Object.keys(old).join('\n') !== Object.keys(EN).join('\n')) err('text-only', `${dir}: line IDs were added, removed or reordered since ${ref}`);
+    for (const ch of st.text) {
+      const fn = `${dir}text/${ch}.json`;
+      let old = null; try { old = JSON.parse(execSync(`git show ${ref}:${fn}`, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] })) } catch (e) {}
+      if (!old) continue;
+      const now = JSON.parse(fs.readFileSync(fn, 'utf8'));
+      const shape = j => j.lines.map(l => [l.id, l.who, l.where].join('|')).join('\n');
+      if (shape(old) !== shape(now)) err('text-only', `${fn}: lines were added, removed, reordered or had their ID, who or where changed since ${ref}`);
+    }
   }
 }
 

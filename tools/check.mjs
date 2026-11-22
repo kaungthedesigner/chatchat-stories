@@ -35,7 +35,8 @@ const stories = [...new Set(parts.filter(p => p.startsWith('gen:text:')).map(p =
 
 const ID_RX = /^(?:p|c[1-5]|e)\.[a-z0-9-]+\.\d+$/;
 const EMO = /\p{Extended_Pictographic}/gu;
-const PHONE_KEYS = new Set(['in', 'out', 'send', 'text', 't', 'cap', 'inRe', 'opts', 'inVoice', 'inCall']);
+// inVoice is a voice message's sound caption, not typed text, so it may use ။
+const PHONE_KEYS = new Set(['in', 'out', 'send', 'text', 't', 'cap', 'inRe', 'opts', 'inCall']);
 const SCENE_KEYS = new Set(['say', 'narr', 'min']);
 
 for (const dir of stories) {

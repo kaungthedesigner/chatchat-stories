@@ -1,3 +1,7 @@
 public/
 node_modules/
 dist/
+admin/node_modules/
+admin/dist/
+admin/.astro/
+admin/.vercel/

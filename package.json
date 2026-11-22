@@ -7,7 +7,9 @@
     "build:prod": "sh build-vercel.sh",
     "record": "node tools/record.mjs",
     "compare": "sh tools/compare.sh index.html",
-    "check": "node tools/check.mjs"
+    "check": "node tools/check.mjs",
+    "admin": "ASTRO_TELEMETRY_DISABLED=1 admin/node_modules/.bin/astro dev --root admin",
+    "admin:install": "npm --prefix admin install"
   },
   "devDependencies": {
     "acorn": "^8.19.0",
